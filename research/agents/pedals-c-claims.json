@@ -1,0 +1,1141 @@
+[
+ {
+  "claim": "FreqBox Freq knob sets the VCO at roughly 25 Hz (minimum) to 1.6 kHz (maximum), about six octaves, measured with Env Amount and FM Amount at minimum and Sync off; the panel is marked 0 to 10.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://c3.zzounds.com/media/mf-107-010e54acdc7f718e21350c3661a405ab.pdf",
+    "doi": "",
+    "title": "moogerfooger MF-107 FreqBox user manual (copy hosted by zzounds)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 28 pp.",
+    "locator": "Functions: Freq, p.18; Specifications p.26",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/moog-mf107-freqbox",
+    "doi": "",
+    "title": "Moog MF107 Freqbox review (Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "November 2008",
+    "locator": "Freq control paragraph",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "freqbox-controls"
+ },
+ {
+  "claim": "The Freq CV input takes -5 V to +5 V at 1 V per octave, and with CV the VCO can run from sub-audio to about 20 kHz.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://c3.zzounds.com/media/mf-107-010e54acdc7f718e21350c3661a405ab.pdf",
+    "doi": "",
+    "title": "moogerfooger MF-107 FreqBox user manual (copy hosted by zzounds)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 28 pp.",
+    "locator": "Rear panel CV inputs, p.20",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/moog-mf107-freqbox",
+    "doi": "",
+    "title": "Moog MF107 Freqbox review (Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "November 2008",
+    "locator": "frequency paragraph",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "freqbox-jacks"
+ },
+ {
+  "claim": "The Wave knob crossfades continuously from triangle (fully anticlockwise) through sawtooth and square to pulse (fully clockwise).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://c3.zzounds.com/media/mf-107-010e54acdc7f718e21350c3661a405ab.pdf",
+    "doi": "",
+    "title": "moogerfooger MF-107 FreqBox user manual (copy hosted by zzounds)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 28 pp.",
+    "locator": "Wave, p.18-19",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/moog-mf107-freqbox",
+    "doi": "",
+    "title": "Moog MF107 Freqbox review (Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "November 2008",
+    "locator": "oscillator paragraph",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "freqbox-controls"
+ },
+ {
+  "claim": "Hard Sync is a two-position switch; when on, the audio input signal (after Drive) resets the start of the VCO waveform cycle at the input's frequency; there is no second oscillator. Sync is most predictable with a low, simple, monophonic input, and the output can be weak or silent when the input frequency exceeds the VCO frequency.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://c3.zzounds.com/media/mf-107-010e54acdc7f718e21350c3661a405ab.pdf",
+    "doi": "",
+    "title": "moogerfooger MF-107 FreqBox user manual (copy hosted by zzounds)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 28 pp.",
+    "locator": "Sync, pp.13 and 18; Technical section",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/moog-mf107-freqbox",
+    "doi": "",
+    "title": "Moog MF107 Freqbox review (Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "November 2008",
+    "locator": "sync paragraph",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "freqbox-controls"
+ },
+ {
+  "claim": "FM Amount sets how much of the Drive-stage output frequency-modulates the VCO (input is modulator, VCO is carrier); fully anticlockwise gives no FM and Drive level changes FM depth. The manual gives no numeric modulation index.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://c3.zzounds.com/media/mf-107-010e54acdc7f718e21350c3661a405ab.pdf",
+    "doi": "",
+    "title": "moogerfooger MF-107 FreqBox user manual (copy hosted by zzounds)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 28 pp.",
+    "locator": "FM Amount, pp.17 and 19",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/moog-mf107-freqbox",
+    "doi": "",
+    "title": "Moog MF107 Freqbox review (Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "November 2008",
+    "locator": "FM paragraph",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "freqbox-controls"
+ },
+ {
+  "claim": "Env Amount sets how much envelope-follower CV is added to the Freq setting, able to sweep the VCO by up to 8 octaves; the Env Amount CV range of 0 to +5 V implies unipolar, upward-only modulation (that polarity is deduced by the reader of the manual, not stated outright).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://c3.zzounds.com/media/mf-107-010e54acdc7f718e21350c3661a405ab.pdf",
+    "doi": "",
+    "title": "moogerfooger MF-107 FreqBox user manual (copy hosted by zzounds)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 28 pp.",
+    "locator": "Env. Amount, p.18; CV table p.20",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "freqbox-controls"
+ },
+ {
+  "claim": "The envelope follower also drives a VCA after the VCO, so VCO loudness follows input dynamics and the VCO is inaudible when there is no input signal; no threshold, scaling, attack or release values are published.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://c3.zzounds.com/media/mf-107-010e54acdc7f718e21350c3661a405ab.pdf",
+    "doi": "",
+    "title": "moogerfooger MF-107 FreqBox user manual (copy hosted by zzounds)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 28 pp.",
+    "locator": "pp.15-17",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/moog-mf107-freqbox",
+    "doi": "",
+    "title": "Moog MF107 Freqbox review (Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "November 2008",
+    "locator": "envelope follower paragraph",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "freqbox-signal"
+ },
+ {
+  "claim": "Mix is 100 percent input at minimum, 50/50 at centre, 100 percent VCO at maximum; the taper is not stated.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://c3.zzounds.com/media/mf-107-010e54acdc7f718e21350c3661a405ab.pdf",
+    "doi": "",
+    "title": "moogerfooger MF-107 FreqBox user manual (copy hosted by zzounds)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 28 pp.",
+    "locator": "Mix, p.19",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/moog-mf107-freqbox",
+    "doi": "",
+    "title": "Moog MF107 Freqbox review (Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "November 2008",
+    "locator": "Mix paragraph",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "freqbox-controls"
+ },
+ {
+  "claim": "Drive sets input sensitivity from instrument to line level and is active only when the effect is on; a three-colour Level LED shows off/none, green low, yellow-orange optimal, red onset of clipping; Drive also feeds the envelope follower, FM and sync, so it affects timbre. No dB range is given.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://c3.zzounds.com/media/mf-107-010e54acdc7f718e21350c3661a405ab.pdf",
+    "doi": "",
+    "title": "moogerfooger MF-107 FreqBox user manual (copy hosted by zzounds)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 28 pp.",
+    "locator": "Drive and Level LED, pp.4,17",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/moog-mf107-freqbox",
+    "doi": "",
+    "title": "Moog MF107 Freqbox review (Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "November 2008",
+    "locator": "Drive paragraph",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "freqbox-controls"
+ },
+ {
+  "claim": "Output Level balances effected against bypassed loudness and can add significant gain; no numeric range is published.",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://c3.zzounds.com/media/mf-107-010e54acdc7f718e21350c3661a405ab.pdf",
+    "doi": "",
+    "title": "moogerfooger MF-107 FreqBox user manual (copy hosted by zzounds)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 28 pp.",
+    "locator": "Output Level, p.5",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "freqbox-controls"
+ },
+ {
+  "claim": "The Wave CV input is 0 to +5 V and covers only about 60 percent of the Wave knob range; Env Amount, FM Amount and Mix CV inputs are 0 to +5 V and cover 100 percent. All CV inputs sum with the knob settings.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://c3.zzounds.com/media/mf-107-010e54acdc7f718e21350c3661a405ab.pdf",
+    "doi": "",
+    "title": "moogerfooger MF-107 FreqBox user manual (copy hosted by zzounds)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 28 pp.",
+    "locator": "CV input table, p.20",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "freqbox-jacks"
+ },
+ {
+  "claim": "Expression/CV jacks are tip-ring-sleeve: ring carries +5 V (current limited), sleeve ground, tip the variable voltage; a 50 kohm or 100 kohm linear pot is specified, and ordinary tip-sleeve cables also work.",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://c3.zzounds.com/media/mf-107-010e54acdc7f718e21350c3661a405ab.pdf",
+    "doi": "",
+    "title": "moogerfooger MF-107 FreqBox user manual (copy hosted by zzounds)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 28 pp.",
+    "locator": "p.24 and p.20",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "freqbox-jacks"
+ },
+ {
+  "claim": "Rear audio: Audio In 1/4 inch unbalanced, 1 Mohm, -16 to +4 dBm; Audio Out 1/4 inch unbalanced, 1 kohm, nominal max -4 dBm, absolute max +10 dBm. FreqBox has a single mono output (no stereo pair).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://c3.zzounds.com/media/mf-107-010e54acdc7f718e21350c3661a405ab.pdf",
+    "doi": "",
+    "title": "moogerfooger MF-107 FreqBox user manual (copy hosted by zzounds)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 28 pp.",
+    "locator": "Specifications, p.26",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "freqbox-jacks"
+ },
+ {
+  "claim": "Env. Follower CV Out is an unfiltered envelope CV of nominally 0 to +5 V, present only when the effect is on and a signal is present, with more audio ripple than the internal CV. Osc. Direct CV Out is the VCO before its VCA, always present, nominally +/-2.5 V (5 V peak to peak).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://c3.zzounds.com/media/mf-107-010e54acdc7f718e21350c3661a405ab.pdf",
+    "doi": "",
+    "title": "moogerfooger MF-107 FreqBox user manual (copy hosted by zzounds)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 28 pp.",
+    "locator": "p.20 and p.27",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/moog-mf107-freqbox",
+    "doi": "",
+    "title": "Moog MF107 Freqbox review (Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "November 2008",
+    "locator": "rear-panel list (raw VCO output, envelope follower output)",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "freqbox-jacks"
+ },
+ {
+  "claim": "Power is a +9 V DC, 300 mA, positive-centre adapter; the technical section says about 200 mA maximum draw is used.",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://c3.zzounds.com/media/mf-107-010e54acdc7f718e21350c3661a405ab.pdf",
+    "doi": "",
+    "title": "moogerfooger MF-107 FreqBox user manual (copy hosted by zzounds)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 28 pp.",
+    "locator": "pp.4,24,26",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/moog-mf107-freqbox",
+    "doi": "",
+    "title": "Moog MF107 Freqbox review (Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "November 2008",
+    "locator": "no battery option",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "freqbox-jacks"
+ },
+ {
+  "claim": "Documented signal flow: input buffer; bypass path is the buffered input at unity gain; in effect mode the buffer feeds Drive; Drive feeds the direct path of the Mix VCA, the envelope follower, the FM VCA and the VCO sync input; the envelope CV drives both the VCO-frequency VCA and the VCO-amplitude VCA; the VCO output goes through its amplitude VCA, then Mix, then Output Level.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://c3.zzounds.com/media/mf-107-010e54acdc7f718e21350c3661a405ab.pdf",
+    "doi": "",
+    "title": "moogerfooger MF-107 FreqBox user manual (copy hosted by zzounds)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 28 pp.",
+    "locator": "Signal flow description, pp.15-17",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "freqbox-signal"
+ },
+ {
+  "claim": "The FreqBox VCO is described as a descendant of the Voyager and Little Phatty oscillators though not identical; the manual and Sound On Sound say it is analogue and can drift with temperature, and the reviewer found it less stable than a Voyager oscillator.",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://c3.zzounds.com/media/mf-107-010e54acdc7f718e21350c3661a405ab.pdf",
+    "doi": "",
+    "title": "moogerfooger MF-107 FreqBox user manual (copy hosted by zzounds)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 28 pp.",
+    "locator": "Technical Information, p.24",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/moog-mf107-freqbox",
+    "doi": "",
+    "title": "Moog MF107 Freqbox review (Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "November 2008",
+    "locator": "sync/stability paragraph",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "freqbox-circuit"
+ },
+ {
+  "claim": "Envelope-follower ripple at audio rate modulates the VCO audibly when Sync is off, more so on low notes and resonant instruments.",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://c3.zzounds.com/media/mf-107-010e54acdc7f718e21350c3661a405ab.pdf",
+    "doi": "",
+    "title": "moogerfooger MF-107 FreqBox user manual (copy hosted by zzounds)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 28 pp.",
+    "locator": "pp.15,20",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "freqbox-circuit"
+ },
+ {
+  "claim": "UNKNOWN: the FreqBox oscillator core type (triangle-core, sawtooth-core or other topology) and whether it uses a CEM-type or discrete exponential converter (not found in the manual or the Sound On Sound review).",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "freqbox-unknown"
+ },
+ {
+  "claim": "UNKNOWN: the FreqBox envelope follower attack and release times and detector type (peak or average) (not found in the manual or the Sound On Sound review).",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "freqbox-unknown"
+ },
+ {
+  "claim": "UNKNOWN: the exact FreqBox waveform at each Wave knob position (crossfade law, pulse-width at maximum) and the Mix crossfade taper (linear versus equal-power) (not found in the manual or the Sound On Sound review).",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "freqbox-unknown"
+ },
+ {
+  "claim": "UNKNOWN: the FM depth in octaves or modulation index at maximum FM Amount, and the transfer function of the VCA that sets VCO loudness (linear or exponential) (not found in the manual or the Sound On Sound review).",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "freqbox-unknown"
+ },
+ {
+  "claim": "UNKNOWN: which edge of the input triggers FreqBox hard-sync resets and the sync comparator threshold (not found in the manual or the Sound On Sound review).",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "freqbox-unknown"
+ },
+ {
+  "claim": "Cluster Flux delay Time knob with the Range switch: Flange range is about 0.6 ms to 10 ms (measured with LFO Amount at 0); Chorus range is about 5 ms to 50 ms.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.strumentimusicali.net/manuali/MOOGMUSIC_MF108M_ENG.pdf",
+    "doi": "",
+    "title": "MF-108M Cluster Flux user manual (copy hosted by strumentimusicali.net)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 20 pp.",
+    "locator": "Front panel Time/Range, pp.11; Specifications appendix",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/moog-mf108m-cluster-flux",
+    "doi": "",
+    "title": "Moog MF108M Cluster Flux review (Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "June 2012",
+    "locator": "Delay ranges paragraph",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "clusterflux-controls"
+ },
+ {
+  "claim": "Feedback is bipolar with zero at the centre; positive feedback emphasises all harmonics of 1/delay and negative feedback emphasises only odd harmonics (an octave lower in flange mode); oscillation begins near the fourth indicator mark either side of centre, so the unit self-oscillates with no input at high settings.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.strumentimusicali.net/manuali/MOOGMUSIC_MF108M_ENG.pdf",
+    "doi": "",
+    "title": "MF-108M Cluster Flux user manual (copy hosted by strumentimusicali.net)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 20 pp.",
+    "locator": "Feedback, p.12",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/moog-mf108m-cluster-flux",
+    "doi": "",
+    "title": "Moog MF108M Cluster Flux review (Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "June 2012",
+    "locator": "panel controls paragraph",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "clusterflux-controls"
+ },
+ {
+  "claim": "Panel LFO Rate runs from 0.05 Hz to about 50 Hz; the LFO Rate CV can extend this to half the minimum (0.025 Hz at 0 V) and double the maximum (100 Hz at +5 V) when the knob is set to the respective extreme.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.strumentimusicali.net/manuali/MOOGMUSIC_MF108M_ENG.pdf",
+    "doi": "",
+    "title": "MF-108M Cluster Flux user manual (copy hosted by strumentimusicali.net)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 20 pp.",
+    "locator": "LFO Rate and CV section, pp.12 and 14-15",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "clusterflux-controls"
+ },
+ {
+  "claim": "There are six panel LFO waveforms in the order sine, triangle, square, sawtooth, ramp, random-stepped; a seventh, smoothed random, exists only via MIDI CC 70.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.strumentimusicali.net/manuali/MOOGMUSIC_MF108M_ENG.pdf",
+    "doi": "",
+    "title": "MF-108M Cluster Flux user manual (copy hosted by strumentimusicali.net)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 20 pp.",
+    "locator": "LFO Waveform, p.12; MIDI CC 70",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/moog-mf108m-cluster-flux",
+    "doi": "",
+    "title": "Moog MF108M Cluster Flux review (Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "June 2012",
+    "locator": "LFO paragraph (sine, rising and falling saw, stepped random; no smoothed random on panel)",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "clusterflux-controls"
+ },
+ {
+  "claim": "LFO Amount sets the depth of LFO modulation of delay time and reduces the usable range of the Time knob as it rises.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.strumentimusicali.net/manuali/MOOGMUSIC_MF108M_ENG.pdf",
+    "doi": "",
+    "title": "MF-108M Cluster Flux user manual (copy hosted by strumentimusicali.net)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 20 pp.",
+    "locator": "LFO Amount, p.12",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "clusterflux-controls"
+ },
+ {
+  "claim": "Drive gives about -7 dB to +28 dB nominal input gain and is active only when the effect is on; the Level LED is green below nominal, yellow best, red clipping. Output Level can boost, cut or hold unity.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.strumentimusicali.net/manuali/MOOGMUSIC_MF108M_ENG.pdf",
+    "doi": "",
+    "title": "MF-108M Cluster Flux user manual (copy hosted by strumentimusicali.net)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 20 pp.",
+    "locator": "Drive and Output, p.10",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/moog-mf108m-cluster-flux",
+    "doi": "",
+    "title": "Moog MF108M Cluster Flux review (Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "June 2012",
+    "locator": "Drive paragraph",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "clusterflux-controls"
+ },
+ {
+  "claim": "Mix is dry only at full anticlockwise, equal blend at centre, wet only at full clockwise, and the Mix knob blends to both outputs.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.strumentimusicali.net/manuali/MOOGMUSIC_MF108M_ENG.pdf",
+    "doi": "",
+    "title": "MF-108M Cluster Flux user manual (copy hosted by strumentimusicali.net)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 20 pp.",
+    "locator": "Mix, p.11",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "clusterflux-controls"
+ },
+ {
+  "claim": "Tap Tempo: three taps set a quarter-note period, later taps are averaged, about five seconds idle restarts; turning LFO Rate returns control to the knob; tap is disabled under MIDI clock sync. The Rate LED is red for panel, green for tap, yellow for MIDI clock.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.strumentimusicali.net/manuali/MOOGMUSIC_MF108M_ENG.pdf",
+    "doi": "",
+    "title": "MF-108M Cluster Flux user manual (copy hosted by strumentimusicali.net)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 20 pp.",
+    "locator": "Tap Tempo, pp.12-13",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/moog-mf108m-cluster-flux",
+    "doi": "",
+    "title": "Moog MF108M Cluster Flux review (Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "June 2012",
+    "locator": "Tap-tempo switch sets LFO rate",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "clusterflux-controls"
+ },
+ {
+  "claim": "Under MIDI clock (24 PPQ) the LFO rate follows division set via the Rate knob or CC 71; CC 71 divisions run in six-value bands from 1/32 triplet at 0-5 to four whole notes at 126-127 (the manual's table has a gap or duplicate near values 102-113). Tap divisions beyond the quarter-note tap are not described separately.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.strumentimusicali.net/manuali/MOOGMUSIC_MF108M_ENG.pdf",
+    "doi": "",
+    "title": "MF-108M Cluster Flux user manual (copy hosted by strumentimusicali.net)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 20 pp.",
+    "locator": "MIDI clock table, p.16-17",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [
+   "Manual table lists the 102-107 band absent and a dotted-whole entry twice, so the mapping for those values is ambiguous."
+  ],
+  "topic": "clusterflux-midi"
+ },
+ {
+  "claim": "Rear jacks: Audio In (mono), L/Mono Out, R Out, FB Insert, MIDI In (5-pin DIN), +9 V, and five CV/expression inputs (Time, Feedback, LFO Rate, LFO Amount, Mix), each TRS 0 to +5 V with ring supplying +5 V; panel knob should be centred so the CV sweeps the full range.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.strumentimusicali.net/manuali/MOOGMUSIC_MF108M_ENG.pdf",
+    "doi": "",
+    "title": "MF-108M Cluster Flux user manual (copy hosted by strumentimusicali.net)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 20 pp.",
+    "locator": "Back panel, pp.13-15; p.16 pedal inputs",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/moog-mf108m-cluster-flux",
+    "doi": "",
+    "title": "Moog MF108M Cluster Flux review (Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "June 2012",
+    "locator": "Five CV inputs 0-5 V",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "clusterflux-jacks"
+ },
+ {
+  "claim": "Time CV sweeps longest to shortest delay over 0 to +5 V with the Time knob centred; Feedback CV with Feedback centred sweeps from full negative to full positive; Mix CV sweeps dry to wet.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.strumentimusicali.net/manuali/MOOGMUSIC_MF108M_ENG.pdf",
+    "doi": "",
+    "title": "MF-108M Cluster Flux user manual (copy hosted by strumentimusicali.net)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 20 pp.",
+    "locator": "CV jacks, pp.14-15",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "clusterflux-jacks"
+ },
+ {
+  "claim": "L/Mono Out carries the Mix blend with wet in normal phase. R Out by default carries dry plus inverted wet; summing both centred cancels the wet. Four internal DIP modes: R with mix and wet out of phase (default), R with mix and dry out of phase, R dry only with wet in phase, R dry only with wet out of phase (the latter two with Mix disabled).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.strumentimusicali.net/manuali/MOOGMUSIC_MF108M_ENG.pdf",
+    "doi": "",
+    "title": "MF-108M Cluster Flux user manual (copy hosted by strumentimusicali.net)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 20 pp.",
+    "locator": "Back panel and Output Configuration, pp.13,17",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/moog-mf108m-cluster-flux",
+    "doi": "",
+    "title": "Moog MF108M Cluster Flux review (Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "June 2012",
+    "locator": "Default right output paragraph",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "clusterflux-jacks"
+ },
+ {
+  "claim": "FB Insert is a 1/4 inch TRS line-level jack: tip sends from the BBD output, ring returns to the unit, so the feedback path can be processed externally.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.strumentimusicali.net/manuali/MOOGMUSIC_MF108M_ENG.pdf",
+    "doi": "",
+    "title": "MF-108M Cluster Flux user manual (copy hosted by strumentimusicali.net)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 20 pp.",
+    "locator": "FB Insert, p.14",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/moog-mf108m-cluster-flux",
+    "doi": "",
+    "title": "Moog MF108M Cluster Flux review (Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "June 2012",
+    "locator": "FB insert jack",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "clusterflux-jacks"
+ },
+ {
+  "claim": "Cluster Flux has no LFO output jack and no CV or audio output other than L/Mono and R; the unit is mono-in, stereo-out only.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.strumentimusicali.net/manuali/MOOGMUSIC_MF108M_ENG.pdf",
+    "doi": "",
+    "title": "MF-108M Cluster Flux user manual (copy hosted by strumentimusicali.net)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 20 pp.",
+    "locator": "Connectors list, Specifications",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://forum.moogmusic.com/t/cmon-mf-108/9922?page=2",
+    "doi": "",
+    "title": "C'mon MF-108 (forum thread)",
+    "publisher": "Moog Music forum",
+    "version": "user posts",
+    "locator": "posts by tubeampguy and joe_moog",
+    "accessed": "2026-11-11",
+    "tier": 4
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "clusterflux-jacks"
+ },
+ {
+  "claim": "MIDI: default channel 1; CCs 7/39 output, 14/46 mix, 12/44 time, 13/45 feedback, 15/47 LFO rate, 16/48 LFO amount, 91 bypass, 74 range, 70 waveform; extended CCs 75 delay-range multiplier (x1/x2/x4/x8), 5/37 time portamento, 76 clock sync, 71 clock division, 72 LFO phase reset, 73 LFO note reset, 77 note mode, 78 spillover.",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://www.strumentimusicali.net/manuali/MOOGMUSIC_MF108M_ENG.pdf",
+    "doi": "",
+    "title": "MF-108M Cluster Flux user manual (copy hosted by strumentimusicali.net)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 20 pp.",
+    "locator": "MIDI section, pp.15-17",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/moog-mf108m-cluster-flux",
+    "doi": "",
+    "title": "Moog MF108M Cluster Flux review (Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "June 2012",
+    "locator": "MIDI paragraph: CC delay multiplier x8, smoothing, clock sync, note-played delay times",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "clusterflux-midi"
+ },
+ {
+  "claim": "Documented signal flow: Audio In to Drive, then the BBD delay line (Time and Range set delay, LFO modulates), BBD output fed back to its input via the FB Insert path, then Mix with dry, then Output Level, to L/Mono and R; bypass is a buffered path.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.strumentimusicali.net/manuali/MOOGMUSIC_MF108M_ENG.pdf",
+    "doi": "",
+    "title": "MF-108M Cluster Flux user manual (copy hosted by strumentimusicali.net)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 20 pp.",
+    "locator": "Signal flow diagram, p.9",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/moog-mf108m-cluster-flux",
+    "doi": "",
+    "title": "Moog MF108M Cluster Flux review (Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "June 2012",
+    "locator": "review: FB insert processes the feedback signal",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "clusterflux-signal"
+ },
+ {
+  "claim": "Delay path is fully analogue with two NOS (new old stock) high-voltage BBDs, one tuned for chorus and one for flange times; Sound On Sound reports two Panasonic BBDs chosen for noise, tone and headroom.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.strumentimusicali.net/manuali/MOOGMUSIC_MF108M_ENG.pdf",
+    "doi": "",
+    "title": "MF-108M Cluster Flux user manual (copy hosted by strumentimusicali.net)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 20 pp.",
+    "locator": "Specifications appendix, p.19",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/moog-mf108m-cluster-flux",
+    "doi": "",
+    "title": "Moog MF108M Cluster Flux review (Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "June 2012",
+    "locator": "Core design paragraph",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "clusterflux-circuit"
+ },
+ {
+  "claim": "Above the front-panel maximum, CC 75 multiplies delay times up to x8, at which the BBD clock becomes audible and the delay is aliased and noisy; an EQ or filter on the insert jack helps.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.strumentimusicali.net/manuali/MOOGMUSIC_MF108M_ENG.pdf",
+    "doi": "",
+    "title": "MF-108M Cluster Flux user manual (copy hosted by strumentimusicali.net)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 20 pp.",
+    "locator": "CC 75, p.16",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/moog-mf108m-cluster-flux",
+    "doi": "",
+    "title": "Moog MF108M Cluster Flux review (Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "June 2012",
+    "locator": "MIDI paragraph",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "clusterflux-circuit"
+ },
+ {
+  "claim": "Power is 9 V DC at least 300 mA, centre-positive 5.5 mm/2.1 mm barrel; four bicolour LEDs (rate, MIDI, level, bypass).",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://www.strumentimusicali.net/manuali/MOOGMUSIC_MF108M_ENG.pdf",
+    "doi": "",
+    "title": "MF-108M Cluster Flux user manual (copy hosted by strumentimusicali.net)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual, 20 pp.",
+    "locator": "Back panel and Specifications, pp.5,15,19",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "clusterflux-jacks"
+ },
+ {
+  "claim": "UNKNOWN: the BBD part numbers and stage counts (for example 1024, 2048 or 4096 stages) in the Cluster Flux (not found in the manual or the reviews opened).",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "clusterflux-unknown"
+ },
+ {
+  "claim": "UNKNOWN: the BBD clock frequency range used for the Flange and Chorus ranges (it can be derived from delay = stages / (2 x clock) once stage count is known) (not found in the manual or the reviews opened).",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "clusterflux-unknown"
+ },
+ {
+  "claim": "UNKNOWN: whether the Cluster Flux uses companding (an NE570/SA571-style compander) and its time constants (not found in the manual or the reviews opened).",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "clusterflux-unknown"
+ },
+ {
+  "claim": "UNKNOWN: the bandwidth and order of the anti-aliasing and reconstruction filters around the BBDs, and whether they track the clock (not found in the manual or the reviews opened).",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "clusterflux-unknown"
+ },
+ {
+  "claim": "UNKNOWN: the LFO-to-delay-time modulation law (linear in time or exponential) and the Feedback knob transfer curve in numeric terms (not found in the manual or the reviews opened).",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "clusterflux-unknown"
+ },
+ {
+  "claim": "UNKNOWN: the CV input behaviour above +5 V beyond a Sound On Sound remark that over-range may reboot the unit, and the LFO Rate knob taper (not found in the manual or the reviews opened).",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "clusterflux-unknown"
+ },
+ {
+  "claim": "UNKNOWN: whether Smoothed Random uses a slew-limited sample-and-hold, its slew time, and whether the Cluster Flux LFO resets on bypass (not found in the manual or the reviews opened).",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "clusterflux-unknown"
+ }
+]

@@ -1,0 +1,866 @@
+[
+ {
+  "claim": "The newest JUCE tag found by ls-remote is 9.0.5 (highest of 9.0.0-9.0.5), so the current major version is JUCE 9; its LICENSE.md says the framework modules are dual-licensed under AGPLv3 or the commercial JUCE licence (JUCE 9 EULA).",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://raw.githubusercontent.com/juce-framework/JUCE/9.0.5/LICENSE.md",
+    "doi": "",
+    "title": "JUCE LICENSE.md",
+    "publisher": "Raw Material Software Limited (JUCE)",
+    "version": "tag 9.0.5",
+    "locator": "lines 1-7",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "juce-licence"
+ },
+ {
+  "claim": "JUCE's own SPDX bill of materials declares JUCE 9.0.5 and every juce_* module as 'AGPL-3.0-only OR LicenseRef-JUCE-Commercial', so an AGPL-3.0-only project using the open-source option is within the declared terms; examples are ISC-licensed per LICENSE.md lines 51-53.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://raw.githubusercontent.com/juce-framework/JUCE/9.0.5/JUCE.spdx.json",
+    "doi": "",
+    "title": "JUCE JUCE.spdx.json",
+    "publisher": "Raw Material Software Limited (JUCE)",
+    "version": "tag 9.0.5",
+    "locator": "packages[] entries 'JUCE' and juce_* (licenseDeclared)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://raw.githubusercontent.com/juce-framework/JUCE/9.0.5/LICENSE.md",
+    "doi": "",
+    "title": "JUCE LICENSE.md",
+    "publisher": "Raw Material Software Limited (JUCE)",
+    "version": "tag 9.0.5",
+    "locator": "lines 51-53",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "juce-licence"
+ },
+ {
+  "claim": "Under the JUCE 9 EULA route (not AGPL) the user agrees to the EULA at juce.com/legal/juce-9-licence by merely downloading, installing, using or combining JUCE with other code; the AGPL route is stated as an alternative ('Or: You may also use this code under the terms of the AGPLv3') in each module header.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://raw.githubusercontent.com/juce-framework/JUCE/9.0.5/LICENSE.md",
+    "doi": "",
+    "title": "JUCE LICENSE.md",
+    "publisher": "Raw Material Software Limited (JUCE)",
+    "version": "tag 9.0.5",
+    "locator": "lines 9-21",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://raw.githubusercontent.com/juce-framework/JUCE/9.0.5/modules/juce_gui_basics/juce_gui_basics.h",
+    "doi": "",
+    "title": "JUCE modules/juce_gui_basics/juce_gui_basics.h",
+    "publisher": "Raw Material Software Limited (JUCE)",
+    "version": "tag 9.0.5",
+    "locator": "lines 5-27",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "juce-licence"
+ },
+ {
+  "claim": "AGPLv3 section 5(c) requires that a modified/combined work be licensed as a whole under the AGPL to everyone receiving a copy; combined with JUCE's AGPL option, a distributed JUCE-based plug-in therefore has to be offered under AGPLv3 as a whole (deduced from AGPL 5(c) plus JUCE's dual licence; JUCE's own text does not restate it, and I did not read the EULA page, which was blocked).",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://raw.githubusercontent.com/spdx/license-list-data/main/text/AGPL-3.0-only.txt",
+    "doi": "",
+    "title": "GNU AGPL v3 text (SPDX copy)",
+    "publisher": "SPDX / Linux Foundation (text by FSF)",
+    "version": "main, 2026-11-11",
+    "locator": "sections 5(c) line 84; 13 lines 186-190",
+    "accessed": "2026-11-11",
+    "tier": 2
+   },
+   {
+    "url": "https://raw.githubusercontent.com/juce-framework/JUCE/9.0.5/LICENSE.md",
+    "doi": "",
+    "title": "JUCE LICENSE.md",
+    "publisher": "Raw Material Software Limited (JUCE)",
+    "version": "tag 9.0.5",
+    "locator": "lines 5-7",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "juce-licence"
+ },
+ {
+  "claim": "JUCE 9.0.5 contains no splash screen: juce_gui_basics.cpp emits a compiler warning that JUCE_DISPLAY_SPLASH_SCREEN and JUCE_USE_DARK_SPLASH_SCREEN are ignored, so no splash-screen obligation exists in the build at that tag, whichever licence is chosen.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://raw.githubusercontent.com/juce-framework/JUCE/9.0.5/modules/juce_gui_basics/juce_gui_basics.cpp",
+    "doi": "",
+    "title": "JUCE modules/juce_gui_basics/juce_gui_basics.cpp",
+    "publisher": "Raw Material Software Limited (JUCE)",
+    "version": "tag 9.0.5",
+    "locator": "lines 60-65",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "juce-splash"
+ },
+ {
+  "claim": "A JUCE staff post dated 2026-06-17 states that JUCE 9 keeps the same licence tiers and prices as JUCE 8 and that the JUCE 9 EULA is unchanged from the final JUCE 8 EULA; the post does not mention the AGPL.",
+  "kind": "policy",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://forum.juce.com/t/juce-9-no-pricing-or-eula-changes/69000",
+    "doi": "",
+    "title": "JUCE 9: No pricing or EULA changes",
+    "publisher": "JUCE Team (forum.juce.com)",
+    "version": "2026-06-17",
+    "locator": "post body (summarised by fetch tool; page text not saved)",
+    "accessed": "2026-11-11",
+    "tier": 2
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "juce-licence"
+ },
+ {
+  "claim": "UNKNOWN: the exact EULA wording on attribution, splash screen and 'Personal' tier revenue limits for JUCE 9 (juce.com/legal/juce-9-licence and juce.com/get-juce were blocked by the egress proxy / fetch allowlist). Only relevant if the AGPL option were not used.",
+  "kind": "policy",
+  "load_bearing": false,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "juce-licence"
+ },
+ {
+  "claim": "JUCE 9.0.5 vendors the VST3 SDK at version 3.8.0 under MIT, in modules/juce_audio_processors_headless/format_types/VST3_SDK; the vendored LICENSE.txt is MIT, copyright 2025 Steinberg Media Technologies GmbH.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://raw.githubusercontent.com/juce-framework/JUCE/9.0.5/JUCE.spdx.json",
+    "doi": "",
+    "title": "JUCE JUCE.spdx.json",
+    "publisher": "Raw Material Software Limited (JUCE)",
+    "version": "tag 9.0.5",
+    "locator": "package 'VST3 SDK' (licenseDeclared MIT, sourceInfo)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://raw.githubusercontent.com/juce-framework/JUCE/9.0.5/modules/juce_audio_processors_headless/format_types/VST3_SDK/LICENSE.txt",
+    "doi": "",
+    "title": "JUCE modules/juce_audio_processors_headless/format_types/VST3_SDK/LICENSE.txt",
+    "publisher": "Raw Material Software Limited (JUCE)",
+    "version": "tag 9.0.5",
+    "locator": "lines 1-20",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "vst3-licence"
+ },
+ {
+  "claim": "JUCE 9.0.5's SPDX inventory lists other bundled third-party code: zlib 1.3.2 (Zlib), HarfBuzz 15.0.0 (MIT-Modern-Variant), libpng 1.6.58 (libpng-2.0), jpeglib 10.0 (IJG), FLAC 1.5.0, libogg 1.3.6, libvorbis 1.3.7 (all BSD-3-Clause), Oboe 1.10.0 (Apache-2.0), Box2D 2.2.1 (Zlib), ASIO SDK 2.3 (Steinberg ASIO licence OR GPL-3.0-only); all are permissive or GPL-compatible, and attribution notices must be carried when binaries are redistributed.",
+  "kind": "software",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://raw.githubusercontent.com/juce-framework/JUCE/9.0.5/JUCE.spdx.json",
+    "doi": "",
+    "title": "JUCE JUCE.spdx.json",
+    "publisher": "Raw Material Software Limited (JUCE)",
+    "version": "tag 9.0.5",
+    "locator": "packages[] licenseDeclared fields",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "juce-deps"
+ },
+ {
+  "claim": "The VST3 SDK at tag v3.8.1_build_84 is licensed under the MIT licence (copyright 2026 Steinberg Media Technologies GmbH); the SDK README states that GPLv3 and the Steinberg proprietary licence are no longer available.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://raw.githubusercontent.com/steinbergmedia/vst3sdk/v3.8.1_build_84/LICENSE.txt",
+    "doi": "",
+    "title": "vst3sdk LICENSE.txt",
+    "publisher": "Steinberg Media Technologies GmbH",
+    "version": "tag v3.8.1_build_84",
+    "locator": "lines 1-20",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://raw.githubusercontent.com/steinbergmedia/vst3sdk/v3.8.1_build_84/README.md",
+    "doi": "",
+    "title": "vst3sdk README.md",
+    "publisher": "Steinberg Media Technologies GmbH",
+    "version": "tag v3.8.1_build_84",
+    "locator": "lines 243-253 ('License & Usage guidelines')",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://steinbergmedia.github.io/vst3_dev_portal/pages/VST+3+Licensing/VST3+License",
+    "doi": "",
+    "title": "VST 3 License",
+    "publisher": "Steinberg Media Technologies GmbH",
+    "version": "fetched 2026-11-11",
+    "locator": "page body (summarised by fetch tool)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "vst3-licence"
+ },
+ {
+  "claim": "Steinberg's SDK README says use of the VST name or VST Compatible logo is optional under MIT, but if used it must follow Steinberg's rules: unaltered logo, only in clear product contexts (splash screens, about boxes, websites, documentation); 'VST' (or VSTi etc.) must not be used in company or product names; the logo must not go on non-VST-compatible products.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://raw.githubusercontent.com/steinbergmedia/vst3sdk/v3.8.1_build_84/README.md",
+    "doi": "",
+    "title": "vst3sdk README.md",
+    "publisher": "Steinberg Media Technologies GmbH",
+    "version": "tag v3.8.1_build_84",
+    "locator": "lines 255-285 ('Trademark and Logo Usage')",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "vst-trademark"
+ },
+ {
+  "claim": "The Steinberg VST Usage Guidelines (dev-portal page) require, when the VST name or logo is used, the statement 'VST is a registered trademark of Steinberg Media Technologies GmbH' with the (R) on first use (section 15), forbid 'VST' in company names (s7) and logos (s10), forbid derivatives such as 'VSTi' (s13), forbid stylising VST or merging it into a product brand (s6), and allow plain-text 'for VST' beside the logo in product names (s6). Note the README says 'VST trademark'; the guidelines page says 'registered trademark'.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://steinbergmedia.github.io/vst3_dev_portal/pages/VST+3+Licensing/Usage+guidelines.html",
+    "doi": "",
+    "title": "Steinberg VST usage guidelines",
+    "publisher": "Steinberg Media Technologies GmbH",
+    "version": "fetched 2026-11-11",
+    "locator": "sections 1-16 (read through a summarising fetch tool, not verbatim; recheck before publishing)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "vst-trademark"
+ },
+ {
+  "claim": "The cheapest compliant approach for a hobby plug-in is to avoid 'VST' in product names and file names (e.g. use 'VST3' only descriptively as a format in documentation, with the attribution sentence) and not display the logo; the README makes the logo optional. This is my deduction from the cited rules, not a Steinberg statement.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://raw.githubusercontent.com/steinbergmedia/vst3sdk/v3.8.1_build_84/README.md",
+    "doi": "",
+    "title": "vst3sdk README.md",
+    "publisher": "Steinberg Media Technologies GmbH",
+    "version": "tag v3.8.1_build_84",
+    "locator": "lines 255-285",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "vst-trademark"
+ },
+ {
+  "claim": "Rack v2.6.6 LICENSE.md: Rack's code is GPL v3 'or any later version', plus the 'VCV Rack Non-Commercial Plugin License Exception' under GPLv3 section 7: a Plugin (a library linked and executed by Rack) may use Rack's API and link to it regardless of the Plugin's own licence terms, provided the Plugin is distributed free of charge.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://raw.githubusercontent.com/VCVRack/Rack/v2.6.6/LICENSE.md",
+    "doi": "",
+    "title": "VCV Rack LICENSE.md",
+    "publisher": "VCV",
+    "version": "tag v2.6.6 (commit 061ccf6, 2025-11-04)",
+    "locator": "lines 3-14",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "rack-licence"
+ },
+ {
+  "claim": "Rack's LICENSE.md says non-commercial plug-ins need not be GPLv3 and may use any licence (open-source or proprietary freeware), but plug-ins that copy a significant portion of non-API Rack source must be GPLv3.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://raw.githubusercontent.com/VCVRack/Rack/v2.6.6/LICENSE.md",
+    "doi": "",
+    "title": "VCV Rack LICENSE.md",
+    "publisher": "VCV",
+    "version": "tag v2.6.6 (commit 061ccf6, 2025-11-04)",
+    "locator": "line 16",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "rack-licence"
+ },
+ {
+  "claim": "The VCV manual's Plugin Licensing page recommends GPL-3.0-or-later for free open-source plug-ins and lists MIT/BSD/CC0 or closed freeware as allowed under the exception, provided the plug-in is free of charge; donationware only if a donation is not required.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://vcvrack.com/manual/PluginLicensing",
+    "doi": "",
+    "title": "VCV Manual: Plugin Licensing",
+    "publisher": "VCV",
+    "version": "fetched 2026-11-11",
+    "locator": "sections 'Option 1', 'Option 2' (read through summarising fetch tool; manual source repo unreachable)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "rack-licence"
+ },
+ {
+  "claim": "The Rack Component Library graphics are copyright VCV 2016-2023 under CC BY-NC 4.0 (non-commercial use with credit; commercial use only via VCV Library or commercial licence); the visual design of Core modules is CC BY-NC-ND 4.0 (no derivatives); the VCV logo/icon may not be used in derivative works; the 'VCV' name may not be used for unofficial products but 'for VCV Rack' is acceptable.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://raw.githubusercontent.com/VCVRack/Rack/v2.6.6/LICENSE.md",
+    "doi": "",
+    "title": "VCV Rack LICENSE.md",
+    "publisher": "VCV",
+    "version": "tag v2.6.6 (commit 061ccf6, 2025-11-04)",
+    "locator": "lines 24-35",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "rack-graphics"
+ },
+ {
+  "claim": "CC BY-NC graphics are not compatible with an AGPL-3.0-only repository (the NC restriction is an additional restriction), so Component Library SVGs must not be copied into the repository; the project plans its own panel design. Deduced; the FSF licence list page was blocked so the FSF statement was not read.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://raw.githubusercontent.com/VCVRack/Rack/v2.6.6/LICENSE.md",
+    "doi": "",
+    "title": "VCV Rack LICENSE.md",
+    "publisher": "VCV",
+    "version": "tag v2.6.6 (commit 061ccf6, 2025-11-04)",
+    "locator": "lines 24-26",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "rack-graphics"
+ },
+ {
+  "claim": "Rack v2.6.6 res/fonts contains DSEG7 Classic Mini (SIL OFL 1.1), DejaVu Sans (Bitstream Vera licence), Noto Emoji and Noto Sans JP/SC (SIL OFL 1.1), Nunito Bold (SIL OFL 1.1) and Share Tech Mono (SIL OFL 1.1), each with a licence text file beside it; LICENSE.md itself does not state a font licence, so the per-font LICENSE files are the authority.",
+  "kind": "software",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://raw.githubusercontent.com/VCVRack/Rack/v2.6.6/res/fonts/*-LICENSE.txt",
+    "doi": "",
+    "title": "VCV Rack res/fonts/*-LICENSE.txt",
+    "publisher": "VCV",
+    "version": "tag v2.6.6 (commit 061ccf6, 2025-11-04)",
+    "locator": "DSEG-LICENSE.txt, DejaVuSans-LICENSE.txt, Noto-LICENSE.txt, Nunito-LICENSE.txt, ShareTechMono-Regular-LICENSE.txt, line 1-3 each (read from a local checkout of the tag)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "rack-fonts"
+ },
+ {
+  "claim": "The VCV Plugin Ethics Guidelines say not to copy the brand name, model name, logo, panel design or component layout (knobs, ports, switches) of an existing hardware or software product without the owner's permission, whether or not trademark or copyright law covers them; they are recommended for all plug-ins but mandatory for the VCV Library and for commercial licences.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://vcvrack.com/manual/PluginLicensing",
+    "doi": "",
+    "title": "VCV Manual: Plugin Licensing",
+    "publisher": "VCV",
+    "version": "fetched 2026-11-11",
+    "locator": "section 'Plugin Ethics Guidelines' (summarising fetch tool)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "rack-ethics"
+ },
+ {
+  "claim": "Consequence: a faithful Moogerfooger clone with the Moog/Moogerfooger names or a copy of Moog's panel/layout could not be submitted to the VCV Library, but a self-distributed free plug-in is only 'recommended' to follow the ethics rules. Deduced from the two preceding claims.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://raw.githubusercontent.com/VCVRack/Rack/v2.6.6/LICENSE.md",
+    "doi": "",
+    "title": "VCV Rack LICENSE.md",
+    "publisher": "VCV",
+    "version": "tag v2.6.6 (commit 061ccf6, 2025-11-04)",
+    "locator": "lines 18, 26",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "rack-ethics"
+ },
+ {
+  "claim": "GPLv3 section 13 grants permission to link or combine any GPLv3-covered work with an AGPLv3 work into one combined work; the GPL terms continue to apply to the GPL part and AGPL section 13 network terms apply to the combination.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://raw.githubusercontent.com/VCVRack/Rack/v2.6.6/LICENSE-GPLv3.txt",
+    "doi": "",
+    "title": "VCV Rack LICENSE-GPLv3.txt",
+    "publisher": "VCV",
+    "version": "tag v2.6.6 (commit 061ccf6, 2025-11-04)",
+    "locator": "lines 552-561 (section 13), 570-575 (section 14)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "licence-compat"
+ },
+ {
+  "claim": "AGPLv3 section 13 (second paragraph) gives the reciprocal permission to combine an AGPL-covered work with a GPLv3 work; the GPL-covered part remains under GPLv3.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://raw.githubusercontent.com/spdx/license-list-data/main/text/AGPL-3.0-only.txt",
+    "doi": "",
+    "title": "GNU AGPL v3 text (SPDX copy)",
+    "publisher": "SPDX / Linux Foundation (text by FSF)",
+    "version": "main, 2026-11-11",
+    "locator": "sections 5(c) line 84; 13 lines 186-190",
+    "accessed": "2026-11-11",
+    "tier": 2
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "licence-compat"
+ },
+ {
+  "claim": "Rack is GPL-3.0-or-later (version 3 or any later version at the licensee's option), so the version-3 option exists for combining with an AGPL-3.0-only project, and the plug-in exception additionally lets a free plug-in carry any licence, so an AGPL-3.0-only Rack plug-in is permitted either way.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://raw.githubusercontent.com/VCVRack/Rack/v2.6.6/LICENSE.md",
+    "doi": "",
+    "title": "VCV Rack LICENSE.md",
+    "publisher": "VCV",
+    "version": "tag v2.6.6 (commit 061ccf6, 2025-11-04)",
+    "locator": "lines 5-14",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://raw.githubusercontent.com/VCVRack/Rack/v2.6.6/LICENSE-GPLv3.txt",
+    "doi": "",
+    "title": "VCV Rack LICENSE-GPLv3.txt",
+    "publisher": "VCV",
+    "version": "tag v2.6.6 (commit 061ccf6, 2025-11-04)",
+    "locator": "lines 552-561 (section 13), 570-575 (section 14)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "licence-compat"
+ },
+ {
+  "claim": "MIT (VST3 SDK, JUCE-bundled) and BSL-1.0 (Catch2 devel branch LICENSE.txt, Catch2 CMake version 3.16.1) are permissive licences whose texts impose only notice retention (BSL-1.0 exempts machine-executable object code) and contain no copyleft; that they are one-way compatible with AGPL-3.0 is FSF's published view, which I did not read (www.gnu.org blocked), so this is inferred.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://raw.githubusercontent.com/steinbergmedia/vst3sdk/v3.8.1_build_84/LICENSE.txt",
+    "doi": "",
+    "title": "vst3sdk LICENSE.txt",
+    "publisher": "Steinberg Media Technologies GmbH",
+    "version": "tag v3.8.1_build_84",
+    "locator": "lines 1-20",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://raw.githubusercontent.com/catchorg/Catch2/devel/LICENSE.txt",
+    "doi": "",
+    "title": "Catch2 LICENSE.txt",
+    "publisher": "Catch2 authors",
+    "version": "devel branch, 2026-11-11",
+    "locator": "whole file",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://raw.githubusercontent.com/spdx/license-list-data/main/text/BSL-1.0.txt",
+    "doi": "",
+    "title": "BSL-1.0 licence text",
+    "publisher": "SPDX",
+    "version": "main",
+    "locator": "whole file",
+    "accessed": "2026-11-11",
+    "tier": 2
+   }
+  ],
+  "publisher_count": 3,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "licence-compat"
+ },
+ {
+  "claim": "The AGPL-3.0-only repository must use the same mechanism Rack and JUCE rely on: whoever receives binaries must be offered corresponding source; a dual-use design (VST3 via JUCE under AGPL; Rack plug-in under AGPL via GPL section 13 or the plug-in exception) needs source for both on the public repository.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://raw.githubusercontent.com/spdx/license-list-data/main/text/AGPL-3.0-only.txt",
+    "doi": "",
+    "title": "GNU AGPL v3 text (SPDX copy)",
+    "publisher": "SPDX / Linux Foundation (text by FSF)",
+    "version": "main, 2026-11-11",
+    "locator": "sections 5(c) line 84; 13 lines 186-190",
+    "accessed": "2026-11-11",
+    "tier": 2
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "licence-compat"
+ },
+ {
+  "claim": "Justia lists these marks, all filed by or recorded to owner INMUSIC MMI ACQUISITION LLC: MOOGERFOOGER (serials 75490325 and 75490326, filed 1998-05-22), MURF (76597692), FREQBOX (77097829), CLUSTER FLUX (85274167, filed 2011-03-23) and MOOG (72442690, 77200300, 77809799); the page shows filing dates only, not status.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://trademark.justia.com/owners/inmusic-mmi-acquisition-llc-5574452",
+    "doi": "",
+    "title": "INMUSIC MMI ACQUISITION LLC Trademarks",
+    "publisher": "Justia Inc. (USPTO data)",
+    "version": "fetched 2026-11-11",
+    "locator": "owner table (summarised by fetch tool)",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "moog-trademark"
+ },
+ {
+  "claim": "FREQBOX is a registered and active US mark, registration 3441673 (serial 77097829), registered 2008-06-03, classes 9 and 15, owner INMUSIC MMI ACQUISITION LLC.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://trademarkdir.com/trademark/freqbox-77097829",
+    "doi": "",
+    "title": "freqbox 77097829",
+    "publisher": "TrademarkDir (USPTO data)",
+    "version": "fetched 2026-11-11",
+    "locator": "record page",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "moog-trademark"
+ },
+ {
+  "claim": "MURF is a registered and active US mark, registration 3043710 (serial 76597692), registered 2006-01-17, classes 9 and 15, owner INMUSIC MMI ACQUISITION LLC.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://trademarkdir.com/trademark/murf-76597692",
+    "doi": "",
+    "title": "murf 76597692",
+    "publisher": "TrademarkDir (USPTO data)",
+    "version": "fetched 2026-11-11",
+    "locator": "record page",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "moog-trademark"
+ },
+ {
+  "claim": "The MF-104Z manual (2005) prints 'moogerfooger' with the registered-trademark symbol on pages 1-2, which indicates Moog claimed MOOGERFOOGER as registered in 2005.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://cf3.zzounds.com/media/MF-104Z_man-be2526d4165b9080a04cf479d0677208.pdf",
+    "doi": "",
+    "title": "MF-104Z user manual (retailer-hosted copy of Moog Music manual)",
+    "publisher": "Moog Music, Inc.",
+    "version": "printed July 2005",
+    "locator": "pp. 1-2",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "moog-trademark"
+ },
+ {
+  "claim": "UNKNOWN: current USPTO status and registration numbers of MOOGERFOOGER (75490325/75490326), CLUSTER FLUX (85274167) and MOOG (72442690, 77200300, 77809799); USPTO TSDR/tmsearch and the TrademarkDir/Justia record pages for these were blocked or not allowlisted. Treat all five names as protected marks until checked.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "moog-trademark"
+ },
+ {
+  "claim": "inMusic (Rhode Island; Akai, Alesis, Denon, M-Audio, Marantz, Numark) acquired Moog Music in June 2023; Moog is no longer employee-owned, and design and building stay in Asheville, NC. Neither article says explicitly that trademarks transferred, but the USPTO-derived listings name INMUSIC MMI ACQUISITION LLC as owner.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.mixonline.com/business/inmusic-brands-acquires-moog-music",
+    "doi": "",
+    "title": "inMusic Brands acquires Moog Music",
+    "publisher": "Mix (Future plc)",
+    "version": "2023-06-14",
+    "locator": "article body (summarised by fetch tool)",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://cdm.link/moog-music-has-been-bought-by-inmusic/",
+    "doi": "",
+    "title": "Moog Music has been bought by inMusic",
+    "publisher": "CDM",
+    "version": "2023-06-13",
+    "locator": "article body (summarised by fetch tool)",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "moog-owner"
+ },
+ {
+  "claim": "Moog Music itself released seven official Moogerfooger plug-ins (AUv2, VST3, AAX; Windows/macOS) in a press release dated 2022-10-20, priced at USD 249 regularly; so a free reimplementation competes with a current commercial product, which makes trademark and trade-dress caution more important.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://news.hummingbirdmedia.com/moogerfoogers-are-back-all-7-pedals-now-available-as-powerful-audio-effects-plug-ins",
+    "doi": "",
+    "title": "Moogerfoogers Are Back: All 7 Pedals Now Available as Plug-ins",
+    "publisher": "Hummingbird Media for Moog Music",
+    "version": "2022-10-20",
+    "locator": "press release body (summarised by fetch tool)",
+    "accessed": "2026-11-11",
+    "tier": 2
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "moog-plugins"
+ },
+ {
+  "claim": "UNKNOWN: any published Moog or inMusic policy on clones, emulations or use of the Moog names in third-party software; moogmusic.com was blocked by the egress proxy, and no policy was surfaced by two searches.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "moog-trademark"
+ },
+ {
+  "claim": "The MF-104Z manual's last page (24) states 'Entire contents (c) 2005 by Moog Music, Inc.' and the manual shows no reproduction-permission statement, so manual text, tables and artwork are copyrighted by Moog Music and should not be copied; measured facts (such as parameter ranges) are not themselves covered, but this is a legal judgement outside the sources.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://cf3.zzounds.com/media/MF-104Z_man-be2526d4165b9080a04cf479d0677208.pdf",
+    "doi": "",
+    "title": "MF-104Z user manual",
+    "publisher": "Moog Music, Inc.",
+    "version": "printed July 2005",
+    "locator": "p. 24",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualmachine.com/moogmusic/mf104z/1640281-user-manual",
+    "doi": "",
+    "title": "Moog Music MF-104Z User Manual (mirror)",
+    "publisher": "ManualMachine",
+    "version": "2026-11-11",
+    "locator": "p. 24",
+    "accessed": "2026-11-11",
+    "tier": 4
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "moog-manual"
+ },
+ {
+  "claim": "GitHub's docs say people who are signed into GitHub and have read access to a repository can download workflow artifacts; everyone signed in has read access to a public repository (the latter is my inference, as the visibility page was not allowlisted), so artifacts of a public repository are downloadable by any signed-in GitHub user. The page does not mention public repositories explicitly.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://docs.github.com/en/actions/how-tos/manage-workflow-runs/download-workflow-artifacts",
+    "doi": "",
+    "title": "Download workflow artifacts",
+    "publisher": "GitHub, Inc.",
+    "version": "fetched 2026-11-11",
+    "locator": "opening paragraph (summarised by fetch tool)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "github-artifacts"
+ },
+ {
+  "claim": "GitHub Enterprise Server docs state artifacts and logs are kept 90 days by default, with a shorter per-artifact retention-days setting; the github.com default was not read.",
+  "kind": "policy",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://docs.github.com/en/enterprise-server@3.9/actions/using-workflows/storing-workflow-data-as-artifacts",
+    "doi": "",
+    "title": "Storing workflow data as artifacts (GHES 3.9)",
+    "publisher": "GitHub, Inc.",
+    "version": "GHES 3.9",
+    "locator": "retention section",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "github-artifacts"
+ },
+ {
+  "claim": "Branches of a public repository are readable by anyone (git clone works anonymously; this session's proxy served anonymous reads of public repositories). Not confirmed from GitHub documentation because the visibility-settings page was not allowlisted.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "github-artifacts"
+ }
+]

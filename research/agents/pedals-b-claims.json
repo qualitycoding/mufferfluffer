@@ -1,0 +1,1676 @@
+[
+ {
+  "claim": "The manufacturer's own site (moogmusic.com) and archive.org could not be reached directly from this session (egress policy denied the connection), so every Moog manual figure here was read through third-party mirrors of the Moog PDFs via a page-fetch tool that returns summarised extracts; page numbers are those the extracts reported, and figures/diagrams (pattern grids, block diagrams) were not available as text.",
+  "kind": "policy",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://www.manualslib.com/manual/3755545/Moog-Mf-104m.html",
+    "doi": "",
+    "title": "Moog MF-104M user manual (ManualsLib copy; 8192-bucket standard edition)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "whole document",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://r2.gear4music.com/media/8/86064/download_86064_1.pdf",
+    "doi": "",
+    "title": "Understanding and Using your moogerfooger MF-105M MIDI MuRF (PDF)",
+    "publisher": "Moog Music",
+    "version": "(c) 2009; MIDI chart v1.4 dated 24 Aug 2009",
+    "locator": "whole document",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "provenance"
+ },
+ {
+  "claim": "The MF-104 family comprises: the original MF-104 (Big Briar, introduced 2000, last units sold 2001, limited to 1,000 units, about 40 ms to 0.8 s delay); the MF-104Z reissue (2005); the limited MF-104SD (2005, about 250 units, longer maximum delay than the Z); the MF-104M (2012, adds MIDI, tap tempo, six-waveform LFO, Spillover and extra CV inputs); and a longer-delay 'Super Delay' edition of the MF-104M.",
+  "kind": "bibliographic",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://en.wikipedia.org/wiki/Moogerfooger",
+    "doi": "",
+    "title": "Moogerfooger (encyclopaedia article)",
+    "publisher": "Wikipedia",
+    "version": "accessed 2026-11-11",
+    "locator": "MF-104 Series table",
+    "accessed": "2026-11-11",
+    "tier": 4
+   },
+   {
+    "url": "https://www.effectsdatabase.com/model/moog/moogerfooger/mf104",
+    "doi": "",
+    "title": "Moog Moogerfooger MF-104 Analog Delay (database entry)",
+    "publisher": "Effects Database",
+    "version": "22 Jun 2012",
+    "locator": "MF-104 and variants table",
+    "accessed": "2026-11-11",
+    "tier": 4
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/big-briar-moogerfoogers",
+    "doi": "",
+    "title": "Big Briar Moogerfoogers (review, Chris Carter)",
+    "publisher": "Sound On Sound",
+    "version": "February 2002",
+    "locator": "MF104 section",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 3,
+  "confidence": "corroborated",
+  "contradicted_by": [
+   "Wikipedia gives the MF-104SD maximum as 1.4 s; the only other SD datum found (forum, Tier 4) says only that its Short range gives about 200 ms more than the Z."
+  ],
+  "topic": "mf104-variants"
+ },
+ {
+  "claim": "MF-104Z delay ranges are reported as Short about 50-500 ms and Long about 100 ms-1 s, using Panasonic MN3008 BBDs, with six knobs (Drive, Delay Time, Mix, Feedback, Out, Loop Gain), a Short/Long switch and an external loop; Wikipedia instead says only 'slightly over 1 s'.",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://www.polynominal.com/site/studio/gear/fx/Moog_mf_104z/index.html",
+    "doi": "",
+    "title": "Moog MF-104Z (gear page)",
+    "publisher": "polynominal.com",
+    "version": "undated",
+    "locator": "specs list",
+    "accessed": "2026-11-11",
+    "tier": 4
+   },
+   {
+    "url": "https://en.wikipedia.org/wiki/Moogerfooger",
+    "doi": "",
+    "title": "Moogerfooger (encyclopaedia article)",
+    "publisher": "Wikipedia",
+    "version": "accessed 2026-11-11",
+    "locator": "MF-104 Series table, MF-104Z row",
+    "accessed": "2026-11-11",
+    "tier": 4
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "single-source",
+  "contradicted_by": [
+   "Forum poster (Tier 4) claims the MF-104M has about 200 ms more delay than the Z, which conflicts with Z = 1000 ms versus M = 800 ms."
+  ],
+  "topic": "mf104z"
+ },
+ {
+  "claim": "The original MF-104 offered Delay Time, Feedback, Mix, Drive (input level with tri-colour LED), Output Level, Loop Gain (with LED) and an Internal/External loop switch, with maximum delay about 800 ms; CV control of delay time, feedback and mix; and flanging at minimum delay.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.soundonsound.com/reviews/big-briar-moogerfoogers",
+    "doi": "",
+    "title": "Big Briar Moogerfoogers (review, Chris Carter)",
+    "publisher": "Sound On Sound",
+    "version": "February 2002",
+    "locator": "MF104 section, controls and CV paragraphs",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf104-original"
+ },
+ {
+  "claim": "The original MF-104 is reported (database entry) to use two MN3008 BBD chips with an external feedback-loop insert and instrument/line level input.",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://www.effectsdatabase.com/model/moog/moogerfooger/mf104",
+    "doi": "",
+    "title": "Moog Moogerfooger MF-104 Analog Delay (database entry)",
+    "publisher": "Effects Database",
+    "version": "22 Jun 2012",
+    "locator": "MF-104 (original) specs",
+    "accessed": "2026-11-11",
+    "tier": 4
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf104-original"
+ },
+ {
+  "claim": "MF-104M (standard edition) delay time ranges: Short about 40-400 ms and Long about 80-800 ms, selected by a Short/Long range switch; Long doubles the range and is darker.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.manualslib.com/manual/3755545/Moog-Mf-104m.html",
+    "doi": "",
+    "title": "Moog MF-104M user manual (ManualsLib copy; 8192-bucket standard edition)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "p. 6",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualmachine.com/moog/mf104/20817417-user-manual",
+    "doi": "",
+    "title": "Moogerfooger MF-104M user manual (ManualMachine copy; standard edition)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "p. 7",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.premierguitar.com/gear/moog-mf-104m-analog-delay-pedal-review",
+    "doi": "",
+    "title": "Moog MF-104M Analog Delay pedal review (Alex Maiolo)",
+    "publisher": "Premier Guitar",
+    "version": "10 Dec 2012",
+    "locator": "Delay time ranges",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "mf104m-time"
+ },
+ {
+  "claim": "MF-104M Super Delay edition delay time ranges: Short about 50-600 ms and Long about 100-1200 ms; its delay line holds 12,288 buckets.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://manualmachine.com/moog/mf104m/2556949-user-manual",
+    "doi": "",
+    "title": "Moog MF-104M 'Super Delay' user manual (ManualMachine copy)",
+    "publisher": "Moog Music",
+    "version": "(c) 2012 per p. 28",
+    "locator": "pp. 6, 16, 18",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [
+   "Differs from the standard MF-104M manual (40-400 / 80-800 ms); both are headed MF-104M, so the correct edition must be chosen when modelling."
+  ],
+  "topic": "mf104m-sd-time"
+ },
+ {
+  "claim": "The standard MF-104M manual states its BBD delay line contains 8,192 buckets; the Super Delay manual states 12,288 buckets.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.manualslib.com/manual/3755545/Moog-Mf-104m.html",
+    "doi": "",
+    "title": "Moog MF-104M user manual (ManualsLib copy; 8192-bucket standard edition)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "p. 16",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manuals.online/moog/recording-equipment/mf-104/user-manual/28vhy",
+    "doi": "",
+    "title": "Moog MF-104/MF-104M user manual (manuals.online copy; standard edition)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "pp. 16-17, 21",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualmachine.com/moog/mf104m/2556949-user-manual",
+    "doi": "",
+    "title": "Moog MF-104M 'Super Delay' user manual (ManualMachine copy)",
+    "publisher": "Moog Music",
+    "version": "(c) 2012 per p. 28",
+    "locator": "p. 16",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf104m-bbd"
+ },
+ {
+  "claim": "Wikipedia states the MF-104M uses four vintage MN3008 BBD chips, and a forum user found unpopulated board positions for two more MN3008s on a standard unit, consistent with 8,192 buckets from four 2,048-stage devices (the chip count and stage count are inferred, not read in a Moog document).",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://en.wikipedia.org/wiki/Moogerfooger",
+    "doi": "",
+    "title": "Moogerfooger (encyclopaedia article)",
+    "publisher": "Wikipedia",
+    "version": "accessed 2026-11-11",
+    "locator": "MF-104 Series table, MF-104M row",
+    "accessed": "2026-11-11",
+    "tier": 4
+   },
+   {
+    "url": "https://forum.moogmusic.com/t/mf-104m-empty-mn3008-pcb-spots/12033",
+    "doi": "",
+    "title": "MF-104M empty MN3008 PCB spots (forum thread)",
+    "publisher": "Moogerfooger Forum (user posts)",
+    "version": "21 Sep 2012",
+    "locator": "opening post and replies",
+    "accessed": "2026-11-11",
+    "tier": 4
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "inferred",
+  "contradicted_by": [
+   "IC Phoenix listing calls the MN3008 both a 2,048-stage and a 1,024-stage device; no datasheet was reached."
+  ],
+  "topic": "mf104m-bbd"
+ },
+ {
+  "claim": "The Short and Long ranges of the MF-104M are mutually an exact factor of two (octave) apart: switching Short to Long halves the delay-line clock so a recirculating pitch drops an octave.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://manualmachine.com/moog/mf104m/2556949-user-manual",
+    "doi": "",
+    "title": "Moog MF-104M 'Super Delay' user manual (ManualMachine copy)",
+    "publisher": "Moog Music",
+    "version": "(c) 2012 per p. 28",
+    "locator": "p. 10",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://forum.moogmusic.com/t/once-again-mf-104-vs-104sd-vs-104z/7213",
+    "doi": "",
+    "title": "Once again... MF-104 vs. 104SD vs. 104z (forum thread)",
+    "publisher": "Moogerfooger Forum (user posts)",
+    "version": "Feb-Mar 2010",
+    "locator": "latigid_on post 3 Mar 2010 (for SD/Z)",
+    "accessed": "2026-11-11",
+    "tier": 4
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf104m-time"
+ },
+ {
+  "claim": "Feedback runs from none to beyond infinite; the manual says settings above 8 can self-oscillate, while the operating section says oscillation typically begins at about the 3:00 position, so the control crosses unity gain around 8 on the numbered scale.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://manualmachine.com/moog/mf104/20817417-user-manual",
+    "doi": "",
+    "title": "Moogerfooger MF-104M user manual (ManualMachine copy; standard edition)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "p. 7",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manuals.online/moog/recording-equipment/mf-104/user-manual/28vhy",
+    "doi": "",
+    "title": "Moog MF-104/MF-104M user manual (manuals.online copy; standard edition)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "pp. 8, 18-19",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualmachine.com/moog/mf104m/2556949-user-manual",
+    "doi": "",
+    "title": "Moog MF-104M 'Super Delay' user manual (ManualMachine copy)",
+    "publisher": "Moog Music",
+    "version": "(c) 2012 per p. 28",
+    "locator": "pp. 6, 11, 18",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [
+   "Manual p. 6/7/8 wording (above 8) versus p. 18 wording (3:00); the dial carries both numbers and clock positions and the manual does not reconcile them."
+  ],
+  "topic": "mf104m-feedback"
+ },
+ {
+  "claim": "DRIVE gives about 35 dB of input gain adjustment, with a three-colour level LED (green at or below nominal, orange flashes at onset of overload, red indicates clipping); DRIVE only acts when the effect is on or in Spillover. A reviewer lists the span as -7 to +28 dB.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://manuals.online/moog/recording-equipment/mf-104/user-manual/28vhy",
+    "doi": "",
+    "title": "Moog MF-104/MF-104M user manual (manuals.online copy; standard edition)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "pp. 8, 17",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualmachine.com/moog/mf104m/2556949-user-manual",
+    "doi": "",
+    "title": "Moog MF-104M 'Super Delay' user manual (ManualMachine copy)",
+    "publisher": "Moog Music",
+    "version": "(c) 2012 per p. 28",
+    "locator": "pp. 8, 17",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.premierguitar.com/gear/moog-mf-104m-analog-delay-pedal-review",
+    "doi": "",
+    "title": "Moog MF-104M Analog Delay pedal review (Alex Maiolo)",
+    "publisher": "Premier Guitar",
+    "version": "10 Dec 2012",
+    "locator": "Features",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [
+   "Premier Guitar's -7 to +28 dB is consistent with a 35 dB span but is not stated by Moog."
+  ],
+  "topic": "mf104m-drive"
+ },
+ {
+  "claim": "OUTPUT LEVEL sets output gain or attenuation at both MIX OUT and DELAY OUT; MIX is a dry/wet crossfade that affects MIX OUT only, while DELAY OUT is wet-only and unaffected by MIX and in phase with MIX OUT.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://manualmachine.com/moog/mf104m/2556949-user-manual",
+    "doi": "",
+    "title": "Moog MF-104M 'Super Delay' user manual (ManualMachine copy)",
+    "publisher": "Moog Music",
+    "version": "(c) 2012 per p. 28",
+    "locator": "pp. 6, 8, 18, 20",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.manualslib.com/manual/3755545/Moog-Mf-104m.html",
+    "doi": "",
+    "title": "Moog MF-104M user manual (ManualsLib copy; 8192-bucket standard edition)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "p. 18",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf104m-levels"
+ },
+ {
+  "claim": "LFO waveform switch has six positions: sine, triangle, square, sawtooth, ramp (reverse saw) and sample-and-hold (random stepped).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://manualmachine.com/moog/mf104/20817417-user-manual",
+    "doi": "",
+    "title": "Moogerfooger MF-104M user manual (ManualMachine copy; standard edition)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "p. 7",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manuals.online/moog/recording-equipment/mf-104/user-manual/28vhy",
+    "doi": "",
+    "title": "Moog MF-104/MF-104M user manual (manuals.online copy; standard edition)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "pp. 7, 13",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.premierguitar.com/gear/moog-mf-104m-analog-delay-pedal-review",
+    "doi": "",
+    "title": "Moog MF-104M Analog Delay pedal review (Alex Maiolo)",
+    "publisher": "Premier Guitar",
+    "version": "10 Dec 2012",
+    "locator": "LFO waveforms",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "mf104m-lfo"
+ },
+ {
+  "claim": "LFO RATE spans about 0.05 Hz to 50 Hz from the panel (wider via CV/MIDI); its LED is red when set from the panel, green when set by tap tempo and orange when MIDI-clock synced. The Super Delay manual adds that the rate CV input's 0 V and +5 V extremes give half the minimum (0.025 Hz) and double the maximum (100 Hz).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.manualslib.com/manual/3755545/Moog-Mf-104m.html",
+    "doi": "",
+    "title": "Moog MF-104M user manual (ManualsLib copy; 8192-bucket standard edition)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "pp. 11, 19",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualmachine.com/moog/mf104/20817417-user-manual",
+    "doi": "",
+    "title": "Moogerfooger MF-104M user manual (ManualMachine copy; standard edition)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "p. 7",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualmachine.com/moog/mf104m/2556949-user-manual",
+    "doi": "",
+    "title": "Moog MF-104M 'Super Delay' user manual (ManualMachine copy)",
+    "publisher": "Moog Music",
+    "version": "(c) 2012 per p. 28",
+    "locator": "pp. 6, 19, 21",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf104m-lfo"
+ },
+ {
+  "claim": "LFO AMOUNT sets depth of delay-time (clock) modulation; zero means none; no numeric depth is given, and raising it shrinks the usable TIME range so that the maximum and minimum delay are not exceeded; a setting near 9 yields roughly a two-octave pitch swing.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://manuals.online/moog/recording-equipment/mf-104/user-manual/28vhy",
+    "doi": "",
+    "title": "Moog MF-104/MF-104M user manual (manuals.online copy; standard edition)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "pp. 12, 19",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualmachine.com/moog/mf104m/2556949-user-manual",
+    "doi": "",
+    "title": "Moog MF-104M 'Super Delay' user manual (ManualMachine copy)",
+    "publisher": "Moog Music",
+    "version": "(c) 2012 per p. 28",
+    "locator": "p. 18",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf104m-lfo"
+ },
+ {
+  "claim": "Tap tempo on the MF-104M takes quarter-note taps, begins calculating after the third tap and then keeps a running average; five seconds idle resets it; holding the switch about one second retargets it from DELAY TIME to LFO RATE. The manual gives no selectable tap division; divisions (clock-division table) apply only to MIDI-clock sync of the LFO.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.manualslib.com/manual/3755545/Moog-Mf-104m.html",
+    "doi": "",
+    "title": "Moog MF-104M user manual (ManualsLib copy; 8192-bucket standard edition)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "pp. 15, 20",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualmachine.com/moog/mf104m/2556949-user-manual",
+    "doi": "",
+    "title": "Moog MF-104M 'Super Delay' user manual (ManualMachine copy)",
+    "publisher": "Moog Music",
+    "version": "(c) 2012 per p. 28",
+    "locator": "p. 19",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.premierguitar.com/gear/moog-mf-104m-analog-delay-pedal-review",
+    "doi": "",
+    "title": "Moog MF-104M Analog Delay pedal review (Alex Maiolo)",
+    "publisher": "Premier Guitar",
+    "version": "10 Dec 2012",
+    "locator": "Tap tempo",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "mf104m-tap"
+ },
+ {
+  "claim": "Spillover: BYPASS tap turns the effect off; holding it (about one to two seconds) until the LED turns orange toggles between Normal mode (delay audio cut on bypass) and Spillover mode (audio already in the delay line keeps sounding while new input is passed dry). LED colours: red bypassed, green on, orange spillover.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.manualslib.com/manual/3755545/Moog-Mf-104m.html",
+    "doi": "",
+    "title": "Moog MF-104M user manual (ManualsLib copy; 8192-bucket standard edition)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "p. 10",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualmachine.com/moog/mf104m/2556949-user-manual",
+    "doi": "",
+    "title": "Moog MF-104M 'Super Delay' user manual (ManualMachine copy)",
+    "publisher": "Moog Music",
+    "version": "(c) 2012 per p. 28",
+    "locator": "pp. 8-10, 19",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.premierguitar.com/gear/moog-mf-104m-analog-delay-pedal-review",
+    "doi": "",
+    "title": "Moog MF-104M Analog Delay pedal review (Alex Maiolo)",
+    "publisher": "Premier Guitar",
+    "version": "10 Dec 2012",
+    "locator": "Spillover (trails mode)",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "mf104m-spillover"
+ },
+ {
+  "claim": "MF-104M rear panel: AUDIO IN (1/4 in TS, high impedance), MIX OUT (TS), DELAY OUT (TS, wet only), FEEDBACK INSERT (1/4 in TRS line-level send on tip, return on ring), five TRS CV/expression inputs (FEEDBACK, TIME, LFO RATE, LFO AMOUNT, MIX) taking 0 to +5 V or an EP-2 pedal (pedal pot 50 kilohm linear or lower; ring supplies current-limited +5 V), MIDI IN (5-pin DIN, default channel 1) and +9 V DC centre-positive power (400 mA minimum, 5.5/2.1 mm).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://manualmachine.com/moog/mf104m/2556949-user-manual",
+    "doi": "",
+    "title": "Moog MF-104M 'Super Delay' user manual (ManualMachine copy)",
+    "publisher": "Moog Music",
+    "version": "(c) 2012 per p. 28",
+    "locator": "pp. 7, 20-22, 25",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.manualslib.com/manual/3755545/Moog-Mf-104m.html",
+    "doi": "",
+    "title": "Moog MF-104M user manual (ManualsLib copy; 8192-bucket standard edition)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "pp. 7, 21, 25",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualmachine.com/moog/mf104/20817417-user-manual",
+    "doi": "",
+    "title": "Moogerfooger MF-104M user manual (ManualMachine copy; standard edition)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "p. 8",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.premierguitar.com/gear/moog-mf-104m-analog-delay-pedal-review",
+    "doi": "",
+    "title": "Moog MF-104M Analog Delay pedal review (Alex Maiolo)",
+    "publisher": "Premier Guitar",
+    "version": "10 Dec 2012",
+    "locator": "Features",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "mf104m-rear"
+ },
+ {
+  "claim": "With the TIME control at 12:00 a 0-5 V control voltage sweeps the whole selected range; the CV adds to the knob setting.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.manualslib.com/manual/3755545/Moog-Mf-104m.html",
+    "doi": "",
+    "title": "Moog MF-104M user manual (ManualsLib copy; 8192-bucket standard edition)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "p. 21",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualmachine.com/moog/mf104m/2556949-user-manual",
+    "doi": "",
+    "title": "Moog MF-104M 'Super Delay' user manual (ManualMachine copy)",
+    "publisher": "Moog Music",
+    "version": "(c) 2012 per p. 28",
+    "locator": "pp. 21, 25",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf104m-cv"
+ },
+ {
+  "claim": "Signal flow: AUDIO IN -> DRIVE -> BBD delay line (clock set by TIME and modulated by the LFO) -> output stage; the delayed signal recirculates through FEEDBACK back to the BBD input; the FEEDBACK INSERT send/return sits in the loop before the first delay stage (the manual contrasts this with the placement on the MF-104SD/Z); MIX crossfades dry and wet to MIX OUT, OUTPUT LEVEL scales both outputs; bypass passes the input through a buffer. A simplified block diagram exists in the manual (p. 22/23) but was not readable.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://manuals.online/moog/recording-equipment/mf-104/user-manual/28vhy",
+    "doi": "",
+    "title": "Moog MF-104/MF-104M user manual (manuals.online copy; standard edition)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "pp. 16-17, 21, 23",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualmachine.com/moog/mf104m/2556949-user-manual",
+    "doi": "",
+    "title": "Moog MF-104M 'Super Delay' user manual (ManualMachine copy)",
+    "publisher": "Moog Music",
+    "version": "(c) 2012 per p. 28",
+    "locator": "pp. 16, 20, 22",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.premierguitar.com/gear/moog-mf-104m-analog-delay-pedal-review",
+    "doi": "",
+    "title": "Moog MF-104M Analog Delay pedal review (Alex Maiolo)",
+    "publisher": "Premier Guitar",
+    "version": "10 Dec 2012",
+    "locator": "Features (insert placement)",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "single-source",
+  "contradicted_by": [
+   "Premier Guitar says the insert is after the delay and before the feedback control; Moog manual says before the first delay in the loop - these may describe the same point in a loop."
+  ],
+  "topic": "mf104m-flow"
+ },
+ {
+  "claim": "Fixed low-pass filtering follows the delay line with a nominal bandwidth of about 3.0 kHz in Short and about 1.7 kHz in Long (manual Figure 6, p. 9); repeats grow darker at longer times.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://manuals.online/moog/recording-equipment/mf-104/user-manual/28vhy",
+    "doi": "",
+    "title": "Moog MF-104/MF-104M user manual (manuals.online copy; standard edition)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "p. 9, Fig. 6",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualmachine.com/moog/mf104m/2556949-user-manual",
+    "doi": "",
+    "title": "Moog MF-104M 'Super Delay' user manual (ManualMachine copy)",
+    "publisher": "Moog Music",
+    "version": "(c) 2012 per p. 28",
+    "locator": "pp. 9, 18",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.premierguitar.com/gear/moog-mf-104m-analog-delay-pedal-review",
+    "doi": "",
+    "title": "Moog MF-104M Analog Delay pedal review (Alex Maiolo)",
+    "publisher": "Premier Guitar",
+    "version": "10 Dec 2012",
+    "locator": "Delay time ranges (Long has slight HF rolloff)",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "mf104m-filter"
+ },
+ {
+  "claim": "Inference only: with N buckets and delay = N/(2 f_clk), 8,192 buckets give a clock of roughly 102 kHz at 40 ms (Short minimum) down to roughly 5.1 kHz at 800 ms (Long maximum); 12,288 buckets give roughly 123 kHz at 50 ms to roughly 5.1 kHz at 1.2 s. At the slowest clock the Nyquist frequency (about 2.6 kHz) is above the stated 1.7 kHz Long bandwidth. Not stated by Moog; formula consistent with BBD figures quoted on Wikipedia (2,048-stage MN3208: 102 ms at 10 kHz).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://en.wikipedia.org/wiki/Bucket-brigade_device",
+    "doi": "",
+    "title": "Bucket-brigade device (encyclopaedia article)",
+    "publisher": "Wikipedia",
+    "version": "accessed 2026-11-11",
+    "locator": "delay and clock examples",
+    "accessed": "2026-11-11",
+    "tier": 4
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "mf104m-clock"
+ },
+ {
+  "claim": "MF-104M MIDI (Super Delay manual): 14-bit MSB/LSB controllers for Output Level (CC 7/39), Time (12/44), Feedback (13/45), Mix (14/46), LFO Rate (15/47) and LFO Amount (16/48); LFO waveform CC 102; extended parameters include time slew (5/37), delay-time multiplier x1/x2/x4/x8 (CC 87), MIDI-clock sync enable for time (CC 89) and LFO clock divisions (CC 107); note-on 0-90 sets delay time (absolute or relative to base time); MIDI clock at 24 ppq.",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://manualmachine.com/moog/mf104m/2556949-user-manual",
+    "doi": "",
+    "title": "Moog MF-104M 'Super Delay' user manual (ManualMachine copy)",
+    "publisher": "Moog Music",
+    "version": "(c) 2012 per p. 28",
+    "locator": "pp. 22-25",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manuals.online/moog/recording-equipment/mf-104/user-manual/28vhy",
+    "doi": "",
+    "title": "Moog MF-104/MF-104M user manual (manuals.online copy; standard edition)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "pp. 24-25",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [
+   "The extract of the Super Delay manual also mentioned CC#71 for LFO divisions in one pass and CC#107 in another; unresolved."
+  ],
+  "topic": "mf104m-midi"
+ },
+ {
+  "claim": "UNKNOWN: whether the MF-104 family uses a companding (NE570/571-type) noise-reduction pair; no Moog manual, review or forum post opened states it",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "mf104-compander"
+ },
+ {
+  "claim": "UNKNOWN: BBD clock frequency range in kHz, anti-alias and reconstruction filter topology/order and whether the 3.0/1.7 kHz corner tracks the clock, for any MF-104 variant (only the nominal bandwidths in Figure 6 are given)",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "mf104-clock-filter"
+ },
+ {
+  "claim": "UNKNOWN: numeric noise floor or signal-to-noise figures for the MF-104 variants (qualitative remarks only; a forum poster says the 2012 unit has a lower noise floor than the 104Z)",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "mf104-noise"
+ },
+ {
+  "claim": "UNKNOWN: input and output impedances, maximum levels and mains/dimension specifications for the MF-104M (the manual has no specification table)",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "mf104m-specs"
+ },
+ {
+  "claim": "UNKNOWN: the exact delay lines, chip counts and ranges of the MF-104SD and of the MF-104Z beyond secondary and forum sources; no Moog manual for either was reached",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "mf104sd-z"
+ },
+ {
+  "claim": "UNKNOWN: numeric range or taper of the MF-104M LFO AMOUNT control and of the FEEDBACK knob scale, and whether 3:00 equals 8 on the numbered dial",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "mf104m-controls"
+ },
+ {
+  "claim": "The MF-105 family: MF-105 MuRF (designed by Bob Moog, 2004-05) has eight band-pass filters spanning 200 Hz to 3.4 kHz; MF-105B Bass MuRF has a 110 Hz low-pass/shelf plus seven resonant filters between 160 Hz and 1.8 kHz; the MF-105M MIDI MuRF combines both voicings in one box (FREQ switch), adds MIDI, stereo outputs and a free Pattern Editor.",
+  "kind": "bibliographic",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://en.wikipedia.org/wiki/Moogerfooger",
+    "doi": "",
+    "title": "Moogerfooger (encyclopaedia article)",
+    "publisher": "Wikipedia",
+    "version": "accessed 2026-11-11",
+    "locator": "MF-105 Series table",
+    "accessed": "2026-11-11",
+    "tier": 4
+   },
+   {
+    "url": "https://www.soundonsound.com/node/4908483",
+    "doi": "",
+    "title": "Moog MIDI MuRF (review, Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "December 2009",
+    "locator": "Overview",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/bob-moog-murf",
+    "doi": "",
+    "title": "Bob Moog MuRF (review, Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "April 2005",
+    "locator": "Filters",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "mf105-variants"
+ },
+ {
+  "claim": "MF-105M MIDS voicing centre frequencies (Hz): 200, 300, 450, 675, 1000, 1500, 2200, 3400 for filters 1-8; all eight are resonant filters.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://r2.gear4music.com/media/8/86064/download_86064_1.pdf",
+    "doi": "",
+    "title": "Understanding and Using your moogerfooger MF-105M MIDI MuRF (PDF)",
+    "publisher": "Moog Music",
+    "version": "(c) 2009; MIDI chart v1.4 dated 24 Aug 2009",
+    "locator": "pp. 6-7",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualmachine.com/moog/mf105m/2585789-user-manual",
+    "doi": "",
+    "title": "Moog MF-105M user manual (ManualMachine copy)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "p. 7",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/bob-moog-murf",
+    "doi": "",
+    "title": "Bob Moog MuRF (review, Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "April 2005",
+    "locator": "Filters",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://www.premierguitar.com/gear/moog-mf-105m-midi-murf-pedal-review",
+    "doi": "",
+    "title": "Moog MF-105M MIDI MuRF pedal review",
+    "publisher": "Premier Guitar",
+    "version": "15 Apr 2010",
+    "locator": "Filters",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 3,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "mf105m-filters"
+ },
+ {
+  "claim": "MF-105M BASS voicing: filter 1 is a low-pass with a 110 Hz cutoff; filters 2-8 are resonant filters centred at 160, 240, 350, 525, 775, 1200 and 1800 Hz.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://r2.gear4music.com/media/8/86064/download_86064_1.pdf",
+    "doi": "",
+    "title": "Understanding and Using your moogerfooger MF-105M MIDI MuRF (PDF)",
+    "publisher": "Moog Music",
+    "version": "(c) 2009; MIDI chart v1.4 dated 24 Aug 2009",
+    "locator": "pp. 6-7",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualmachine.com/moog/mf105m/2585789-user-manual",
+    "doi": "",
+    "title": "Moog MF-105M user manual (ManualMachine copy)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "p. 7",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualmachine.com/moog/moogerfoogermf105bbassmurf/20817476-user-manual",
+    "doi": "",
+    "title": "Moogerfooger MF-105B Bass MuRF user manual (ManualMachine copy)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "pp. 5-6",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.premierguitar.com/gear/moog-mf-105m-midi-murf-pedal-review",
+    "doi": "",
+    "title": "Moog MF-105M MIDI MuRF pedal review",
+    "publisher": "Premier Guitar",
+    "version": "15 Apr 2010",
+    "locator": "Filters",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "mf105m-filters"
+ },
+ {
+  "claim": "The fixed ratio between neighbouring filter centres is about 1.5 (each filter a perfect fifth above the last), giving non-overlapping bands unlike a graphic EQ.",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://www.soundonsound.com/reviews/bob-moog-murf",
+    "doi": "",
+    "title": "Bob Moog MuRF (review, Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "April 2005",
+    "locator": "Filters",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://www.premierguitar.com/gear/moog-mf-105m-midi-murf-pedal-review",
+    "doi": "",
+    "title": "Moog MF-105M MIDI MuRF pedal review",
+    "publisher": "Premier Guitar",
+    "version": "15 Apr 2010",
+    "locator": "Filters",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "mf105m-filters"
+ },
+ {
+  "claim": "The eight filters sit in a bank whose levels are set by sliders 1-8 (fully down = no gain, fully up = maximum); frequencies and resonance are fixed and not user-adjustable; each filter is followed by its own envelope generator (eight envelope generators, one per filter) that is sequencer-triggered, not driven by the input signal level.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://r2.gear4music.com/media/8/86064/download_86064_1.pdf",
+    "doi": "",
+    "title": "Understanding and Using your moogerfooger MF-105M MIDI MuRF (PDF)",
+    "publisher": "Moog Music",
+    "version": "(c) 2009; MIDI chart v1.4 dated 24 Aug 2009",
+    "locator": "pp. 7, 10",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/bob-moog-murf",
+    "doi": "",
+    "title": "Bob Moog MuRF (review, Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "April 2005",
+    "locator": "Envelopes",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://manualmachine.com/moog/mf105m/2585789-user-manual",
+    "doi": "",
+    "title": "Moog MF-105M user manual (ManualMachine copy)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "p. 10",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "mf105m-structure"
+ },
+ {
+  "claim": "Filter type: Moog and reviewers call them resonant filters (band-pass for the mids); slope (dB/octave) and Q values are not documented.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://r2.gear4music.com/media/8/86064/download_86064_1.pdf",
+    "doi": "",
+    "title": "Understanding and Using your moogerfooger MF-105M MIDI MuRF (PDF)",
+    "publisher": "Moog Music",
+    "version": "(c) 2009; MIDI chart v1.4 dated 24 Aug 2009",
+    "locator": "p. 7",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/node/4908483",
+    "doi": "",
+    "title": "Moog MIDI MuRF (review, Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "December 2009",
+    "locator": "Filters",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf105m-filters"
+ },
+ {
+  "claim": "FREQ slider switch selects BASS or MIDS voicing and, on the hardware, also the pattern bank; the PATTERN rotary has 12 positions; there are 24 patterns in two banks of 12 (patterns 1-12 BASS, 13-24 MIDS); patterns 1 and 13 are fixed no-animation settings that cannot be edited; Program Change 0-23 selects patterns 1-24 regardless of the FREQ switch.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://r2.gear4music.com/media/8/86064/download_86064_1.pdf",
+    "doi": "",
+    "title": "Understanding and Using your moogerfooger MF-105M MIDI MuRF (PDF)",
+    "publisher": "Moog Music",
+    "version": "(c) 2009; MIDI chart v1.4 dated 24 Aug 2009",
+    "locator": "pp. 11, 16, 28",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://marine.manualsonline.com/manuals/mfg/moog/mf105m.html?p=11",
+    "doi": "",
+    "title": "MF-105M MIDI MuRF manual, page 11 (ManualsOnline copy)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "p. 11",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/node/4908483",
+    "doi": "",
+    "title": "Moog MIDI MuRF (review, Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "December 2009",
+    "locator": "Bass and Mids Modes",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [
+   "Premier Guitar says patterns 1 and 12 are the fixed ones; Moog says 1 and 13."
+  ],
+  "topic": "mf105m-patterns"
+ },
+ {
+  "claim": "Pattern structure: the Animation is an eight-channel step sequencer, one channel per filter; each channel may hold up to 64 steps and channels can differ in length; at each step the channel's envelope generator is either triggered or left idle; the Pattern Editor lets users give each filter a loop of 1-64 steps. Figure 10 (p. 11-12) shows pattern 2 of MIDS as a grid with steps as columns and filters 1-8 as rows from bottom to top.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://r2.gear4music.com/media/8/86064/download_86064_1.pdf",
+    "doi": "",
+    "title": "Understanding and Using your moogerfooger MF-105M MIDI MuRF (PDF)",
+    "publisher": "Moog Music",
+    "version": "(c) 2009; MIDI chart v1.4 dated 24 Aug 2009",
+    "locator": "p. 11-12",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://marine.manualsonline.com/manuals/mfg/moog/mf105m.html?p=11",
+    "doi": "",
+    "title": "MF-105M MIDI MuRF manual, page 11 (ManualsOnline copy)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "p. 11",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/node/4908483",
+    "doi": "",
+    "title": "Moog MIDI MuRF (review, Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "December 2009",
+    "locator": "Envelopes and Patterns",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "mf105m-patterns"
+ },
+ {
+  "claim": "Names of the 24 factory patterns (Appendix A, pp. 28-32). BASS: No Animation, Downward Staircase, Upward Cascade, DoubleX, Perpetual Motion, Stereo Pyramid, Double Dip, Inverted Rhythmicon, Prime Number Rhythmicon, Folded Rhythmicon, Breakbeat, Big Beat (pp. 28-29). MIDS: No Animation, Upward Staircase, Downward Cascade, Criss Cross, Brownian Motion, Random-like, Downward Band Expansion, Down and Up, Pulsar, Growing and Shrinking Band, Double Cascade, Rhythmicon (pp. 30-32).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://r2.gear4music.com/media/8/86064/download_86064_1.pdf",
+    "doi": "",
+    "title": "Understanding and Using your moogerfooger MF-105M MIDI MuRF (PDF)",
+    "publisher": "Moog Music",
+    "version": "(c) 2009; MIDI chart v1.4 dated 24 Aug 2009",
+    "locator": "Appendix A, pp. 28-32",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf105m-patterns"
+ },
+ {
+  "claim": "Original MF-105 patterns (two banks A and B of 12; pattern 1 static; bank B includes a built-in sine LFO): reviewer reports 2A Upward Staircase has 8 steps ascending low to high, A5 Tremolo 4 steps, A8 Random-like 37 steps, A9 Double Up and Down 16 steps, B5 Come Together 8 steps, B6 Seesaw Panner 8 steps alternating odd and even filters.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.soundonsound.com/reviews/bob-moog-murf",
+    "doi": "",
+    "title": "Bob Moog MuRF (review, Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "April 2005",
+    "locator": "Patterns",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf105-patterns"
+ },
+ {
+  "claim": "UNKNOWN: the per-step trigger tables (step counts and which of filters 1-8 fire on each step) for the 24 MF-105M factory patterns and 24 MF-105 patterns: Appendix A in the MF-105M manual (pp. 28-32) presents them as graphics that could not be read as text, and no text version was found; only five step counts from a review are known",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "mf105m-patterns"
+ },
+ {
+  "claim": "ENVELOPE morphs the shape of all eight filter envelopes; manual landmarks: 0 = choppy with shortened decay; 2 = sharp attack with quick smooth fade (basic setting); 5 = equal attack and decay (smooth tremolo-like); 6 = long attack and decay so filters crossfade; 8 = smooth fast attack with abrupt decay ('backwards'); the reviewers add that beyond that the shape inverts. Envelope times scale with RATE (slower rate = longer envelopes).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://r2.gear4music.com/media/8/86064/download_86064_1.pdf",
+    "doi": "",
+    "title": "Understanding and Using your moogerfooger MF-105M MIDI MuRF (PDF)",
+    "publisher": "Moog Music",
+    "version": "(c) 2009; MIDI chart v1.4 dated 24 Aug 2009",
+    "locator": "pp. 10, 12",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://lawnandgarden.manualsonline.com/manuals/mfg/moog/mf105m.html?p=12",
+    "doi": "",
+    "title": "MF-105M MIDI MuRF manual, page 12 (ManualsOnline copy)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "p. 12",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/bob-moog-murf",
+    "doi": "",
+    "title": "Bob Moog MuRF (review, Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "April 2005",
+    "locator": "Envelopes",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://www.premierguitar.com/gear/moog-mf-105m-midi-murf-pedal-review",
+    "doi": "",
+    "title": "Moog MF-105M MIDI MuRF pedal review",
+    "publisher": "Premier Guitar",
+    "version": "15 Apr 2010",
+    "locator": "Envelope",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 3,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "mf105m-envelope"
+ },
+ {
+  "claim": "UNKNOWN: the actual attack and decay times (ms) of the MuRF envelope generators at each ENVELOPE setting and the RATE-to-envelope scaling law",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "mf105m-envelope"
+ },
+ {
+  "claim": "RATE sets pattern speed; its free-running range in Hz/BPM is not given in the manual; with MIDI clock sync it becomes a clock divider with fixed divisions from four whole notes (384 clocks) down to 1/64 note (1 clock) and the RATE LED turns orange (red = internal, green = tap/step).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://r2.gear4music.com/media/8/86064/download_86064_1.pdf",
+    "doi": "",
+    "title": "Understanding and Using your moogerfooger MF-105M MIDI MuRF (PDF)",
+    "publisher": "Moog Music",
+    "version": "(c) 2009; MIDI chart v1.4 dated 24 Aug 2009",
+    "locator": "pp. 4, 13, 20-21",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/node/4908483",
+    "doi": "",
+    "title": "Moog MIDI MuRF (review, Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "December 2009",
+    "locator": "MIDI",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "mf105m-rate"
+ },
+ {
+  "claim": "UNKNOWN: the free-running pattern-step rate range (steps per second or BPM) of the MF-105M RATE control",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "mf105m-rate"
+ },
+ {
+  "claim": "Tap/Step: three taps on the tip of the TAP/STEP TRS jack set the rate; the tapped tempo is doubled so quarter-note taps give eighth-note steps; a 0/+5 V gate on the tip can also set tempo; a footswitch or gate on the ring stops automatic advance and each press advances the pattern one step.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://r2.gear4music.com/media/8/86064/download_86064_1.pdf",
+    "doi": "",
+    "title": "Understanding and Using your moogerfooger MF-105M MIDI MuRF (PDF)",
+    "publisher": "Moog Music",
+    "version": "(c) 2009; MIDI chart v1.4 dated 24 Aug 2009",
+    "locator": "p. 13",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/bob-moog-murf",
+    "doi": "",
+    "title": "Bob Moog MuRF (review, Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "April 2005",
+    "locator": "Outputs and I/O",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "mf105m-tap"
+ },
+ {
+  "claim": "The LFO slider switch turns on a sine LFO that sweeps all filter frequencies together; its initial rate comes from the pattern and can be changed by LFO/SWEEP CV or pedal between about 0.08 Hz and 20 Hz; with the LFO off the same jack shifts the filter frequencies directly by a small amount (phaser-like). The CC range is also 0.08-20 Hz per reviewer.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://r2.gear4music.com/media/8/86064/download_86064_1.pdf",
+    "doi": "",
+    "title": "Understanding and Using your moogerfooger MF-105M MIDI MuRF (PDF)",
+    "publisher": "Moog Music",
+    "version": "(c) 2009; MIDI chart v1.4 dated 24 Aug 2009",
+    "locator": "pp. 9, 17",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualmachine.com/moog/mf105m/2585789-user-manual",
+    "doi": "",
+    "title": "Moog MF-105M user manual (ManualMachine copy)",
+    "publisher": "Moog Music",
+    "version": "undated copy",
+    "locator": "p. 9",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.premierguitar.com/gear/moog-mf-105m-midi-murf-pedal-review",
+    "doi": "",
+    "title": "Moog MF-105M MIDI MuRF pedal review",
+    "publisher": "Premier Guitar",
+    "version": "15 Apr 2010",
+    "locator": "Rate, LFO, and Mix",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "mf105m-lfo"
+ },
+ {
+  "claim": "UNKNOWN: the depth (in octaves or percent of centre frequency) of the MuRF LFO sweep and of the LFO-off 'sweep' shift",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "mf105m-lfo"
+ },
+ {
+  "claim": "MIX is a dry/wet balance (fully counter-clockwise dry, 12 o'clock 50/50, fully clockwise wet); OUTPUT balances the effected signal against the bypassed signal level; DRIVE sets input level to the circuit with a three-colour LED (off/green/yellow/red; green clean, yellow mild low-order distortion, red distinct distortion).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://r2.gear4music.com/media/8/86064/download_86064_1.pdf",
+    "doi": "",
+    "title": "Understanding and Using your moogerfooger MF-105M MIDI MuRF (PDF)",
+    "publisher": "Moog Music",
+    "version": "(c) 2009; MIDI chart v1.4 dated 24 Aug 2009",
+    "locator": "pp. 4, 14, 34",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf105m-levels"
+ },
+ {
+  "claim": "MF-105M rear/side jacks: AUDIO IN (1/4 in, -16 to +4 dBm, 1 megohm), LEFT/MONO OUT and RIGHT OUT (nominal about -4 dBm, +8 dBm maximum, 1 kilohm output impedance), four TRS pedal/CV inputs (RATE, ENV, MIX, LFO/SWEEP), TAP/STEP IN (TRS: tip tap tempo, ring step), MIDI IN (5-pin DIN, default channel 1) and +9 V DC power (300 mA, centre positive; text elsewhere says about 240 mA draw).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://r2.gear4music.com/media/8/86064/download_86064_1.pdf",
+    "doi": "",
+    "title": "Understanding and Using your moogerfooger MF-105M MIDI MuRF (PDF)",
+    "publisher": "Moog Music",
+    "version": "(c) 2009; MIDI chart v1.4 dated 24 Aug 2009",
+    "locator": "pp. 13-15, 26, 34",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.premierguitar.com/gear/moog-mf-105m-midi-murf-pedal-review",
+    "doi": "",
+    "title": "Moog MF-105M MIDI MuRF pedal review",
+    "publisher": "Premier Guitar",
+    "version": "15 Apr 2010",
+    "locator": "Back-panel I/O",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [
+   "Appendix D prints the RIGHT OUT nominal level without a minus sign; the manual also names the pedal as EP-2 in the text and EP1 in the spec table."
+  ],
+  "topic": "mf105m-rear"
+ },
+ {
+  "claim": "CV/pedal inputs: a 0 to +5 V change at the tip equals the full travel of the corresponding knob; expression pedals (50 or 100 kilohm linear, wired with the wiper on the tip and +5 V current-limited on the ring) add or subtract up to half the knob's range from the knob setting.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://r2.gear4music.com/media/8/86064/download_86064_1.pdf",
+    "doi": "",
+    "title": "Understanding and Using your moogerfooger MF-105M MIDI MuRF (PDF)",
+    "publisher": "Moog Music",
+    "version": "(c) 2009; MIDI chart v1.4 dated 24 Aug 2009",
+    "locator": "pp. 15-16, 26-27",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf105m-cv"
+ },
+ {
+  "claim": "Stereo split: with only LEFT/MONO connected all eight filters are summed there; with a cable in RIGHT OUT the odd-numbered filters (1, 3, 5, 7) go to LEFT/MONO and the even-numbered (2, 4, 6, 8) to RIGHT; in bypass the signal goes to LEFT/MONO only and nothing appears at RIGHT.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://r2.gear4music.com/media/8/86064/download_86064_1.pdf",
+    "doi": "",
+    "title": "Understanding and Using your moogerfooger MF-105M MIDI MuRF (PDF)",
+    "publisher": "Moog Music",
+    "version": "(c) 2009; MIDI chart v1.4 dated 24 Aug 2009",
+    "locator": "pp. 15, 28",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/bob-moog-murf",
+    "doi": "",
+    "title": "Bob Moog MuRF (review, Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "April 2005",
+    "locator": "Outputs and I/O",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://www.soundonsound.com/node/4908483",
+    "doi": "",
+    "title": "Moog MIDI MuRF (review, Paul Nagle)",
+    "publisher": "Sound On Sound",
+    "version": "December 2009",
+    "locator": "LFO",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "mf105m-stereo"
+ },
+ {
+  "claim": "Signal flow: AUDIO IN -> DRIVE -> bank of eight parallel resonant filters (each with slider gain and its own sequenced envelope/VCA) -> summing to LEFT/MONO or split odd/even to LEFT and RIGHT -> MIX with dry -> OUTPUT; bypass sends the dry signal to LEFT/MONO. Parallel topology is implied by the manual (all filter outputs go to the one jack) rather than stated.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://r2.gear4music.com/media/8/86064/download_86064_1.pdf",
+    "doi": "",
+    "title": "Understanding and Using your moogerfooger MF-105M MIDI MuRF (PDF)",
+    "publisher": "Moog Music",
+    "version": "(c) 2009; MIDI chart v1.4 dated 24 Aug 2009",
+    "locator": "pp. 10, 14-15, 28",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "mf105m-flow"
+ },
+ {
+  "claim": "MF-105M MIDI: Program Change 0-23 selects patterns; CCs include 1 envelope, 2 drive, 3 LFO rate/sweep, 7 output, 8 mix, 9 rate, 20-27 filter levels 1-8, 68 staccato, 70 envelope scale, 85 LFO on/off, 86 FREQ, 87 bypass, 89 clock sync, 90 pattern reset, 102 channel; note-on 24-36 mute, 48-60 triggered and 72-84 sustained for filters 1-8, note 108 step, 65 clock reset.",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://r2.gear4music.com/media/8/86064/download_86064_1.pdf",
+    "doi": "",
+    "title": "Understanding and Using your moogerfooger MF-105M MIDI MuRF (PDF)",
+    "publisher": "Moog Music",
+    "version": "(c) 2009; MIDI chart v1.4 dated 24 Aug 2009",
+    "locator": "pp. 16-23",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf105m-midi"
+ },
+ {
+  "claim": "UNKNOWN: the filter Q, slope (dB/octave) and circuit topology of the MuRF resonant filters (not given in any manual or review opened)",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "mf105m-filters"
+ },
+ {
+  "claim": "UNKNOWN: how the stereo split assigns the MuRF Bass voicing's low-pass filter (assumed filter 1 -> LEFT as an odd filter) and whether any panning or level differences exist between sides",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "mf105m-stereo"
+ },
+ {
+  "claim": "UNKNOWN: full MF-105M specification tables for the MuRF circuit (noise, THD, frequency response, VCA/envelope circuit type); no teardown, schematic or measurement was found",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "mf105m-circuit"
+ },
+ {
+  "claim": "UNKNOWN: how the sweep (LFO-off) CV shifts the eight centre frequencies (exponential law, range in octaves)",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "mf105m-lfo"
+ }
+]

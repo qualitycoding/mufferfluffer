@@ -1,0 +1,1835 @@
+{
+ "api_version": 1,
+ "patterns": [
+  {
+   "bank": "Bass",
+   "index": 0,
+   "name": "Static",
+   "channels": [
+    "-",
+    "-",
+    "-",
+    "-",
+    "-",
+    "-",
+    "-",
+    "-"
+   ]
+  },
+  {
+   "bank": "Bass",
+   "index": 1,
+   "name": "Stairs up",
+   "channels": [
+    "x.......",
+    ".x......",
+    "..x.....",
+    "...x....",
+    "....x...",
+    ".....x..",
+    "......x.",
+    ".......x"
+   ]
+  },
+  {
+   "bank": "Bass",
+   "index": 2,
+   "name": "Stairs down",
+   "channels": [
+    ".......x",
+    "......x.",
+    ".....x..",
+    "....x...",
+    "...x....",
+    "..x.....",
+    ".x......",
+    "x......."
+   ]
+  },
+  {
+   "bank": "Bass",
+   "index": 3,
+   "name": "Up and down",
+   "channels": [
+    "x.............",
+    ".x...........x",
+    "..x.........x.",
+    "...x.......x..",
+    "....x.....x...",
+    ".....x...x....",
+    "......x.x.....",
+    ".......x......"
+   ]
+  },
+  {
+   "bank": "Bass",
+   "index": 4,
+   "name": "Pairs",
+   "channels": [
+    "x...",
+    "x...",
+    ".x..",
+    ".x..",
+    "..x.",
+    "..x.",
+    "...x",
+    "...x"
+   ]
+  },
+  {
+   "bank": "Bass",
+   "index": 5,
+   "name": "Odd even",
+   "channels": [
+    "x.",
+    ".x",
+    "x.",
+    ".x",
+    "x.",
+    ".x",
+    "x.",
+    ".x"
+   ]
+  },
+  {
+   "bank": "Bass",
+   "index": 6,
+   "name": "Outside in",
+   "channels": [
+    "x...",
+    ".x..",
+    "..x.",
+    "...x",
+    "...x",
+    "..x.",
+    ".x..",
+    "x..."
+   ]
+  },
+  {
+   "bank": "Bass",
+   "index": 7,
+   "name": "Cascade",
+   "channels": [
+    "xx......",
+    ".xx.....",
+    "..xx....",
+    "...xx...",
+    "....xx..",
+    ".....xx.",
+    "......xx",
+    "x......x"
+   ]
+  },
+  {
+   "bank": "Bass",
+   "index": 8,
+   "name": "Polymetre",
+   "channels": [
+    "x",
+    "x.",
+    "x..",
+    "x...",
+    "x....",
+    "x.....",
+    "x......",
+    "x......."
+   ]
+  },
+  {
+   "bank": "Bass",
+   "index": 9,
+   "name": "Primes",
+   "channels": [
+    "x.",
+    "x..",
+    "x....",
+    "x......",
+    "x..........",
+    "x............",
+    "x................",
+    "x.................."
+   ]
+  },
+  {
+   "bank": "Bass",
+   "index": 10,
+   "name": "Scatter",
+   "channels": [
+    "....xxx..xx.x.x.x...x..xxx...x.x",
+    "x..xx.x....xx.xx.xx....xxx.....x",
+    "x.....x..x.xx.xxxx.x..x.x..x....",
+    ".x.x.x....xxx.xx..x...x..xx.x.x.",
+    ".x..x....xxxx.xx..x..x.x..x.x.x.",
+    "xx.xxxxxxxxxx.x.x.x.....x..x...x",
+    "xx...xxxx....xx....x.x.x.xx.xx..",
+    "..xx..xxxx...xxx...xx.x........."
+   ]
+  },
+  {
+   "bank": "Bass",
+   "index": 11,
+   "name": "Pulse",
+   "channels": [
+    "x...",
+    "x...",
+    "x...",
+    "x...",
+    "x...",
+    "x...",
+    "x...",
+    "x..."
+   ]
+  },
+  {
+   "bank": "Mids",
+   "index": 0,
+   "name": "Static",
+   "channels": [
+    "-",
+    "-",
+    "-",
+    "-",
+    "-",
+    "-",
+    "-",
+    "-"
+   ]
+  },
+  {
+   "bank": "Mids",
+   "index": 1,
+   "name": "Stairs up",
+   "channels": [
+    ".......x",
+    "......x.",
+    ".....x..",
+    "....x...",
+    "...x....",
+    "..x.....",
+    ".x......",
+    "x......."
+   ]
+  },
+  {
+   "bank": "Mids",
+   "index": 2,
+   "name": "Stairs down",
+   "channels": [
+    "x.......",
+    ".x......",
+    "..x.....",
+    "...x....",
+    "....x...",
+    ".....x..",
+    "......x.",
+    ".......x"
+   ]
+  },
+  {
+   "bank": "Mids",
+   "index": 3,
+   "name": "Up and down",
+   "channels": [
+    ".......x......",
+    "......x.x.....",
+    ".....x...x....",
+    "....x.....x...",
+    "...x.......x..",
+    "..x.........x.",
+    ".x...........x",
+    "x............."
+   ]
+  },
+  {
+   "bank": "Mids",
+   "index": 4,
+   "name": "Pairs",
+   "channels": [
+    "...x",
+    "...x",
+    "..x.",
+    "..x.",
+    ".x..",
+    ".x..",
+    "x...",
+    "x..."
+   ]
+  },
+  {
+   "bank": "Mids",
+   "index": 5,
+   "name": "Odd even",
+   "channels": [
+    ".x",
+    "x.",
+    ".x",
+    "x.",
+    ".x",
+    "x.",
+    ".x",
+    "x."
+   ]
+  },
+  {
+   "bank": "Mids",
+   "index": 6,
+   "name": "Outside in",
+   "channels": [
+    "x...",
+    ".x..",
+    "..x.",
+    "...x",
+    "...x",
+    "..x.",
+    ".x..",
+    "x..."
+   ]
+  },
+  {
+   "bank": "Mids",
+   "index": 7,
+   "name": "Cascade",
+   "channels": [
+    "x......x",
+    "......xx",
+    ".....xx.",
+    "....xx..",
+    "...xx...",
+    "..xx....",
+    ".xx.....",
+    "xx......"
+   ]
+  },
+  {
+   "bank": "Mids",
+   "index": 8,
+   "name": "Polymetre",
+   "channels": [
+    "x.......",
+    "x......",
+    "x.....",
+    "x....",
+    "x...",
+    "x..",
+    "x.",
+    "x"
+   ]
+  },
+  {
+   "bank": "Mids",
+   "index": 9,
+   "name": "Primes",
+   "channels": [
+    "x..................",
+    "x................",
+    "x............",
+    "x..........",
+    "x......",
+    "x....",
+    "x..",
+    "x."
+   ]
+  },
+  {
+   "bank": "Mids",
+   "index": 10,
+   "name": "Scatter",
+   "channels": [
+    "..xx..xxxx...xxx...xx.x.........",
+    "xx...xxxx....xx....x.x.x.xx.xx..",
+    "xx.xxxxxxxxxx.x.x.x.....x..x...x",
+    ".x..x....xxxx.xx..x..x.x..x.x.x.",
+    ".x.x.x....xxx.xx..x...x..xx.x.x.",
+    "x.....x..x.xx.xxxx.x..x.x..x....",
+    "x..xx.x....xx.xx.xx....xxx.....x",
+    "....xxx..xx.x.x.x...x..xxx...x.x"
+   ]
+  },
+  {
+   "bank": "Mids",
+   "index": 11,
+   "name": "Pulse",
+   "channels": [
+    "x...",
+    "x...",
+    "x...",
+    "x...",
+    "x...",
+    "x...",
+    "x...",
+    "x..."
+   ]
+  }
+ ],
+ "comment": "FROZEN - DO NOT MODIFY. Generated by tools/make_effects_fixture.py (decisions D-020..D-026).",
+ "effects": [
+  {
+   "id": 0,
+   "enum": "Lowpass",
+   "slug": "lowpass",
+   "name": "Fluff Lowpass",
+   "models": "MF-101",
+   "milestone": 1,
+   "params": [
+    {
+     "id": "drive",
+     "name": "Drive",
+     "unit": "dB",
+     "min": -7.0,
+     "max": 28.0,
+     "def": 0.0,
+     "taper": "linear"
+    },
+    {
+     "id": "cutoff",
+     "name": "Cutoff",
+     "unit": "Hz",
+     "min": 15.0,
+     "max": 12000.0,
+     "def": 1000.0,
+     "taper": "log"
+    },
+    {
+     "id": "resonance",
+     "name": "Resonance",
+     "unit": "",
+     "min": 0.0,
+     "max": 10.0,
+     "def": 0.0,
+     "taper": "linear"
+    },
+    {
+     "id": "env_amount",
+     "name": "Env Amount",
+     "unit": "oct",
+     "min": 0.0,
+     "max": 5.0,
+     "def": 0.0,
+     "taper": "linear"
+    },
+    {
+     "id": "env_speed",
+     "name": "Env Speed",
+     "unit": "",
+     "min": 0,
+     "max": 1,
+     "def": 1,
+     "taper": "stepped",
+     "steps": [
+      "Smooth",
+      "Fast"
+     ]
+    },
+    {
+     "id": "poles",
+     "name": "Poles",
+     "unit": "",
+     "min": 0,
+     "max": 1,
+     "def": 1,
+     "taper": "stepped",
+     "steps": [
+      "2-pole",
+      "4-pole"
+     ]
+    },
+    {
+     "id": "mix",
+     "name": "Mix",
+     "unit": "",
+     "min": 0.0,
+     "max": 1.0,
+     "def": 1.0,
+     "taper": "linear"
+    },
+    {
+     "id": "active",
+     "name": "Active",
+     "unit": "",
+     "min": 0,
+     "max": 1,
+     "def": 1,
+     "taper": "stepped",
+     "steps": [
+      "Bypass",
+      "On"
+     ]
+    }
+   ],
+   "inputs": [
+    {
+     "id": "in",
+     "name": "Audio In",
+     "kind": "audio",
+     "param": null,
+     "depth": 0.0
+    },
+    {
+     "id": "cv_cutoff",
+     "name": "Cutoff CV",
+     "kind": "cv_normalised",
+     "param": "cutoff",
+     "depth": 1.0
+    },
+    {
+     "id": "cv_resonance",
+     "name": "Resonance CV",
+     "kind": "cv_normalised",
+     "param": "resonance",
+     "depth": 1.0
+    },
+    {
+     "id": "cv_env_amount",
+     "name": "Amount CV",
+     "kind": "cv_normalised",
+     "param": "env_amount",
+     "depth": 1.0
+    },
+    {
+     "id": "cv_mix",
+     "name": "Mix CV",
+     "kind": "cv_normalised",
+     "param": "mix",
+     "depth": 1.0
+    }
+   ],
+   "outputs": [
+    {
+     "id": "out",
+     "name": "Audio Out",
+     "kind": "audio",
+     "param": null,
+     "depth": 0.0
+    },
+    {
+     "id": "env_out",
+     "name": "Envelope Out",
+     "kind": "cv_normalised",
+     "param": null,
+     "depth": 0.0
+    }
+   ],
+   "meters": [
+    {
+     "id": "level",
+     "name": "Level"
+    },
+    {
+     "id": "env",
+     "name": "Envelope"
+    },
+    {
+     "id": "active",
+     "name": "Active"
+    }
+   ],
+   "right_output": null,
+   "mono_sums_right": false
+  },
+  {
+   "id": 1,
+   "enum": "RingMod",
+   "slug": "ringmod",
+   "name": "Fluff Ring",
+   "models": "MF-102",
+   "milestone": 1,
+   "params": [
+    {
+     "id": "drive",
+     "name": "Drive",
+     "unit": "dB",
+     "min": -7.0,
+     "max": 28.0,
+     "def": 0.0,
+     "taper": "linear"
+    },
+    {
+     "id": "frequency",
+     "name": "Frequency",
+     "unit": "",
+     "min": 0.0,
+     "max": 1.0,
+     "def": 0.5,
+     "taper": "linear"
+    },
+    {
+     "id": "range",
+     "name": "Range",
+     "unit": "",
+     "min": 0,
+     "max": 1,
+     "def": 1,
+     "taper": "stepped",
+     "steps": [
+      "Lo",
+      "Hi"
+     ]
+    },
+    {
+     "id": "lfo_rate",
+     "name": "LFO Rate",
+     "unit": "Hz",
+     "min": 0.1,
+     "max": 25.0,
+     "def": 1.0,
+     "taper": "log"
+    },
+    {
+     "id": "lfo_amount",
+     "name": "LFO Amount",
+     "unit": "oct",
+     "min": 0.0,
+     "max": 3.0,
+     "def": 0.0,
+     "taper": "linear"
+    },
+    {
+     "id": "lfo_wave",
+     "name": "LFO Wave",
+     "unit": "",
+     "min": 0,
+     "max": 1,
+     "def": 0,
+     "taper": "stepped",
+     "steps": [
+      "Sine",
+      "Square"
+     ]
+    },
+    {
+     "id": "mix",
+     "name": "Mix",
+     "unit": "",
+     "min": 0.0,
+     "max": 1.0,
+     "def": 1.0,
+     "taper": "linear"
+    },
+    {
+     "id": "active",
+     "name": "Active",
+     "unit": "",
+     "min": 0,
+     "max": 1,
+     "def": 1,
+     "taper": "stepped",
+     "steps": [
+      "Bypass",
+      "On"
+     ]
+    }
+   ],
+   "inputs": [
+    {
+     "id": "in",
+     "name": "Audio In",
+     "kind": "audio",
+     "param": null,
+     "depth": 0.0
+    },
+    {
+     "id": "carrier_in",
+     "name": "Carrier In",
+     "kind": "audio",
+     "param": null,
+     "depth": 0.0
+    },
+    {
+     "id": "cv_frequency",
+     "name": "Frequency CV",
+     "kind": "cv_normalised",
+     "param": "frequency",
+     "depth": 1.0
+    },
+    {
+     "id": "cv_lfo_rate",
+     "name": "Rate CV",
+     "kind": "cv_normalised",
+     "param": "lfo_rate",
+     "depth": 1.0
+    },
+    {
+     "id": "cv_lfo_amount",
+     "name": "Amount CV",
+     "kind": "cv_normalised",
+     "param": "lfo_amount",
+     "depth": 1.0
+    },
+    {
+     "id": "cv_mix",
+     "name": "Mix CV",
+     "kind": "cv_normalised",
+     "param": "mix",
+     "depth": 1.0
+    }
+   ],
+   "outputs": [
+    {
+     "id": "out",
+     "name": "Audio Out",
+     "kind": "audio",
+     "param": null,
+     "depth": 0.0
+    },
+    {
+     "id": "carrier_out",
+     "name": "Carrier Out",
+     "kind": "audio",
+     "param": null,
+     "depth": 0.0
+    },
+    {
+     "id": "lfo_out",
+     "name": "LFO Out",
+     "kind": "cv_normalised",
+     "param": null,
+     "depth": 0.0
+    }
+   ],
+   "meters": [
+    {
+     "id": "level",
+     "name": "Level"
+    },
+    {
+     "id": "lfo",
+     "name": "LFO"
+    },
+    {
+     "id": "active",
+     "name": "Active"
+    }
+   ],
+   "right_output": null,
+   "mono_sums_right": false
+  },
+  {
+   "id": 2,
+   "enum": "Phaser",
+   "slug": "phaser",
+   "name": "Fluff Phase",
+   "models": "MF-103",
+   "milestone": 1,
+   "params": [
+    {
+     "id": "drive",
+     "name": "Drive",
+     "unit": "dB",
+     "min": -7.0,
+     "max": 28.0,
+     "def": 0.0,
+     "taper": "linear"
+    },
+    {
+     "id": "output",
+     "name": "Output",
+     "unit": "dB",
+     "min": -24.0,
+     "max": 12.0,
+     "def": 0.0,
+     "taper": "linear"
+    },
+    {
+     "id": "sweep",
+     "name": "Sweep",
+     "unit": "",
+     "min": 0.0,
+     "max": 10.0,
+     "def": 5.0,
+     "taper": "linear"
+    },
+    {
+     "id": "resonance",
+     "name": "Resonance",
+     "unit": "",
+     "min": 0.0,
+     "max": 10.0,
+     "def": 0.0,
+     "taper": "linear"
+    },
+    {
+     "id": "lfo_rate",
+     "name": "LFO Rate",
+     "unit": "",
+     "min": 0.0,
+     "max": 1.0,
+     "def": 0.5,
+     "taper": "linear"
+    },
+    {
+     "id": "lfo_range",
+     "name": "LFO Range",
+     "unit": "",
+     "min": 0,
+     "max": 1,
+     "def": 0,
+     "taper": "stepped",
+     "steps": [
+      "Lo",
+      "Hi"
+     ]
+    },
+    {
+     "id": "lfo_amount",
+     "name": "LFO Amount",
+     "unit": "",
+     "min": 0.0,
+     "max": 1.0,
+     "def": 0.5,
+     "taper": "linear"
+    },
+    {
+     "id": "stages",
+     "name": "Stages",
+     "unit": "",
+     "min": 0,
+     "max": 1,
+     "def": 0,
+     "taper": "stepped",
+     "steps": [
+      "6-stage",
+      "12-stage"
+     ]
+    },
+    {
+     "id": "active",
+     "name": "Active",
+     "unit": "",
+     "min": 0,
+     "max": 1,
+     "def": 1,
+     "taper": "stepped",
+     "steps": [
+      "Bypass",
+      "On"
+     ]
+    }
+   ],
+   "inputs": [
+    {
+     "id": "in",
+     "name": "Audio In",
+     "kind": "audio",
+     "param": null,
+     "depth": 0.0
+    },
+    {
+     "id": "sweep_in",
+     "name": "Sweep In",
+     "kind": "audio",
+     "param": null,
+     "depth": 0.0
+    },
+    {
+     "id": "cv_lfo_rate",
+     "name": "Rate CV",
+     "kind": "cv_normalised",
+     "param": "lfo_rate",
+     "depth": 1.0
+    },
+    {
+     "id": "cv_lfo_amount",
+     "name": "Amount CV",
+     "kind": "cv_normalised",
+     "param": "lfo_amount",
+     "depth": 1.0
+    },
+    {
+     "id": "cv_sweep",
+     "name": "Sweep CV",
+     "kind": "cv_normalised",
+     "param": "sweep",
+     "depth": 1.0
+    },
+    {
+     "id": "cv_resonance",
+     "name": "Resonance CV",
+     "kind": "cv_normalised",
+     "param": "resonance",
+     "depth": 1.0
+    }
+   ],
+   "outputs": [
+    {
+     "id": "out",
+     "name": "Audio Out",
+     "kind": "audio",
+     "param": null,
+     "depth": 0.0
+    },
+    {
+     "id": "aux_out",
+     "name": "Aux Out",
+     "kind": "audio",
+     "param": null,
+     "depth": 0.0
+    },
+    {
+     "id": "lfo_out",
+     "name": "LFO Out",
+     "kind": "cv_normalised",
+     "param": null,
+     "depth": 0.0
+    }
+   ],
+   "meters": [
+    {
+     "id": "level",
+     "name": "Level"
+    },
+    {
+     "id": "lfo",
+     "name": "LFO"
+    },
+    {
+     "id": "active",
+     "name": "Active"
+    }
+   ],
+   "right_output": "aux_out",
+   "mono_sums_right": false
+  },
+  {
+   "id": 3,
+   "enum": "Delay",
+   "slug": "delay",
+   "name": "Fluff Delay",
+   "models": "MF-104M",
+   "milestone": 2,
+   "params": [
+    {
+     "id": "drive",
+     "name": "Drive",
+     "unit": "dB",
+     "min": -7.0,
+     "max": 28.0,
+     "def": 0.0,
+     "taper": "linear"
+    },
+    {
+     "id": "output",
+     "name": "Output",
+     "unit": "dB",
+     "min": -24.0,
+     "max": 12.0,
+     "def": 0.0,
+     "taper": "linear"
+    },
+    {
+     "id": "time",
+     "name": "Time",
+     "unit": "",
+     "min": 0.0,
+     "max": 1.0,
+     "def": 0.5,
+     "taper": "linear"
+    },
+    {
+     "id": "range",
+     "name": "Range",
+     "unit": "",
+     "min": 0,
+     "max": 1,
+     "def": 0,
+     "taper": "stepped",
+     "steps": [
+      "Short",
+      "Long"
+     ]
+    },
+    {
+     "id": "feedback",
+     "name": "Feedback",
+     "unit": "",
+     "min": 0.0,
+     "max": 10.0,
+     "def": 3.0,
+     "taper": "linear"
+    },
+    {
+     "id": "lfo_rate",
+     "name": "LFO Rate",
+     "unit": "Hz",
+     "min": 0.05,
+     "max": 50.0,
+     "def": 1.0,
+     "taper": "log"
+    },
+    {
+     "id": "lfo_amount",
+     "name": "LFO Amount",
+     "unit": "",
+     "min": 0.0,
+     "max": 10.0,
+     "def": 0.0,
+     "taper": "linear"
+    },
+    {
+     "id": "lfo_wave",
+     "name": "LFO Wave",
+     "unit": "",
+     "min": 0,
+     "max": 5,
+     "def": 0,
+     "taper": "stepped",
+     "steps": [
+      "Sine",
+      "Triangle",
+      "Square",
+      "Sawtooth",
+      "Ramp",
+      "Random step"
+     ]
+    },
+    {
+     "id": "mix",
+     "name": "Mix",
+     "unit": "",
+     "min": 0.0,
+     "max": 1.0,
+     "def": 0.5,
+     "taper": "linear"
+    },
+    {
+     "id": "spillover",
+     "name": "Spillover",
+     "unit": "",
+     "min": 0,
+     "max": 1,
+     "def": 0,
+     "taper": "stepped",
+     "steps": [
+      "Off",
+      "On"
+     ]
+    },
+    {
+     "id": "tap",
+     "name": "Tap",
+     "unit": "",
+     "min": 0,
+     "max": 1,
+     "def": 0,
+     "taper": "stepped",
+     "steps": [
+      "Up",
+      "Down"
+     ]
+    },
+    {
+     "id": "active",
+     "name": "Active",
+     "unit": "",
+     "min": 0,
+     "max": 1,
+     "def": 1,
+     "taper": "stepped",
+     "steps": [
+      "Bypass",
+      "On"
+     ]
+    }
+   ],
+   "inputs": [
+    {
+     "id": "in",
+     "name": "Audio In",
+     "kind": "audio",
+     "param": null,
+     "depth": 0.0
+    },
+    {
+     "id": "fb_return",
+     "name": "Feedback Return",
+     "kind": "audio",
+     "param": null,
+     "depth": 0.0
+    },
+    {
+     "id": "cv_feedback",
+     "name": "Feedback CV",
+     "kind": "cv_normalised",
+     "param": "feedback",
+     "depth": 1.0
+    },
+    {
+     "id": "cv_time",
+     "name": "Time CV",
+     "kind": "cv_normalised",
+     "param": "time",
+     "depth": 1.0
+    },
+    {
+     "id": "cv_lfo_rate",
+     "name": "Rate CV",
+     "kind": "cv_normalised",
+     "param": "lfo_rate",
+     "depth": 1.0
+    },
+    {
+     "id": "cv_lfo_amount",
+     "name": "Amount CV",
+     "kind": "cv_normalised",
+     "param": "lfo_amount",
+     "depth": 1.0
+    },
+    {
+     "id": "cv_mix",
+     "name": "Mix CV",
+     "kind": "cv_normalised",
+     "param": "mix",
+     "depth": 1.0
+    },
+    {
+     "id": "tap_in",
+     "name": "Tap",
+     "kind": "trigger",
+     "param": "tap",
+     "depth": 0.0
+    }
+   ],
+   "outputs": [
+    {
+     "id": "out",
+     "name": "Mix Out",
+     "kind": "audio",
+     "param": null,
+     "depth": 0.0
+    },
+    {
+     "id": "delay_out",
+     "name": "Delay Out",
+     "kind": "audio",
+     "param": null,
+     "depth": 0.0
+    },
+    {
+     "id": "fb_send",
+     "name": "Feedback Send",
+     "kind": "audio",
+     "param": null,
+     "depth": 0.0
+    }
+   ],
+   "meters": [
+    {
+     "id": "level",
+     "name": "Level"
+    },
+    {
+     "id": "rate",
+     "name": "Rate"
+    },
+    {
+     "id": "active",
+     "name": "Active"
+    }
+   ],
+   "right_output": null,
+   "mono_sums_right": false
+  },
+  {
+   "id": 4,
+   "enum": "FilterBank",
+   "slug": "filterbank",
+   "name": "Fluff Bank",
+   "models": "MF-105M",
+   "milestone": 3,
+   "params": [
+    {
+     "id": "drive",
+     "name": "Drive",
+     "unit": "dB",
+     "min": -7.0,
+     "max": 28.0,
+     "def": 0.0,
+     "taper": "linear"
+    },
+    {
+     "id": "output",
+     "name": "Output",
+     "unit": "dB",
+     "min": -24.0,
+     "max": 12.0,
+     "def": 0.0,
+     "taper": "linear"
+    },
+    {
+     "id": "level1",
+     "name": "Filter 1",
+     "unit": "",
+     "min": 0.0,
+     "max": 1.0,
+     "def": 1.0,
+     "taper": "linear"
+    },
+    {
+     "id": "level2",
+     "name": "Filter 2",
+     "unit": "",
+     "min": 0.0,
+     "max": 1.0,
+     "def": 1.0,
+     "taper": "linear"
+    },
+    {
+     "id": "level3",
+     "name": "Filter 3",
+     "unit": "",
+     "min": 0.0,
+     "max": 1.0,
+     "def": 1.0,
+     "taper": "linear"
+    },
+    {
+     "id": "level4",
+     "name": "Filter 4",
+     "unit": "",
+     "min": 0.0,
+     "max": 1.0,
+     "def": 1.0,
+     "taper": "linear"
+    },
+    {
+     "id": "level5",
+     "name": "Filter 5",
+     "unit": "",
+     "min": 0.0,
+     "max": 1.0,
+     "def": 1.0,
+     "taper": "linear"
+    },
+    {
+     "id": "level6",
+     "name": "Filter 6",
+     "unit": "",
+     "min": 0.0,
+     "max": 1.0,
+     "def": 1.0,
+     "taper": "linear"
+    },
+    {
+     "id": "level7",
+     "name": "Filter 7",
+     "unit": "",
+     "min": 0.0,
+     "max": 1.0,
+     "def": 1.0,
+     "taper": "linear"
+    },
+    {
+     "id": "level8",
+     "name": "Filter 8",
+     "unit": "",
+     "min": 0.0,
+     "max": 1.0,
+     "def": 1.0,
+     "taper": "linear"
+    },
+    {
+     "id": "voicing",
+     "name": "Voicing",
+     "unit": "",
+     "min": 0,
+     "max": 1,
+     "def": 1,
+     "taper": "stepped",
+     "steps": [
+      "Bass",
+      "Mids"
+     ]
+    },
+    {
+     "id": "pattern",
+     "name": "Pattern",
+     "unit": "",
+     "min": 0,
+     "max": 11,
+     "def": 0,
+     "taper": "stepped",
+     "steps": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12"
+     ]
+    },
+    {
+     "id": "envelope",
+     "name": "Envelope",
+     "unit": "",
+     "min": 0.0,
+     "max": 10.0,
+     "def": 2.0,
+     "taper": "linear"
+    },
+    {
+     "id": "rate",
+     "name": "Rate",
+     "unit": "Hz",
+     "min": 0.5,
+     "max": 32.0,
+     "def": 4.0,
+     "taper": "log"
+    },
+    {
+     "id": "lfo",
+     "name": "LFO",
+     "unit": "",
+     "min": 0,
+     "max": 1,
+     "def": 0,
+     "taper": "stepped",
+     "steps": [
+      "Off",
+      "On"
+     ]
+    },
+    {
+     "id": "sweep",
+     "name": "LFO/Sweep",
+     "unit": "",
+     "min": 0.0,
+     "max": 1.0,
+     "def": 0.5,
+     "taper": "linear"
+    },
+    {
+     "id": "mix",
+     "name": "Mix",
+     "unit": "",
+     "min": 0.0,
+     "max": 1.0,
+     "def": 1.0,
+     "taper": "linear"
+    },
+    {
+     "id": "tap",
+     "name": "Tap",
+     "unit": "",
+     "min": 0,
+     "max": 1,
+     "def": 0,
+     "taper": "stepped",
+     "steps": [
+      "Up",
+      "Down"
+     ]
+    },
+    {
+     "id": "active",
+     "name": "Active",
+     "unit": "",
+     "min": 0,
+     "max": 1,
+     "def": 1,
+     "taper": "stepped",
+     "steps": [
+      "Bypass",
+      "On"
+     ]
+    }
+   ],
+   "inputs": [
+    {
+     "id": "in",
+     "name": "Audio In",
+     "kind": "audio",
+     "param": null,
+     "depth": 0.0
+    },
+    {
+     "id": "cv_rate",
+     "name": "Rate CV",
+     "kind": "cv_normalised",
+     "param": "rate",
+     "depth": 1.0
+    },
+    {
+     "id": "cv_envelope",
+     "name": "Envelope CV",
+     "kind": "cv_normalised",
+     "param": "envelope",
+     "depth": 1.0
+    },
+    {
+     "id": "cv_mix",
+     "name": "Mix CV",
+     "kind": "cv_normalised",
+     "param": "mix",
+     "depth": 1.0
+    },
+    {
+     "id": "cv_sweep",
+     "name": "LFO/Sweep CV",
+     "kind": "cv_normalised",
+     "param": "sweep",
+     "depth": 1.0
+    },
+    {
+     "id": "tap_in",
+     "name": "Tap",
+     "kind": "trigger",
+     "param": "tap",
+     "depth": 0.0
+    },
+    {
+     "id": "step_in",
+     "name": "Step",
+     "kind": "trigger",
+     "param": null,
+     "depth": 0.0
+    }
+   ],
+   "outputs": [
+    {
+     "id": "out_l",
+     "name": "Left/Mono Out",
+     "kind": "audio",
+     "param": null,
+     "depth": 0.0
+    },
+    {
+     "id": "out_r",
+     "name": "Right Out",
+     "kind": "audio",
+     "param": null,
+     "depth": 0.0
+    }
+   ],
+   "meters": [
+    {
+     "id": "level",
+     "name": "Level"
+    },
+    {
+     "id": "rate",
+     "name": "Rate"
+    },
+    {
+     "id": "active",
+     "name": "Active"
+    }
+   ],
+   "right_output": "out_r",
+   "mono_sums_right": true
+  },
+  {
+   "id": 5,
+   "enum": "OscBox",
+   "slug": "oscbox",
+   "name": "Fluff Osc",
+   "models": "MF-107",
+   "milestone": 3,
+   "params": [
+    {
+     "id": "drive",
+     "name": "Drive",
+     "unit": "dB",
+     "min": -7.0,
+     "max": 28.0,
+     "def": 0.0,
+     "taper": "linear"
+    },
+    {
+     "id": "output",
+     "name": "Output",
+     "unit": "dB",
+     "min": -24.0,
+     "max": 12.0,
+     "def": 0.0,
+     "taper": "linear"
+    },
+    {
+     "id": "frequency",
+     "name": "Frequency",
+     "unit": "Hz",
+     "min": 25.0,
+     "max": 1600.0,
+     "def": 200.0,
+     "taper": "log"
+    },
+    {
+     "id": "wave",
+     "name": "Wave",
+     "unit": "",
+     "min": 0.0,
+     "max": 1.0,
+     "def": 0.0,
+     "taper": "linear"
+    },
+    {
+     "id": "sync",
+     "name": "Sync",
+     "unit": "",
+     "min": 0,
+     "max": 1,
+     "def": 0,
+     "taper": "stepped",
+     "steps": [
+      "Off",
+      "On"
+     ]
+    },
+    {
+     "id": "fm_amount",
+     "name": "FM Amount",
+     "unit": "",
+     "min": 0.0,
+     "max": 1.0,
+     "def": 0.0,
+     "taper": "linear"
+    },
+    {
+     "id": "env_amount",
+     "name": "Env Amount",
+     "unit": "oct",
+     "min": 0.0,
+     "max": 8.0,
+     "def": 0.0,
+     "taper": "linear"
+    },
+    {
+     "id": "mix",
+     "name": "Mix",
+     "unit": "",
+     "min": 0.0,
+     "max": 1.0,
+     "def": 0.5,
+     "taper": "linear"
+    },
+    {
+     "id": "active",
+     "name": "Active",
+     "unit": "",
+     "min": 0,
+     "max": 1,
+     "def": 1,
+     "taper": "stepped",
+     "steps": [
+      "Bypass",
+      "On"
+     ]
+    }
+   ],
+   "inputs": [
+    {
+     "id": "in",
+     "name": "Audio In",
+     "kind": "audio",
+     "param": null,
+     "depth": 0.0
+    },
+    {
+     "id": "cv_frequency",
+     "name": "Frequency CV",
+     "kind": "cv_volt_per_oct",
+     "param": "frequency",
+     "depth": 0.0
+    },
+    {
+     "id": "cv_wave",
+     "name": "Wave CV",
+     "kind": "cv_normalised",
+     "param": "wave",
+     "depth": 0.6
+    },
+    {
+     "id": "cv_env_amount",
+     "name": "Env Amount CV",
+     "kind": "cv_normalised",
+     "param": "env_amount",
+     "depth": 1.0
+    },
+    {
+     "id": "cv_fm_amount",
+     "name": "FM Amount CV",
+     "kind": "cv_normalised",
+     "param": "fm_amount",
+     "depth": 1.0
+    },
+    {
+     "id": "cv_mix",
+     "name": "Mix CV",
+     "kind": "cv_normalised",
+     "param": "mix",
+     "depth": 1.0
+    }
+   ],
+   "outputs": [
+    {
+     "id": "out",
+     "name": "Audio Out",
+     "kind": "audio",
+     "param": null,
+     "depth": 0.0
+    },
+    {
+     "id": "env_out",
+     "name": "Envelope Out",
+     "kind": "cv_normalised",
+     "param": null,
+     "depth": 0.0
+    },
+    {
+     "id": "osc_out",
+     "name": "Oscillator Out",
+     "kind": "audio",
+     "param": null,
+     "depth": 0.0
+    }
+   ],
+   "meters": [
+    {
+     "id": "level",
+     "name": "Level"
+    },
+    {
+     "id": "env",
+     "name": "Envelope"
+    },
+    {
+     "id": "active",
+     "name": "Active"
+    }
+   ],
+   "right_output": null,
+   "mono_sums_right": false
+  },
+  {
+   "id": 6,
+   "enum": "Chorus",
+   "slug": "chorus",
+   "name": "Fluff Swarm",
+   "models": "MF-108M",
+   "milestone": 2,
+   "params": [
+    {
+     "id": "drive",
+     "name": "Drive",
+     "unit": "dB",
+     "min": -7.0,
+     "max": 28.0,
+     "def": 0.0,
+     "taper": "linear"
+    },
+    {
+     "id": "output",
+     "name": "Output",
+     "unit": "dB",
+     "min": -24.0,
+     "max": 12.0,
+     "def": 0.0,
+     "taper": "linear"
+    },
+    {
+     "id": "time",
+     "name": "Time",
+     "unit": "",
+     "min": 0.0,
+     "max": 1.0,
+     "def": 0.5,
+     "taper": "linear"
+    },
+    {
+     "id": "range",
+     "name": "Range",
+     "unit": "",
+     "min": 0,
+     "max": 1,
+     "def": 1,
+     "taper": "stepped",
+     "steps": [
+      "Flange",
+      "Chorus"
+     ]
+    },
+    {
+     "id": "feedback",
+     "name": "Feedback",
+     "unit": "",
+     "min": -1.0,
+     "max": 1.0,
+     "def": 0.0,
+     "taper": "linear"
+    },
+    {
+     "id": "lfo_rate",
+     "name": "LFO Rate",
+     "unit": "Hz",
+     "min": 0.05,
+     "max": 50.0,
+     "def": 0.5,
+     "taper": "log"
+    },
+    {
+     "id": "lfo_amount",
+     "name": "LFO Amount",
+     "unit": "",
+     "min": 0.0,
+     "max": 1.0,
+     "def": 0.3,
+     "taper": "linear"
+    },
+    {
+     "id": "lfo_wave",
+     "name": "LFO Wave",
+     "unit": "",
+     "min": 0,
+     "max": 5,
+     "def": 0,
+     "taper": "stepped",
+     "steps": [
+      "Sine",
+      "Triangle",
+      "Square",
+      "Sawtooth",
+      "Ramp",
+      "Random step"
+     ]
+    },
+    {
+     "id": "mix",
+     "name": "Mix",
+     "unit": "",
+     "min": 0.0,
+     "max": 1.0,
+     "def": 0.5,
+     "taper": "linear"
+    },
+    {
+     "id": "tap",
+     "name": "Tap",
+     "unit": "",
+     "min": 0,
+     "max": 1,
+     "def": 0,
+     "taper": "stepped",
+     "steps": [
+      "Up",
+      "Down"
+     ]
+    },
+    {
+     "id": "active",
+     "name": "Active",
+     "unit": "",
+     "min": 0,
+     "max": 1,
+     "def": 1,
+     "taper": "stepped",
+     "steps": [
+      "Bypass",
+      "On"
+     ]
+    }
+   ],
+   "inputs": [
+    {
+     "id": "in",
+     "name": "Audio In",
+     "kind": "audio",
+     "param": null,
+     "depth": 0.0
+    },
+    {
+     "id": "fb_return",
+     "name": "Feedback Return",
+     "kind": "audio",
+     "param": null,
+     "depth": 0.0
+    },
+    {
+     "id": "cv_time",
+     "name": "Time CV",
+     "kind": "cv_normalised",
+     "param": "time",
+     "depth": 1.0
+    },
+    {
+     "id": "cv_feedback",
+     "name": "Feedback CV",
+     "kind": "cv_normalised",
+     "param": "feedback",
+     "depth": 1.0
+    },
+    {
+     "id": "cv_lfo_rate",
+     "name": "Rate CV",
+     "kind": "cv_normalised",
+     "param": "lfo_rate",
+     "depth": 1.0
+    },
+    {
+     "id": "cv_lfo_amount",
+     "name": "Amount CV",
+     "kind": "cv_normalised",
+     "param": "lfo_amount",
+     "depth": 1.0
+    },
+    {
+     "id": "cv_mix",
+     "name": "Mix CV",
+     "kind": "cv_normalised",
+     "param": "mix",
+     "depth": 1.0
+    },
+    {
+     "id": "tap_in",
+     "name": "Tap",
+     "kind": "trigger",
+     "param": "tap",
+     "depth": 0.0
+    }
+   ],
+   "outputs": [
+    {
+     "id": "out_l",
+     "name": "Left/Mono Out",
+     "kind": "audio",
+     "param": null,
+     "depth": 0.0
+    },
+    {
+     "id": "out_r",
+     "name": "Right Out",
+     "kind": "audio",
+     "param": null,
+     "depth": 0.0
+    },
+    {
+     "id": "fb_send",
+     "name": "Feedback Send",
+     "kind": "audio",
+     "param": null,
+     "depth": 0.0
+    }
+   ],
+   "meters": [
+    {
+     "id": "level",
+     "name": "Level"
+    },
+    {
+     "id": "rate",
+     "name": "Rate"
+    },
+    {
+     "id": "active",
+     "name": "Active"
+    }
+   ],
+   "right_output": "out_r",
+   "mono_sums_right": false
+  }
+ ]
+}

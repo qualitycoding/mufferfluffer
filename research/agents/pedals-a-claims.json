@@ -1,0 +1,1499 @@
+[
+ {
+  "claim": "MF-101 CUTOFF is a rotary control calibrated in Hz: about 15 Hz fully anticlockwise, about 500 Hz at the midpoint, about 12 kHz fully clockwise; the specifications call this a nine-octave range.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86271-MF101SManual.pdf",
+    "doi": "",
+    "title": "MF-101 Lowpass Filter user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "Touring the Panel Features, The Filter Section; MF-101 Specifications, Front Panel Features",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualmachine.com/moog/mf101/1175822-user-manual",
+    "doi": "",
+    "title": "Moog MF-101 user manual (ManualMachine scrape of the Moog manual)",
+    "publisher": "Moog Music Inc. (mirrored by ManualMachine)",
+    "version": "(c) 1998, 2003",
+    "locator": "Cutoff range paragraph",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-101-cutoff"
+ },
+ {
+  "claim": "MF-101 RESONANCE runs from a plain lowpass near 0, through boosted overtones around the cutoff near setting 7, to self-oscillation above setting 8; the oscillation frequency follows CUTOFF.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86271-MF101SManual.pdf",
+    "doi": "",
+    "title": "MF-101 Lowpass Filter user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "The Filter Section; Expression Pedals and Voltage Control, A WARNING!",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/big-briar-moogerfooger-filter",
+    "doi": "",
+    "title": "Big Briar Moogerfooger Filter (review by Paul White)",
+    "publisher": "Sound On Sound",
+    "version": "April 1999",
+    "locator": "Resonance can be raised to self-oscillation",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "MF-101-resonance"
+ },
+ {
+  "claim": "With no pedal or CV on CUTOFF the MF-101 oscillates at about 15 Hz to 12 kHz; applying CV or a pedal to the CUTOFF jack can raise the oscillation to about 40 kHz.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86271-MF101SManual.pdf",
+    "doi": "",
+    "title": "MF-101 Lowpass Filter user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "Expression Pedals and Voltage Control, A WARNING!",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-101-resonance"
+ },
+ {
+  "claim": "The 2-POLE/4-POLE rocker routes the signal through half of the four-pole filter (2-pole, brighter) or all of it (4-pole); the manual gives no circuit detail of the tap point. Sound On Sound quotes 12 dB/octave and 24 dB/octave respectively.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86271-MF101SManual.pdf",
+    "doi": "",
+    "title": "MF-101 Lowpass Filter user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "Touring the Panel Features, The Filter Section",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/big-briar-moogerfooger-filter",
+    "doi": "",
+    "title": "Big Briar Moogerfooger Filter (review by Paul White)",
+    "publisher": "Sound On Sound",
+    "version": "April 1999",
+    "locator": "Filter section: 2-pole 12 dB/oct, 4-pole 24 dB/oct",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "MF-101-poles"
+ },
+ {
+  "claim": "The MF-101 filter is a four-pole lowpass of the classic Moog design first patented by Bob Moog in 1968; Perfect Circuit describes it as a 24 dB/octave transistor ladder.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86271-MF101SManual.pdf",
+    "doi": "",
+    "title": "MF-101 Lowpass Filter user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "MF-101 Specifications / Technical description of the filter",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.perfectcircuit.com/signal/moog-moogerfooger-retrospective",
+    "doi": "",
+    "title": "Moog Moogerfooger retrospective",
+    "publisher": "Perfect Circuit",
+    "version": "undated web article",
+    "locator": "MF-101 (1998) section",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "MF-101-topology"
+ },
+ {
+  "claim": "MF-101 envelope follower: AMOUNT sets how far the envelope sweeps CUTOFF (zero fully anticlockwise, up to about five octaves fully clockwise); the SMOOTH/FAST rocker chooses slow response for sustained material or fast response for transients; the ENV LED brightness tracks envelope strength.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86271-MF101SManual.pdf",
+    "doi": "",
+    "title": "MF-101 Lowpass Filter user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "The Envelope Follower Section",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/big-briar-moogerfooger-filter",
+    "doi": "",
+    "title": "Big Briar Moogerfooger Filter (review by Paul White)",
+    "publisher": "Sound On Sound",
+    "version": "April 1999",
+    "locator": "Envelope follower: Fast/Smooth, Amount sets sweep range",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "MF-101-envelope"
+ },
+ {
+  "claim": "MF-101 DRIVE is input gain with no CV input, remains active in bypass, and the LEVEL LED shows post-DRIVE level: off, green (clean), yellow (subtle low-order distortion, nominal about 0.5 V RMS), red (strong distortion).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86271-MF101SManual.pdf",
+    "doi": "",
+    "title": "MF-101 Lowpass Filter user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "Audio Input Level and Mixing",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/big-briar-moogerfooger-filter",
+    "doi": "",
+    "title": "Big Briar Moogerfooger Filter (review by Paul White)",
+    "publisher": "Sound On Sound",
+    "version": "April 1999",
+    "locator": "Levels and I/O; tri-colour LED, aim for yellow",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "MF-101-drive"
+ },
+ {
+  "claim": "MF-101 MIX crossfades from the dry (bypass-path) signal to the filtered signal and has a CV/pedal jack; both paths pass through VCAs, which gives voltage-controlled mixing and click-free bypass switching, so the unit passes no audio when unpowered.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86271-MF101SManual.pdf",
+    "doi": "",
+    "title": "MF-101 Lowpass Filter user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "Technical Information; Audio Input Level and Mixing",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/big-briar-moogerfooger-filter",
+    "doi": "",
+    "title": "Big Briar Moogerfooger Filter (review by Paul White)",
+    "publisher": "Sound On Sound",
+    "version": "April 1999",
+    "locator": "Bypass is via a VCA; no true bypass",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "MF-101-signalflow"
+ },
+ {
+  "claim": "MF-101 signal flow: AUDIO IN, DRIVE (also in bypass), split into a dry path and a filter path (2- or 4-pole), each through a VCA, crossfaded by MIX, to AUDIO OUT; the envelope follower, scaled by AMOUNT, modulates the filter cutoff. Output level therefore depends on DRIVE even in bypass.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86271-MF101SManual.pdf",
+    "doi": "",
+    "title": "MF-101 Lowpass Filter user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "Audio Input Level and Mixing; Technical Information; Simplified Block Diagram caption (image not in extracted text)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-101-signalflow"
+ },
+ {
+  "claim": "MF-101 rear-panel jacks: AUDIO IN (-16 to +4 dBm), AUDIO OUT (-4 dBm nominal), four stereo pedal/CV jacks (CUTOFF, RESONANCE, AMOUNT, MIX), ENVELOPE OUT, and a +9 V power jack. DRIVE has no CV jack.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86271-MF101SManual.pdf",
+    "doi": "",
+    "title": "MF-101 Lowpass Filter user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "MF-101 Specifications, Jack Panel Features",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/big-briar-moogerfooger-filter",
+    "doi": "",
+    "title": "Big Briar Moogerfooger Filter (review by Paul White)",
+    "publisher": "Sound On Sound",
+    "version": "April 1999",
+    "locator": "Four pedal inputs and one envelope output jack",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/big-briar-moogerfoogers",
+    "doi": "",
+    "title": "Big Briar Moogerfoogers (review by Chris Carter)",
+    "publisher": "Sound On Sound",
+    "version": "February 2002",
+    "locator": "MF101 section: CV inputs for Cutoff, Mix, Resonance, Amount; envelope follower CV output",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "MF-101-jacks"
+ },
+ {
+  "claim": "MF-101 pedal/CV jacks: ring supplies +5.7 V limited to about 0.5 mA, tip is the variable input, sleeve is ground; about 5 V at the tip sweeps the knob's whole range; 0 to +5 V on the tip with the knob at minimum gives full CV programming; a two-conductor plug shorts the ring supply and disables pedals on all pedal jacks.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86271-MF101SManual.pdf",
+    "doi": "",
+    "title": "MF-101 Lowpass Filter user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "Technical Information, Pedal Inputs; Expression Pedals and Voltage Control",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/big-briar-moogerfoogers",
+    "doi": "",
+    "title": "Big Briar Moogerfoogers (review by Chris Carter)",
+    "publisher": "Sound On Sound",
+    "version": "February 2002",
+    "locator": "Shared details: ring supplies +5 V; MF101 CV 0 to +5 V",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [
+   "Sound On Sound (Feb 2002) gives the ring supply as +5 V; the Moog manual gives +5.7 V."
+  ],
+  "topic": "MF-101-cv"
+ },
+ {
+  "claim": "MF-101 ENVELOPE OUT delivers the envelope control voltage for other devices and its level is independent of the AMOUNT setting.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86271-MF101SManual.pdf",
+    "doi": "",
+    "title": "MF-101 Lowpass Filter user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "MF-101 Specifications, Jack Panel Features",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-101-envout"
+ },
+ {
+  "claim": "MF-101 power: +9 to +15 V DC, about 100 mA, do not exceed +15 V; supplied adaptor 110-120 V AC, 5 W.",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86271-MF101SManual.pdf",
+    "doi": "",
+    "title": "MF-101 Lowpass Filter user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "Technical Information, Power; Specifications",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-101-power"
+ },
+ {
+  "claim": "MF-101 manual supplies only the audio levels -16 to +4 dBm in and -4 dBm nominal out; it states no input or output impedance for the MF-101.",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://manualmachine.com/moog/mf101/1175822-user-manual",
+    "doi": "",
+    "title": "Moog MF-101 user manual (ManualMachine scrape of the Moog manual)",
+    "publisher": "Moog Music Inc. (mirrored by ManualMachine)",
+    "version": "(c) 1998, 2003",
+    "locator": "Specifications section",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.fullcompass.com/common/files/86271-MF101SManual.pdf",
+    "doi": "",
+    "title": "MF-101 Lowpass Filter user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "MF-101 Specifications",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-101-levels"
+ },
+ {
+  "claim": "The MF-101 envelope follower input is tapped via a 100 kOhm resistor (R5) near U2, an LM324A quad op amp, on a 1999 Big Briar board, according to Bob Moog emails relayed on the Moog forum.",
+  "kind": "software",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://forum.moogmusic.com/t/mf101-modification-for-separate-audio-signal-to-env-fol/7587",
+    "doi": "",
+    "title": "MF101 modification for separate audio signal to env fol",
+    "publisher": "Moog Music Forum (user posts)",
+    "version": "posts 2010-2017",
+    "locator": "posts relaying Bob Moog emails of 2000-03-02 and 2000-10-05; posts 2010-04-01",
+    "accessed": "2026-11-11",
+    "tier": 4
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-101-circuit"
+ },
+ {
+  "claim": "Moog Music will not release MF-101 schematics (forum report); a forum user also reports a mix circuit using two VCAs driven by opposite CV polarities, which is a hypothesis not a confirmed fact.",
+  "kind": "software",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://forum.moogmusic.com/t/mf-101-capacitor-26/7217",
+    "doi": "",
+    "title": "MF-101 capacitor 26",
+    "publisher": "Moog Music Forum (user posts)",
+    "version": "posts 2-3 Feb 2010",
+    "locator": "posts by varice 2010-02-02 23:11 and tfgibbon 2010-02-03",
+    "accessed": "2026-11-11",
+    "tier": 4
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-101-circuit"
+ },
+ {
+  "claim": "MF-101 hardware revisions: a 1999 Big Briar board (P/N 11-350C), a 'Rev. D' board reported as significantly different, and later units moved to surface-mount construction; Effects Database says the core design is consistent across versions. Moog manual contains no revision information.",
+  "kind": "software",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://forum.moogmusic.com/t/mf101-modification-for-separate-audio-signal-to-env-fol/7587",
+    "doi": "",
+    "title": "MF101 modification for separate audio signal to env fol",
+    "publisher": "Moog Music Forum (user posts)",
+    "version": "posts 2010-2017",
+    "locator": "posts relaying Bob Moog emails of 2000-03-02 and 2000-10-05; posts 2010-04-01",
+    "accessed": "2026-11-11",
+    "tier": 4
+   },
+   {
+    "url": "https://forum.moogmusic.com/t/mf-101-envelope-negative-amount-and-rate-questions/14611",
+    "doi": "",
+    "title": "MF-101 Envelope Negative Amount and Rate Questions",
+    "publisher": "Moog Music Forum (user posts)",
+    "version": "posts April 2014",
+    "locator": "post by facon 2014-04-17 and reply by Bryan_B 2014-04-17",
+    "accessed": "2026-11-11",
+    "tier": 4
+   },
+   {
+    "url": "https://www.effectsdatabase.com/model/moog/moogerfooger/mf101",
+    "doi": "",
+    "title": "Moog Moogerfooger MF-101 Lowpass Filter",
+    "publisher": "Effects Database",
+    "version": "listing dated 2004-03-23",
+    "locator": "Versions and circuit summary",
+    "accessed": "2026-11-11",
+    "tier": 4
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "single-source",
+  "contradicted_by": [
+   "Effects Database says core design is consistent; forum posters say the Rev. D board is significantly different (not specified as sonic)."
+  ],
+  "topic": "MF-101-revisions"
+ },
+ {
+  "claim": "UNKNOWN: MF-101 envelope-follower time constants (attack and release) for SMOOTH and FAST; the manual and reviews describe them only qualitatively.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86271-MF101SManual.pdf",
+    "doi": "",
+    "title": "MF-101 Lowpass Filter user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "The Envelope Follower Section",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/big-briar-moogerfooger-filter",
+    "doi": "",
+    "title": "Big Briar Moogerfooger Filter (review by Paul White)",
+    "publisher": "Sound On Sound",
+    "version": "April 1999",
+    "locator": "Envelope follower",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "MF-101-envelope"
+ },
+ {
+  "claim": "UNKNOWN: MF-101 ENVELOPE OUT voltage range and polarity; also the envelope detector type (peak or RMS) and its mapping to cutoff.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86271-MF101SManual.pdf",
+    "doi": "",
+    "title": "MF-101 Lowpass Filter user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "Jack Panel Features",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "MF-101-envout"
+ },
+ {
+  "claim": "UNKNOWN: Volts-per-octave scaling of the MF-101 CUTOFF CV input; only 'about 5 V sweeps the whole knob' is stated (inferred roughly 1.8 octaves per volt if the nine-octave range is exponential; this is my arithmetic, not a source claim).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86271-MF101SManual.pdf",
+    "doi": "",
+    "title": "MF-101 Lowpass Filter user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "Technical Information, Pedal Inputs",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "MF-101-cv"
+ },
+ {
+  "claim": "UNKNOWN: MF-101 filter internals: number of ladder stages, tap point for 2-pole mode, resonance feedback law, passband gain loss at high resonance, and the Drive gain range in dB; no schematic is published.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "MF-101-topology"
+ },
+ {
+  "claim": "UNKNOWN: MF-101 input and output impedances, noise floor and headroom figures; not stated in the manual (the MF-102 manual does state impedances).",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://manualmachine.com/moog/mf101/1175822-user-manual",
+    "doi": "",
+    "title": "Moog MF-101 user manual (ManualMachine scrape of the Moog manual)",
+    "publisher": "Moog Music Inc. (mirrored by ManualMachine)",
+    "version": "(c) 1998, 2003",
+    "locator": "Specifications section",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "MF-101-levels"
+ },
+ {
+  "claim": "MF-102 FREQUENCY sets the carrier oscillator: LO range 0.6 to 80 Hz, HI range 30 Hz to 4 kHz (about seven octaves), selected by the LO-HI switch.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86272-MF102SManual.pdf",
+    "doi": "",
+    "title": "MF-102 Ring Modulator user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "The Modulator Section; MF-102 Specifications",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualmachine.com/moog/mf102/1175800-user-manual",
+    "doi": "",
+    "title": "Moog MF-102 user manual (ManualMachine scrape of the Moog manual)",
+    "publisher": "Moog Music Inc. (mirrored by ManualMachine)",
+    "version": "(c) 1998, 2003",
+    "locator": "pp. 7, 10",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-102-carrier"
+ },
+ {
+  "claim": "The MF-102 carrier is a wide-range voltage-controlled oscillator that produces a sine-like (not described as pure) waveform; there is no front-panel carrier waveform switch.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86272-MF102SManual.pdf",
+    "doi": "",
+    "title": "MF-102 Ring Modulator user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "The Modulator Section; What is a ring modulator",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualmachine.com/moog/mf102/1175800-user-manual",
+    "doi": "",
+    "title": "Moog MF-102 user manual (ManualMachine scrape of the Moog manual)",
+    "publisher": "Moog Music Inc. (mirrored by ManualMachine)",
+    "version": "(c) 1998, 2003",
+    "locator": "p. 7",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [
+   "Sound On Sound (Feb 2002) says the carrier VCO has a switchable sine or square output; the Moog manual says the SQUARE-SINE switch selects the LFO waveform."
+  ],
+  "topic": "MF-102-carrier"
+ },
+ {
+  "claim": "Ring modulation in the MF-102 outputs only sum and difference frequencies of the two inputs (example 500 Hz with 100 Hz gives 600 and 400 Hz); input two is the internal carrier unless a plug is in CARRIER IN, which disconnects the internal oscillator from the modulator.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86272-MF102SManual.pdf",
+    "doi": "",
+    "title": "MF-102 Ring Modulator user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "What is a ring modulator; Modulator Section",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/big-briar-moogerfoogers",
+    "doi": "",
+    "title": "Big Briar Moogerfoogers (review by Chris Carter)",
+    "publisher": "Sound On Sound",
+    "version": "February 2002",
+    "locator": "MF102: audio input is the modulator, carrier is internal VCO or external Carrier In",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://www.perfectcircuit.com/signal/moog-moogerfooger-retrospective",
+    "doi": "",
+    "title": "Moog Moogerfooger retrospective",
+    "publisher": "Perfect Circuit",
+    "version": "undated web article",
+    "locator": "MF-102 (1998) section: multiplies input by internal VCO",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 3,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "MF-102-multiply"
+ },
+ {
+  "claim": "MF-102 signal flow: AUDIO IN, DRIVE (active in bypass), ring modulator (input 2 = carrier), MIX crossfade between direct and ring-modulated signal, BYPASS/ON, AUDIO OUT; bypass and effect paths both pass through VCAs for clickless switching and the unit is silent when unpowered.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86272-MF102SManual.pdf",
+    "doi": "",
+    "title": "MF-102 Ring Modulator user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "Signal flow / Technical Information",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-102-signalflow"
+ },
+ {
+  "claim": "MF-102 MIX goes from fully dry (anticlockwise) to fully ring-modulated (clockwise) and has a CV/pedal jack.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86272-MF102SManual.pdf",
+    "doi": "",
+    "title": "MF-102 Ring Modulator user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "The Modulator Section",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/big-briar-moogerfoogers",
+    "doi": "",
+    "title": "Big Briar Moogerfoogers (review by Chris Carter)",
+    "publisher": "Sound On Sound",
+    "version": "February 2002",
+    "locator": "MF102 controls: Modulator Mix, rear CV for audio Mix",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "MF-102-mix"
+ },
+ {
+  "claim": "MF-102 LFO: RATE 0.1 to 25 Hz (one cycle per ten seconds to 25 Hz), AMOUNT 0 to about three octaves of carrier frequency modulation at full clockwise, SQUARE-SINE switch chooses LFO waveform (square for trills, sine-like for vibrato/sirens); the LFO LED blinks at the rate and is lit only by the sine waveform.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86272-MF102SManual.pdf",
+    "doi": "",
+    "title": "MF-102 Ring Modulator user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "The LFO Section; Specifications",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualmachine.com/moog/mf102/1175800-user-manual",
+    "doi": "",
+    "title": "Moog MF-102 user manual (ManualMachine scrape of the Moog manual)",
+    "publisher": "Moog Music Inc. (mirrored by ManualMachine)",
+    "version": "(c) 1998, 2003",
+    "locator": "pp. 9-10",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.bonedo.de/artikel/moogerfooger-mf-102/",
+    "doi": "",
+    "title": "Moog Moogerfooger MF-102 Test (Nico Schnepf)",
+    "publisher": "Bonedo",
+    "version": "2011-02-09",
+    "locator": "LFO with Rate, Amount and sine/square switch",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-102-lfo"
+ },
+ {
+  "claim": "MF-102 rear-panel jacks and levels: AUDIO IN -16 to +4 dBm, 1 MOhm; AUDIO OUT -4 dBm nominal, 600 Ohm; CARRIER IN about -4 dBm (0.5 V RMS), 1 MOhm; CARRIER OUT +/-1.25 V, 600 Ohm; LFO OUT +/-1.5 V, 600 Ohm (independent of LFO AMOUNT); four stereo pedal/CV jacks FREQUENCY, RATE, LFO AMOUNT, MIX (DRIVE has none).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86272-MF102SManual.pdf",
+    "doi": "",
+    "title": "MF-102 Ring Modulator user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "MF-102 Specifications, Jack Panel Features",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualmachine.com/moog/mf102/1175800-user-manual",
+    "doi": "",
+    "title": "Moog MF-102 user manual (ManualMachine scrape of the Moog manual)",
+    "publisher": "Moog Music Inc. (mirrored by ManualMachine)",
+    "version": "(c) 1998, 2003",
+    "locator": "Specifications, about p. 15",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-102-jacks"
+ },
+ {
+  "claim": "MF-102 pedal/CV jacks use the same scheme as the MF-101: ring +5.7 V at about 0.5 mA, about 5 V on the tip covers the full knob range, 0 to +5 V programs with knobs at minimum, TS plug shorts ring supply.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86272-MF102SManual.pdf",
+    "doi": "",
+    "title": "MF-102 Ring Modulator user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "Technical Information, Pedal Inputs",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/big-briar-moogerfoogers",
+    "doi": "",
+    "title": "Big Briar Moogerfoogers (review by Chris Carter)",
+    "publisher": "Sound On Sound",
+    "version": "February 2002",
+    "locator": "0 to +5 V CV; CV for LFO Rate, LFO Amount, VCO Frequency, Mix",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "MF-102-cv"
+ },
+ {
+  "claim": "MF-102 front-panel indicators: LEVEL LED (green below distortion, yellow about 0.5 V RMS nominal with subtle low-order distortion, red audible distortion), LFO LED, BYPASS LED red when bypassed and green when active.",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86272-MF102SManual.pdf",
+    "doi": "",
+    "title": "MF-102 Ring Modulator user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "Front panel indicators",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-102-indicators"
+ },
+ {
+  "claim": "MF-102 power: +9 to +15 V DC, about 100 mA, centre pin positive.",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86272-MF102SManual.pdf",
+    "doi": "",
+    "title": "MF-102 Ring Modulator user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "Specifications / Technical Information",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualmachine.com/moog/mf102/1175800-user-manual",
+    "doi": "",
+    "title": "Moog MF-102 user manual (ManualMachine scrape of the Moog manual)",
+    "publisher": "Moog Music Inc. (mirrored by ManualMachine)",
+    "version": "(c) 1998, 2003",
+    "locator": "Specifications",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-102-power"
+ },
+ {
+  "claim": "Sound On Sound (2002) reports an undocumented, non-adjustable noise gate ('squelch') on the MF-102 that can clip quiet tails, and audible oscillator breakthrough at low input; the Moog manual does not mention either.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.soundonsound.com/reviews/big-briar-moogerfoogers",
+    "doi": "",
+    "title": "Big Briar Moogerfoogers (review by Chris Carter)",
+    "publisher": "Sound On Sound",
+    "version": "February 2002",
+    "locator": "MF102 section, last bullet",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [
+   "Moog MF-102 manual does not mention a gate or carrier breakthrough."
+  ],
+  "topic": "MF-102-behaviour"
+ },
+ {
+  "claim": "The MF-102 manual has internal errors: the specifications describe BYPASS as showing whether 'the filter' is on, and the warranty names the MF-101; the front panel labels the oscillator section 'Modulator' while the rear jacks are labelled Carrier In/Out (a forum thread questions this; no official answer).",
+  "kind": "bibliographic",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86272-MF102SManual.pdf",
+    "doi": "",
+    "title": "MF-102 Ring Modulator user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "MF-102 Specifications; Warranty",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://forum.moogmusic.com/t/mf-102-inconsistency/10971",
+    "doi": "",
+    "title": "MF-102 inconsistency?",
+    "publisher": "Moog Music Forum (user posts)",
+    "version": "posts 2012-2013",
+    "locator": "opening post by PHC 2012-03-07",
+    "accessed": "2026-11-11",
+    "tier": 4
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-102-errata"
+ },
+ {
+  "claim": "UNKNOWN: Whether the MF-102 LFO OUT follows the SQUARE-SINE switch, and whether CARRIER OUT carries the internal carrier when CARRIER IN is plugged; the manual states only the +/-1.5 V and +/-1.25 V levels.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86272-MF102SManual.pdf",
+    "doi": "",
+    "title": "MF-102 Ring Modulator user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "Specifications",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "MF-102-jacks"
+ },
+ {
+  "claim": "UNKNOWN: Volts-per-octave (or octaves-per-volt) scaling of the MF-102 FREQUENCY, RATE and LFO AMOUNT CV inputs; only 'about 5 V sweeps the knob' is stated.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86272-MF102SManual.pdf",
+    "doi": "",
+    "title": "MF-102 Ring Modulator user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1998, 2003; no revision number",
+    "locator": "Technical Information, Pedal Inputs",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualmachine.com/moog/mf102/1175800-user-manual",
+    "doi": "",
+    "title": "Moog MF-102 user manual (ManualMachine scrape of the Moog manual)",
+    "publisher": "Moog Music Inc. (mirrored by ManualMachine)",
+    "version": "(c) 1998, 2003",
+    "locator": "p. 13",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "MF-102-cv"
+ },
+ {
+  "claim": "UNKNOWN: MF-102 multiplier circuit type (diode ring, Gilbert cell or OTA), carrier waveform purity or harmonic content (beyond 'sine-like'), DC offset, dry feedthrough/carrier leakage figures, and any noise gate threshold.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "MF-102-multiplier"
+ },
+ {
+  "claim": "UNKNOWN: MF-102 noise and headroom figures, and the DRIVE gain range in dB.",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "MF-102-levels"
+ },
+ {
+  "claim": "MF-103 RATE sets the LFO speed: LO range 0.01 to 2.5 Hz, HI range 1 to 250 Hz (a 250:1 span per range as stated), selected by the LO-HI rocker, with a CV/pedal jack.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86275-MF103SManual.pdf",
+    "doi": "",
+    "title": "MF-103 12-Stage Phaser user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1999, 2003; no revision number",
+    "locator": "Specifications, Front Panel Features; The LFO section",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.perfectcircuit.com/signal/moog-moogerfooger-retrospective",
+    "doi": "",
+    "title": "Moog Moogerfooger retrospective",
+    "publisher": "Perfect Circuit",
+    "version": "undated web article",
+    "locator": "MF-103 (1999) section: about 0.01-2.5 Hz or 1-250 Hz",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [
+   "Vintage Synth Explorer lists the LFO range as 0.1 Hz to 250 Hz."
+  ],
+  "topic": "MF-103-lfo"
+ },
+ {
+  "claim": "MF-103 LFO waveform is triangular, available at the LFO OUT jack at +/-2.8 V with 600 Ohm output impedance, independent of AMOUNT; the LFO LED indicates its speed.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86275-MF103SManual.pdf",
+    "doi": "",
+    "title": "MF-103 12-Stage Phaser user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1999, 2003; no revision number",
+    "locator": "Specifications, Jack Panel Features",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-103-lfo"
+ },
+ {
+  "claim": "MF-103 AMOUNT sets LFO modulation depth of the sweep from barely perceptible to the full sweep range; SWEEP moves the response through a six-octave range, with setting 5 as the mid-point; both have CV/pedal jacks.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86275-MF103SManual.pdf",
+    "doi": "",
+    "title": "MF-103 12-Stage Phaser user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1999, 2003; no revision number",
+    "locator": "Phaser Parameters; Getting Started",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-103-sweep"
+ },
+ {
+  "claim": "MF-103 RESONANCE raises and sharpens the response peaks without moving them (a feedback circuit per Vintage Synth Explorer); the manual does not mention self-oscillation.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86275-MF103SManual.pdf",
+    "doi": "",
+    "title": "MF-103 12-Stage Phaser user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1999, 2003; no revision number",
+    "locator": "Phaser Parameters, Figure 8 text",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.vintagesynth.com/moog/mf-103-12-stage-phaser",
+    "doi": "",
+    "title": "Moog MF-103 12-Stage Phaser",
+    "publisher": "Vintage Synth Explorer",
+    "version": "undated web page",
+    "locator": "Specifications list",
+    "accessed": "2026-11-11",
+    "tier": 4
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-103-resonance"
+ },
+ {
+  "claim": "The right-hand rocker selects 6-STAGE (three response dips about two octaves apart) or 12-STAGE (six dips, spacing halved); the mid-shift frequency at SWEEP 5 is described as a little more than two octaves above middle C (no Hz value stated).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86275-MF103SManual.pdf",
+    "doi": "",
+    "title": "MF-103 12-Stage Phaser user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1999, 2003; no revision number",
+    "locator": "Frequency Response, Basic Setup",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/big-briar-moogerfoogers",
+    "doi": "",
+    "title": "Big Briar Moogerfoogers (review by Chris Carter)",
+    "publisher": "Sound On Sound",
+    "version": "February 2002",
+    "locator": "MF103: six-stage three notches about two octaves apart; twelve-stage doubles",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "MF-103-stages"
+ },
+ {
+  "claim": "MF-103 AUX OUT carries a phase response that is the inverse of AUDIO OUT (peaks where AUDIO OUT has dips) with less very low and very high frequency energy; sending the two outputs to separate speakers avoids comb filtering and gives a swirling stereo image.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86275-MF103SManual.pdf",
+    "doi": "",
+    "title": "MF-103 12-Stage Phaser user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1999, 2003; no revision number",
+    "locator": "Frequency Response; Specifications",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/big-briar-moogerfoogers",
+    "doi": "",
+    "title": "Big Briar Moogerfoogers (review by Chris Carter)",
+    "publisher": "Sound On Sound",
+    "version": "February 2002",
+    "locator": "MF103: additional inverted audio output for hard-panned stereo",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://www.perfectcircuit.com/signal/moog-moogerfooger-retrospective",
+    "doi": "",
+    "title": "Moog Moogerfooger retrospective",
+    "publisher": "Perfect Circuit",
+    "version": "undated web article",
+    "locator": "MF-103 section: Aux and Audio outputs panned for stereo",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 3,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "MF-103-aux"
+ },
+ {
+  "claim": "MF-103 signal flow: AUDIO IN, DRIVE, phaser (6 or 12 stages), OUTPUT LEVEL, to AUDIO OUT and AUX OUT; the bypass path is a unity-gain buffer through an electronic switch to both outputs, unaffected by DRIVE or OUTPUT LEVEL. OUTPUT LEVEL balances phased against bypassed level; there is no dry/wet MIX control.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86275-MF103SManual.pdf",
+    "doi": "",
+    "title": "MF-103 12-Stage Phaser user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1999, 2003; no revision number",
+    "locator": "Phaser Parameters; Technical Information; Figure 10 caption (image not in extracted text)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/big-briar-moogerfoogers",
+    "doi": "",
+    "title": "Big Briar Moogerfoogers (review by Chris Carter)",
+    "publisher": "Sound On Sound",
+    "version": "February 2002",
+    "locator": "MF103 controls: Drive, Output Level, tri-colour LED",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-103-signalflow"
+ },
+ {
+  "claim": "MF-103 SWEEP IN is a mono jack taking an external +/-2.5 V control or audio signal at 50 kOhm input impedance, replacing the LFO for the second group of six stages and effective in 12-stage mode.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86275-MF103SManual.pdf",
+    "doi": "",
+    "title": "MF-103 12-Stage Phaser user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1999, 2003; no revision number",
+    "locator": "Specifications, Jack Panel Features; Expression Pedals and Voltage Control",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-103-sweepin"
+ },
+ {
+  "claim": "MF-103 audio jacks: AUDIO IN -16 to +4 dBm at 1 MOhm; AUDIO OUT and AUX OUT -4 dBm nominal maximum (the AUX sign is missing in the manual), +8 dBm absolute maximum, 5 kOhm output impedance.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86275-MF103SManual.pdf",
+    "doi": "",
+    "title": "MF-103 12-Stage Phaser user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1999, 2003; no revision number",
+    "locator": "Specifications, Jack Panel Features",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [
+   "The manual's AUX OUT entry reads '4 dBm' without a minus sign; treated as -4 dBm by analogy with AUDIO OUT."
+  ],
+  "topic": "MF-103-levels"
+ },
+ {
+  "claim": "MF-103 pedal/CV jacks (RATE, AMOUNT, SWEEP, RESONANCE) share the scheme: ring +5.7 V at 0.5 mA, about 5 V on the tip spans the knob range, 0 to +5 V programs; DRIVE and OUTPUT LEVEL have no CV jack.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86275-MF103SManual.pdf",
+    "doi": "",
+    "title": "MF-103 12-Stage Phaser user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1999, 2003; no revision number",
+    "locator": "Technical Information; Expression Pedals and Voltage Control",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/big-briar-moogerfoogers",
+    "doi": "",
+    "title": "Big Briar Moogerfoogers (review by Chris Carter)",
+    "publisher": "Sound On Sound",
+    "version": "February 2002",
+    "locator": "Shared: ring supplies +5 V for pedals",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [
+   "Sound On Sound gives +5 V ring supply; Moog manual +5.7 V."
+  ],
+  "topic": "MF-103-cv"
+ },
+ {
+  "claim": "MF-103 DRIVE sets gain into the phaser (anticlockwise for strong sources) and the LEVEL LED shows post-DRIVE level in green, yellow, red as on the other pedals; the BYPASS LED is red when bypassed and green when active.",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86275-MF103SManual.pdf",
+    "doi": "",
+    "title": "MF-103 12-Stage Phaser user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1999, 2003; no revision number",
+    "locator": "Audio Input Level; indicators",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-103-drive"
+ },
+ {
+  "claim": "MF-103 power: the manual states +10 to +15 V DC at about 100 mA in Technical Information but describes a nominal +9 V adaptor in Getting Started and says +9 V to +12 V adaptors at 200 mA or more suit it; do not exceed +15 V.",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86275-MF103SManual.pdf",
+    "doi": "",
+    "title": "MF-103 12-Stage Phaser user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1999, 2003; no revision number",
+    "locator": "Technical Information, Power; Getting Started",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [
+   "Internal inconsistency in the manual: +10 V minimum versus +9 V nominal adaptor."
+  ],
+  "topic": "MF-103-power"
+ },
+ {
+  "claim": "The MF-103 was introduced in 1999 and is described as all-analog; the manual (c) 1999, 2003 gives no revision number, and no hardware revisions were found in any opened source.",
+  "kind": "bibliographic",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86275-MF103SManual.pdf",
+    "doi": "",
+    "title": "MF-103 12-Stage Phaser user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1999, 2003; no revision number",
+    "locator": "Copyright line",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.perfectcircuit.com/signal/moog-moogerfooger-retrospective",
+    "doi": "",
+    "title": "Moog Moogerfooger retrospective",
+    "publisher": "Perfect Circuit",
+    "version": "undated web article",
+    "locator": "MF-103 (1999) heading",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://www.vintagesynth.com/moog/mf-103-12-stage-phaser",
+    "doi": "",
+    "title": "Moog MF-103 12-Stage Phaser",
+    "publisher": "Vintage Synth Explorer",
+    "version": "undated web page",
+    "locator": "Specifications list",
+    "accessed": "2026-11-11",
+    "tier": 4
+   }
+  ],
+  "publisher_count": 3,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "MF-103-revisions"
+ },
+ {
+  "claim": "UNKNOWN: MF-103 phase-shift stage type (all-pass built on OTAs, transistors or other), per-stage corner frequency law, and the actual centre frequency in Hz at SWEEP 5; the manual states stage counts and notch spacing only.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86275-MF103SManual.pdf",
+    "doi": "",
+    "title": "MF-103 12-Stage Phaser user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1999, 2003; no revision number",
+    "locator": "Frequency Response",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "MF-103-stages"
+ },
+ {
+  "claim": "UNKNOWN: Whether MF-103 high RESONANCE self-oscillates, the feedback polarity, and how feedback differs between 6- and 12-stage modes.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86275-MF103SManual.pdf",
+    "doi": "",
+    "title": "MF-103 12-Stage Phaser user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1999, 2003; no revision number",
+    "locator": "Phaser Parameters",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "MF-103-resonance"
+ },
+ {
+  "claim": "UNKNOWN: Volts-per-octave scaling of the MF-103 SWEEP CV input; only about 5 V for the full knob range (six octaves) is stated (roughly 1.2 octaves per volt if exponential; my arithmetic).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86275-MF103SManual.pdf",
+    "doi": "",
+    "title": "MF-103 12-Stage Phaser user manual (PDF copy hosted by Full Compass)",
+    "publisher": "Moog Music Inc.",
+    "version": "(c) 1999, 2003; no revision number",
+    "locator": "Technical Information, Pedal Inputs",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "MF-103-cv"
+ },
+ {
+  "claim": "UNKNOWN: Exact derivation of MF-103 AUX OUT (inverting tap, mixed-polarity sum, or opposite phase of the dry-plus-wet sum) and the dry/wet ratio inside the effect path; no schematic or block diagram text was available.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "MF-103-aux"
+ },
+ {
+  "claim": "UNKNOWN: MF-103 noise, headroom and DRIVE gain range figures, and how the second six stages behave in 6-stage mode (bypassed or disconnected).",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "MF-103-levels"
+ },
+ {
+  "claim": "UNKNOWN: Moog Music has not published schematics, service notes or an independent circuit analysis for MF-101, MF-102 or MF-103 that I could find; Moog product pages could not be fetched in this session.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "all-circuit"
+ }
+]

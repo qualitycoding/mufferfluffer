@@ -1,0 +1,1689 @@
+[
+ {
+  "claim": "Huovilainen derives the ladder stage from the transistor differential-pair tanh law, solves the resulting differential equation with explicit (forward) Euler, and obtains a cascade of four first-order IIR sections with embedded tanh non-linearities; only five tanh evaluations per sample are needed (table or polynomial approximation allowed). Euler was chosen because higher-order solvers need between-sample evaluations that clash with the feedback.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://dafx.de/paper-archive/2004/P_061.PDF",
+    "doi": "",
+    "title": "Non-Linear Digital Implementation of the Moog Ladder Filter (Huovilainen)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-04, Naples, Oct 2004",
+    "locator": "Sec 2.1, 3.1-3.2 (Eq. 1, 6, 7, 10); Sec 4.1-4.2 (Eq. 11-17); read via extracted text",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "ladder-huovilainen"
+ },
+ {
+  "claim": "Huovilainen states that oversampling is required for the non-linear ladder (to bring the Euler solution nearer the ideal one and to limit aliasing); the paper's tuning analysis uses 2x oversampling (88.2 kHz from 44.1 kHz).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://dafx.de/paper-archive/2004/P_061.PDF",
+    "doi": "",
+    "title": "Non-Linear Digital Implementation of the Moog Ladder Filter (Huovilainen)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-04, Naples, Oct 2004",
+    "locator": "Sec 5.3 and Sec 6",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [
+   "Zavalishin (p. ~222, fn 38) says heavy oversampling is the only near-guaranteed remedy for non-linear aliasing and that 44.1 kHz is usually insufficient - a stronger requirement than 2x"
+  ],
+  "topic": "ladder-oversampling"
+ },
+ {
+  "claim": "Huovilainen adds a half-sample delay in the feedback path (realised by averaging two successive samples) so the loop phase is close to 180 degrees at cutoff up to about Fs/4; the resulting tuning error is under 10 percent below Fs/4 (about 22 kHz at 88.2 kHz) and the residual is removed with a tuning table that also absorbs resonance-gain compensation.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://dafx.de/paper-archive/2004/P_061.PDF",
+    "doi": "",
+    "title": "Non-Linear Digital Implementation of the Moog Ladder Filter (Huovilainen)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-04, Naples, Oct 2004",
+    "locator": "Sec 5.3; Fig. 5 (amplitude error, compensated vs uncompensated)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "ladder-tuning"
+ },
+ {
+  "claim": "Huovilainen explains that the unit delay in a digital feedback path moves the resonance frequency away from cutoff and changes the peak gain, so the feedback needed for a given resonance varies with frequency (attenuation at resonance is no longer exactly 3 dB); he prefers a structural fix (half-sample delay plus 2x oversampling) to Stilson and Smith's two-dimensional compensation tables, and judges the remaining error unlikely to be audible.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://dafx.de/paper-archive/2004/P_061.PDF",
+    "doi": "",
+    "title": "Non-Linear Digital Implementation of the Moog Ladder Filter (Huovilainen)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-04, Naples, Oct 2004",
+    "locator": "Sec 5.2, Sec 5.3",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "ladder-resonance-compensation"
+ },
+ {
+  "claim": "Huovilainen defines the resonance amount r with 0 < r <= 1 (Eq. 13) and does not, in the extracted text, state a numeric self-oscillation threshold; the factor 4 in Eq. 13 could not be tied to the self-oscillation point. Valimaki's 2013 slides, which cite Huovilainen, say the filter oscillates for a time when the resonance coefficient is 1 and that values above 1 are tolerated because tanh limits the amplitude.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://dafx.de/paper-archive/2004/P_061.PDF",
+    "doi": "",
+    "title": "Non-Linear Digital Implementation of the Moog Ladder Filter (Huovilainen)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-04, Naples, Oct 2004",
+    "locator": "Sec 4.2 Eq. 13; Sec 5.2",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.musica.ed.ac.uk/wp-content/uploads/Manual_Upload/Valimaki-Virtual-analog.pdf",
+    "doi": "",
+    "title": "Virtual Analog Modeling Research at Aalto University (slide deck, Valimaki)",
+    "publisher": "V. Valimaki / University of Edinburgh host",
+    "version": "27 Feb 2013",
+    "locator": "slide 37",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "single-source",
+  "contradicted_by": [
+   "Zavalishin and D'Angelo place linear self-oscillation at feedback gain k = 4 in a different parametrisation (k = 4r would be needed for the two to agree; this mapping is inferred, not stated in either source)"
+  ],
+  "topic": "ladder-self-oscillation"
+ },
+ {
+  "claim": "Huovilainen's one-pole coefficient: Eq. 20 as extracted reads g = 2*I_ctl/(C*Fs*Vt) and Eq. 21 as extracted reads g = 1 - exp(-2*pi*Fc/Fs); the extracted equation text was partly garbled, so the exact form must be re-checked against the PDF before use.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://dafx.de/paper-archive/2004/P_061.PDF",
+    "doi": "",
+    "title": "Non-Linear Digital Implementation of the Moog Ladder Filter (Huovilainen)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-04, Naples, Oct 2004",
+    "locator": "Sec 5.1, Eq. 20-21 (extraction possibly garbled)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "ladder-huovilainen"
+ },
+ {
+  "claim": "Huovilainen does not discuss the passband (DC) gain drop caused by raising resonance; that behaviour is covered by Zavalishin and D'Angelo.",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://dafx.de/paper-archive/2004/P_061.PDF",
+    "doi": "",
+    "title": "Non-Linear Digital Implementation of the Moog Ladder Filter (Huovilainen)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-04, Naples, Oct 2004",
+    "locator": "whole paper (absence), per extracted text",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "ladder-gain-loss"
+ },
+ {
+  "claim": "UNKNOWN: numeric thermal voltage Vt and any fitted polynomial/table coefficients for Huovilainen's tuning and resonance compensation (the paper defers Vt to a textbook and gives no coefficients; not obtained)",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://dafx.de/paper-archive/2004/P_061.PDF",
+    "doi": "",
+    "title": "Non-Linear Digital Implementation of the Moog Ladder Filter (Huovilainen)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-04, Naples, Oct 2004",
+    "locator": "Sec 5.1, 5.3 (absence)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "ladder-huovilainen"
+ },
+ {
+  "claim": "Zavalishin gives the 4-pole transistor ladder transfer function H(s) = 1/(k + (1+s)^4) with cutoff normalised to 1 (Eq. 5.1, p. 134) and notes DC gain H(0) = 1/(1+k), a general ladder issue: the passband gain falls as resonance is raised; he suggests boosting the input by (1+k) (Sec 5.4, p. 138) or a highpass in the feedback path (Fig. 5.6, p. 139). At k = 4 the DC gain is 0.2, i.e. about -14 dB (arithmetic by the agent).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.native-instruments.com/fileadmin/ni_media/downloads/pdf/VAFilterDesign_2.1.0.pdf",
+    "doi": "",
+    "title": "The Art of VA Filter Design (Zavalishin)",
+    "publisher": "Native Instruments GmbH (author's free book)",
+    "version": "revision 2.1.0",
+    "locator": "Sec 5.1 p. 134 Eq. 5.1; Sec 5.4 p. 138, Fig. 5.6 p. 139",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://aaltodoc.aalto.fi/server/api/core/bitstreams/7ebb6719-8c32-4e23-97ce-b6ebac589990/content",
+    "doi": "10.1109/TASLP.2014.2352495",
+    "title": "Generalized Moog Ladder Filter: Part I - Linear Analysis and Parameterization (D'Angelo, Valimaki), post-print in Aalto dissertation 158/2014",
+    "publisher": "IEEE/ACM Trans. Audio, Speech, Lang. Process. (post-print hosted by Aalto University)",
+    "version": "vol. 22, no. 12, Dec 2014, pp. 1825-1832",
+    "locator": "Sec IV.A, Eq. 16 (g_dc = -1/(1+k))",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "ladder-gain-loss"
+ },
+ {
+  "claim": "The 4-pole ladder reaches self-oscillation at feedback gain k = 4: Zavalishin states the two resonating poles hit the imaginary axis at k = 4 (Sec 5.1 p. 134; Eq. 5.7 p. 137 from a cutoff amplitude gain of 1/4; Sec 6.3 p. 179 and footnote 5 p. 180); D'Angelo and Valimaki give k_max = sec^N(pi/N) (Eq. 24), which equals 4 for N = 4 (evaluation by the agent) and describe it as where the real device starts to self-oscillate through its non-linearities.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.native-instruments.com/fileadmin/ni_media/downloads/pdf/VAFilterDesign_2.1.0.pdf",
+    "doi": "",
+    "title": "The Art of VA Filter Design (Zavalishin)",
+    "publisher": "Native Instruments GmbH (author's free book)",
+    "version": "revision 2.1.0",
+    "locator": "Sec 5.1 p. 134; Sec 5.2 p. 137 Eq. 5.7; Sec 6.3 p. 179, fn 5 p. 180",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://aaltodoc.aalto.fi/server/api/core/bitstreams/7ebb6719-8c32-4e23-97ce-b6ebac589990/content",
+    "doi": "10.1109/TASLP.2014.2352495",
+    "title": "Generalized Moog Ladder Filter: Part I - Linear Analysis and Parameterization (D'Angelo, Valimaki), post-print in Aalto dissertation 158/2014",
+    "publisher": "IEEE/ACM Trans. Audio, Speech, Lang. Process. (post-print hosted by Aalto University)",
+    "version": "vol. 22, no. 12, Dec 2014, pp. 1825-1832",
+    "locator": "Sec IV.A Eq. 24",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "ladder-self-oscillation"
+ },
+ {
+  "claim": "Self-oscillation frequency: Zavalishin says the loop phase is -180 degrees at the cutoff and the resonance frequency approaches the cutoff as k approaches 4 (Sec 5.2, pp. 135, 137). Solving (1+s)^4 + 4 = 0 gives poles at s = +j, -j, -2+j and -2-j, so only the pair s = +/- j lies on the imaginary axis, i.e. oscillation at exactly the nominal cutoff (derivation by the agent, consistent with D'Angelo's pole-circle result, Eq. 7-9). With zero-delay feedback and prewarped g the oscillation therefore lands on the prewarped cutoff (inferred, not stated verbatim). D'Angelo says resonance frequency 'does not vary dramatically with k' for N = 4 (Sec IV.B) and gives no formula.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.native-instruments.com/fileadmin/ni_media/downloads/pdf/VAFilterDesign_2.1.0.pdf",
+    "doi": "",
+    "title": "The Art of VA Filter Design (Zavalishin)",
+    "publisher": "Native Instruments GmbH (author's free book)",
+    "version": "revision 2.1.0",
+    "locator": "Sec 5.2 pp. 135, 137",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://aaltodoc.aalto.fi/server/api/core/bitstreams/7ebb6719-8c32-4e23-97ce-b6ebac589990/content",
+    "doi": "10.1109/TASLP.2014.2352495",
+    "title": "Generalized Moog Ladder Filter: Part I - Linear Analysis and Parameterization (D'Angelo, Valimaki), post-print in Aalto dissertation 158/2014",
+    "publisher": "IEEE/ACM Trans. Audio, Speech, Lang. Process. (post-print hosted by Aalto University)",
+    "version": "vol. 22, no. 12, Dec 2014, pp. 1825-1832",
+    "locator": "Sec III Eq. 7-9; Sec IV.B",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "ladder-self-oscillation-frequency"
+ },
+ {
+  "claim": "Zero-delay-feedback solution of the 4-pole ladder (Zavalishin Sec 5.3, pp. 137-138): with four TPT one-pole stages the instantaneous response is G*u + S where G = g^4 and S = g^3*s1 + g^2*s2 + g*s3 + s4; the feedback input is u = (x - k*S)/(1 + k*G) (Eq. 5.8, p. 138); the loop is not instantaneously unstable for k >= -1.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.native-instruments.com/fileadmin/ni_media/downloads/pdf/VAFilterDesign_2.1.0.pdf",
+    "doi": "",
+    "title": "The Art of VA Filter Design (Zavalishin)",
+    "publisher": "Native Instruments GmbH (author's free book)",
+    "version": "revision 2.1.0",
+    "locator": "Sec 5.3 pp. 137-138, Eq. 5.8",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "ladder-zdf"
+ },
+ {
+  "claim": "Zavalishin's TPT one-pole: integrator gain g = wc*T/2 (p. 74); y = (g*x + s)/(1+g) (Eq. 3.28, p. 75); with G = g/(1+g) (Eq. 3.29) the code is v = (x - s)*G, y = v + s, s = y + v (Eq. 3.30-3.32, pp. 76-77).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.native-instruments.com/fileadmin/ni_media/downloads/pdf/VAFilterDesign_2.1.0.pdf",
+    "doi": "",
+    "title": "The Art of VA Filter Design (Zavalishin)",
+    "publisher": "Native Instruments GmbH (author's free book)",
+    "version": "revision 2.1.0",
+    "locator": "Sec 3.9-3.10 pp. 73-77, Eq. 3.28-3.32",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "tpt-onepole"
+ },
+ {
+  "claim": "Cutoff prewarping: Zavalishin writes the prewarped cutoff as tan(wc*T/2) = tan(pi*fc/fs) (Eq. 3.13, Sec 3.8 pp. 60-66; the form g = tan(pi*fc/fs) is the agent's conversion, not printed in the extracted text); a published code transcription of Cytomic's SVF uses g = tan(PI*cutoff/sample_rate) (lib.rs line 188); D'Angelo and Valimaki prewarp their bilinear-transform ladder at the cutoff (Eq. 39).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.native-instruments.com/fileadmin/ni_media/downloads/pdf/VAFilterDesign_2.1.0.pdf",
+    "doi": "",
+    "title": "The Art of VA Filter Design (Zavalishin)",
+    "publisher": "Native Instruments GmbH (author's free book)",
+    "version": "revision 2.1.0",
+    "locator": "Sec 3.8 Eq. 3.10-3.13 pp. 60-66",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://docs.rs/simper-filter/0.1.1/src/simper_filter/lib.rs.html",
+    "doi": "",
+    "title": "simper-filter crate source (transcription of Cytomic SVF)",
+    "publisher": "docs.rs / crate author",
+    "version": "0.1.1",
+    "locator": "src/lib.rs:188",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://aaltodoc.aalto.fi/server/api/core/bitstreams/7ebb6719-8c32-4e23-97ce-b6ebac589990/content",
+    "doi": "10.1109/TASLP.2014.2352495",
+    "title": "Generalized Moog Ladder Filter: Part I - Linear Analysis and Parameterization (D'Angelo, Valimaki), post-print in Aalto dissertation 158/2014",
+    "publisher": "IEEE/ACM Trans. Audio, Speech, Lang. Process. (post-print hosted by Aalto University)",
+    "version": "vol. 22, no. 12, Dec 2014, pp. 1825-1832",
+    "locator": "Sec V Eq. 39",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 3,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "prewarp"
+ },
+ {
+  "claim": "Nested/iterative solution of non-linear zero-delay loops: the equation with a tanh in the feedback loop is transcendental (Zavalishin Sec 6.4, Eq. 6.12, pp. 183-184); options are fixed-point/Newton-Raphson/bisection (Sec 6.5), linearisation at zero, at the operating point or by secant (Sec 6.6, pp. 191-192), tabulation (6.8). Saturation in the feedback loop is treated in Sec 6.3 (pp. 179-182). The text is internally inconsistent about the instantaneous-instability boundary (kG > -1 on p. 183 versus kG <= -1 in footnote 11).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.native-instruments.com/fileadmin/ni_media/downloads/pdf/VAFilterDesign_2.1.0.pdf",
+    "doi": "",
+    "title": "The Art of VA Filter Design (Zavalishin)",
+    "publisher": "Native Instruments GmbH (author's free book)",
+    "version": "revision 2.1.0",
+    "locator": "Sec 6.3-6.8 pp. 179-192; Eq. 6.12",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [
+   "Zavalishin p. 183 text versus footnote 11 disagree on the kG boundary"
+  ],
+  "topic": "ladder-nonlinear-zdf"
+ },
+ {
+  "claim": "Zavalishin on oversampling non-linear filters: heavy oversampling is described as the only approach 'more or less guaranteed to work', and a footnote says 44.1 kHz would usually be insufficient (Sec 6.13, pp. ~222-223; page numbers estimated from running headers in extracted text). A linear-interpolation averaging antialiaser is given in Eq. 6.37-6.38 (p. ~223) with half-sample latency (Eq. 6.39-6.40), and an ill-conditioning fallback in Eq. 6.44 (p. ~235).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.native-instruments.com/fileadmin/ni_media/downloads/pdf/VAFilterDesign_2.1.0.pdf",
+    "doi": "",
+    "title": "The Art of VA Filter Design (Zavalishin)",
+    "publisher": "Native Instruments GmbH (author's free book)",
+    "version": "revision 2.1.0",
+    "locator": "Sec 6.13 pp. ~220-235 (page numbers approximate)",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "oversampling"
+ },
+ {
+  "claim": "D'Angelo and Valimaki generalise the ladder to N stages with transfer function -(I/(4CV_T))^N / [(s + I/(4CV_T))^N + k (I/(4CV_T))^N] (Eq. 7-9); poles lie on a circle of radius k^(1/N)*I/(4CV_T) centred at -I/(4CV_T); stable range k in [0, sec^N(pi/N)] (Eq. 24).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://aaltodoc.aalto.fi/server/api/core/bitstreams/7ebb6719-8c32-4e23-97ce-b6ebac589990/content",
+    "doi": "10.1109/TASLP.2014.2352495",
+    "title": "Generalized Moog Ladder Filter: Part I - Linear Analysis and Parameterization (D'Angelo, Valimaki), post-print in Aalto dissertation 158/2014",
+    "publisher": "IEEE/ACM Trans. Audio, Speech, Lang. Process. (post-print hosted by Aalto University)",
+    "version": "vol. 22, no. 12, Dec 2014, pp. 1825-1832",
+    "locator": "Sec III Eq. 7-9; Sec IV.A Eq. 24",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "ladder-generalised"
+ },
+ {
+  "claim": "D'Angelo and Valimaki: DC gain is -1/(1+k) independent of N (Eq. 16); the cutoff-slope gain error is significant when parametrising by the true cutoff (Eq. 32); they conclude gain compensation is impractical (slope compensation) or counter-productive (dc compensation) and recommend parametrising by cutoff fc and k without extra gain compensation (Sec IV.C). Relative cutoff error is bounded by 1 for N <= 6 and csc(pi/N) - 1 for N >= 7 (Eq. 27-28).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://aaltodoc.aalto.fi/server/api/core/bitstreams/7ebb6719-8c32-4e23-97ce-b6ebac589990/content",
+    "doi": "10.1109/TASLP.2014.2352495",
+    "title": "Generalized Moog Ladder Filter: Part I - Linear Analysis and Parameterization (D'Angelo, Valimaki), post-print in Aalto dissertation 158/2014",
+    "publisher": "IEEE/ACM Trans. Audio, Speech, Lang. Process. (post-print hosted by Aalto University)",
+    "version": "vol. 22, no. 12, Dec 2014, pp. 1825-1832",
+    "locator": "Sec IV.A-C Eq. 16, 20, 27-28, 32-33",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [
+   "Zavalishin (Sec 5.4) suggests boosting input by (1+k) to restore passband gain, which D'Angelo argues against as default"
+  ],
+  "topic": "ladder-gain-loss"
+ },
+ {
+  "claim": "D'Angelo and Valimaki's digital linear model is a cascade of floor(N/2) biquads (plus one first-order section for odd N) from the bilinear transform prewarped at the cutoff (Sec V, Eq. 34-44, Eq. 39); frequency warping at high frequency raises resonance Q while cutoff and gain stay exact. Part I contains no delay-free-loop method, oversampling advice or non-linear model.",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://aaltodoc.aalto.fi/server/api/core/bitstreams/7ebb6719-8c32-4e23-97ce-b6ebac589990/content",
+    "doi": "10.1109/TASLP.2014.2352495",
+    "title": "Generalized Moog Ladder Filter: Part I - Linear Analysis and Parameterization (D'Angelo, Valimaki), post-print in Aalto dissertation 158/2014",
+    "publisher": "IEEE/ACM Trans. Audio, Speech, Lang. Process. (post-print hosted by Aalto University)",
+    "version": "vol. 22, no. 12, Dec 2014, pp. 1825-1832",
+    "locator": "Sec V Eq. 34-44",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "ladder-generalised"
+ },
+ {
+  "claim": "Per the author's dissertation summary, Part II of the generalised ladder (TASLP 2014) removes the delay-free loop with a fictitious delay in the feedback branch plus linear compensation filters at input, feed-forward and feedback branches; the method is non-iterative and preserves the linear response around a chosen operating point. The excerpt does not state an oversampling factor for the Moog model.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://aaltodoc.aalto.fi/server/api/core/bitstreams/f87d5b89-72b1-4b8a-85bd-e8ef9511937d/content",
+    "doi": "",
+    "title": "Virtual Analog Modeling of Nonlinear Musical Circuits (D'Angelo), summary part",
+    "publisher": "Aalto University",
+    "version": "Doctoral Dissertations 158/2014",
+    "locator": "Sec 2.2.4, Sec 3.3.1, Sec 4 (summary of Publication VI)",
+    "accessed": "2026-11-11",
+    "tier": 2
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "ladder-generalised"
+ },
+ {
+  "claim": "UNKNOWN: full text of D'Angelo and Valimaki Part II (TASLP vol. 22 no. 12, DOI 10.1109/TASLP.2014.2352556) and of the ICASSP 2013 paper: equations, oversampling recommendation and self-oscillation behaviour of the non-linear model were not read (only the dissertation summary was reachable)",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "ladder-generalised"
+ },
+ {
+  "claim": "Valimaki's 2013 Aalto slides describe a simplified Huovilainen ladder in which one one-pole section is replaced by a compromise form using coefficients 1/1.3 and 0.3/1.3 (slides 32-33), and state that changing the resonance frequency does not change Q much (slides 35-36).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.musica.ed.ac.uk/wp-content/uploads/Manual_Upload/Valimaki-Virtual-analog.pdf",
+    "doi": "",
+    "title": "Virtual Analog Modeling Research at Aalto University (slide deck, Valimaki)",
+    "publisher": "V. Valimaki / University of Edinburgh host",
+    "version": "27 Feb 2013",
+    "locator": "slides 32-37",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "ladder-simplified"
+ },
+ {
+  "claim": "UNKNOWN: content of Stilson and Smith 1996 (ICMC) 'Analyzing the Moog VCF with considerations for digital implementation' - the PDF host (ccrma.stanford.edu/~stilti) was refused by the egress policy and WebFetch allowlist; no claim about its feedback-delay compensation tables, self-oscillation accuracy, gain loss or oversampling advice is recorded (only Huovilainen's characterisation of it, which is two-dimensional compensation tables)",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "ladder-stilson"
+ },
+ {
+  "claim": "UNKNOWN: content of Valimaki and Huovilainen 2006 Computer Music Journal 'Oscillator and filter algorithms for virtual analog synthesis' and of IEEE SPM 2007 'Antialiasing oscillators in subtractive synthesis' - neither full text was reachable; only the 2013 slide deck citing them was read",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "oscillators-vh"
+ },
+ {
+  "claim": "Zavalishin's analogue SVF (Eq. 4.1, p. 95): highpass y_HP = x - 2R*y_BP - y_LP, dy_BP/dt = wc*y_HP, dy_LP/dt = wc*y_BP; H_BP = s/(s^2 + 2Rs + 1) (pp. 96-97), the outputs satisfy LP + 2R*BP + HP = 1 (Eq. 4.4, agent's reading of the extracted statement that the three sum to 1). The SVF is stable iff R > 0 (p. 101); at R = 0 it oscillates at wc (pp. 100-101).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.native-instruments.com/fileadmin/ni_media/downloads/pdf/VAFilterDesign_2.1.0.pdf",
+    "doi": "",
+    "title": "The Art of VA Filter Design (Zavalishin)",
+    "publisher": "Native Instruments GmbH (author's free book)",
+    "version": "revision 2.1.0",
+    "locator": "Sec 4.1-4.3 pp. 95-101, Eq. 4.1-4.4",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "svf"
+ },
+ {
+  "claim": "Zavalishin's TPT SVF (Sec 4.4, pp. 109-111): y_HP = (x - (2R+g)*s1 - s2)/(1 + 2Rg + g^2) (Eq. 4.14, p. 110) with prewarped g; the denominator is positive for g > 0 and R > -1 so there is no instantaneous instability; precompute d = 1/(1+2Rg+g^2) and g1 = 2R+g; a band-pass-only version needs 3 multiplications and 5 additions: BP = (g*(x - s2) + s1)*d, BP2 = 2*BP, s1 <- BP2 - s1, s2 <- s2 + g*BP2 (p. 111). The normalised band-pass H_BP1 = 2R*H_BP has unit gain at cutoff (Eq. 4.15, pp. 111-112).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.native-instruments.com/fileadmin/ni_media/downloads/pdf/VAFilterDesign_2.1.0.pdf",
+    "doi": "",
+    "title": "The Art of VA Filter Design (Zavalishin)",
+    "publisher": "Native Instruments GmbH (author's free book)",
+    "version": "revision 2.1.0",
+    "locator": "Sec 4.4-4.5 pp. 109-112, Eq. 4.14-4.15",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "svf"
+ },
+ {
+  "claim": "A published code transcription of Simper/Cytomic's linear-trapezoidal SVF uses g = tan(pi*fc/fs), k = 1/Q, a1 = 1/(1 + g*(g+k)), a2 = g*a1, a3 = g*a2, v3 = x - ic2eq, v1 = a1*ic1eq + a2*v3 (band-pass output = v1), v2 = ic2eq + a2*ic1eq + a3*v3, and state updates ic1eq = 2*v1 - ic1eq, ic2eq = 2*v2 - ic2eq (lib.rs lines 133-138, 186-192, 215-217). Mapping to Zavalishin: k = 2R (agent's inference).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://docs.rs/simper-filter/0.1.1/src/simper_filter/lib.rs.html",
+    "doi": "",
+    "title": "simper-filter crate source (transcription of Cytomic SVF)",
+    "publisher": "docs.rs / crate author",
+    "version": "0.1.1",
+    "locator": "src/lib.rs:133-138,186-192,215-217",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "svf-simper"
+ },
+ {
+  "claim": "UNKNOWN: Andrew Simper's own technical paper (cytomic.com SvfLinearTrapOptimised2.pdf) was unreachable (host refused by egress policy), so its statements on stability under fast parameter modulation and on noise optimisation are unverified; the formulas above come from a third-party code transcription only",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "svf-simper"
+ },
+ {
+  "claim": "Stability under modulation: Zavalishin shows by time-warping (Eq. 2.28, Sec 2.16 p. 42) that cutoff modulation cannot destroy the stability of a structure in which equal cutoff gains precede the integrators, and that for a one-pole filter the output stays bounded by the input when the cutoff is positive (p. 43); for other parameters in feedback loops there is no easy general criterion and destabilising modulation does occur (p. 43); discretisation needs its own stability proof (fn 29, p. 42). A direct-form-II one-pole is judged inferior to TPT under cutoff modulation (Fig. 3.34, pp. 80-81).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.native-instruments.com/fileadmin/ni_media/downloads/pdf/VAFilterDesign_2.1.0.pdf",
+    "doi": "",
+    "title": "The Art of VA Filter Design (Zavalishin)",
+    "publisher": "Native Instruments GmbH (author's free book)",
+    "version": "revision 2.1.0",
+    "locator": "Sec 2.16 pp. 42-43, Eq. 2.28; fn 29; Sec 3.11 pp. 80-81",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [
+   "Zavalishin's SVF chapter (4.x) contains no explicit modulation-stability statement; the extracted text pointed forward to Chapter 7 only"
+  ],
+  "topic": "svf-modulation-stability"
+ },
+ {
+  "claim": "Band-pass SVF at the pole-damping limit: in Zavalishin's SVF R > 0 is required for stability, and R = 0 means oscillation at the cutoff; a resonant band-pass bank must therefore clamp R (or Q) away from 0 under modulation (design inference).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.native-instruments.com/fileadmin/ni_media/downloads/pdf/VAFilterDesign_2.1.0.pdf",
+    "doi": "",
+    "title": "The Art of VA Filter Design (Zavalishin)",
+    "publisher": "Native Instruments GmbH (author's free book)",
+    "version": "revision 2.1.0",
+    "locator": "Sec 4.3 p. 101",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "svf"
+ },
+ {
+  "claim": "BBD delay relation: total delay = N / (2*f_clock) for N stages (Raffel and Smith Sec 2.1, DAFX-2, citing an external reference); worked examples there: 4096 stages at about 6826.7 Hz gives 300 ms (input bandlimit about 3413 Hz) and 1024 stages at 51.2 kHz gives 10 ms (bandlimit 25.6 kHz). Holters and Parker state the signal is delayed by N/2 clock periods (Sec 2, Eq. 1, DAFX-2). Coolaudio datasheet delay ranges fit the same law (V3205: 4096 stages, 10-100 kHz, 20.48-204.8 ms; V3208: 2048 stages, 10-100 kHz, 10.24-102.4 ms; V3207: 1024 stages, 10-200 kHz, 2.56-51.2 ms - the formula itself is not printed in those datasheets; fit by the agent).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://dafx.de/paper-archive/2010/DAFx10/RaffelSmith_DAFx10_P42.pdf",
+    "doi": "",
+    "title": "Practical Modeling of Bucket-Brigade Device Circuits (Raffel, Smith)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-10, Graz, Sep 2010",
+    "locator": "Sec 2.1, DAFX-2",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://dafx.de/paper-archive/2018/papers/DAFx2018_paper_12.pdf",
+    "doi": "",
+    "title": "A Combined Model for a Bucket Brigade Device and its Input and Output Filters (Holters, Parker)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-18, Aveiro, 2018",
+    "locator": "Sec 2 Eq. 1, DAFX-2",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://cricklewoodelectronics.com/Datasheets/v3205d.pdf",
+    "doi": "",
+    "title": "V3205D/SD 4096-stage low-voltage BBD datasheet",
+    "publisher": "Coolaudio (copy on Cricklewood Electronics)",
+    "version": "V1.0",
+    "locator": "p. 1 and p. 3 (delay range and clock range)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://cdn.mediavalet.com/aunsw/musictribe/MKV_DPiFk0KXoRardtaw3w/5WDU84_h2EmZBlU-o1BvNA/Original/COOLAUDIO_V3208_DATASHEET.pdf",
+    "doi": "",
+    "title": "V3208 2048-stage BBD datasheet",
+    "publisher": "Coolaudio (Music Tribe asset host)",
+    "version": "V1.0",
+    "locator": "features / electrical characteristics",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 3,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "bbd-delay"
+ },
+ {
+  "claim": "Raffel and Smith's BBD signal path: a third-order Sallen-Key anti-aliasing low-pass whose cutoff lies between roughly 1/3 and 1/2 of the BBD sampling (clock/2) frequency, then the BBD, then a third-order reconstruction filter followed by a second-order 'corner correction' filter; the cascade is an eighth-order low-pass fitted with an equation-error IIR design (invfreqz). Echo-circuit values: R = 10 kOhm; anti-alias C = 0.0068 uF, 0.082 uF, 0.00033 uF; second-order reconstruction C = 0.039 uF, 0.00033 uF; third-order reconstruction C = 0.0022 uF, 0.033 uF, 0.001 uF.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://dafx.de/paper-archive/2010/DAFx10/RaffelSmith_DAFx10_P42.pdf",
+    "doi": "",
+    "title": "Practical Modeling of Bucket-Brigade Device Circuits (Raffel, Smith)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-10, Graz, Sep 2010",
+    "locator": "Sec 2.2-2.3, DAFX-2/3, Fig. 4",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "bbd-filters"
+ },
+ {
+  "claim": "Raffel and Smith note that clock variation is generally ignored in chorus, flanger and vibrato circuits (Sec 3.1, DAFX-4) but propose, for echo with clock changes, an interpolating delay line with the input down-sampled and output up-sampled according to the delay time (Sec 4.1, DAFX-5); insertion gain is about 0 to 2 dB at low frequency falling to about -4 to -6 dB near Nyquist (Sec 4.2); distortion is roughly 1 percent per 1024 stages (Sec 4.4); a polynomial non-linearity with a = 1/8 is used (Sec 4.5, DAFX-6; coefficient b not legible in the extracted text).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://dafx.de/paper-archive/2010/DAFx10/RaffelSmith_DAFx10_P42.pdf",
+    "doi": "",
+    "title": "Practical Modeling of Bucket-Brigade Device Circuits (Raffel, Smith)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-10, Graz, Sep 2010",
+    "locator": "Sec 3.1, 4.1, 4.2, 4.4, 4.5 (DAFX-4 to DAFX-6)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "bbd-nonlinearity"
+ },
+ {
+  "claim": "UNKNOWN: coefficient b of Raffel and Smith's BBD polynomial non-linearity (Sec 4.5) - not legible in the extracted text",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://dafx.de/paper-archive/2010/DAFx10/RaffelSmith_DAFx10_P42.pdf",
+    "doi": "",
+    "title": "Practical Modeling of Bucket-Brigade Device Circuits (Raffel, Smith)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-10, Graz, Sep 2010",
+    "locator": "Sec 4.5, DAFX-6",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "bbd-nonlinearity"
+ },
+ {
+  "claim": "Holters and Parker model the BBD together with its input and output filters: the input filter response is expanded in partial fractions (Eq. 2) and discretised by a modified impulse-invariant transform, the output filter likewise (Eq. 14), giving banks of parallel first-order recursive filters; real-valued second-order forms are in Eq. 26-33; Algorithm 1 (DAFX-4) loops over BBD clock edges to cope with a time-varying clock, with fractional offsets d_n from Eq. 5-6 and 21. Their test case is the Juno-60 chorus BBD with N = 256 stages, fs = 44.1 kHz, f_BBD = 50 kHz, fifth-order low-pass sections tabulated in Table 1 (DAFX-5), minimum clock about 26 kHz, gain about 2.3 dB (DAFX-6).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://dafx.de/paper-archive/2018/papers/DAFx2018_paper_12.pdf",
+    "doi": "",
+    "title": "A Combined Model for a Bucket Brigade Device and its Input and Output Filters (Holters, Parker)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-18, Aveiro, 2018",
+    "locator": "Sec 3.1-3.3 Eq. 2-33; Algorithm 1; Table 1; Sec 4 DAFX-5/6",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "bbd-holters-parker"
+ },
+ {
+  "claim": "Holters and Parker report that each second-order coefficient set needs one exponential and two cosines (or polynomial/table approximations) (Sec 3.3, DAFX-5) and that much of the computation runs at the BBD clock rate, making oversampling attractive (Sec 4-5, DAFX-7); no operation counts or timings are given. They say Raffel concentrated on filtering and non-linear behaviour and did not treat dynamic clock-rate variation (Sec 1, DAFX-1).",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://dafx.de/paper-archive/2018/papers/DAFx2018_paper_12.pdf",
+    "doi": "",
+    "title": "A Combined Model for a Bucket Brigade Device and its Input and Output Filters (Holters, Parker)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-18, Aveiro, 2018",
+    "locator": "Sec 1 DAFX-1; Sec 3.3 DAFX-5; Sec 4-5 DAFX-7",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [
+   "Raffel and Smith Sec 4.1 does propose a clock-varying interpolating delay line, so 'did not treat' is a matter of degree"
+  ],
+  "topic": "bbd-holters-parker"
+ },
+ {
+  "claim": "BBD chips from Coolaudio datasheets (modern clones; Panasonic equivalence is not stated in them): V3205D/SD has 4096 stages, clock 10-100 kHz, delay 20.48-204.8 ms, VDD 4-8 V (5 V typ), VGG = 14/15 VDD, insertion loss 0 dB typ (-4 to +4 dB), THD 0.8 percent typ (2.5 percent max) at fCP 40 kHz / 1 kHz / 0.25 Vrms, S/N 60 dB; V3208 has 2048 stages, 10-100 kHz, 10.24-102.4 ms, VDD 4-10 V, THD 0.8 percent typ, S/N 71 dB; V3207 has 1024 stages, 10-200 kHz, 2.56-51.2 ms, VDD 4-10 V, THD 0.4 percent typ, S/N 73 dB.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://cricklewoodelectronics.com/Datasheets/v3205d.pdf",
+    "doi": "",
+    "title": "V3205D/SD 4096-stage low-voltage BBD datasheet",
+    "publisher": "Coolaudio (copy on Cricklewood Electronics)",
+    "version": "V1.0",
+    "locator": "p. 1-3, electrical characteristics",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://cdn.mediavalet.com/aunsw/musictribe/MKV_DPiFk0KXoRardtaw3w/5WDU84_h2EmZBlU-o1BvNA/Original/COOLAUDIO_V3208_DATASHEET.pdf",
+    "doi": "",
+    "title": "V3208 2048-stage BBD datasheet",
+    "publisher": "Coolaudio (Music Tribe asset host)",
+    "version": "V1.0",
+    "locator": "quick reference / electrical characteristics",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://studylib.net/doc/18495714/v3207-1024-stage-low-noise-bbd-analog-delay-line",
+    "doi": "",
+    "title": "V3207 1024-stage low-noise BBD datasheet",
+    "publisher": "Coolaudio (copy on studylib.net)",
+    "version": "Rev. 1.0",
+    "locator": "p. 1-3 (copy on studylib; insertion-loss table garbled)",
+    "accessed": "2026-11-11",
+    "tier": 2
+   }
+  ],
+  "publisher_count": 3,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "bbd-chips"
+ },
+ {
+  "claim": "The mapping of Panasonic part numbers to stage counts (MN3005 = 4096, MN3008 = 2048, MN3007 = 1024) follows the task brief; independent confirmation found only for MN3005 being listed as a '4096-STAGE LONG DELAY BBD' by a datasheet index, and for Raffel and Smith footnote 1 listing MN3007, MN3207, MN3005 and MN3205 (without a legible stage mapping). The MN3207 = 1024 and MN3208 = 2048 mapping is inferred from Coolaudio V3207/V3208 pin-compatible clones (equivalence not stated in those datasheets).",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.radioradar.net/en/datasheets_search/M/N/3/MN3005_Panasonic.pdf.html",
+    "doi": "",
+    "title": "MN3005 listing, RadioRadar",
+    "publisher": "RadioRadar (datasheet index)",
+    "version": "accessed page",
+    "locator": "listing description",
+    "accessed": "2026-11-11",
+    "tier": 4
+   },
+   {
+    "url": "https://dafx.de/paper-archive/2010/DAFx10/RaffelSmith_DAFx10_P42.pdf",
+    "doi": "",
+    "title": "Practical Modeling of Bucket-Brigade Device Circuits (Raffel, Smith)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-10, Graz, Sep 2010",
+    "locator": "footnote 1, DAFX-1",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "inferred",
+  "contradicted_by": [
+   "ic-phoenix.com listing for MN3008 headed '2048-stage' but body text says '1024-stage'; ic-phoenix MN3005 heading says 4096 but body says 1024-stage (Tier 4, rejected)"
+  ],
+  "topic": "bbd-chips"
+ },
+ {
+  "claim": "UNKNOWN: original Panasonic/Matsushita datasheets for MN3005, MN3007, MN3008, MN3207, MN3208 (clock ranges, supply, noise, insertion loss) were not retrieved; the RadioRadar datasheet files are behind a download link that was not reachable",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "bbd-chips"
+ },
+ {
+  "claim": "Other Panasonic-family BBD facts seen: MN3304 (512 stages) allows clock 10-200 kHz at 1.8-4.0 V and 10 kHz-1 MHz at 4.0-5.0 V, supply 1.8-5.0 V, delay expression printed with 2*fCP in the denominator (layout lost, N/(2*fCP) fits 25.6 ms at 10 kHz); MN3210 is a dual 512-stage BBD; MN3209 is 256 stages with datasheet maximum clock 200 kHz (a maker's lab finds 500 kHz usable).",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://static.datasheets.com/doc/18012942-panasonic-mn3304-ds.pdf",
+    "doi": "",
+    "title": "MN3304 (MN3300 series) BBD datasheet",
+    "publisher": "datasheets.com copy; issuing company not named in extracted text",
+    "version": "undated",
+    "locator": "clock range and delay table",
+    "accessed": "2026-11-11",
+    "tier": 2
+   },
+   {
+    "url": "https://electricdruid.net/product/mn3209-256-stage-delay-line",
+    "doi": "",
+    "title": "MN3209 256 stage delay line (product page)",
+    "publisher": "Electric Druid (retailer)",
+    "version": "accessed page",
+    "locator": "product description",
+    "accessed": "2026-11-11",
+    "tier": 4
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "single-source",
+  "contradicted_by": [
+   "MN3304 extracted text calls it 512-stage but its OUT description mentions stages 1024/1025"
+  ],
+  "topic": "bbd-chips"
+ },
+ {
+  "claim": "NE570/NE571 compander (ON Semiconductor NE570 datasheet, Rev. 4): the compressor gives 2:1 compression (a 2 dB input change becomes 1 dB out, p. 4 Fig. 4) and the expander 1:2 expansion (a 6 dB gain-control drop gives a 12 dB output drop, p. 5 Fig. 6); the full-wave rectifier current is averaged by 10 kOhm and an external capacitor C_RECT so tau = 10 kOhm * C_RECT with exponential gain settling (p. 3); no separate attack and release figures are given, and fast time constants raise gain-ripple distortion (p. 3); unity-gain level 0 dBm = 775 mV rms (Note 4, p. 2); supply 6-24 V; dynamic range over 110 dB; untrimmed gain-cell THD 0.3 percent typ.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.onsemi.com/download/data-sheet/pdf/ne570-d.pdf",
+    "doi": "",
+    "title": "NE570 Compandor datasheet",
+    "publisher": "ON Semiconductor",
+    "version": "Rev. 4, May 2006 (NE570/D)",
+    "locator": "pp. 1-5, 8; Figs. 4, 6, 15; Note 4",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://dafx.de/paper-archive/2010/DAFx10/RaffelSmith_DAFx10_P42.pdf",
+    "doi": "",
+    "title": "Practical Modeling of Bucket-Brigade Device Circuits (Raffel, Smith)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-10, Graz, Sep 2010",
+    "locator": "Sec 3.3 DAFX-4 (tau = 10000*C_rect), Sec 3.4 DAFX-4/5",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [
+   "Two reads of the datasheet disagreed on whether Figure 3 labels a 2.2 uF capacitor as C_RECT; unresolved"
+  ],
+  "topic": "compander"
+ },
+ {
+  "claim": "Raffel and Smith model the 570/571 compander as an expander f(x) = avg(|x|)*x and a compressor f(x) = x/avg(|f(x)|) with a one-pole averager of time constant 10000*C_rect; typical C_rect is 0.22 uF to 1 uF (Sec 3.3-3.4, DAFX-4/5), i.e. tau about 2.2 ms to 10 ms (agent arithmetic).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://dafx.de/paper-archive/2010/DAFx10/RaffelSmith_DAFx10_P42.pdf",
+    "doi": "",
+    "title": "Practical Modeling of Bucket-Brigade Device Circuits (Raffel, Smith)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-10, Graz, Sep 2010",
+    "locator": "Sec 3.3-3.4, DAFX-4/5",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "compander"
+ },
+ {
+  "claim": "UNKNOWN: NE571-specific differences from NE570 (pin-out, unity-gain level, tolerance) and a manufacturer-stated attack versus release time - the datasheet read (NE570 only) states a single time constant; the Philips/NXP NE570/571 sheet was not opened",
+  "kind": "bibliographic",
+  "load_bearing": false,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "compander"
+ },
+ {
+  "claim": "First-order digital all-pass: A(z) = (a1 + z^-1)/(1 + a1*z^-1) with a1 mapped from the break frequency by a tangent expression (approximately a1 = -1 + wb*T) (Kiiski et al. Eq. 1-2, DAFX-31); each first-order stage contributes at most 180 degrees, so a chain of N stages has N/2 notches: four stages give two notches (Eichas et al. Sec 3, DAFX-3), ten stages gave five measured notches (Kiiski Sec 4.1, DAFX-35).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://dafx.de/paper-archive/2016/dafxpapers/05-DAFx-16_paper_42-PN.pdf",
+    "doi": "",
+    "title": "Time-Variant Gray-Box Modeling of a Phaser Pedal (Kiiski, Esqueda, Valimaki)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-16, Brno, Sep 2016",
+    "locator": "Eq. 1-2 DAFX-31; Sec 4.1 DAFX-35",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://dafx14.fau.de/papers/dafx14_felix_eichas_physical_modeling_of_the_.pdf",
+    "doi": "",
+    "title": "Physical Modeling of the MXR Phase 90 Guitar Effect Pedal (Eichas, Zoelzer, Moeller)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-14, Erlangen, Sep 2014",
+    "locator": "Sec 3 DAFX-3, Sec 4.3 DAFX-5",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "phaser-allpass"
+ },
+ {
+  "claim": "Phaser notches occur where the all-pass chain phase reaches pi (180 degrees), very close to the chain's resonant frequencies; the sum of direct and chain output has gain between 0 and 2 (Smith, Physical Audio Signal Processing, sections 'Allpass Phaser Architecture' and 'Phaser Notch Parameters'; these pages treat second-order sections and do not state the N/2 count or give feedback detail).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://ccrma.stanford.edu/~jos/pasp05/Allpass_Phaser_Architecture.html",
+    "doi": "",
+    "title": "Allpass Phaser Architecture, Physical Audio Signal Processing (J. O. Smith III)",
+    "publisher": "CCRMA, Stanford University / W3K Publishing",
+    "version": "Dec 2005 edition",
+    "locator": "section Allpass Phaser Architecture",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://ccrma.stanford.edu/~jos/pasp/Phaser_Notch_Parameters.html",
+    "doi": "",
+    "title": "Phaser Notch Parameters, Physical Audio Signal Processing (J. O. Smith III)",
+    "publisher": "CCRMA, Stanford University / W3K Publishing",
+    "version": "2010 edition",
+    "locator": "section Phaser Notch Parameters",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://dafx14.fau.de/papers/dafx14_felix_eichas_physical_modeling_of_the_.pdf",
+    "doi": "",
+    "title": "Physical Modeling of the MXR Phase 90 Guitar Effect Pedal (Eichas, Zoelzer, Moeller)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-14, Erlangen, Sep 2014",
+    "locator": "Sec 3 DAFX-3",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "phaser-allpass"
+ },
+ {
+  "claim": "Eichas et al. model the MXR Phase 90: an input follower lifting the signal to about 5 V, four first-order all-pass stages using JFETs as voltage-controlled resistors, a mixer with the dry signal; stage centre frequency f_c = 1/(2*pi*(R_fix || R_JFET)*C_fix) (Eq. 17, DAFX-4); the JFET characteristic was measured (V_DS in [-2, 2] V, V_GS in [-2.8, -1.5] V) and stored as look-up tables; feedback resistor R15 inside the chain is optional (absent in the 1974 version) and adds resonance and harmonic distortion; the LFO is replaced by a triangular voltage source; matched JFETs are needed; the paper states no sample rate or oversampling.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://dafx14.fau.de/papers/dafx14_felix_eichas_physical_modeling_of_the_.pdf",
+    "doi": "",
+    "title": "Physical Modeling of the MXR Phase 90 Guitar Effect Pedal (Eichas, Zoelzer, Moeller)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-14, Erlangen, Sep 2014",
+    "locator": "Sec 2.3 DAFX-3; Sec 3.1, Fig. 4, Eq. 17 DAFX-4; Sec 4.1-4.3, Sec 5 DAFX-4/5",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "phaser-eichas"
+ },
+ {
+  "claim": "Kiiski et al. fit a time-variant model of a ten-stage all-pass phaser: coefficients A1 = A2 = A9 = A10 = c1 = -0.89 and A3..A8 = c2 (Eq. 5-6, DAFX-36); c2 follows a triangular LFO over [-0.84, -0.39] (LFO switch on) or a rectified sine over [-0.49, 0.77] (switch off) (Fig. 14); LFO rate f = 0.069*exp(0.040*s) Hz (Eq. 7), measured 0.1-3.7 Hz; a DC-blocker pole at 0.992 (Eq. 8); fs 48 kHz for measurements and 44.1 kHz for fitting. Feedback is drawn around the whole chain through a unit delay (Fig. 1); the model did not reproduce the measured feedback response and the authors suggest delay-free-loop techniques (Sec 5-6, DAFX-37/38).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://dafx.de/paper-archive/2016/dafxpapers/05-DAFx-16_paper_42-PN.pdf",
+    "doi": "",
+    "title": "Time-Variant Gray-Box Modeling of a Phaser Pedal (Kiiski, Esqueda, Valimaki)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-16, Brno, Sep 2016",
+    "locator": "Sec 2-6, Eq. 5-8, Fig. 1, Fig. 14, DAFX-31 to DAFX-38",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [
+   "Eichas et al. place the feedback resistor inside the all-pass chain (Phase 90) rather than around the entire chain; placement is pedal-specific, not a single standard"
+  ],
+  "topic": "phaser-kiiski"
+ },
+ {
+  "claim": "UNKNOWN: a peer-reviewed virtual-analogue model of a 6- or 12-stage OTA-based (LM13700/CA3080) all-pass phaser with feedback - none found in this pass; the two phaser papers cover a JFET four-stage pedal (Eichas 2014) and a ten-stage gray-box pedal (Kiiski 2016); OTA stage behaviour must be derived from the OTA datasheet and general delay-free-loop methods",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "phaser-ota"
+ },
+ {
+  "claim": "OTA reference data (LM13700): gm is about 19.2 * I_ABC at 25 C (pp. 12-13); I_ABC specified 5 uA to 500 uA, absolute maximum 2 mA (pp. 2-3); linearising diodes with bias current at most 2 mA absolute, 1 mA recommended (p. 8), signal current should not exceed I_D/2 (p. 7); absolute differential input +/-5 V (p. 2); supply absolute maximum 36 V, characteristics at +/-15 V (pp. 2-3); on-chip buffers.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://ew.lens.unifi.it/datasheets/LM13700_Dual_Transconduct_OpAmp[1].pdf",
+    "doi": "",
+    "title": "LM13700 Dual Operational Transconductance Amplifiers with Linearizing Diodes and Buffers",
+    "publisher": "National Semiconductor (now Texas Instruments)",
+    "version": "DS007981, June 2004",
+    "locator": "pp. 1-3, 7-8, 12-15",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "phaser-ota"
+ },
+ {
+  "claim": "Ideal ring modulation is multiplication of carrier and modulator, both centred on 0 V, and the output then contains only the sum and difference frequencies (Parker Sec 1, DAFX-1). For sine carrier and a sine input of frequency f, the product is a half-amplitude pair at fc+f and |fc-f| with carrier and input suppressed (trigonometric identity, agent's derivation).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://dafx.de/paper-archive/2011/Papers/66_e.pdf",
+    "doi": "",
+    "title": "A Simple Digital Model of the Diode-Based Ring-Modulator (Parker)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-11, Paris, Sep 2011",
+    "locator": "Sec 1, DAFX-1",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "ringmod-ideal"
+ },
+ {
+  "claim": "Digital multiplication differs from the analogue diode ring: Parker's diode model uses the Shockley equation (Eq. 1, DAFX-2) and a three-segment piecewise approximation (Eq. 2, DAFX-3; vb, vL, h, example germanium 1N34 values in Table 1) and adds integer multiples of the modulator frequency around the carrier and odd harmonics; harmonics fall about 20 dB per octave, so oversampling is advised: about x32 for wide-band signals, x16 or x8 for a sinusoidal carrier with modulator energy below 4-5 kHz (Sec 3.2, DAFX-4), versus about x128 for earlier forward-Euler models (Sec 1).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://dafx.de/paper-archive/2011/Papers/66_e.pdf",
+    "doi": "",
+    "title": "A Simple Digital Model of the Diode-Based Ring-Modulator (Parker)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-11, Paris, Sep 2011",
+    "locator": "Sec 1 DAFX-1; Sec 3.1 Eq. 1-2, Table 1; Sec 3.2 DAFX-4, Fig. 8",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "ringmod-diode"
+ },
+ {
+  "claim": "Aliasing of an ideal ring modulator: the sum frequency fc + f exceeds Nyquist when the carrier plus input bandwidth exceeds fs/2, so a sampled product aliases unless the input is band-limited or the product is formed at an oversampled rate (agent's inference; the sources read do not state this for ideal multiplication).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "ringmod-aliasing"
+ },
+ {
+  "claim": "Valimaki, Pekonen and Nam: polyBLEP/integrated-polynomial-interpolation adds a polynomial residual (ideal band-limited step minus unit step) to samples around each discontinuity of the naive waveform; the fractional position is d = p(n)/(f0*T) with p(n) the modulo-counter value after the wrap (Eq. 12-13, p. 977); residuals are tabulated for Lagrange orders (Tables I-III, p. 978) and B-splines (Tables VI-VII, pp. 980-981); a second-order FIR equaliser b0 + b1 z^-1 + b0 z^-2 restores high harmonics within about 1 dB below 15 kHz (Eq. 16, Table IV, p. 979); even interpolation orders are recommended (pp. 979-980); no lookup table or oversampling is needed.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://mac.kaist.ac.kr/pubs/ValimakiPeknenNam-jasa2012.pdf",
+    "doi": "10.1121/1.3651227",
+    "title": "Perceptually informed synthesis of bandlimited classical waveforms using integrated polynomial interpolation (Valimaki, Pekonen, Nam)",
+    "publisher": "Acoustical Society of America (J. Acoust. Soc. Am.; copy hosted at KAIST)",
+    "version": "JASA 131(1), 2012, pp. 974-986",
+    "locator": "Sec II-III pp. 976-980, Eq. 10-20, Tables I-VII",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "polyblep"
+ },
+ {
+  "claim": "UNKNOWN: coefficients of the Table IV equaliser and the exact piecewise residual polynomials of Valimaki, Pekonen and Nam (extracted text of the tables was garbled; the summary of Tables I-III should be re-checked against the PDF before coding)",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://mac.kaist.ac.kr/pubs/ValimakiPeknenNam-jasa2012.pdf",
+    "doi": "10.1121/1.3651227",
+    "title": "Perceptually informed synthesis of bandlimited classical waveforms using integrated polynomial interpolation (Valimaki, Pekonen, Nam)",
+    "publisher": "Acoustical Society of America (J. Acoust. Soc. Am.; copy hosted at KAIST)",
+    "version": "JASA 131(1), 2012, pp. 974-986",
+    "locator": "Tables I-IV pp. 978-979",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "polyblep"
+ },
+ {
+  "claim": "Aliasing results at fs = 44.1 kHz (sawtooth, perceptual masking criterion, Table VIII p. 983): highest alias-free fundamental is 2135 Hz for 2nd-order polyBLEP, 3236 Hz for 3rd-order Lagrange, 5134 Hz for 4th-order Lagrange, 4591 Hz for 3rd-order B-spline and 7845 Hz for 4th-order B-spline, versus 4595 Hz for a 64-sample table BLEP; cost per period is 4 multiplies/4 adds for 2nd-order polyBLEP and 13-14 multiplies/15 adds for 4th-order (Table IX p. 984); conclusion p. 985: 3rd-order B-spline or 4th-order Lagrange is free of audible aliasing up to the top piano note.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://mac.kaist.ac.kr/pubs/ValimakiPeknenNam-jasa2012.pdf",
+    "doi": "10.1121/1.3651227",
+    "title": "Perceptually informed synthesis of bandlimited classical waveforms using integrated polynomial interpolation (Valimaki, Pekonen, Nam)",
+    "publisher": "Acoustical Society of America (J. Acoust. Soc. Am.; copy hosted at KAIST)",
+    "version": "JASA 131(1), 2012, pp. 974-986",
+    "locator": "Table VIII p. 983; Table IX p. 984; Conclusion p. 985",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [
+   "Nam et al. 2010 report a 3rd-order B-spline BLIT as alias-free only up to about 5.8 kHz fundamental (different algorithm, same fs)"
+  ],
+  "topic": "polyblep"
+ },
+ {
+  "claim": "The JASA 2012 polyBLEP paper does not describe hard sync or FM handling; it cites Brandt's hard-sync work and a modified-FM band-limited approach only as related work (pp. 975-976). Pekonen and Holters 2012 likewise cite Brandt's minimum-phase accumulated windowed-sinc approach (Sec 2, DAFX-2/3) and Timoney et al.'s modified FM synthesis (DAFx-08) without detail.",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://mac.kaist.ac.kr/pubs/ValimakiPeknenNam-jasa2012.pdf",
+    "doi": "10.1121/1.3651227",
+    "title": "Perceptually informed synthesis of bandlimited classical waveforms using integrated polynomial interpolation (Valimaki, Pekonen, Nam)",
+    "publisher": "Acoustical Society of America (J. Acoust. Soc. Am.; copy hosted at KAIST)",
+    "version": "JASA 131(1), 2012, pp. 974-986",
+    "locator": "pp. 975-976, refs 33, 38",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.hsu-hh.de/ant/wp-content/uploads/sites/699/2017/10/Pekonen-Holters-2012-Nonlinear-Phase-Basis-Functions-in-Quasi-Bandlimited-Oscillator-Algorithms.pdf",
+    "doi": "",
+    "title": "Nonlinear-Phase Basis Functions in Quasi-Bandlimited Oscillator Algorithms (Pekonen, Holters)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-12, York, Sep 2012",
+    "locator": "Sec 2 DAFX-2/3",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "oscillators-sync-fm"
+ },
+ {
+  "claim": "Hard sync in a band-limited oscillator (Nam et al. 2010, Sec III.F, pp. 781-782): realise sync as the sum of a master BLIT and a slave BLIT (Fig. 9b), scale the master by a factor that depends on the fractional part of the master/slave period ratio, and reset the slave phase to the master phase; the test used a 3800 Hz slave at 44.1 kHz with a sync every 16.8 samples. The BLEP baseline in that paper used a Blackman-windowed FIR with 64x oversampling and eight zero crossings (Sec IV-B, pp. 782-783); Brandt is credited for the original BLEP hard-sync method.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://mac.kaist.ac.kr/pubs/jnam-taslp2010.pdf",
+    "doi": "10.1109/TASL.2009.2035039",
+    "title": "Efficient Antialiasing Oscillator Algorithms Using Low-Order Fractional Delay Filters (Nam, Valimaki, Abel, Smith)",
+    "publisher": "IEEE Trans. Audio, Speech, Lang. Process. (copy hosted at KAIST)",
+    "version": "vol. 18, no. 4, May 2010, pp. 773-785",
+    "locator": "Sec III.F pp. 781-782; Sec IV-B pp. 782-783; Fig. 9-10",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "oscillators-hard-sync"
+ },
+ {
+  "claim": "Brandt's BLEP: a band-limited step obtained by integrating a sinc (windowed), stored in an oversampled table, or replaced by integrated Lagrange polynomials (Valimaki's slides 29-31, citing Brandt ICMC 2001); Pekonen and Holters describe Brandt's variant as an accumulated minimum-phase windowed-sinc approximation (Sec 2, DAFX-3).",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.musica.ed.ac.uk/wp-content/uploads/Manual_Upload/Valimaki-Virtual-analog.pdf",
+    "doi": "",
+    "title": "Virtual Analog Modeling Research at Aalto University (slide deck, Valimaki)",
+    "publisher": "V. Valimaki / University of Edinburgh host",
+    "version": "27 Feb 2013",
+    "locator": "slides 29-31",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://www.hsu-hh.de/ant/wp-content/uploads/sites/699/2017/10/Pekonen-Holters-2012-Nonlinear-Phase-Basis-Functions-in-Quasi-Bandlimited-Oscillator-Algorithms.pdf",
+    "doi": "",
+    "title": "Nonlinear-Phase Basis Functions in Quasi-Bandlimited Oscillator Algorithms (Pekonen, Holters)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-12, York, Sep 2012",
+    "locator": "Sec 2 DAFX-3",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "oscillators-minblep"
+ },
+ {
+  "claim": "UNKNOWN: primary text of Brandt 2001 'Hard sync without aliasing' (ICMC) - table length, window, oversampling factor, and the exact reset-correction procedure for hard sync were not read; web search returned only a patent, forum posts and code",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "oscillators-minblep"
+ },
+ {
+  "claim": "Pekonen et al. 2011 find that a 4th-order B-spline polyBLEP sawtooth with a first-order IIR post-equaliser (coefficients in Table 2, Sec 3.1.3) is among the two best matches to a recorded Moog sawtooth (Sec 3.3, Sec 4); the article is open access under CC BY.",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://mural.maynoothuniversity.ie/4185/1/VL_Discrete-time.pdf",
+    "doi": "10.1155/2011/785103",
+    "title": "Discrete-Time Modelling of the Moog Sawtooth Oscillator Waveform (Pekonen et al.)",
+    "publisher": "EURASIP J. Adv. Signal Process. (Hindawi)",
+    "version": "vol. 2011, art. 785103",
+    "locator": "Sec 3.1.3 Table 2; Sec 3.3; Sec 4; first-page copyright",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "polyblep"
+ },
+ {
+  "claim": "FM with polyBLEP: because the fractional discontinuity position d = p(n)/(f0*T) is evaluated from the current phase increment, a per-sample varying phase increment (FM or sync-driven) can be fed to the same residual formula; this use is the agent's inference and no authoritative paper read in this pass validates polyBLEP with audio-rate FM.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://mac.kaist.ac.kr/pubs/ValimakiPeknenNam-jasa2012.pdf",
+    "doi": "10.1121/1.3651227",
+    "title": "Perceptually informed synthesis of bandlimited classical waveforms using integrated polynomial interpolation (Valimaki, Pekonen, Nam)",
+    "publisher": "Acoustical Society of America (J. Acoust. Soc. Am.; copy hosted at KAIST)",
+    "version": "JASA 131(1), 2012, pp. 974-986",
+    "locator": "Eq. 12-13 p. 977",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "oscillators-fm"
+ },
+ {
+  "claim": "Giannoulis, Massberg and Reiss (read via a mirror copy; page numbers approximate): generic one-pole smoother s[n] = a*s[n-1] + (1-a)*r[n] (Eq. 5), step response 1 - a^n (Eq. 6), coefficient a = exp(-1/(tau*fs)) (Eq. 7, step-invariant), alternative 10-90 percent rise-time definition (Eq. 8); RMS detector as a one-pole on the squared input, y = a*y + (1-a)*x^2 (Eq. 10, Sec 2.3.1, p. ~401); peak detector with separate attack and release coefficients (Eq. 12, Sec 2.3.2); decoupled detector y1 = max(x, aR*y1_prev), y = aA*y_prev + (1-aA)*y1 (Eq. 14) whose release is about tau_R + tau_A; branching detector (Eq. 15) works well only when tau_R >> tau_A; smooth branching (Eq. 16) and smooth decoupled (Eq. 17) variants; conclusion: the smooth decoupled peak detector suits most cases (Sec 5).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.academia.edu/31481096/Digital_Dynamic_Range_Compressor_Design_A_Tutorial_and_Analysis",
+    "doi": "",
+    "title": "Digital Dynamic Range Compressor Design - A Tutorial and Analysis (Giannoulis, Massberg, Reiss), academia.edu mirror",
+    "publisher": "Audio Engineering Society (J. Audio Eng. Soc.; mirror on academia.edu)",
+    "version": "JAES 60(6), June 2012, pp. 399-408",
+    "locator": "Sec 2.3.1-2.3.4 pp. ~401-403, Eq. 5-17; Sec 5",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [
+   "A student project (White and Dick) smooths gain with k = 1 - exp(-2.2*T/t), i.e. a 10-90 percent rise-time convention rather than Giannoulis Eq. 7's time-constant convention; the two conventions differ by a factor of 2.2"
+  ],
+  "topic": "envelope-follower"
+ },
+ {
+  "claim": "Zavalishin notes that an asymmetric low-pass (different cutoffs for rising and falling input) acts as an envelope follower with the cutoff controlling response time (Sec 6.12, p. ~219, Fig. 6.60); page number estimated.",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://www.native-instruments.com/fileadmin/ni_media/downloads/pdf/VAFilterDesign_2.1.0.pdf",
+    "doi": "",
+    "title": "The Art of VA Filter Design (Zavalishin)",
+    "publisher": "Native Instruments GmbH (author's free book)",
+    "version": "revision 2.1.0",
+    "locator": "Sec 6.12 p. ~219 (approximate)",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "envelope-follower"
+ },
+ {
+  "claim": "First-order antiderivative anti-aliasing (Parker, Zavalishin, Le Bivic): y[n] = (F0(x[n]) - F0(x[n-1]))/(x[n] - x[n-1]) with F0 the antiderivative of the shaper (Eq. 9, p. 138); when consecutive inputs are nearly equal use f((x[n] + x[n-1])/2) (Eq. 10, pp. 138-139); the triangular-kernel version (Eq. 14, p. 140) needs F0 and F1 (antiderivative of x*f(x)) with fallback Eq. 15-16; latency is 0.5 sample for the rectangular kernel (Eq. 17) and 1 sample for the triangular kernel (Eq. 18) (Sec 4, p. 139).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://dafx.de/paper-archive/2016/dafxpapers/20-DAFx-16_paper_41-PN.pdf",
+    "doi": "",
+    "title": "Reducing the Aliasing of Nonlinear Waveshaping Using Continuous-Time Convolution (Parker, Zavalishin, Le Bivic)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-16, Brno, Sep 2016",
+    "locator": "Sec 2.2-2.3 pp. 138-139, Eq. 9-10; Sec 3 Eq. 14-16 p. 140; Sec 4 p. 139 Eq. 17-18",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "adaa"
+ },
+ {
+  "claim": "Measured benefit (hard clipper, input gain 10, Table 1 and Fig. 4, pp. 140-141): to reach the same SNR of about 46-47 dB, no anti-aliasing needs 12x oversampling (529.2 kHz, 46.7 dB), the rectangular ADAA kernel 4x (176.4 kHz, 46.3 dB), the triangular kernel 3x (132.3 kHz, 46.6 dB); tanh tests at 44.1 and 88.2 kHz (Sec 5.1, Fig. 3) and a Moog-ladder-like filter with k = 8 swept 1 Hz-21 kHz at 44.1/88.2 kHz (Sec 6.3, Fig. 12, p. 142) give no numeric dB figures. Vicanek's note says first-order ADAA with 4x oversampling makes aliasing practically a non-issue even for a hard clipper, and that 2x oversampling alone buys only about 6 dB.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://dafx.de/paper-archive/2016/dafxpapers/20-DAFx-16_paper_41-PN.pdf",
+    "doi": "",
+    "title": "Reducing the Aliasing of Nonlinear Waveshaping Using Continuous-Time Convolution (Parker, Zavalishin, Le Bivic)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-16, Brno, Sep 2016",
+    "locator": "Sec 5.2 Table 1, Fig. 4 pp. 140-141; Sec 6.3 Fig. 12 p. 142",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.vicanek.de/articles/AADistortion.pdf",
+    "doi": "",
+    "title": "Note on Alias Suppression in Digital Distortion (Vicanek)",
+    "publisher": "M. Vicanek (self-published)",
+    "version": "4 Nov 2023, rev. 19 Sep 2024",
+    "locator": "Sec 4",
+    "accessed": "2026-11-11",
+    "tier": 2
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "single-source",
+  "contradicted_by": [
+   "Vicanek builds on Parker et al., so the two are not independent"
+  ],
+  "topic": "adaa"
+ },
+ {
+  "claim": "Vicanek's ADAA note: eq. (2) is the first-order form with half-sample latency; the ill-conditioning fallback given is for the half-sample-shifted variant (eq. 4), replacing the fraction with half of f(x[n-1]) when samples are near-equal, with a threshold of roughly the square root of machine epsilon; for f(x) = x/sqrt(1+x^2) the antiderivative is sqrt(1+x^2) (eq. 7-9).",
+  "kind": "numerical",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://www.vicanek.de/articles/AADistortion.pdf",
+    "doi": "",
+    "title": "Note on Alias Suppression in Digital Distortion (Vicanek)",
+    "publisher": "M. Vicanek (self-published)",
+    "version": "4 Nov 2023, rev. 19 Sep 2024",
+    "locator": "Sec 1-3, eq. 2, 4, 7-9",
+    "accessed": "2026-11-11",
+    "tier": 2
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "adaa"
+ },
+ {
+  "claim": "Licence check: the brief assumed DAFx proceedings state a Creative Commons licence on each paper's first page; the extracted first-page text of the DAFx papers read here (2004 Huovilainen, 2010 Raffel/Smith, 2011 Parker, 2014 Eichas, 2016 Kiiski and Parker et al., 2018 Holters/Parker) contained only the conference header and no licence notice, and the DAFx archive detail pages state only ISSNs. This could not be confirmed against the raw PDFs because direct downloads were refused by the egress policy and the fetch tool returns model-extracted text, so a CC notice rendered as an image or footer may have been missed. Treat reuse terms as unverified.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://dafx.de/paper-archive/2004/P_061.PDF",
+    "doi": "",
+    "title": "Non-Linear Digital Implementation of the Moog Ladder Filter (Huovilainen)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-04, Naples, Oct 2004",
+    "locator": "first page, extracted text",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://dafx.de/paper-archive/2010/DAFx10/RaffelSmith_DAFx10_P42.pdf",
+    "doi": "",
+    "title": "Practical Modeling of Bucket-Brigade Device Circuits (Raffel, Smith)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-10, Graz, Sep 2010",
+    "locator": "first page, extracted text",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://dafx.de/paper-archive/2018/papers/DAFx2018_paper_12.pdf",
+    "doi": "",
+    "title": "A Combined Model for a Bucket Brigade Device and its Input and Output Filters (Holters, Parker)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-18, Aveiro, 2018",
+    "locator": "first page, extracted text",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://dafx.de/paper-archive/2011/Papers/66_e.pdf",
+    "doi": "",
+    "title": "A Simple Digital Model of the Diode-Based Ring-Modulator (Parker)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-11, Paris, Sep 2011",
+    "locator": "first page, extracted text",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://dafx.de/paper-archive/2016/dafxpapers/20-DAFx-16_paper_41-PN.pdf",
+    "doi": "",
+    "title": "Reducing the Aliasing of Nonlinear Waveshaping Using Continuous-Time Convolution (Parker, Zavalishin, Le Bivic)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-16, Brno, Sep 2016",
+    "locator": "first page, extracted text",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://dafx.de/paper-archive/2016/dafxpapers/05-DAFx-16_paper_42-PN.pdf",
+    "doi": "",
+    "title": "Time-Variant Gray-Box Modeling of a Phaser Pedal (Kiiski, Esqueda, Valimaki)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-16, Brno, Sep 2016",
+    "locator": "first page, extracted text",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://dafx14.fau.de/papers/dafx14_felix_eichas_physical_modeling_of_the_.pdf",
+    "doi": "",
+    "title": "Physical Modeling of the MXR Phase 90 Guitar Effect Pedal (Eichas, Zoelzer, Moeller)",
+    "publisher": "DAFx (Int. Conf. on Digital Audio Effects proceedings)",
+    "version": "DAFx-14, Erlangen, Sep 2014",
+    "locator": "first page, extracted text",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [
+   "The task brief states that DAFx papers carry a Creative Commons licence on the first page"
+  ],
+  "topic": "licence"
+ },
+ {
+  "claim": "Reuse terms of non-DAFx sources: Zavalishin's book grants the right to copy the revision freely in full, including its copyright note, unmodified (p. ii) - adaptation of text is not granted; D'Angelo and Valimaki Part I is an IEEE reprint 'with permission' for internal or personal use, and the Aalto dissertation page says all rights belong to the author and commercial use is prohibited; the JASA paper is (c) 2012 Acoustical Society of America, redistribution subject to ASA terms; Nam et al. is (c) 2010 IEEE; the NE570 datasheet is copyright ON Semiconductor, not for resale; Pekonen et al. 2011 is CC BY; the Giannoulis paper is paywalled at the AES and the academia.edu mirror's rights are unverified; the National LM13700 datasheet is (c) 2004 National Semiconductor.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.native-instruments.com/fileadmin/ni_media/downloads/pdf/VAFilterDesign_2.1.0.pdf",
+    "doi": "",
+    "title": "The Art of VA Filter Design (Zavalishin)",
+    "publisher": "Native Instruments GmbH (author's free book)",
+    "version": "revision 2.1.0",
+    "locator": "p. ii (front matter)",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://aaltodoc.aalto.fi/server/api/core/bitstreams/7ebb6719-8c32-4e23-97ce-b6ebac589990/content",
+    "doi": "10.1109/TASLP.2014.2352495",
+    "title": "Generalized Moog Ladder Filter: Part I - Linear Analysis and Parameterization (D'Angelo, Valimaki), post-print in Aalto dissertation 158/2014",
+    "publisher": "IEEE/ACM Trans. Audio, Speech, Lang. Process. (post-print hosted by Aalto University)",
+    "version": "vol. 22, no. 12, Dec 2014, pp. 1825-1832",
+    "locator": "front matter (reprint notice)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://aaltodoc.aalto.fi/server/api/core/bitstreams/f87d5b89-72b1-4b8a-85bd-e8ef9511937d/content",
+    "doi": "",
+    "title": "Virtual Analog Modeling of Nonlinear Musical Circuits (D'Angelo), summary part",
+    "publisher": "Aalto University",
+    "version": "Doctoral Dissertations 158/2014",
+    "locator": "front matter",
+    "accessed": "2026-11-11",
+    "tier": 2
+   },
+   {
+    "url": "https://mac.kaist.ac.kr/pubs/ValimakiPeknenNam-jasa2012.pdf",
+    "doi": "10.1121/1.3651227",
+    "title": "Perceptually informed synthesis of bandlimited classical waveforms using integrated polynomial interpolation (Valimaki, Pekonen, Nam)",
+    "publisher": "Acoustical Society of America (J. Acoust. Soc. Am.; copy hosted at KAIST)",
+    "version": "JASA 131(1), 2012, pp. 974-986",
+    "locator": "first page footer",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://mac.kaist.ac.kr/pubs/jnam-taslp2010.pdf",
+    "doi": "10.1109/TASL.2009.2035039",
+    "title": "Efficient Antialiasing Oscillator Algorithms Using Low-Order Fractional Delay Filters (Nam, Valimaki, Abel, Smith)",
+    "publisher": "IEEE Trans. Audio, Speech, Lang. Process. (copy hosted at KAIST)",
+    "version": "vol. 18, no. 4, May 2010, pp. 773-785",
+    "locator": "first page footer",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.onsemi.com/download/data-sheet/pdf/ne570-d.pdf",
+    "doi": "",
+    "title": "NE570 Compandor datasheet",
+    "publisher": "ON Semiconductor",
+    "version": "Rev. 4, May 2006 (NE570/D)",
+    "locator": "pp. 9-10",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://mural.maynoothuniversity.ie/4185/1/VL_Discrete-time.pdf",
+    "doi": "10.1155/2011/785103",
+    "title": "Discrete-Time Modelling of the Moog Sawtooth Oscillator Waveform (Pekonen et al.)",
+    "publisher": "EURASIP J. Adv. Signal Process. (Hindawi)",
+    "version": "vol. 2011, art. 785103",
+    "locator": "first page",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://ew.lens.unifi.it/datasheets/LM13700_Dual_Transconduct_OpAmp[1].pdf",
+    "doi": "",
+    "title": "LM13700 Dual Operational Transconductance Amplifiers with Linearizing Diodes and Buffers",
+    "publisher": "National Semiconductor (now Texas Instruments)",
+    "version": "DS007981, June 2004",
+    "locator": "p. 1 footer",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 8,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "licence"
+ }
+]
