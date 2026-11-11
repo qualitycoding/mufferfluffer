@@ -24,28 +24,28 @@ LFO6 = ["Sine", "Triangle", "Square", "Sawtooth", "Ramp", "Random step"]
 LEVEL, ACT = M("level", "Level"), M("active", "Active")
 
 effects = [
- {"id": 0, "enum": "Lowpass", "slug": "lowpass", "name": "Fluff Lowpass", "models": "MF-101", "milestone": 1,
+ {"id": 0, "enum": "Lowpass", "slug": "lowpass", "name": "Fluff Lowpass", "milestone": 1,
   "params": [DRIVE, P("cutoff", "Cutoff", "Hz", 15.0, 12000.0, 1000.0, "log"), P("resonance", "Resonance", "", 0.0, 10.0, 0.0),
              P("env_amount", "Env Amount", "oct", 0.0, 5.0, 0.0), sw("env_speed", "Env Speed", ["Smooth", "Fast"], 1),
              sw("poles", "Poles", ["2-pole", "4-pole"], 1), MIX(1.0), ACTIVE],
   "inputs": [audio("in", "Audio In"), cv("cutoff", "Cutoff CV"), cv("resonance", "Resonance CV"), cv("env_amount", "Amount CV"), cv("mix", "Mix CV")],
   "outputs": [audio("out", "Audio Out"), cvout("env_out", "Envelope Out")],
   "meters": [LEVEL, M("env", "Envelope"), ACT], "right_output": None},
- {"id": 1, "enum": "RingMod", "slug": "ringmod", "name": "Fluff Ring", "models": "MF-102", "milestone": 1,
+ {"id": 1, "enum": "RingMod", "slug": "ringmod", "name": "Fluff Ring", "milestone": 1,
   "params": [DRIVE, P("frequency", "Frequency", "", 0.0, 1.0, 0.5), sw("range", "Range", ["Lo", "Hi"], 1),
              P("lfo_rate", "LFO Rate", "Hz", 0.1, 25.0, 1.0, "log"), P("lfo_amount", "LFO Amount", "oct", 0.0, 3.0, 0.0),
              sw("lfo_wave", "LFO Wave", ["Sine", "Square"], 0), MIX(1.0), ACTIVE],
   "inputs": [audio("in", "Audio In"), audio("carrier_in", "Carrier In"), cv("frequency", "Frequency CV"), cv("lfo_rate", "Rate CV"), cv("lfo_amount", "Amount CV"), cv("mix", "Mix CV")],
   "outputs": [audio("out", "Audio Out"), audio("carrier_out", "Carrier Out"), cvout("lfo_out", "LFO Out")],
   "meters": [LEVEL, M("lfo", "LFO"), ACT], "right_output": None},
- {"id": 2, "enum": "Phaser", "slug": "phaser", "name": "Fluff Phase", "models": "MF-103", "milestone": 1,
+ {"id": 2, "enum": "Phaser", "slug": "phaser", "name": "Fluff Phase", "milestone": 1,
   "params": [DRIVE, OUT, P("sweep", "Sweep", "", 0.0, 10.0, 5.0), P("resonance", "Resonance", "", 0.0, 10.0, 0.0),
              P("lfo_rate", "LFO Rate", "", 0.0, 1.0, 0.5), sw("lfo_range", "LFO Range", ["Lo", "Hi"], 0),
              P("lfo_amount", "LFO Amount", "", 0.0, 1.0, 0.5), sw("stages", "Stages", ["6-stage", "12-stage"], 0), ACTIVE],
   "inputs": [audio("in", "Audio In"), audio("sweep_in", "Sweep In"), cv("lfo_rate", "Rate CV"), cv("lfo_amount", "Amount CV"), cv("sweep", "Sweep CV"), cv("resonance", "Resonance CV")],
   "outputs": [audio("out", "Audio Out"), audio("aux_out", "Aux Out"), cvout("lfo_out", "LFO Out")],
   "meters": [LEVEL, M("lfo", "LFO"), ACT], "right_output": "aux_out"},
- {"id": 3, "enum": "Delay", "slug": "delay", "name": "Fluff Delay", "models": "MF-104M", "milestone": 2,
+ {"id": 3, "enum": "Delay", "slug": "delay", "name": "Fluff Delay", "milestone": 2,
   "params": [DRIVE, OUT, P("time", "Time", "", 0.0, 1.0, 0.5), sw("range", "Range", ["Short", "Long"], 0),
              P("feedback", "Feedback", "", 0.0, 10.0, 3.0), P("lfo_rate", "LFO Rate", "Hz", 0.05, 50.0, 1.0, "log"),
              P("lfo_amount", "LFO Amount", "", 0.0, 10.0, 0.0), sw("lfo_wave", "LFO Wave", LFO6, 0), MIX(0.5),
@@ -53,7 +53,7 @@ effects = [
   "inputs": [audio("in", "Audio In"), audio("fb_return", "Feedback Return"), cv("feedback", "Feedback CV"), cv("time", "Time CV"), cv("lfo_rate", "Rate CV"), cv("lfo_amount", "Amount CV"), cv("mix", "Mix CV"), trig("tap_in", "Tap", "tap")],
   "outputs": [audio("out", "Mix Out"), audio("delay_out", "Delay Out"), audio("fb_send", "Feedback Send")],
   "meters": [LEVEL, M("rate", "Rate"), ACT], "right_output": None},
- {"id": 4, "enum": "FilterBank", "slug": "filterbank", "name": "Fluff Bank", "models": "MF-105M", "milestone": 3,
+ {"id": 4, "enum": "FilterBank", "slug": "filterbank", "name": "Fluff Bank", "milestone": 3,
   "params": [DRIVE, OUT] + [P(f"level{i}", f"Filter {i}", "", 0.0, 1.0, 1.0) for i in range(1, 9)] +
             [sw("voicing", "Voicing", ["Bass", "Mids"], 1), sw("pattern", "Pattern", [str(i) for i in range(1, 13)], 0),
              P("envelope", "Envelope", "", 0.0, 10.0, 2.0), P("rate", "Rate", "Hz", 0.5, 32.0, 4.0, "log"),
@@ -62,14 +62,14 @@ effects = [
   "inputs": [audio("in", "Audio In"), cv("rate", "Rate CV"), cv("envelope", "Envelope CV"), cv("mix", "Mix CV"), cv("sweep", "LFO/Sweep CV"), trig("tap_in", "Tap", "tap"), trig("step_in", "Step", None)],
   "outputs": [audio("out_l", "Left/Mono Out"), audio("out_r", "Right Out")],
   "meters": [LEVEL, M("rate", "Rate"), ACT], "right_output": "out_r"},
- {"id": 5, "enum": "OscBox", "slug": "oscbox", "name": "Fluff Osc", "models": "MF-107", "milestone": 3,
+ {"id": 5, "enum": "OscBox", "slug": "oscbox", "name": "Fluff Osc", "milestone": 3,
   "params": [DRIVE, OUT, P("frequency", "Frequency", "Hz", 25.0, 1600.0, 200.0, "log"), P("wave", "Wave", "", 0.0, 1.0, 0.0),
              sw("sync", "Sync", ["Off", "On"], 0), P("fm_amount", "FM Amount", "", 0.0, 1.0, 0.0),
              P("env_amount", "Env Amount", "oct", 0.0, 8.0, 0.0), MIX(0.5), ACTIVE],
   "inputs": [audio("in", "Audio In"), voct("frequency", "Frequency CV"), cv("wave", "Wave CV", 0.6), cv("env_amount", "Env Amount CV"), cv("fm_amount", "FM Amount CV"), cv("mix", "Mix CV")],
   "outputs": [audio("out", "Audio Out"), cvout("env_out", "Envelope Out"), audio("osc_out", "Oscillator Out")],
   "meters": [LEVEL, M("env", "Envelope"), ACT], "right_output": None},
- {"id": 6, "enum": "Chorus", "slug": "chorus", "name": "Fluff Swarm", "models": "MF-108M", "milestone": 2,
+ {"id": 6, "enum": "Chorus", "slug": "chorus", "name": "Fluff Swarm", "milestone": 2,
   "params": [DRIVE, OUT, P("time", "Time", "", 0.0, 1.0, 0.5), sw("range", "Range", ["Flange", "Chorus"], 1),
              P("feedback", "Feedback", "", -1.0, 1.0, 0.0), P("lfo_rate", "LFO Rate", "Hz", 0.05, 50.0, 0.5, "log"),
              P("lfo_amount", "LFO Amount", "", 0.0, 1.0, 0.3), sw("lfo_wave", "LFO Wave", LFO6, 0), MIX(0.5),
@@ -80,7 +80,7 @@ effects = [
 ]
 for e in effects: e["mono_sums_right"] = (e["slug"] == "filterbank")
 
-# Pattern set of the filter bank (D-024): original patterns of this project, NOT the manufacturer's.
+# Pattern set of the filter bank (D-024): original patterns of this project.
 # 12 base patterns; bank "Bass" uses them as written, bank "Mids" uses them with the channel order reversed.
 # Each pattern is 8 channel strings (filter 1 first); 'x' = trigger the channel's envelope on that step, '.' = idle.
 # Channels may differ in length (1..64). Pattern 1 of each bank is static: every channel is "-" (VCA held open).

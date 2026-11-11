@@ -1,7 +1,7 @@
 {
  "run_id": "gen-20261111T151412Z-mufferfluffer-vst-vcv",
  "branch": "gen-20261111T151412Z-mufferfluffer-vst-vcv",
- "sequence": 3,
+ "sequence": 4,
  "profiles": [
   "software"
  ],
@@ -20,7 +20,7 @@
  "phase": "2",
  "subphase": "2.3",
  "active_step_id": "",
- "research_round": 1,
+ "research_round": 2,
  "exploration_round": 0,
  "proof_review_round": 0,
  "premortem_round": 0,
@@ -122,6 +122,8 @@
   "research/spikes/juce-vst3-build/RESULT.md": "6cad57987a6d12a34abd0d2ddf738c04d581d5ce5a4c8ee389cd8eccf2b441f5",
   "research/spikes/oracle/generated_tables.inc": "5e58ee3b5213e00198de5d0a2fb9f2d4c95a8aee66a20b0f79260dad53096c4c",
   "research/spikes/oracle/oracle_core.cpp": "d65d28c6dc71d41255ce034bda54417573e4b8343a316dfeab03bbbcfd4f3580",
+  "research/spikes/oracle_repo/make_tree.py": "24fb4aa8651e9c7baf14306e99c806ddfe8b536f556c84b9afbd5cad443341ae",
+  "research/spikes/oracle_vst3/processor.cpp": "ab8574bf5e9ea530571245a22dbd316f5174a573ae4775413dc58e08316177d4",
   "tests/CMakeLists.txt": "47317a9d5c724836a8a0fd0906254a72b96e02f04c53654c63f65142b1cdcf67",
   "tests/core/expected_effects.inc": "8fb8bd0e3360bb858b3e1d7370a6569b89922f61cbf018731dd3230b33f98f8b",
   "tests/core/test_adapters.cpp": "9051693540d2b747cc4d6504286a4c422da5def0276c5180c5ad4e0dedad8d3c",
@@ -130,14 +132,21 @@
   "tests/core/test_m2.cpp": "81bfac12a608203a03d9957f0cad6fdfb0c3ad8ea74b9e68f2636ee6f6d02559",
   "tests/core/test_m3.cpp": "638ea714be88875d2d7f446c596993241b280f53b589d7b2a794fe2cff7624a6",
   "tests/core/test_support.hpp": "10fc8cb6e13f647c52ed5c9b05e2380857aaf628a6a278038427ec4cc2152d5e",
-  "tests/fixtures/effects.json": "2c2f37055bca93bb43b8f788bdd0d5130eccf5a6b28dc1bd1c159197eade6339",
+  "tests/fixtures/effects.json": "d2d38c9b7235b6fa465e2665a2a347b78822b48394c32b1b9cac7b8a0279a4f7",
   "tests/perf/bench.cpp": "2526e4616fab38f76fa9cf90b2839565a5d6b369b2b83d8254f8542b40cadfc7",
+  "tests/py/__pycache__/test_repo.cpython-313.pyc": "15bed9746e58108bebb2c8ac34748b20d2c18ba0b6a59c27f95b957d788d59a8",
+  "tests/py/test_repo.py": "3432e6331cbb548cfaebca81a3bac72d929ceacb992184e476cf0544cac5694f",
+  "tests/vst3/CMakeLists.txt": "cbd3bdb6d23b29ad116301f17ad77f9a4c38e3789cd51ed834724d849ecb5575",
+  "tests/vst3/test_vst3.cpp": "9d4a2c5fb00edb1dd11aed53dfd6bf4bc7280f34b9e4544d636463afa24c7e76",
   "tools/gen_expected.py": "9ee3b9b91d6a59fe0b6dad5ef8598ace7bf7cbc9c14d0a01c6894be9bbbe6654",
   "tools/gen_tables.py": "caf0ea49388b17e0aa7e414ea88125e4dfb1fe1a2ecfeef227037427d5d94d8e",
-  "tools/make_effects_fixture.py": "4da03bda9eecf41e594659a8eb0296a163a81618aab923c26199d317b552c2f8"
+  "tools/make_effects_fixture.py": "f4e7ed6a740ce1c9a94d6ef759c1ae686986d6d60bd38ed2f8817ce7ff34a0de",
+  "vst3/CMakeLists.txt": "27942eb0946a3280230eeb028241a3dccdfd1ac514d63f7a566f7d9f082e5c04",
+  "vst3/include/muff/vst3_shell.hpp": "23b0516bcb78b99b5c91cb20b84f8ca2ee79e0a1bffe2b760da182c9aef47155",
+  "vst3/src/stubs.cpp": "0da43f067c134ece5dc3b0ba2790774fd1e58e308096085324fdc731510798e8"
  },
  "execution_context": {
-  "current_objective": "core interface, stubs, oracle and 77 frozen C++ tests drafted; oracle green, stubs red, sanitizers clean",
+  "current_objective": "VST3 shell contract, stub, oracle and tests; repository tests; all red against stubs and green against oracles; round 2 re-verification dispatched",
   "call_stack": [
    "Phase 1"
   ],
@@ -145,7 +154,7 @@
    "phase": "2",
    "subphase": "2.3",
    "item_index": 0,
-   "sub_action": "core interface, stubs, oracle and 77 frozen C++ tests drafted; oracle green, stubs red, sanitizers clean",
+   "sub_action": "VST3 shell contract, stub, oracle and tests; repository tests; all red against stubs and green against oracles; round 2 re-verification dispatched",
    "retry_count": 0
   },
   "scratchpad": "",
@@ -338,5 +347,5 @@
   "L-20261111T152000Z-licence-constraint-stated-at-intake-before-r0"
  ],
  "knowledge_added": [],
- "updated_at": "2026-11-11T19:23:25Z"
+ "updated_at": "2026-11-11T19:33:11Z"
 }

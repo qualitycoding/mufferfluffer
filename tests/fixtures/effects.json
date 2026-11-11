@@ -369,7 +369,6 @@
    "enum": "Lowpass",
    "slug": "lowpass",
    "name": "Fluff Lowpass",
-   "models": "MF-101",
    "milestone": 1,
    "params": [
     {
@@ -532,7 +531,6 @@
    "enum": "RingMod",
    "slug": "ringmod",
    "name": "Fluff Ring",
-   "models": "MF-102",
    "milestone": 1,
    "params": [
     {
@@ -709,7 +707,6 @@
    "enum": "Phaser",
    "slug": "phaser",
    "name": "Fluff Phase",
-   "models": "MF-103",
    "milestone": 1,
    "params": [
     {
@@ -895,7 +892,6 @@
    "enum": "Delay",
    "slug": "delay",
    "name": "Fluff Delay",
-   "models": "MF-104M",
    "milestone": 2,
    "params": [
     {
@@ -1134,7 +1130,6 @@
    "enum": "FilterBank",
    "slug": "filterbank",
    "name": "Fluff Bank",
-   "models": "MF-105M",
    "milestone": 3,
    "params": [
     {
@@ -1428,7 +1423,6 @@
    "enum": "OscBox",
    "slug": "oscbox",
    "name": "Fluff Osc",
-   "models": "MF-107",
    "milestone": 3,
    "params": [
     {
@@ -1610,7 +1604,6 @@
    "enum": "Chorus",
    "slug": "chorus",
    "name": "Fluff Swarm",
-   "models": "MF-108M",
    "milestone": 2,
    "params": [
     {
