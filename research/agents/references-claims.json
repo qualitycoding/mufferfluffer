@@ -1,0 +1,981 @@
+[
+ {
+  "claim": "UNKNOWN: whether Freesound holds any Moogerfooger recording. The Freesound search page could not be opened (web-fetch allowlist refusal and a 403 from the egress proxy), and search-engine queries restricted to freesound.org returned no sound tagged or titled Moogerfooger (only unrelated Moog synth packs and a DIY LM13700 ring-modulator session).",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://freesound.org/search/?q=moogerfooger",
+    "doi": "",
+    "title": "Freesound search for moogerfooger",
+    "publisher": "Freesound",
+    "version": "2026-11-11",
+    "locator": "not retrievable",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "freesound-search"
+ },
+ {
+  "claim": "Freesound's FAQ states three licences are offered to uploaders (CC0, CC BY, CC BY-NC) and that a registered, logged-in account is needed to download a sound; the FAQ is silent on scripted or bulk download.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://freesound.org/help/faq/",
+    "doi": "",
+    "title": "Freesound FAQ",
+    "publisher": "Freesound (Music Technology Group, UPF)",
+    "version": "undated",
+    "locator": "Licenses and Downloading sections",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "freesound-terms"
+ },
+ {
+  "claim": "UNKNOWN: whether Wikimedia Commons has Moogerfooger audio. A search-engine snapshot lists a Category:Moogerfooger page, but fetching it returned page-not-found and the Commons API was blocked (403), so its contents are unverified; the English Wikipedia Moogerfooger article embeds no audio and links no Commons audio.",
+  "kind": "software",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://en.wikipedia.org/wiki/Moogerfooger",
+    "doi": "",
+    "title": "Moogerfooger (Wikipedia)",
+    "publisher": "Wikipedia",
+    "version": "2026-11-11 fetch",
+    "locator": "model list; media",
+    "accessed": "2026-11-11",
+    "tier": 4
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "commons"
+ },
+ {
+  "claim": "A query of the Zenodo records API for the text moogerfooger returned zero records overall, and the same word (plus Moog, Moog pedal, analog delay pedal, ring modulator pedal) restricted to audio-type open records also returned zero, so Zenodo holds no record that names a Moogerfooger in its indexed metadata.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://zenodo.org/api/records?q=moogerfooger",
+    "doi": "",
+    "title": "Zenodo records search API",
+    "publisher": "Zenodo (CERN)",
+    "version": "2026-11-11",
+    "locator": "hits.total",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "zenodo-search"
+ },
+ {
+  "claim": "Zenodo's Terms of Use v1.3 say downloading content means accepting the terms, access is for non-military purposes, no intellectual property passes to the downloader, and the downloader must obey each record's licence; the terms set no explicit rule on automated or API access.",
+  "kind": "policy",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://about.zenodo.org/terms/",
+    "doi": "",
+    "title": "Zenodo Terms of Use v1.3",
+    "publisher": "CERN (Zenodo)",
+    "version": "v1.3, undated",
+    "locator": "downloading, uploads, metadata sections",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "zenodo-terms"
+ },
+ {
+  "claim": "The Internet Archive Access Policy defers use of its collection to a separate Terms of Use page (archive.org/about/terms.php); that page could not be opened in this session (allowlist refusal), so the archive.org terms on personal or automated download are UNKNOWN here.",
+  "kind": "policy",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://help.archive.org/help/internet-archive-access-policy/",
+    "doi": "",
+    "title": "Internet Archive Access Policy",
+    "publisher": "Internet Archive",
+    "version": "undated",
+    "locator": "sections 2(a), 3(a), 4(a)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "archive-terms"
+ },
+ {
+  "claim": "EGFxSet (Zenodo 7044411, CC BY 4.0, 5.8 GB, creators Pedroza, Meza and Roman) contains a clean guitar set plus 12 real-hardware effects (Boss BD-2, Ibanez Mini Tube Screamer, Pro Co RAT2, Boss CE-3, Mooer E-Lady, MXR Phase 45, Line 6 DL4 in three modes, Orange CR-60 reverbs) and no Moogerfooger.",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://zenodo.org/record/7044411",
+    "doi": "",
+    "title": "EGFxSet: Electric guitar tones processed through real effects of distortion, modulation, delay and reverb",
+    "publisher": "Zenodo (CERN) record by Pedroza, Meza, Roman",
+    "version": "v1.0, 2022-09-02, modified 2024-08-18",
+    "locator": "record page: licence field, effects list, file table",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://egfxset.github.io",
+    "doi": "",
+    "title": "EGFxSet project page",
+    "publisher": "EGFxSet authors (GitHub Pages)",
+    "version": "undated",
+    "locator": "effects list section",
+    "accessed": "2026-11-11",
+    "tier": 2
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [
+   "The EGFxSet project page names no licence and says only that the data carry full open-access rights; the Zenodo record states CC BY 4.0."
+  ],
+  "topic": "dataset-egfxset"
+ },
+ {
+  "claim": "IDMT-SMT-Audio-Effects (Zenodo 7544032, Fraunhofer IDMT, published 2023-01-17) is licensed CC BY-NC-ND 4.0, holds about 55,044 mono 44.1 kHz 16-bit WAV notes with unprocessed counterparts, was processed with mostly freely available plug-ins rather than named hardware, and names no Moogerfooger.",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://zenodo.org/api/records/7544032",
+    "doi": "",
+    "title": "IDMT-SMT-Audio-Effects Dataset (Zenodo API metadata)",
+    "publisher": "Zenodo (CERN) record by M. Stein, Fraunhofer IDMT",
+    "version": "published 2023-01-17",
+    "locator": "metadata.license and metadata.description",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.idmt.fraunhofer.de/en/publications/datasets/audio_effects.html",
+    "doi": "",
+    "title": "audio effects dataset page",
+    "publisher": "Fraunhofer IDMT",
+    "version": "undated",
+    "locator": "licence line, effects list, processing note",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "dataset-idmt"
+ },
+ {
+  "claim": "The Zenodo audio-sample record 3562442 (CC BY 4.0; Martinez Ramirez, Benetos, Reiss) pairs dry bass and guitar notes from IDMT-SMT-Audio-Effects with wet versions through a Universal Audio 6176 channel strip and a Leslie 145 cabinet; it contains no Moogerfooger.",
+  "kind": "bibliographic",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://zenodo.org/record/3562442",
+    "doi": "10.5281/zenodo.3562442",
+    "title": "Deep Learning for Black-Box Modeling of Audio Effects (audio samples)",
+    "publisher": "Zenodo record by Martinez Ramirez, Benetos, Reiss",
+    "version": "2019-12-04",
+    "locator": "record page: licence, contents",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "dataset-dl-blackbox"
+ },
+ {
+  "claim": "GUITAR-FX-DIST (Zenodo 4298017, CC BY 4.0, Marco Comunita, QMUL) holds about 140,000 two-second processed guitar clips (overdrive, distortion, fuzz) rendered by software with randomised settings from IDMT dry sources; it contains no Moogerfooger.",
+  "kind": "bibliographic",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://zenodo.org/record/4298017",
+    "doi": "",
+    "title": "GUITAR-FX-DIST (Poly Continuous)",
+    "publisher": "Zenodo record by M. Comunita, QMUL",
+    "version": "v1.0, 2020-11-30",
+    "locator": "record page: licence, contents",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "dataset-guitar-fx-dist"
+ },
+ {
+  "claim": "The Zenodo ToneTwist AFx Dataset series (CC BY-NC 4.0 for most records, about 55 records, with a Dry record) lists pedals such as Mooer Trelicopter, Ibanez TS9 and Big Muff; about 50 titles were inspected and none is a Moogerfooger (INFERRED for the last handful of titles, which were not seen).",
+  "kind": "bibliographic",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://zenodo.org/api/records?q=ToneTwist",
+    "doi": "",
+    "title": "Zenodo search for ToneTwist AFx Dataset",
+    "publisher": "Zenodo (CERN)",
+    "version": "2026-11-11",
+    "locator": "titles and licence fields from API",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "dataset-tonetwist"
+ },
+ {
+  "claim": "TONE3000 hosts a Neural Amp Modeler capture titled Moogerfooger MF-101 (Drive) by user grahamrausch: it models only the drive stage of the MF-101 (pedal bypassed, drive at 2 o'clock, one A2 model of 500 epochs), is a trained model not an audio recording, and its licence lets users download and use it but not republish it; therefore it is restrictive, is not a dry/wet recording pair, and does not represent the lowpass filter itself.",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.tone3000.com/tones/moogerfooger-mf-101-drive-47438",
+    "doi": "",
+    "title": "Moogerfooger MF-101 (Drive) NAM capture by grahamrausch",
+    "publisher": "TONE3000",
+    "version": "undated",
+    "locator": "capture page: description and T3K licence line",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-101"
+ },
+ {
+  "claim": "Sweetwater's article announces ten MF-104M audio examples made by Daniel Fisher, but states no pedal settings, gives no download statement, and carries the footer Copyright 2026 Sweetwater, all rights reserved; rejected (no licence, no stated download, no settings).",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.sweetwater.com/insync/update-mf-104m-audio-examples/",
+    "doi": "",
+    "title": "MF-104M audio examples",
+    "publisher": "Sweetwater Sound",
+    "version": "page footer 2026",
+    "locator": "article body and footer copyright line",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-104"
+ },
+ {
+  "claim": "Sound On Sound's MF-107 FreqBox review (Paul Nagle, November 2008) and MF-108M Cluster Flux review (Paul Nagle, June 2012) embed no audio, state no reproducible knob settings, and are all rights reserved with only a paid PDF download; rejected as references.",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.soundonsound.com/reviews/moog-mf107-freqbox",
+    "doi": "",
+    "title": "Moog MF107 FreqBox review (Paul Nagle)",
+    "publisher": "Sound On Sound (SOS Publications Group)",
+    "version": "November 2008",
+    "locator": "article page and copyright footer",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/moog-mf108m-cluster-flux",
+    "doi": "",
+    "title": "Moog MF108M Cluster Flux review (Paul Nagle)",
+    "publisher": "Sound On Sound (SOS Publications Group)",
+    "version": "June 2012",
+    "locator": "article page and copyright footer",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-107/MF-108M"
+ },
+ {
+  "claim": "Bonedo's MF-103 test (nico.schnepf, 2011) embeds audio players labelled with generic source names, offers no download and no licence beyond a Copyright 2026 Bonedo footer, and does not clearly identify the clips as MF-103 output; rejected.",
+  "kind": "bibliographic",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://www.bonedo.de/artikel/moogerfooger-mf-103",
+    "doi": "",
+    "title": "Moogerfooger MF-103 test (nico.schnepf)",
+    "publisher": "Bonedo",
+    "version": "09.02.2011, modified 2022-10-16",
+    "locator": "Audio Samples sections; footer copyright",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-103"
+ },
+ {
+  "claim": "Moog Music's MF-105S store page offers demos only through embedded SoundCloud (a playlist credited to Lisa Bella Donna) and YouTube, states no licence for them and no download; this is a plug-in page, not a hardware recording; rejected lead. The Moog SoundCloud sets themselves could not be opened because SoundCloud's robots rules refused the fetch.",
+  "kind": "bibliographic",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://software.moogmusic.com/store/mf-105s",
+    "doi": "",
+    "title": "MF-105S MuRF store page",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "demo section; footer terms links",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-105"
+ },
+ {
+  "claim": "UNKNOWN: licence, settings and content of SoundCloud tracks surfaced by search (Moog Music Moogerfooger plug-in sets, Hainbach MF-103 beats demo, CDM Cluster Flux set). SoundCloud refused automated fetches (robots), so these are unverified leads; none can be counted as a reference.",
+  "kind": "bibliographic",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://soundcloud.com/hainbach/moogerfooger-mf-103-beats-demo",
+    "doi": "",
+    "title": "Moogerfooger MF-103 as a synthesizer (Hainbach)",
+    "publisher": "SoundCloud",
+    "version": "2026-11-11",
+    "locator": "fetch refused (robots)",
+    "accessed": "2026-11-11",
+    "tier": 4
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "soundcloud-leads"
+ },
+ {
+  "claim": "Internet Archive item mb00-GarageDronePlusRemixes (mysterybear and friends, added 2011-02-19, uploader DaveSeidel) is licensed CC BY-NC-SA 4.0 under its Usage heading; the original track was recorded live to a Zoom H4 through a chain that includes a Moogerfooger ring modulator (model not stated, settings not stated, no dry counterpart); the page lists VBR MP3 downloads and says FLAC is available though FLAC files were not in the listed options. Restrictive, weak as a reference.",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://archive.org/details/mb00-GarageDronePlusRemixes",
+    "doi": "",
+    "title": "garage drone + remixes (mysterybear + friends)",
+    "publisher": "Internet Archive (uploader DaveSeidel)",
+    "version": "2011-02-19",
+    "locator": "Usage field; description; download options list",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [
+   "The item description promises FLAC, but the listed download options show MP3 only."
+  ],
+  "topic": "MF-102"
+ },
+ {
+  "claim": "Three Proyecto Interacciones items on the Internet Archive (Vol. 2, 2018-10-23, track 12; Vol. 3 Programa 2, 2019-07-14, track 04; Remezclas + Versiones, 2020-02-29, track 07) credit Lucas Romeo with Moogerfooger Ring Modulator MF102 and Analog Delay MF104M, are licensed CC BY-NC-SA 4.0 (Usage field), offer 24-bit FLAC and MP3 without login, but state no pedal settings and no dry counterpart; restrictive music tracks, not calibrated references.",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://archive.org/details/proyectointeracciones-vol02",
+    "doi": "",
+    "title": "Proyecto Interacciones - Vol. 2 (2018)",
+    "publisher": "Internet Archive (Proyecto Interacciones)",
+    "version": "2018-10-23",
+    "locator": "Usage field; track 12 credits",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://archive.org/details/proyectointeraccionesinteraccionesvol03-2",
+    "doi": "",
+    "title": "Proyecto Interacciones Vol. 3 Programa 2 (2019)",
+    "publisher": "Internet Archive (Proyecto Interacciones)",
+    "version": "2019-07-14",
+    "locator": "Usage field; track 04 credits",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://archive.org/details/proyectointeraccionesremezclasversiones2020",
+    "doi": "",
+    "title": "Proyecto Interacciones - Remezclas + Versiones (2020)",
+    "publisher": "Internet Archive (Proyecto Interacciones)",
+    "version": "2020-02-29",
+    "locator": "Usage field; track 07 credits",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-102/MF-104M"
+ },
+ {
+  "claim": "Two Synthi Group compilations on the Internet Archive are licensed CC BY-NC-ND 3.0: Vol. 2 (2009-12-24) track 18 lists a Moogerfooger MF-104 Delay (Nicholas D. Kent and John Blackford), and Vol. 3 (2010-12-03) track 13 lists an unspecified Moogerfooger Analog Delay (The Vegan Surgeons); MP3 only, no settings, no dry counterpart; no-derivatives terms make them personal-listening material only.",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://archive.org/details/ca345_tsg",
+    "doi": "",
+    "title": "Various - The Synthi Group Vol. 2 (ca345)",
+    "publisher": "Internet Archive (Various)",
+    "version": "2009-12-24",
+    "locator": "Usage field; track 18 device list",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://archive.org/details/ca412_tsg",
+    "doi": "",
+    "title": "Various - The Synthi Group Vol. 3 (ca412)",
+    "publisher": "Internet Archive (Clinical Archives)",
+    "version": "2010-12-03",
+    "locator": "Usage field; track 13 device list",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "MF-104"
+ },
+ {
+  "claim": "ArnAck's album The Man of Platform 13 (Internet Archive, 2012-11-09, CC BY-NC 3.0) lists a Moogerfooger in its gear without naming the model or settings; FLAC available; no dry counterpart.",
+  "kind": "bibliographic",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://archive.org/details/ArnAck_-_The_Man_of_Platform_13_FLAC",
+    "doi": "",
+    "title": "ArnAck - The Man of Platform 13",
+    "publisher": "Internet Archive (ArnAck)",
+    "version": "2012-11-09",
+    "locator": "Usage field; gear list",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "moogerfooger-unspecified"
+ },
+ {
+  "claim": "The Internet Archive item Stoned Space Jams (Analog Synthesizer Ensemble, recorded 2007-03-03) carries Moogerfooger only as a topic tag, no per-track Moogerfooger credit and no licence statement (all rights reserved); rejected. The Rogue Science live item surfaced by the same search does not mention Moogerfooger.",
+  "kind": "bibliographic",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://archive.org/details/TheAnalogSynthesizerEnsembleStonedSpaceJams",
+    "doi": "",
+    "title": "Stoned Space Jams (The Analog Synthesizer Ensemble)",
+    "publisher": "Internet Archive (Hal McGee)",
+    "version": "2007 recording, added 2010-07-09",
+    "locator": "Topics tag; no licence field",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "rejected"
+ },
+ {
+  "claim": "Moog Music forum posts by chris_allert (2007-03-11 MF-104Z with four CP-251 controllers, MP3 on morelater.com; 2008-02-12 a rig with MF-101, MF-102, MF-103, MF-104Z and three MF-107) and by Croyote (2012, MF-101 and MuRF on SoundCloud) state no licence and the linked files were not opened; rejected for lack of any licence statement. The forum guidelines page was refused to automated fetch (robots), so its terms are UNKNOWN.",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://forum.moogmusic.com/t/recordings-of-my-moogerfooger/3338",
+    "doi": "",
+    "title": "recordings of my moogerfooger (chris_allert)",
+    "publisher": "Moog Music forum",
+    "version": "2007-03-11",
+    "locator": "first post",
+    "accessed": "2026-11-11",
+    "tier": 4
+   },
+   {
+    "url": "https://forum.moogmusic.com/t/more-recordings-of-moogerfoogers/4039",
+    "doi": "",
+    "title": "more recordings of moogerfoogers (chris_allert)",
+    "publisher": "Moog Music forum",
+    "version": "2008-02-12",
+    "locator": "first post",
+    "accessed": "2026-11-11",
+    "tier": 4
+   },
+   {
+    "url": "https://forum.moogmusic.com/t/fooger-spree-foogs-on-record/11617",
+    "doi": "",
+    "title": "fooger spree foogs on record (Croyote)",
+    "publisher": "Moog Music forum",
+    "version": "2012-06-27",
+    "locator": "first post",
+    "accessed": "2026-11-11",
+    "tier": 4
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "forum-leads"
+ },
+ {
+  "claim": "Bandcamp's Mooger Fooger album (CC BY 4.0, free download, 2022-03-12) is by a band that merely borrows the pedal line's name and says nothing about using Moogerfooger hardware; not relevant.",
+  "kind": "bibliographic",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://moogerfooger.bandcamp.com/",
+    "doi": "",
+    "title": "Mooger Fooger band page (Bandcamp)",
+    "publisher": "Bandcamp (artist Mooger Fooger)",
+    "version": "album 2022-03-12",
+    "locator": "licence line under album",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "rejected"
+ },
+ {
+  "claim": "A colleenplays.org post (2021-08-07) documents an MF-104M used on a Grandmother track with a Moog-generated patch sheet but offers no audio download or licence; a CDM article points to a free MIDI MuRF EP by Ben Hovey on SoundCloud with no licence statement and no stated Moogerfooger use; both rejected.",
+  "kind": "bibliographic",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://colleenplays.org/2021/08/07/hidden-in-the-current-moog-patch-sheet-and-video",
+    "doi": "",
+    "title": "Hidden in the Current - Moog patch sheet and video",
+    "publisher": "colleenplays.org",
+    "version": "2021-08-07",
+    "locator": "article body",
+    "accessed": "2026-11-11",
+    "tier": 4
+   },
+   {
+    "url": "https://cdm.link/create-analog-music-free-listening-free-techniques-from-patching-to-ipad-midi-murf-control-to-tunings/",
+    "doi": "",
+    "title": "CDM: free listening, MIDI MuRF EP",
+    "publisher": "CDM (cdm.link)",
+    "version": "undated",
+    "locator": "article body",
+    "accessed": "2026-11-11",
+    "tier": 4
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "rejected"
+ },
+ {
+  "claim": "A GitHub repository search for moogerfooger returned 9 repositories; 6 were cloned and inspected (nstilt1/mofo-repo, ozpv/mf-102, alessandro-scalambrino/MoogerFooger-Emulation, europa78/MOOGERFOOGER-PEDAL-WAVEFORM-EDITOR-, brunomorgado/moogerfooger, henriksvensson/moogerfoogerdooger) and none contains a Moogerfooger audio recording, impulse response or frequency-response measurement (they are source code; the MF-104M emulation is MIT-licensed code with a copy of the manual PDF; mofo-repo is an unlicensed envelope-filter VST). The other 3 (pjm-moogerfooger, pmuellrgitoff/pjm-moogerfooger, SVG-Effects-Pedals tribute pack) were not opened and are, by their descriptions, Max for Live wrappers and fan art.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://api.github.com/search/repositories?q=moogerfooger",
+    "doi": "",
+    "title": "GitHub repository search for moogerfooger",
+    "publisher": "GitHub",
+    "version": "2026-11-11",
+    "locator": "total_count and items",
+    "accessed": "2026-11-11",
+    "tier": 2
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "github"
+ },
+ {
+  "claim": "No openly licensed frequency-response plot, impulse response or other measurement of any Moogerfooger pedal was found in Zenodo, the inspected GitHub repositories, or the pages above; DAFx 'Practical Modeling of Bucket-Brigade Device Circuits' and a Padua thesis by R. Simionato surfaced in search as possible sources of BBD-delay measurements but were NOT opened, and the Moog hardware manuals were not read for specification tables, so those leads remain UNKNOWN.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://zenodo.org/api/records?q=moogerfooger",
+    "doi": "",
+    "title": "Zenodo records search API",
+    "publisher": "Zenodo (CERN)",
+    "version": "2026-11-11",
+    "locator": "hits.total",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://api.github.com/search/repositories?q=moogerfooger",
+    "doi": "",
+    "title": "GitHub repository search for moogerfooger",
+    "publisher": "GitHub",
+    "version": "2026-11-11",
+    "locator": "total_count and items",
+    "accessed": "2026-11-11",
+    "tier": 2
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "measurements"
+ },
+ {
+  "claim": "MF-101 Lowpass Filter: 0 redistributable (CC0/CC BY/CC BY-SA) recordings found; 1 restrictive-but-personally-usable item (the TONE3000 drive-stage NAM capture, a model not a recording); 0 dry/wet pairs; coverage gaps: Freesound, Commons, SoundCloud and YouTube could not be searched or opened.",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.tone3000.com/tones/moogerfooger-mf-101-drive-47438",
+    "doi": "",
+    "title": "Moogerfooger MF-101 (Drive) NAM capture by grahamrausch",
+    "publisher": "TONE3000",
+    "version": "undated",
+    "locator": "capture page: description and T3K licence line",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://zenodo.org/api/records?q=moogerfooger",
+    "doi": "",
+    "title": "Zenodo records search API",
+    "publisher": "Zenodo (CERN)",
+    "version": "2026-11-11",
+    "locator": "hits.total",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "summary-MF-101"
+ },
+ {
+  "claim": "MF-102 Ring Modulator: 0 redistributable recordings; 4 restrictive CC BY-NC-SA music items on the Internet Archive that include an MF-102 in the chain (mysterybear garage drone; three Proyecto Interacciones items, Lucas Romeo), none with stated settings; 0 dry/wet pairs.",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://archive.org/details/mb00-GarageDronePlusRemixes",
+    "doi": "",
+    "title": "garage drone + remixes (mysterybear + friends)",
+    "publisher": "Internet Archive (uploader DaveSeidel)",
+    "version": "2011-02-19",
+    "locator": "Usage field; description; download options list",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://archive.org/details/proyectointeracciones-vol02",
+    "doi": "",
+    "title": "Proyecto Interacciones - Vol. 2 (2018)",
+    "publisher": "Internet Archive (Proyecto Interacciones)",
+    "version": "2018-10-23",
+    "locator": "Usage field; track 12 credits",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://archive.org/details/proyectointeraccionesinteraccionesvol03-2",
+    "doi": "",
+    "title": "Proyecto Interacciones Vol. 3 Programa 2 (2019)",
+    "publisher": "Internet Archive (Proyecto Interacciones)",
+    "version": "2019-07-14",
+    "locator": "Usage field; track 04 credits",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://archive.org/details/proyectointeraccionesremezclasversiones2020",
+    "doi": "",
+    "title": "Proyecto Interacciones - Remezclas + Versiones (2020)",
+    "publisher": "Internet Archive (Proyecto Interacciones)",
+    "version": "2020-02-29",
+    "locator": "Usage field; track 07 credits",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "summary-MF-102"
+ },
+ {
+  "claim": "MF-103 12-Stage Phaser: 0 redistributable and 0 verified restrictive recordings; the Bonedo clips and the Hainbach SoundCloud demo are unlicensed or unverified leads; 0 dry/wet pairs.",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.bonedo.de/artikel/moogerfooger-mf-103",
+    "doi": "",
+    "title": "Moogerfooger MF-103 test (nico.schnepf)",
+    "publisher": "Bonedo",
+    "version": "09.02.2011, modified 2022-10-16",
+    "locator": "Audio Samples sections; footer copyright",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "summary-MF-103"
+ },
+ {
+  "claim": "MF-104 / MF-104M Analog Delay: 0 redistributable recordings; 3 CC BY-NC-SA items (Proyecto Interacciones, MF104M) plus 2 CC BY-NC-ND items (Synthi Group Vol. 2 names MF-104; Vol. 3 names an unspecified Moogerfooger Analog Delay), none with stated settings; Sweetwater's ten official MF-104M examples are all rights reserved with no stated download; 0 dry/wet pairs.",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://archive.org/details/proyectointeracciones-vol02",
+    "doi": "",
+    "title": "Proyecto Interacciones - Vol. 2 (2018)",
+    "publisher": "Internet Archive (Proyecto Interacciones)",
+    "version": "2018-10-23",
+    "locator": "Usage field; track 12 credits",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://archive.org/details/proyectointeraccionesinteraccionesvol03-2",
+    "doi": "",
+    "title": "Proyecto Interacciones Vol. 3 Programa 2 (2019)",
+    "publisher": "Internet Archive (Proyecto Interacciones)",
+    "version": "2019-07-14",
+    "locator": "Usage field; track 04 credits",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://archive.org/details/proyectointeraccionesremezclasversiones2020",
+    "doi": "",
+    "title": "Proyecto Interacciones - Remezclas + Versiones (2020)",
+    "publisher": "Internet Archive (Proyecto Interacciones)",
+    "version": "2020-02-29",
+    "locator": "Usage field; track 07 credits",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://archive.org/details/ca345_tsg",
+    "doi": "",
+    "title": "Various - The Synthi Group Vol. 2 (ca345)",
+    "publisher": "Internet Archive (Various)",
+    "version": "2009-12-24",
+    "locator": "Usage field; track 18 device list",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://archive.org/details/ca412_tsg",
+    "doi": "",
+    "title": "Various - The Synthi Group Vol. 3 (ca412)",
+    "publisher": "Internet Archive (Clinical Archives)",
+    "version": "2010-12-03",
+    "locator": "Usage field; track 13 device list",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://www.sweetwater.com/insync/update-mf-104m-audio-examples/",
+    "doi": "",
+    "title": "MF-104M audio examples",
+    "publisher": "Sweetwater Sound",
+    "version": "page footer 2026",
+    "locator": "article body and footer copyright line",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 4,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "summary-MF-104"
+ },
+ {
+  "claim": "MF-105 / MF-105M MuRF: 0 redistributable and 0 verified restrictive recordings; leads (Moog SoundCloud MF-105S playlist, Ben Hovey MuRF EP, Croyote SoundCloud) have no stated licence or could not be opened; 0 dry/wet pairs.",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://software.moogmusic.com/store/mf-105s",
+    "doi": "",
+    "title": "MF-105S MuRF store page",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "demo section; footer terms links",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://cdm.link/create-analog-music-free-listening-free-techniques-from-patching-to-ipad-midi-murf-control-to-tunings/",
+    "doi": "",
+    "title": "CDM: free listening, MIDI MuRF EP",
+    "publisher": "CDM (cdm.link)",
+    "version": "undated",
+    "locator": "article body",
+    "accessed": "2026-11-11",
+    "tier": 4
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "summary-MF-105"
+ },
+ {
+  "claim": "MF-107 FreqBox: 0 redistributable and 0 restrictive recordings found; Sound On Sound's review has no audio; a 2008 Moog-forum post lists three MF-107 in a rig with no licence; 0 dry/wet pairs.",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.soundonsound.com/reviews/moog-mf107-freqbox",
+    "doi": "",
+    "title": "Moog MF107 FreqBox review (Paul Nagle)",
+    "publisher": "Sound On Sound (SOS Publications Group)",
+    "version": "November 2008",
+    "locator": "article page and copyright footer",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://forum.moogmusic.com/t/more-recordings-of-moogerfoogers/4039",
+    "doi": "",
+    "title": "more recordings of moogerfoogers (chris_allert)",
+    "publisher": "Moog Music forum",
+    "version": "2008-02-12",
+    "locator": "first post",
+    "accessed": "2026-11-11",
+    "tier": 4
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "summary-MF-107"
+ },
+ {
+  "claim": "MF-108M Cluster Flux: 0 redistributable and 0 restrictive recordings found; Sound On Sound's review has no audio; the CDM SoundCloud set was not openable; 0 dry/wet pairs.",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.soundonsound.com/reviews/moog-mf108m-cluster-flux",
+    "doi": "",
+    "title": "Moog MF108M Cluster Flux review (Paul Nagle)",
+    "publisher": "Sound On Sound (SOS Publications Group)",
+    "version": "June 2012",
+    "locator": "article page and copyright footer",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "summary-MF-108M"
+ },
+ {
+  "claim": "Across all seven pedals no dry/wet pair of recordings of genuine hardware with stated settings was found under any licence: of the open datasets checked (EGFxSet CC BY, IDMT-SMT-Audio-Effects CC BY-NC-ND, GUITAR-FX-DIST CC BY, black-box modelling samples CC BY, ToneTwist CC BY-NC), the real-hardware ones cover other pedals only, and the answer for redistributable Moogerfooger references is zero; this search was incomplete because the Freesound, Wikimedia Commons, SoundCloud and YouTube sources could not be reached.",
+  "kind": "bibliographic",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://zenodo.org/record/7044411",
+    "doi": "",
+    "title": "EGFxSet: Electric guitar tones processed through real effects of distortion, modulation, delay and reverb",
+    "publisher": "Zenodo (CERN) record by Pedroza, Meza, Roman",
+    "version": "v1.0, 2022-09-02, modified 2024-08-18",
+    "locator": "record page: licence field, effects list, file table",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://zenodo.org/api/records/7544032",
+    "doi": "",
+    "title": "IDMT-SMT-Audio-Effects Dataset (Zenodo API metadata)",
+    "publisher": "Zenodo (CERN) record by M. Stein, Fraunhofer IDMT",
+    "version": "published 2023-01-17",
+    "locator": "metadata.license and metadata.description",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://zenodo.org/record/4298017",
+    "doi": "",
+    "title": "GUITAR-FX-DIST (Poly Continuous)",
+    "publisher": "Zenodo record by M. Comunita, QMUL",
+    "version": "v1.0, 2020-11-30",
+    "locator": "record page: licence, contents",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://zenodo.org/record/3562442",
+    "doi": "10.5281/zenodo.3562442",
+    "title": "Deep Learning for Black-Box Modeling of Audio Effects (audio samples)",
+    "publisher": "Zenodo record by Martinez Ramirez, Benetos, Reiss",
+    "version": "2019-12-04",
+    "locator": "record page: licence, contents",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 4,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "overall-summary"
+ }
+]
