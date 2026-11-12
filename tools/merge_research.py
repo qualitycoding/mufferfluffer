@@ -3,7 +3,7 @@
 research/agents/*-sources.md into research/SOURCES.md. Run from the repository root."""
 import json, pathlib, re
 FAM = [("pedals-a", "C-PEDA", 1), ("pedals-b", "C-PEDB", 1), ("pedals-c", "C-PEDC", 1), ("dsp", "C-DSP", 1), ("legal", "C-LEGAL", 1),
-       ("references", "C-REF", 1), ("planner", "C-PLANNER", 1), ("round2", "C-R2", 2)]
+       ("references", "C-REF", 1), ("planner", "C-PLANNER", 1), ("round2", "C-R2", 2), ("round3", "C-R3", 3)]
 out = []
 for name, prefix, rnd in FAM:
     p = pathlib.Path(f"research/agents/{name}-claims.json")

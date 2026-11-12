@@ -9751,11 +9751,11 @@
    }
   ],
   "publisher_count": 2,
-  "status": "corroborated",
+  "status": "verified",
   "round": 1,
   "topic": "pins",
   "contradicted_by": [],
-  "spike": "",
+  "spike": "git ls-remote --tags, 2026-11-11",
   "verdict": "",
   "checks": "",
   "depends_on": []
@@ -9852,11 +9852,11 @@
    }
   ],
   "publisher_count": 2,
-  "status": "corroborated",
+  "status": "verified",
   "round": 1,
   "topic": "pins",
   "contradicted_by": [],
-  "spike": "",
+  "spike": "git ls-remote --tags, 2026-11-11",
   "verdict": "",
   "checks": "",
   "depends_on": []
@@ -9965,11 +9965,11 @@
    }
   ],
   "publisher_count": 2,
-  "status": "corroborated",
+  "status": "verified",
   "round": 1,
   "topic": "pins",
   "contradicted_by": [],
-  "spike": "",
+  "spike": "git ls-remote --tags, 2026-11-11",
   "verdict": "",
   "checks": "",
   "depends_on": []
@@ -10002,10 +10002,12 @@
    }
   ],
   "publisher_count": 2,
-  "status": "corroborated",
+  "status": "single-source",
   "round": 1,
   "topic": "ci",
-  "contradicted_by": [],
+  "contradicted_by": [
+   "Both sources are published by GitHub (one publisher); the labels are exercised for real by step S-001."
+  ],
   "spike": "",
   "verdict": "",
   "checks": "",
@@ -10039,10 +10041,12 @@
    }
   ],
   "publisher_count": 2,
-  "status": "corroborated",
+  "status": "single-source",
   "round": 1,
   "topic": "ci",
-  "contradicted_by": [],
+  "contradicted_by": [
+   "Both sources are published by GitHub (one publisher); the labels are exercised for real by step S-001."
+  ],
   "spike": "",
   "verdict": "",
   "checks": "",
@@ -11431,6 +11435,283 @@
   "spike": "",
   "verdict": "confirmed",
   "checks": "(40) Drive -7 to +28 dB",
+  "depends_on": []
+ },
+ {
+  "id": "C-R3-001",
+  "claim": "Figure 23 (Mids voicing): the manual's section on the MIDI MuRF's filters (p. 7) gives eight resonant filters centred at 200, 300, 450, 675, 1000, 1500, 2200 and 3400 Hz. Premier Guitar independently gives the 200 Hz to 3400 Hz span (endpoints only), and Sound on Sound lists the same eight centres for the original Bob Moog MuRF (a different product with the same filter set). Read via WebFetch text extraction of the PDF, not a visual page render.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://r2.gear4music.com/media/8/86064/download_86064_1.pdf",
+    "doi": "",
+    "title": "Moog MF-105M MIDI MuRF user manual (Gear4Music-hosted copy)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual PDF",
+    "locator": "p. 7, section 'The MIDI MuRF's Filters'",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.premierguitar.com/gear/moog-mf-105m-midi-murf-pedal-review",
+    "doi": "",
+    "title": "Moog MF-105M MIDI MuRF Pedal Review",
+    "publisher": "Premier Guitar",
+    "version": "undated web article",
+    "locator": "review body, filter description (endpoints 200 Hz and 3400 Hz only)",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/bob-moog-murf",
+    "doi": "",
+    "title": "Bob Moog MuRF review (original MuRF, not MIDI MuRF)",
+    "publisher": "Sound on Sound",
+    "version": "undated web article",
+    "locator": "review body, filter list",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 3,
+  "status": "corroborated",
+  "round": 3,
+  "topic": "midi-murf-filters-mids",
+  "contradicted_by": [],
+  "spike": "",
+  "verdict": "confirmed",
+  "checks": "Mids voicing filter centre frequencies 200, 300, 450, 675, 1000, 1500, 2200, 3400 Hz",
+  "depends_on": []
+ },
+ {
+  "id": "C-R3-002",
+  "claim": "Figure 24 (Bass voicing): the manual (p. 7, 'The MIDI MuRF's Filters') says the lowest filter is a 110 Hz low-pass and filters 2 to 8 are resonant at 160, 240, 350, 525, 775, 1200 and 1800 Hz. Premier Guitar independently confirms only the 110 Hz low-pass and the 160 to 1800 Hz span, not the intermediate values, so the five middle centres rest on the manual alone. Note the manual calls filters 2-8 'resonant' rather than literally 'band-pass'.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://r2.gear4music.com/media/8/86064/download_86064_1.pdf",
+    "doi": "",
+    "title": "Moog MF-105M MIDI MuRF user manual (Gear4Music-hosted copy)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual PDF",
+    "locator": "p. 7 (also referenced p. 6)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.premierguitar.com/gear/moog-mf-105m-midi-murf-pedal-review",
+    "doi": "",
+    "title": "Moog MF-105M MIDI MuRF Pedal Review",
+    "publisher": "Premier Guitar",
+    "version": "undated web article",
+    "locator": "review body, Bass mode description (110 Hz low-pass; 160 Hz to 1800 Hz span)",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "status": "single-source",
+  "round": 3,
+  "topic": "midi-murf-filters-bass",
+  "contradicted_by": [],
+  "spike": "",
+  "verdict": "confirmed",
+  "checks": "Bass voicing: a 110 Hz low-pass filter, then band-pass filters at 160, 240, 350, 525, 775, 1200, 1800 Hz",
+  "depends_on": []
+ },
+ {
+  "id": "C-R3-003",
+  "claim": "Figure 25 (patterns): the manual's animation section (p. 11, with the pattern drawings in Appendix A) says there are 24 patterns in two banks of 12, one bank for BASS and one for MIDS, and that patterns 1 and 13 are fixed without animation and cannot be edited. MusicRadar confirms 12 patterns per frequency type. Sound on Sound (original MuRF) says the first pattern of each of its two banks is static. Premier Guitar says '1 and 12' are fixed, which conflicts on the second number (and contradicts itself on the same page).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://r2.gear4music.com/media/8/86064/download_86064_1.pdf",
+    "doi": "",
+    "title": "Moog MF-105M MIDI MuRF user manual (Gear4Music-hosted copy)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual PDF",
+    "locator": "p. 11 'The MIDI MuRF's Animation'; Appendix A",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualmachine.com/moog/mf105m/2585789-user-manual",
+    "doi": "",
+    "title": "Moog MF-105M User Manual (manualmachine copy)",
+    "publisher": "Moog Music Inc. (hosted by manualmachine.com)",
+    "version": "undated manual",
+    "locator": "p. 11",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.musicradar.com/reviews/tech/moog-moogerfooger-midi-murf-225844",
+    "doi": "",
+    "title": "Moog Moogerfooger MIDI MuRF review",
+    "publisher": "MusicRadar",
+    "version": "undated web article",
+    "locator": "review body, Pattern selector description (12 per frequency type)",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/bob-moog-murf",
+    "doi": "",
+    "title": "Bob Moog MuRF review (original MuRF)",
+    "publisher": "Sound on Sound",
+    "version": "undated web article",
+    "locator": "review body, patterns/banks paragraph",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 4,
+  "status": "corroborated",
+  "round": 3,
+  "topic": "midi-murf-patterns",
+  "contradicted_by": [
+   "Premier Guitar (https://www.premierguitar.com/gear/moog-mf-105m-midi-murf-pedal-review) says patterns 1 and 12 are fixed and, elsewhere on the same page, that only pattern 1 lacks animation; the manual says 1 and 13. The magazine is the likelier to be in error. The manualmachine copy is the same Moog text, not an independent publisher."
+  ],
+  "spike": "",
+  "verdict": "confirmed",
+  "checks": "24 animation patterns in two banks of 12, with patterns 1 and 13 having no animation",
+  "depends_on": []
+ },
+ {
+  "id": "C-R3-004",
+  "claim": "Figure 26 (stereo): the manual section 'Using Both Audio Outputs Together' (pp. 14-15) says that with only LEFT/MONO connected all eight filters are summed to that jack, and that adding RIGHT sends odd-numbered filters to Left and even-numbered filters to Right. 'Audio Path' in Technical Information (p. 28) says that in bypass the dry signal appears only at LEFT/MONO and nothing at RIGHT. MusicRadar independently confirms the odd-left/even-right split; no non-Moog source was found for the mono-summing or bypass statements (Sound on Sound confirms the odd/even split for the original MuRF only).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://r2.gear4music.com/media/8/86064/download_86064_1.pdf",
+    "doi": "",
+    "title": "Moog MF-105M MIDI MuRF user manual (Gear4Music-hosted copy)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual PDF",
+    "locator": "pp. 14-15 'Using Both Audio Outputs Together'; p. 28 'Audio Path' (Technical Information)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.musicradar.com/reviews/tech/moog-moogerfooger-midi-murf-225844",
+    "doi": "",
+    "title": "Moog Moogerfooger MIDI MuRF review",
+    "publisher": "MusicRadar",
+    "version": "undated web article",
+    "locator": "review body, outputs paragraph (odd to left, even to right)",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/bob-moog-murf",
+    "doi": "",
+    "title": "Bob Moog MuRF review (original MuRF)",
+    "publisher": "Sound on Sound",
+    "version": "undated web article",
+    "locator": "review body, outputs paragraph",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 3,
+  "status": "corroborated",
+  "round": 3,
+  "topic": "midi-murf-stereo",
+  "contradicted_by": [],
+  "spike": "",
+  "verdict": "confirmed",
+  "checks": "stereo: odd-numbered filters go to the Left/Mono output and even-numbered filters to the Right output; with only Left/Mono connected all eight are summed there; in bypass the signal appears only at Left/Mono",
+  "depends_on": []
+ },
+ {
+  "id": "C-R3-005",
+  "claim": "Figure 29 (ENVELOPE): the manual (p. 12, Figure 11 on p. 13) says the control morphs the envelope shape and describes: 0 choppy because the decay is shortened; around 2 a sharp attack with a quick smooth decay (the basic setting); around 5 smooth and tremolo-like with equal attack and decay; around 6 swirly, with attack and decay long enough for filters to crossfade; around 8 'backwards', with a fast smooth attack and abrupt decay. The text read gave no description of the top (10) setting; the only mention of '10' is in the expression-pedal section (p. 15) and concerns pedal travel. Independent reviews describe the knob differently: MusicRadar puts even attack and decay at 12 o'clock, Premier Guitar puts sharp attack with smooth decay at 12 o'clock, and the Sound on Sound review (original MuRF) describes inverted blips at the far end, which may not apply to the MIDI MuRF.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://r2.gear4music.com/media/8/86064/download_86064_1.pdf",
+    "doi": "",
+    "title": "Moog MF-105M MIDI MuRF user manual (Gear4Music-hosted copy)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual PDF",
+    "locator": "p. 12 and Figure 11 p. 13; p. 15 expression pedal",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://lawnandgarden.manualsonline.com/manuals/mfg/moog/mf105m.html?p=12",
+    "doi": "",
+    "title": "Moog MF105M manual, page 12 (manualsonline copy)",
+    "publisher": "Moog Music Inc. (hosted by manualsonline.com)",
+    "version": "undated manual",
+    "locator": "p. 12 (same text for 0, 5, 6, 8; the extract also says 'runs from 0 to 8', which looks like a transcription of the settings listed rather than the dial range)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.musicradar.com/reviews/tech/moog-moogerfooger-midi-murf-225844",
+    "doi": "",
+    "title": "Moog Moogerfooger MIDI MuRF review",
+    "publisher": "MusicRadar",
+    "version": "undated web article",
+    "locator": "review body, Envelope paragraph",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "status": "corroborated",
+  "round": 3,
+  "topic": "midi-murf-envelope",
+  "contradicted_by": [
+   "Premier Guitar places a sharp attack with smooth decay at the 12 o'clock position, whereas MusicRadar says even attack and decay at 12 o'clock; the manual lists the sharp-attack shape at 2 and the equal shape at 5, which is closer to MusicRadar's description on the dial scale.",
+   "The manualsonline excerpt says the control runs from 0 to 8, whereas the Gear4Music copy implies a 0-10 scale via the expression-pedal text; treat the excerpt as incomplete."
+  ],
+  "spike": "",
+  "verdict": "confirmed",
+  "checks": "what the manual says the ENVELOPE control does at its settings (which shapes at the low end, around 2, at the middle, around 6, around 8 and at the top)",
+  "depends_on": []
+ },
+ {
+  "id": "C-R3-006",
+  "claim": "UNKNOWN: the range of the RATE control in free-running use (in Hz, BPM or steps per second) is not stated in the MF-105M manual text read (RATE is described on p. 11 only as setting pattern speed; tap tempo on p. 13 doubles the tapped rate for animation; under MIDI Clock sync pp. 20-21 RATE becomes a clock divider from four whole notes down to 1/64 note), nor in MusicRadar, Premier Guitar or Sound on Sound. The only Hz range found (0.08 to 20 Hz, p. 9) belongs to the LFO/Sweep input rate, not the RATE knob. The pattern editor manual was not read fully and might not state it either.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://r2.gear4music.com/media/8/86064/download_86064_1.pdf",
+    "doi": "",
+    "title": "Moog MF-105M MIDI MuRF user manual (Gear4Music-hosted copy)",
+    "publisher": "Moog Music Inc.",
+    "version": "undated manual PDF",
+    "locator": "pp. 9, 11, 13, 20-21",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.musicradar.com/reviews/tech/moog-moogerfooger-midi-murf-225844",
+    "doi": "",
+    "title": "Moog Moogerfooger MIDI MuRF review",
+    "publisher": "MusicRadar",
+    "version": "undated web article",
+    "locator": "review body, Rate paragraph (no range given)",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "status": "unverified",
+  "round": 3,
+  "topic": "midi-murf-rate",
+  "contradicted_by": [],
+  "spike": "",
+  "verdict": "not found",
+  "checks": "the range of the RATE control in free-running use (Hz, BPM or steps per second) if stated anywhere, in the manual or in a review",
   "depends_on": []
  }
 ]

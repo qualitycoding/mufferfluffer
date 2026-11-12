@@ -2,7 +2,8 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 //
 // Contract of the processor returned by createProcessor(id), with I = effectInfo(id):
-//  * getName() == I.name. No MIDI in or out. One program. hasEditor() == true. Single precision only.
+//  * getName() == I.name. No MIDI in or out. One program, whose name is "Default" (hosts and validators reject an
+//    empty program name). hasEditor() == true. Single precision only.
 //  * Buses: one input bus and one output bus. Supported layouts: mono->mono, mono->stereo, stereo->stereo.
 //    Every other layout is rejected by isBusesLayoutSupported().
 //  * Parameters: exactly I.numParams, in table order. Parameter k has ID I.params[k].id (version hint 1) and name

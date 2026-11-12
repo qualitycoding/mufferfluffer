@@ -1,0 +1,2 @@
+# No end-of-line conversion: the frozen-file manifest hashes bytes, so every platform must check out identical bytes.
+* -text

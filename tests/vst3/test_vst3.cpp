@@ -56,6 +56,7 @@ TEST_CASE ("T-851 the host parameters mirror the core tables", "[vst3]") {
         REQUIRE_FALSE (proc->acceptsMidi()); REQUIRE_FALSE (proc->producesMidi());
         REQUIRE (proc->hasEditor());
         REQUIRE (proc->getNumPrograms() == 1);
+        REQUIRE (proc->getProgramName (0) == juce::String ("Default"));
         REQUIRE_FALSE (proc->supportsDoublePrecisionProcessing());
         const auto& params = proc->getParameters();
         REQUIRE (params.size() == I.numParams);

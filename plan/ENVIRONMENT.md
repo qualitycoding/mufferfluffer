@@ -28,7 +28,7 @@ Runner labels (C-PLANNER-010, C-PLANNER-011): `ubuntu-24.04`, `ubuntu-22.04`, `u
 
 ## Linux packages
 - JUCE VST3 build and tests (Ubuntu 24.04; run `sudo apt-get update` first): `libasound2-dev libxrandr-dev libxinerama-dev libxcursor-dev libglu1-mesa-dev libxcomposite-dev libxi-dev libfreetype-dev libfontconfig1-dev libx11-dev libxext-dev libxrender-dev ninja-build xvfb`.
-- Rack plug-in build (Ubuntu): `build-essential git jq zip unzip curl`. Windows (MSYS2 MINGW64, via `msys2/setup-msys2` with `msystem: MINGW64`): `git make tar unzip zip mingw-w64-x86_64-gcc mingw-w64-x86_64-jq python zstd`. macOS: Xcode command-line tools of the runner image plus `brew install jq` if `jq` is absent.
+- Rack plug-in build (Ubuntu): `build-essential git jq zip unzip curl zstd` (`make dist` and `tools/check_rack_package.py` need the `zstd` command). Windows (MSYS2 MINGW64, via `msys2/setup-msys2` with `msystem: MINGW64`): `git make tar unzip zip mingw-w64-x86_64-gcc mingw-w64-x86_64-jq python zstd`. macOS: Xcode command-line tools of the runner image plus `brew install jq zstd` for whichever of `jq` and `zstd` is absent (print `which jq zstd` first).
 
 ## Commands (exact)
 ```

@@ -70,10 +70,10 @@
    }
   ],
   "publisher_count": 2,
-  "confidence": "corroborated",
+  "confidence": "verified",
   "contradicted_by": [],
   "topic": "pins",
-  "spike": ""
+  "spike": "git ls-remote --tags, 2026-11-11"
  },
  {
   "claim": "Rack v2.6.6 src/tag.cpp lists the module tags used by tests/py/test_repo.py, including 'Hardware clone', 'Filter', 'Ring modulator', 'Phaser', 'Delay', 'Sequencer', 'Oscillator', 'Chorus', 'Flanger' and 'Effect'.",
@@ -156,10 +156,10 @@
    }
   ],
   "publisher_count": 2,
-  "confidence": "corroborated",
+  "confidence": "verified",
   "contradicted_by": [],
   "topic": "pins",
-  "spike": ""
+  "spike": "git ls-remote --tags, 2026-11-11"
  },
  {
   "claim": "pluginval v1.0.4 release archives: pluginval_Linux.zip sha256 c01c49d8063965c4c2dea8324468336768f5c9139e0b1caebde14c2400b55352; pluginval_macOS.zip 3c4c533bda0c5059eea3ddaea752d757ee2025041f0f47e6bcb0e87f6082b29f; pluginval_Windows.zip c08e61ce3b96db41636f8ec7e76f4c7e2c13ebdac7fa1b5a1f52b4f32ec715ab.",
@@ -254,10 +254,10 @@
    }
   ],
   "publisher_count": 2,
-  "confidence": "corroborated",
+  "confidence": "verified",
   "contradicted_by": [],
   "topic": "pins",
-  "spike": ""
+  "spike": "git ls-remote --tags, 2026-11-11"
  },
  {
   "claim": "GitHub-hosted runner labels that exist for public repositories: ubuntu-24.04, ubuntu-22.04 (x64, 4 vCPU), ubuntu-24.04-arm (arm64), windows-2022 and windows-2025 (x64), macos-15 (arm64, 3 cores), macos-15-intel (x64).",
@@ -286,8 +286,10 @@
    }
   ],
   "publisher_count": 2,
-  "confidence": "corroborated",
-  "contradicted_by": [],
+  "confidence": "single-source",
+  "contradicted_by": [
+   "Both sources are published by GitHub (one publisher); the labels are exercised for real by step S-001."
+  ],
   "topic": "ci",
   "spike": ""
  },
@@ -318,8 +320,10 @@
    }
   ],
   "publisher_count": 2,
-  "confidence": "corroborated",
-  "contradicted_by": [],
+  "confidence": "single-source",
+  "contradicted_by": [
+   "Both sources are published by GitHub (one publisher); the labels are exercised for real by step S-001."
+  ],
   "topic": "ci",
   "spike": ""
  },
