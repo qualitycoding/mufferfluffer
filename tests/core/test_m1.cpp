@@ -162,6 +162,19 @@ namespace {
 float ringKnobFor (double hz) { return (float) (std::log (hz / 30.0) / std::log (4000.0 / 30.0)); }   // Hi range
 }
 
+TEST_CASE ("T-110 Lowpass 2-pole mode keeps the four-stage resonance loop", "[lowpass][m1]") {
+    // D-020: the 2-pole output is a tap of the same ladder, so it self-oscillates at the same frequency as the 4-pole output
+    for (double fc : { 300.0, 1000.0 }) {
+        ts::Rig r (EffectId::Lowpass, kFs);
+        INFO ("cutoff " << fc);
+        r.set ("poles", 0.0f); r.set ("cutoff", (float) fc); r.set ("resonance", 10.0f); r.set ("mix", 1.0f); r.fx->reset();
+        const long n = r.samples (3.0);
+        const auto y = r.run (n)[0];
+        REQUIRE (ts::peak (y, r.samples (2.5), n) > 0.05);
+        REQUIRE (ts::zcFreq (y, r.samples (2.5), n, kFs) == Approx (fc).epsilon (0.02));
+    }
+}
+
 TEST_CASE ("T-201 RingMod produces only sum and difference frequencies", "[ringmod][m1]") {
     ts::Rig r (EffectId::RingMod, kFs);
     r.set ("range", 1.0f); r.set ("frequency", ringKnobFor (100.0)); r.set ("lfo_amount", 0.0f); r.set ("mix", 1.0f); r.fx->reset();
@@ -326,12 +339,17 @@ TEST_CASE ("T-304 Phaser LFO: triangle, Lo 0.01-2.5 Hz, Hi 1-250 Hz, LFO Out +/-
         r.set ("lfo_range", c.range); r.set ("lfo_rate", c.knob); r.set ("lfo_amount", 0.0f); r.fx->reset();
         const long n = r.samples (2.0);
         const auto l = r.run (n)[(size_t) r.out ("lfo_out")];
-        // a triangle of amplitude A and frequency f moves 4*A*f per second: measure the mean absolute slope
-        double travel = 0.0;
-        for (long i = 801; i < n; ++i) travel += std::fabs (l[(size_t) i] - l[(size_t) (i - 1)]);
-        REQUIRE (travel / ((double) (n - 801) / fs) == Approx (4.0 * 0.56 * c.hz).epsilon (0.02));
+        if (c.hz >= 100.0) {
+            // few samples per cycle: a slope measure would depend on where the samples fall on the triangle, so count cycles instead
+            REQUIRE (ts::zcFreq (l, 801, n, fs) == Approx (c.hz).epsilon (0.02));
+        } else {
+            // a triangle of amplitude A and frequency f moves 4*A*f per second: measure the mean absolute slope
+            double travel = 0.0;
+            for (long i = 801; i < n; ++i) travel += std::fabs (l[(size_t) i] - l[(size_t) (i - 1)]);
+            REQUIRE (travel / ((double) (n - 801) / fs) == Approx (4.0 * 0.56 * c.hz).epsilon (0.02));
+        }
         REQUIRE (ts::peak (l, 0, n) <= 0.56 * 1.001);
-        if (c.hz >= 1.0) REQUIRE (ts::peak (l, 0, n) == Approx (0.56).epsilon (0.02));
+        if (c.hz >= 1.0) REQUIRE (ts::peak (l, 0, n) == Approx (0.56).epsilon (c.hz >= 100.0 ? 0.07 : 0.02));   // 32 samples per cycle can miss the apex by 1/16
     }
 }
 

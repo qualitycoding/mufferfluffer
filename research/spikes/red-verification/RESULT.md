@@ -42,3 +42,14 @@ The adversarial review (`research/rounds/R5-adversarial.md`) led to changes in d
 
 Oscillator aliasing measured on the oracle (strongest alias between 200 Hz and 6 kHz relative to the strongest of the first 20 harmonics, 48 kHz): without sync -61 to -76 dB; with sub-sample-timed sync -66 to -74 dB, except the synced 10 % pulse at 1333 Hz: -46.5 dB; with sync quantised to the sample grid (the first oracle): -30 to -37 dB.
 The numbers in the earlier sections of this file describe the first freeze candidate (77 tests) and are kept as the record of what was run then.
+
+## Re-freeze after pre-mortem round 1 (2026-11-12)
+Tests added: T-110 (Lowpass 2-pole self-oscillation), T-410 (Delay repeats darken), T-708 (Chorus repeats darken). Test amended: T-304 (the 250 Hz case now counts cycles; its slope measure failed for a rate 0.02 % off although the stated tolerance is 2 %).
+
+| Build | Result |
+|---|---|
+| Oracle, Release | "All tests passed (299451 assertions in 83 test cases)" |
+| Oracle, AddressSanitizer + UndefinedBehaviourSanitizer | "All tests passed (299444 assertions in 82 test cases)" |
+| Oracle, Rack compiler flags | "All tests passed (299451 assertions in 83 test cases)" |
+| Stubs | "test cases: 83 | 83 failed" |
+| Mutant of the oracle whose Delay and Chorus loops feed back the unfiltered line read | "test cases: 83 | 81 passed | 2 failed": exactly T-410 and T-708 fail (measured low-minus-high step 0.03 dB and 0.00 dB against the required 1.8 dB) |

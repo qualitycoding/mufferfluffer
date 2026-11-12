@@ -5,7 +5,7 @@
 | SC | Statement (short) | Tests | Decisions | Steps | Result (filled by S-FINAL) |
 |---|---|---|---|---|---|
 | SC-1 | Seven effects with exactly the tabled parameters and ports | T-001, T-002, T-003, T-004, T-015, T-851, T-904, T-907 | D-011, D-020..D-026 | S-010..S-018, S-020 | |
-| SC-2 | Behaviour within tolerance of the specification | T-010, T-012..T-014, T-017, T-020..T-024, T-101..T-109, T-201..T-206, T-301..T-307, T-401..T-409, T-501..T-507, T-601..T-607, T-701..T-707 | D-012..D-037 | S-010..S-018 | |
+| SC-2 | Behaviour within tolerance of the specification | T-010, T-012..T-014, T-017, T-020..T-024, T-101..T-110, T-201..T-206, T-301..T-307, T-401..T-410, T-501..T-507, T-601..T-607, T-701..T-708 | D-012..D-037 | S-010..S-018 | |
 | SC-3 | Seven VST3 plug-ins build on four platforms and pass pluginval | T-851, T-854, T-CI-PLUGINVAL, T-905 | D-005, D-007, D-016 | S-020, S-021 | |
 | SC-4 | Rack plug-in with seven modules builds on four platforms; manifest and panels valid | T-902, T-903, T-CI-RACKPKG, T-905 | D-003, D-006 | S-030..S-033 | |
 | SC-5 | VST3 path and Rack path give the same audio (difference at most 1e-6) | T-016, T-801, T-802, T-811, T-812, T-821, T-852 | D-013, D-016 | S-018, S-020 | |
@@ -42,6 +42,7 @@ Categories required by the protocol and where they are met: unit (core behaviour
 | T-306 | Phaser Sweep In moves the second six stages in 12-stage mode only | unit (behaviour) | SC-2 | D-022, D-032 | S-013 |
 | T-108 | Drive spans -7 dB to +28 dB into a soft limiter | unit (behaviour) | SC-2 | D-020, D-030 | S-011 |
 | T-109 | Lowpass: self-oscillation fades out above 16 kHz instead of whistling at the limit | unit (behaviour) | SC-2 | D-020, D-030 | S-011 |
+| T-110 | Lowpass 2-pole mode keeps the four-stage resonance loop (self-oscillates at the cutoff) | unit (behaviour) | SC-2 | D-020, D-027 | S-011 |
 | T-101 | Lowpass 4-pole response without resonance | unit (behaviour) | SC-2 | D-020, D-030 | S-011 |
 | T-502 | FilterBank stereo split: odd filters left, even filters right; sliders | unit (behaviour) | SC-2 | D-024, D-034, D-014 | S-016 |
 | T-507 | FilterBank LFO/Sweep shifts all centre frequencies by up to half an | unit (behaviour) | SC-2 | D-024, D-034, D-014 | S-016 |
@@ -63,6 +64,7 @@ Categories required by the protocol and where they are met: unit (core behaviour
 | T-701 | Chorus delay ranges: Flange 0.6-10 ms, Chorus 5-50 ms | unit (behaviour) | SC-2 | D-026, D-036, D-014 | S-015 |
 | T-302 | Phaser Aux Out has peaks where Audio Out has dips | unit (behaviour) | SC-2 | D-022, D-032 | S-013 |
 | T-707 | Chorus feedback insert and wet bandwidth | unit (behaviour) | SC-2 | D-026, D-036, D-014 | S-015 |
+| T-708 | Chorus repeats darken: the loop passes through the wet filter | unit (behaviour) | SC-2 | D-026, D-036 | S-015 |
 | T-602 | OscBox Frequency CV is 1 V per octave and reaches up to 20 kHz | unit (behaviour) | SC-2 | D-025, D-035 | S-017 |
 | T-402 | Delay Feedback: loop gain is feedback / 8 | unit (behaviour) | SC-2 | D-023, D-033, D-014 | S-014 |
 | T-812 | RackBridge connection rules and bad voltages | integration (host adaptor) | SC-5, SC-7 | D-012, D-013 | S-018 |
@@ -80,6 +82,7 @@ Categories required by the protocol and where they are met: unit (core behaviour
 | T-004 | parameters start at defaults, clamp, round and ignore bad values | unit | SC-1, SC-7 | D-011, D-012 | S-018 |
 | T-408 | Delay feedback insert, Delay Out and Mix | unit (behaviour) | SC-2 | D-023, D-033, D-014 | S-014 |
 | T-409 | Delay: shortening the time replays the stored signal faster, for one new delay time | unit (behaviour) | SC-2 | D-023, D-033 | S-014 |
+| T-410 | Delay repeats darken: the loop passes through the wet filter | unit (behaviour) | SC-2 | D-023 | S-014 |
 | T-704 | Chorus self-oscillates from |Feedback| 0.8 and decays below it | unit (behaviour) | SC-2 | D-026, D-036, D-014 | S-015 |
 | T-018 | behaviour is the same at 44.1 kHz and 192 kHz | integration (sample rates) | SC-7 | D-012, D-030, D-033 | S-018 |
 | T-023 | filterBankEnvelopeTimes interpolates the frozen table | unit | SC-2 | D-014, D-015, D-024, D-037 | S-010 |

@@ -1,7 +1,7 @@
 {
  "run_id": "gen-20261111T151412Z-mufferfluffer-vst-vcv",
  "branch": "gen-20261111T151412Z-mufferfluffer-vst-vcv",
- "sequence": 10,
+ "sequence": 11,
  "profiles": [
   "software"
  ],
@@ -96,7 +96,7 @@
  "artifacts": {
   ".gitattributes": "1dd5d959f6445f5085c3e24ea4abaac258cd0c76dd99b8c7ed1753835c104529",
   "CMakeLists.txt": "bb4d114b438d1ecf7f3548bccf8fecfa01f96c083240fa319d0ac3bf02fa0b87",
-  "HANDOFF.md": "f2064811e5d7c2b7db9ffd7a8e62fc19ab58e938a7abf4e617f7edb575fecf22",
+  "HANDOFF.md": "1194151a529141404f7c564b18a2cb6329ac9467de4425930c080675360970ab",
   "LICENSE": "d8a6cc31abc16b6748c7a21f21611f5a1ec33f67d22ca23d7da1c19b95496bee",
   "README.md": "32d78965f7f595101da9c59874f31406f9860d084e725576858483e30b86a5aa",
   "adapters/include/muff/adapters.hpp": "6a5d180193097a06f41bfbbf80faf4dbd9fe93803c2c02729ef72654c29159a4",
@@ -484,15 +484,16 @@
   "lessons/L-20261112T120500Z-dispatch-and-schedule-triggers-planned-for-a-non-default-branch.md": "7297e09403d5ded55407438e1fd336b7f1483c6d0c5acf184d6892bcd5c10729",
   "lessons/L-20261112T121000Z-planner-claims-labelled-corroborated-on-one-publisher.md": "dbb31edfb28810a207eb36eca1f0eec8ac17ef8d5d4abd547b2304d5e119e129",
   "lessons/L-20261112T121500Z-sub-agent-research-lost-to-rate-limits.md": "3f40be6b109ce97140bc09d6c1fd12cd0b3f37558c41fa88f8ac7d04a16ec7d3",
+  "lessons/L-20261112T205000Z-test-estimator-tighter-than-its-stated-tolerance.md": "e98a69eed5b4a591cb5a72a362d4c72c24fd1128e3c4ad87c92da5b2aa903e2c",
   "plan/ASSUMPTIONS.md": "cff8fe0c945eec237b2a65cc5ed3df48143457658ee3f5f5bbf7e7e71b08acde",
-  "plan/DECISIONS.md": "f26fc6ef11ce87ccb19b715aaf7162eee2ef03bc0ad5aaa55b0a6451551e5699",
+  "plan/DECISIONS.md": "35fca69d962b72ce29771cd10aa19f71935ff640a3b459e0ce24a938704fc45f",
   "plan/ENVIRONMENT.md": "f2ebbb53736f9d341bcaf204fb75b8a13621c4234b37a49b5af99ddd12341760",
   "plan/GATES.md": "39c5398dda6e995a648c65e3f32a5013699fe6215ae4b82005c0dafa3c33c184",
-  "plan/PLAN.md": "a50e1b7ebf8d4a0cac026d2187160bf08af15dc77aadcc3cf464489644da47cf",
+  "plan/PLAN.md": "136bf702a0ce9d6bc3a5310a71de56d6e8b1a8f7908a4ec9563a7e1f23e0d18d",
   "plan/PROFILE.md": "3bf92769d77ec71c0a29db4078840405255310cb2efc7b0149141c6c939fbe0f",
-  "plan/RISKS.md": "c761b08e0e1f296682cabed30ddb33819d8b900426d8f6b1045d795250ad51c5",
+  "plan/RISKS.md": "379b64a91e6369da451aa1c01a1306817ee2a0048fc9d0ae044f86e9816e344b",
   "plan/SOURCE_REGISTER.md": "ed603cc9cc892da8dca70e8cbcd33bba1bdd721a59982634e67d8c8f4842bcf0",
-  "plan/TRACEABILITY.md": "5986a6d95a92985ac04cd4a7a64b1cd1e3901844e4c79c23a42af035ea006652",
+  "plan/TRACEABILITY.md": "8e3ea262f4ea26ed2d246589f0e64948fcc7221e90cbde28d1b443ec9c64b073",
   "plan/protocol/LICENSE-Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
   "plan/protocol/README.md": "1790711e0b200ed255684fe342b9ff106fcf2a7c1c9570318fed321ed9c7a697",
   "plan/protocol/planning-protocol.md": "7780c3d1a1a77b58a40aa7f32d2c5a213dfa76e94eb44ca9470801ba23caf5b3",
@@ -507,7 +508,9 @@
   "plan/protocol/skills/mutation-testing-in-ci/scripts/mull_include_paths.py": "11390259eb4b635ff278b8a56b0ddaa63cc12cc458351dc9e04b4b4f07fe448a",
   "plan/protocol/skills/mutation-testing-in-ci/scripts/mull_score.py": "7c2ebd26677381a20de30f3e4a3b8c39d69f3c91e63b38c7e5abd0bb8db3d59f",
   "premortem/README.md": "5a74c3c10ebab6d27b41f723b39db3304809ac3ada290008fedd5ec9fb533408",
-  "research/PRIOR_KNOWLEDGE.md": "78ae67ec663485efa715dac71fe286de2c66798b6000cbc99a79d24038d8e8a0",
+  "premortem/RISK_REGISTER.md": "5a514b4b0e7f3c3387748f863c59a7adbe215aff6825fc3263087e4dab7fff1e",
+  "premortem/round-1.md": "3619186a38aae2b7c375b5ba5fd13a77a46f2e179d7c12d9377bfe411f980c15",
+  "research/PRIOR_KNOWLEDGE.md": "7b63dc7d8a2002ac2d2874593993567f9c6d9b1859d6a3f5d09c9cc96d994f42",
   "research/QUESTIONS.md": "ca0d95227d7e5c6e20c07f4ab2f617734d3668a5c1dcb90043fb65b7d5e5df08",
   "research/SOURCES.md": "c398a457c67017d2c60f102888a4c86f974c51c8c18ce8498d3209903f38c665",
   "research/agents/dsp-claims.json": "50df2664b38c4887f203faa12d7a2f85ae769d01e209fb72a3b4d96c1ff269d7",
@@ -540,18 +543,18 @@
   "research/spikes/oracle/oracle_core.cpp": "2aa22295082f85de342de448d75078cf75fb6d3f2f73a4f73e91bf425abd1263",
   "research/spikes/oracle_repo/make_tree.py": "24fb4aa8651e9c7baf14306e99c806ddfe8b536f556c84b9afbd5cad443341ae",
   "research/spikes/oracle_vst3/processor.cpp": "5fe6dac5bf54a153e513ccf4f9485280d024a4125c69c64c517f443cd9fcaceb",
-  "research/spikes/red-verification/RESULT.md": "7a89cadd2589b75d6eed75b2e3ab0eb9e6ebff632f632034516abdfe0357464d",
+  "research/spikes/red-verification/RESULT.md": "6ec586156fb7239322d29961d3cdd85352d76e4e6bee4935cd4455769efc4ecc",
   "research/tools/make_knowledge.py": "896030c3d61624c6ed316e03a6afefbb4d39369391e2f0d83809e82c49a47c31",
   "research/tools/make_source_register_item.py": "18e983570b6a0b0d2a70d494331389534b74c704bd6e28620eb493a680b4c1c3",
   "research/tools/merge_research.py": "d504519ed9b4fad32ad10d82489ea4ddd1e98848a506abd6c2c31122956db3bd",
   "reviews/COLD_READ.md": "89aab9c9909494e9f3daa0e55e8a93ed5f98a5d75bd2e8840fd63e2970da10ce",
   "tests/CMakeLists.txt": "47317a9d5c724836a8a0fd0906254a72b96e02f04c53654c63f65142b1cdcf67",
-  "tests/FROZEN_MANIFEST.sha256": "58c01d3c320057226e781340ebadbb5bad195b54a16ae124d38a60e773c99588",
+  "tests/FROZEN_MANIFEST.sha256": "3fa81f2837316a9e72d7a166eae8df5a7387a0897088e48f571e10570e01f84b",
   "tests/core/expected_effects.inc": "8fb8bd0e3360bb858b3e1d7370a6569b89922f61cbf018731dd3230b33f98f8b",
   "tests/core/test_adapters.cpp": "612615aa2cd1f98b36db3a57be7f5d940645325621cdb06ed6619407ccb892ab",
   "tests/core/test_common.cpp": "21bcccca85b3a0f2f96b8028cc95416df809935bf49d1518f5f409e428065f65",
-  "tests/core/test_m1.cpp": "2f1226538406e72abdbf7af638f576bb46d134dced426b7b69d9ed4ccfc84716",
-  "tests/core/test_m2.cpp": "8c819e0f3659d016bc630ddda51d7676dee1baeb23da3b53a693125650dc1dd8",
+  "tests/core/test_m1.cpp": "fd1130385c0dc934c3da9bcfefbaaa8f23f323cc00ce757b8a981d5fb0257847",
+  "tests/core/test_m2.cpp": "b4ddc2724b7d75e825794df203adb7553862d2e7123d04d6bc1a6845f559a0c7",
   "tests/core/test_m3.cpp": "819fd2c4eacdddf4076ed91486798c900ccc865152500bbae533d2125d240c9a",
   "tests/core/test_support.hpp": "10fc8cb6e13f647c52ed5c9b05e2380857aaf628a6a278038427ec4cc2152d5e",
   "tests/fixtures/effects.json": "d2d38c9b7235b6fa465e2665a2a347b78822b48394c32b1b9cac7b8a0279a4f7",
@@ -568,7 +571,7 @@
   "vst3/src/stubs.cpp": "0da43f067c134ece5dc3b0ba2790774fd1e58e308096085324fdc731510798e8"
  },
  "execution_context": {
-  "current_objective": "Cold-read gate passed at pass 4 (92, 8, 8, 0 items); pre-mortem round 1 starting",
+  "current_objective": "Pre-mortem round 1: 0 Critical, 2 High fixed; tests T-110, T-410, T-708 added, T-304 amended, re-frozen (83 core cases); cold read of changes and round 2 pending",
   "call_stack": [
    "Phase 1"
   ],
@@ -576,7 +579,7 @@
    "phase": "4",
    "subphase": "4.1",
    "item_index": 0,
-   "sub_action": "Cold-read gate passed at pass 4 (92, 8, 8, 0 items); pre-mortem round 1 starting",
+   "sub_action": "Pre-mortem round 1: 0 Critical, 2 High fixed; tests T-110, T-410, T-708 added, T-304 amended, re-frozen (83 core cases); cold read of changes and round 2 pending",
    "retry_count": 0
   },
   "scratchpad": "",
@@ -771,7 +774,8 @@
   "L-20261111T201500Z-draft-test-read-past-its-buffer-found-by-sanitizer",
   "L-20261112T120500Z-dispatch-and-schedule-triggers-planned-for-a-non-default-branch",
   "L-20261112T121000Z-planner-claims-labelled-corroborated-on-one-publisher",
-  "L-20261112T121500Z-sub-agent-research-lost-to-rate-limits"
+  "L-20261112T121500Z-sub-agent-research-lost-to-rate-limits",
+  "L-20261112T205000Z-test-estimator-tighter-than-its-stated-tolerance"
  ],
  "knowledge_added": [
   "K-20261112T120000Z-c-dsp-001",
@@ -1147,5 +1151,5 @@
   "K-20261112T120000Z-c-ref-035",
   "K-20261112T130000Z-source-register-mufferfluffer"
  ],
- "updated_at": "2026-11-12T19:43:27Z"
+ "updated_at": "2026-11-12T20:17:35Z"
 }

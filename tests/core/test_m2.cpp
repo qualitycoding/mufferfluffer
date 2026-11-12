@@ -181,6 +181,24 @@ TEST_CASE ("T-409 Delay: shortening the time replays the stored signal faster, f
 
 // ============================================================ Chorus
 
+TEST_CASE ("T-410 Delay repeats darken: the loop passes through the wet filter", "[delay][m2]") {
+    // Long range filters the wet signal at 1.7 kHz (two poles) and feeds the filtered signal back (D-023),
+    // so each repeat loses about 3 dB more at 1.7 kHz than at 300 Hz.
+    auto step = [] (double f) {
+        ts::Rig r (EffectId::Delay, kFs);
+        r.set ("range", 1.0f); r.set ("time", 0.5f); r.set ("feedback", 6.0f); r.set ("lfo_amount", 0.0f); r.set ("mix", 1.0f); r.fx->reset();
+        const long d = r.samples (0.08 * std::sqrt (10.0)), len = r.samples (0.04);
+        const auto y = r.run (4 * d, { { 0, ts::burst (f, kFs, 0.05, 0, len) } })[(size_t) r.out ("delay_out")];
+        const double e1 = ts::rms (y, d, d + len), e2 = ts::rms (y, 2 * d, 2 * d + len);
+        REQUIRE (e1 > 0.005);
+        return ts::dB (e2 / e1);
+    };
+    const double low = step (300.0), high = step (1700.0);
+    REQUIRE (low == Approx (ts::dB (0.75)).margin (1.0));
+    REQUIRE (low - high > 1.8);
+    REQUIRE (low - high < 4.5);
+}
+
 TEST_CASE ("T-701 Chorus delay ranges: Flange 0.6-10 ms, Chorus 5-50 ms", "[chorus][m2]") {
     const double fs = 192000.0;
     struct Case { float range, knob; double seconds; };
@@ -313,4 +331,21 @@ TEST_CASE ("T-707 Chorus feedback insert and wet bandwidth", "[chorus][m2]") {
     REQUIRE (gain (500.0) == Approx (0.0).margin (0.3));
     REQUIRE (gain (4000.0) == Approx (-3.0).margin (1.0));
     REQUIRE (gain (8000.0) == Approx (-12.3).margin (2.5));
+}
+
+TEST_CASE ("T-708 Chorus repeats darken: the loop passes through the wet filter", "[chorus][m2]") {
+    // Chorus range at the longest time: 50 ms, wet filter at 4 kHz (D-026, D-036); feedback 0.6 gives loop gain 0.75
+    auto step = [] (double f) {
+        ts::Rig r (EffectId::Chorus, 96000.0);
+        r.set ("range", 1.0f); r.set ("time", 1.0f); r.set ("feedback", 0.6f); r.set ("lfo_amount", 0.0f); r.fx->reset();
+        const long d = r.samples (0.05), len = r.samples (0.03);
+        const auto y = r.run (4 * d, { { 0, ts::burst (f, 96000.0, 0.05, 0, len) } })[(size_t) r.out ("fb_send")];
+        const double e1 = ts::rms (y, d, d + len), e2 = ts::rms (y, 2 * d, 2 * d + len);
+        REQUIRE (e1 > 0.005);
+        return ts::dB (e2 / e1);
+    };
+    const double low = step (500.0), high = step (4000.0);
+    REQUIRE (low == Approx (ts::dB (0.75)).margin (1.0));
+    REQUIRE (low - high > 1.8);
+    REQUIRE (low - high < 4.5);
 }
