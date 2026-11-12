@@ -528,5 +528,39 @@
   "contradicted_by": [],
   "topic": "performance",
   "spike": ""
+ },
+ {
+  "claim": "The OSV API accepts a query by commit: POST https://api.osv.dev/v1/query with body {\"commit\": \"<40-hex sha>\"} returns a JSON object whose 'vulns' list holds matching records; an empty result means none known.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://google.github.io/osv.dev/post-v1-query",
+    "doi": "",
+    "title": "POST /v1/query",
+    "publisher": "OSV (Google)",
+    "version": "2026-11-12",
+    "locator": "section 'Request samples', commit example",
+    "accessed": "2026-11-12",
+    "tier": 1
+   },
+   {
+    "url": "https://oneuptime.com/blog/post/2026-07-23-query-osv-api/view",
+    "doi": "",
+    "title": "How to Query the OSV.dev API for One Package or an Entire Dependency Set",
+    "publisher": "OneUptime",
+    "version": "2026-07-23",
+    "locator": "section on commit queries",
+    "accessed": "2026-11-12",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [
+   "api.osv.dev is not reachable from the planning sandbox (CONNECT 403), so the request was not executed in this run."
+  ],
+  "topic": "deps-scan",
+  "spike": ""
  }
 ]
