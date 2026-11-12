@@ -2,7 +2,7 @@
 
 Gates are pre-planned so the implementer never improvises a question. While halted at a gate the implementer may continue any step that does not depend on its outcome, but never an external or irreversible action. Each gate is a file `GATE-<id>.md` committed and pushed; the owner's answer is recorded verbatim under the heading `## Answer` in `GATE-<id>.RESPONSE.md`, and facts that follow from it (run URLs, checksums) under `## Record`. How the question reaches the owner, how the answer comes back and what "no response" means: `HANDOFF.md` section 9.2. Gate files are scanned by T-901: they name effects by this project's names and never name the manufacturer, its product family or a model code (cite D-004 and R-013 by id instead).
 
-G-001 (headline-result gate of the `math`/`computational` profiles) is not applicable to this plan.
+The protocol's headline-result gate (numbered 001 there, for the `math` and `computational` profiles) does not apply to this plan and is not defined here; the gates of this plan are G-002, G-LISTEN and G-003.
 
 ## G-002 Publication of built binaries
 - Trigger step: S-040.
@@ -38,7 +38,7 @@ G-001 (headline-result gate of the `math`/`computational` profiles) is not appli
 
 ## G-003 Lessons and knowledge push
 - Trigger step: S-KNOW.
-- Evidence bundle in `GATE-G-003.md`: the list of lessons and knowledge items to push (id, title, tags), with the source register (`plan/SOURCE_REGISTER.md`) named on its own line together with its number of sources and the number of rows whose licence is `unknown` or `none stated`; the proposed targets: lessons to `qualitycoding/Lessons`, knowledge to `qualitycoding/knowledge` (A-012).
+- Evidence bundle in `GATE-G-003.md`: the list of lessons and knowledge items to push (id, title, tags), with the source register (knowledge item `K-20261112T130000Z-source-register-mufferfluffer`, generated from `plan/SOURCE_REGISTER.md`) named on its own line together with its number of sources and the number of rows whose licence is `unknown` or `none stated`; the proposed targets: lessons to `qualitycoding/Lessons`, knowledge to `qualitycoding/knowledge` (A-012).
 - Question: "Push these lessons and knowledge items to the proposed stores?"
 - Allowed responses: `push-to-proposed`; `push-to: <lesson-target> [knowledge-target]`; `do-not-push`.
 - Branches: as section 3.7.2 of `plan/protocol/planning-protocol.md` (push, retry up to three times per store, bundle fallback). The two bundles are written when the step halts, so they exist whether or not an answer comes; no response: report their paths (`HANDOFF.md` section 9.2).

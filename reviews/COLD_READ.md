@@ -4,7 +4,8 @@ Each pass used two new agents with no knowledge of the planning conversation, gi
 
 | Pass | Commit read | Dry-run items | Mechanical failures | Resolution |
 |---|---|---|---|---|
-| 1 | `4e4aab9` | 92 | 4 | All amended in the commit after this one's parent (see below). |
+| 1 | `4e4aab9` | 92 | 4 | All amended in commit `3f32f27` (see below). |
+| 2 | `02dc5ef` | 8 | 2 (neither a defect: a gate id mentioned only as not applicable; American spellings only inside verbatim source titles) | All amended (see below). |
 
 ## Pass 1: what the items were and what changed
 - Protocol and skills were cited but not on the branch (items 1 to 5): copied to `plan/protocol/` with their source commit; `premortem/` and `reviews/` now exist; "Lessons applied" lines cite lesson ids, not row names that did not exist.
@@ -15,3 +16,14 @@ Each pass used two new agents with no knowledge of the planning conversation, gi
 - Under-specified work (19, 20, 22 to 26, 28 to 32, 40, 44 to 57, 59 to 62, 64 to 73, 75, 77, 79 to 83, 85 to 91): container shell; literal `deps.lock.json`; per-platform command lines; pattern-table accessors; effect registration; tail-time bounds that hold; the delay line's owner; the editor before S-021; Rack SDK recording without hand-typed hashes; a complete panel layout rule; module descriptions and the template design; the licence file in the Rack package; the advisory tool's options; README and user-guide wording; review briefs and pin-currency method; thread-sanitizer recipe; where the mutation floor lives, the job id `mutate`, the survivor stopping rule; package contents; marker commits that cannot fire by accident; the five dry inputs and how demo lines become event files; which CI run each Done-when reads.
 - Planner tools that named the hardware sat in `tools/`, where test T-901 would have failed on them at S-035 (59): moved to `research/tools/`.
 - Mechanical failures: undefined id ranges written as "D-001 to D-070", "D-011 to D-037", "T-101 to T-707" now name the real blocks; `[filterbank]` count; missing directories; American spellings were found only inside the verbatim protocol quotations, which stay as quoted.
+
+## Pass 2: what the items were and what changed
+1. S-021 passed bundle paths containing a space unquoted: now NUL-separated, and the size check counts seven.
+2. S-LISTEN told the implementer to apply the oversampling remedy of R-006 first, though it is not pre-authorised: now only R-007's internal remedy is applied; R-006 needs the owner's request and the amendment route.
+3. "Phase 2 re-opening" and "amendment route" were cited but not defined: `HANDOFF.md` section 6 now defines the amendment route and every citation uses that name.
+4. `research/PRIOR_KNOWLEDGE.md` quoted the old level rule of the demo renderer: aligned with S-LISTEN.
+5. The source register was not a knowledge item: `knowledge/K-20261112T130000Z-source-register-mufferfluffer.md` is now generated from the master `plan/SOURCE_REGISTER.md`; S-KNOW merges the taxonomy additions.
+6. S-034 had no response for a failing or rejecting advisory service: added.
+7. S-040 required the checksum file to exceed 100 kB: corrected.
+8. `cancel-in-progress` would cancel the run of a step or marker commit when a log commit followed: one run per commit, never cancelled.
+Mechanical note: the gates file's mention of the protocol's headline-result gate was reworded so that it is not read as a reference to a gate of this plan.
