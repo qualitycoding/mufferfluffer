@@ -4,7 +4,8 @@
 // Contract of the processor returned by createProcessor(id), with I = effectInfo(id):
 //  * getName() == I.name. No MIDI in or out. One program, whose name is "Default" (hosts and validators reject an
 //    empty program name). hasEditor() == true. Single precision only.
-//  * Buses: one input bus and one output bus. Supported layouts: mono->mono, mono->stereo, stereo->stereo.
+//  * Buses: one input bus and one output bus, both stereo by default. Supported layouts: mono->mono, mono->stereo,
+//    stereo->stereo.
 //    Every other layout is rejected by isBusesLayoutSupported().
 //  * Parameters: exactly I.numParams, in table order. Parameter k has ID I.params[k].id (version hint 1) and name
 //    I.params[k].name.  Linear and Log tapers are juce::AudioParameterFloat whose range maps a normalised value n to
@@ -14,7 +15,9 @@
 //    of the block, then runs muff::BlockRunner over the block. It never allocates. A block of 0 samples is a no-op.
 //  * prepareToPlay(sampleRate, blockSize) may be called repeatedly; it calls BlockRunner::prepare and
 //    setLatencySamples(effect.latencySamples()).
-//  * getTailLengthSeconds(): effect.tailSeconds(), or +infinity when that is >= 1.0e9.
+//  * getTailLengthSeconds(): effect.tailSeconds() (at most 60), or +infinity when that is >= 1.0e9.
+//  * getBypassParameter() is not overridden: the host's own bypass passes the audio through unchanged in stereo
+//    (JUCE's default). The "active" parameter is a different thing: the modelled pedal's footswitch (D-018).
 //  * State: getStateInformation writes juce::AudioProcessor::copyXmlToBinary of an XML element whose tag is
 //    "muff-" + I.slug with an attribute apiVersion="1" and one child <param id="..." value="..."/> per parameter
 //    (value = the parameter's value in its unit, full float precision).

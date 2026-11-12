@@ -160,6 +160,25 @@ TEST_CASE ("T-408 Delay feedback insert, Delay Out and Mix", "[delay][m2]") {
     REQUIRE (ts::rms (z, d, d + len) == Approx (2.0 * std::tanh (0.05) / std::sqrt (2.0)).epsilon (0.08));   // loop gain 1 at Feedback 8
 }
 
+TEST_CASE ("T-409 Delay: shortening the time replays the stored signal faster, for one new delay time", "[delay][m2]") {
+    // 400 ms line full of a 500 Hz tone; Time is then set to 200 ms. A clocked line reads its 400 ms of contents in
+    // 200 ms: the output is an octave up (1 kHz) for about 200 ms, then returns to 500 Hz.
+    ts::Rig r (EffectId::Delay, kFs);
+    r.set ("range", 0.0f); r.set ("time", 1.0f); r.set ("feedback", 0.0f); r.set ("lfo_amount", 0.0f); r.fx->reset();
+    const int o = r.out ("delay_out");
+    const auto src = std::map<int, ts::Source> { { 0, ts::sine (500.0, kFs, 0.2) } };
+    r.run (r.samples (1.0), src);
+    r.set ("time", (float) (std::log10 (200.0 / 40.0)));        // 40 ms * 10^n = 200 ms
+    const auto y = r.run (r.samples (0.8), src)[(size_t) o];
+    REQUIRE (ts::zcFreq (y, r.samples (0.04), r.samples (0.17), kFs) == Approx (1000.0).epsilon (0.05));
+    REQUIRE (ts::zcFreq (y, r.samples (0.35), r.samples (0.75), kFs) == Approx (500.0).epsilon (0.01));
+    // lengthening it replays the contents slower: an octave down for about one new delay time (400 ms)
+    r.set ("time", 1.0f);
+    const auto z = r.run (r.samples (1.2), src)[(size_t) o];
+    REQUIRE (ts::zcFreq (z, r.samples (0.06), r.samples (0.34), kFs) == Approx (250.0).epsilon (0.05));
+    REQUIRE (ts::zcFreq (z, r.samples (0.7), r.samples (1.1), kFs) == Approx (500.0).epsilon (0.01));
+}
+
 // ============================================================ Chorus
 
 TEST_CASE ("T-701 Chorus delay ranges: Flange 0.6-10 ms, Chorus 5-50 ms", "[chorus][m2]") {

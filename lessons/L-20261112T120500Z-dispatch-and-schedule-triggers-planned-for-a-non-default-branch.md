@@ -3,7 +3,7 @@ id: L-20261112T120500Z-dispatch-and-schedule-triggers-planned-for-a-non-default-
 title: Three plan steps relied on workflow_dispatch on the implementation branch, which GitHub only offers for workflows on the default branch
 status: active
 supersedes: []
-recurrence_of: L-20261104T011000Z-the-plan-s-mitigation-for-workflow-dispatch-ne
+recurrence_of: L-20261009T151001Z-the-plan-s-mitigation-for-workflow-dispatch-needing-the-defa
 occurrences: 2
 severity: High
 tags: [tech:github-actions, phase:planning, kind:wrong-assumption]

@@ -3,7 +3,7 @@ id: L-20261111T200000Z-eight-draft-test-defects-found-by-oracle
 title: Eight of 77 draft tests were wrong and were found only by running them against an oracle implementation
 status: active
 supersedes: []
-recurrence_of: L-20261009T234507Z-draft-test-unsatisfiable-found-by-oracle-t-021
+recurrence_of: L-20261009T234102Z-draft-test-unsatisfiable-found-by-oracle-t-021
 occurrences: 2
 severity: Medium
 tags: [domain:audio, domain:dsp, tech:cpp, phase:planning, kind:verification-gap]

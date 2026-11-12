@@ -316,3 +316,34 @@ TEST_CASE ("T-606 OscBox FM Amount and Env Amount move the oscillator frequency"
     REQUIRE (f8.first == Approx (50.0 * std::pow (2.0, 8.0 * f8.second)).epsilon (0.08));
     REQUIRE (f8.first > 150.0);
 }
+
+TEST_CASE ("T-607 OscBox: wraps, pulse edges and hard-sync resets are band-limited", "[oscbox][m3]") {
+    // 48 kHz; with Sync on, the oscillator is periodic at the 110 Hz input, so its harmonics above 24 kHz fold to
+    // frequencies that are not multiples of 110 Hz. Each such alias between 200 Hz and 6 kHz must lie at least 55 dB
+    // (40 dB for the narrow pulse) below the strongest of the first 20 harmonics. (Measured in planning: -66 dB or
+    // better, -46 dB for the synced narrow pulse; a sync reset quantised to the sample grid gives about -30 dB.)
+    const double fs = 48000.0;
+    for (double vco : { 517.0, 1333.0 }) for (float wave : { 1.0f / 3.0f, 2.0f / 3.0f, 1.0f }) for (float sync : { 0.0f, 1.0f }) {
+        ts::Rig r (EffectId::OscBox, fs);
+        r.set ("frequency", (float) vco); r.set ("wave", wave); r.set ("sync", sync); r.fx->reset();
+        const long n = 96000;
+        const auto osc = r.run (n, { { 0, ts::sine (110.0, fs, 0.5) } })[(size_t) r.out ("osc_out")];
+        const double f0 = sync > 0.5f ? 110.0 : vco;
+        double ref = 0.0;
+        for (int k = 1; k <= 20; ++k) ref = std::max (ref, ts::toneAmp (osc, n / 2, n, k * f0, fs));
+        double worst = 0.0;
+        for (int k = 1; k * f0 < 3.0 * fs; ++k) {
+            const double f = k * f0;
+            if (f < fs / 2.0) continue;
+            double alias = std::fmod (f, fs); if (alias > fs / 2.0) alias = fs - alias;
+            if (alias < 200.0 || alias > 6000.0) continue;
+            const double off = std::fmod (alias, f0);
+            if (std::min (off, f0 - off) < 8.0) continue;       // lands on a true harmonic: not measurable
+            worst = std::max (worst, ts::toneAmp (osc, n / 2, n, alias, fs));
+        }
+        INFO ("vco " << vco << " wave " << wave << " sync " << sync);
+        REQUIRE (ref > 0.1);
+        // the 10 % pulse has edges only a few samples apart, where a two-sample correction is less effective
+        REQUIRE (ts::dB (worst / ref) < (wave > 0.99f ? -40.0 : -55.0));
+    }
+}

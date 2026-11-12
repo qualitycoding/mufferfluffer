@@ -377,6 +377,8 @@ TEST_CASE ("T-017 tailSeconds is an upper bound and reports self-oscillation", "
     }
     ts::Rig r (EffectId::Delay, 48000.0);
     r.set ("feedback", 8.0f); REQUIRE (r.fx->tailSeconds() >= 1.0e9f);
+    r.set ("feedback", 7.99f); REQUIRE (r.fx->tailSeconds() >= 1.0e9f);     // a bound above 60 s is reported as "for ever"
+    for (float fb = 0.0f; fb < 8.0f; fb += 0.37f) { r.set ("feedback", fb); const float t = r.fx->tailSeconds(); REQUIRE ((t <= 60.0f || t >= 1.0e9f)); }
     r.set ("feedback", 4.0f); r.set ("time", 1.0f); r.set ("mix", 1.0f); r.fx->reset();     // 400 ms, loop gain 0.5
     const float tail = r.fx->tailSeconds();
     REQUIRE (tail > 0.4f); REQUIRE (tail < 30.0f);

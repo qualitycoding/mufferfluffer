@@ -139,8 +139,17 @@ TEST_CASE ("T-812 RackBridge connection rules and bad voltages", "[adapters][rac
     }
     REQUIRE (same);
     jf.inConnected[1] = jf.inConnected[2] = true;
-    for (long n = 0; n < 4800; ++n) { jf.inVolts[0] = n % 7 == 0 ? nan : 3.0f; jf.inVolts[1] = n % 5 == 0 ? std::numeric_limits<float>::infinity() : 12.0f; f.process (jf); finite = finite && std::isfinite (jf.outVolts[0]) && std::fabs (jf.outVolts[0]) <= 20.0f; }
+    for (long n = 0; n < 4800; ++n) { jf.inVolts[0] = n % 7 == 0 ? nan : 3.0f; jf.inVolts[1] = n % 5 == 0 ? std::numeric_limits<float>::infinity() : 12.0f; f.process (jf); finite = finite && std::isfinite (jf.outVolts[0]) && std::fabs (jf.outVolts[0]) <= 12.0f; }
     REQUIRE (finite);
+    // outputs never exceed +/-12 V, even when the effect is driven to its limit (Lowpass self-oscillating into +28 dB of drive)
+    RackBridge loud (EffectId::Lowpass); loud.prepare (kFs);
+    loud.effect().setParam (findParam (effectInfo (EffectId::Lowpass), "drive"), 28.0f);
+    loud.effect().setParam (findParam (effectInfo (EffectId::Lowpass), "resonance"), 9.0f);
+    RackIO il {}; il.inConnected[0] = true; il.outConnected[0] = true;
+    float top = 0.0f;
+    for (long n = 0; n < 48000; ++n) { il.inVolts[0] = (float) (10.0 * std::sin (2.0 * ts::kPi * 700.0 * n / kFs)); loud.process (il); top = std::max (top, std::fabs (il.outVolts[0])); }
+    REQUIRE (top <= 12.0f);
+    REQUIRE (top > 5.0f);
     // a trigger at the Rack standard of 10 V (and a 5 V one) taps the tempo; 0.5 V does not
     for (float volts : { 10.0f, 5.0f, 0.5f }) {
         RackBridge t (EffectId::Chorus); t.prepare (kFs);

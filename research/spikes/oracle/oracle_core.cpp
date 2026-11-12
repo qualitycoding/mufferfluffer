@@ -8,6 +8,9 @@
 #include "muff/adapters.hpp"
 
 #include <algorithm>
+#if defined(__SSE__) || defined(_M_X64) || defined(__x86_64__)
+#include <xmmintrin.h>
+#endif
 #include <cmath>
 #include <cstdint>
 #include <cstring>
@@ -84,23 +87,51 @@ struct Schmitt {
 
 struct Clock { long long n = 0; void reset() { n = 0; } };
 
-struct DelayLine {
+// Clocked delay line (D-033): models a bucket-brigade line whose transit time is `d` seconds at the present clock.
+// Every stored sample carries the clock phase at which it entered; the output is the signal that entered one
+// whole unit of phase ago. A change of d therefore replays what is already in the line faster or slower.
+struct ClockedLine {
     std::vector<float> buf;
-    int w = 0;
-    void size (int n) { buf.assign ((size_t) std::max (n, 4), 0.0f); w = 0; }
-    void clear() { std::fill (buf.begin(), buf.end(), 0.0f); w = 0; }
-    void write (float v) { buf[(size_t) w] = v; if (++w >= (int) buf.size()) w = 0; }
-    // delay in samples, measured back from the next write position; >= 1
-    float read (double d) const {
-        const int n = (int) buf.size();
-        d = std::max (1.0, std::min (d, (double) (n - 2)));
-        const double rp = (double) w - d;
-        int i0 = (int) std::floor (rp);
-        const float fr = (float) (rp - (double) i0);
-        i0 %= n; if (i0 < 0) i0 += n;
-        const int i1 = (i0 + 1) % n;
-        return buf[(size_t) i0] * (1.0f - fr) + buf[(size_t) i1] * fr;
+    std::vector<double> ph;
+    long long k = 0, r = 0;     // samples written so far; read index (absolute)
+    double phase = 0.0;
+    void size (int n) { buf.assign ((size_t) std::max (n, 8), 0.0f); ph.assign (buf.size(), 0.0); clear(); }
+    // after clear() the line holds one silent sample just before the start, so the first real sample can be interpolated towards
+    void clear() { std::fill (buf.begin(), buf.end(), 0.0f); std::fill (ph.begin(), ph.end(), 0.0); ph[0] = -1.0; k = 1; r = 0; phase = 0.0; }
+    float read() {
+        const long long n = (long long) buf.size();
+        const double target = phase - 1.0;
+        if (k < 2 || target < ph[(size_t) (std::max (0LL, k - n + 1) % n)]) return 0.0f;
+        if (r < k - n + 1) r = k - n + 1;
+        while (r + 1 < k - 1 && ph[(size_t) ((r + 1) % n)] <= target) ++r;
+        const double p0 = ph[(size_t) (r % n)], p1 = ph[(size_t) ((r + 1) % n)];
+        if (target < p0) return 0.0f;
+        const double fr = p1 > p0 ? std::min (1.0, (target - p0) / (p1 - p0)) : 0.0;
+        return (float) ((1.0 - fr) * buf[(size_t) (r % n)] + fr * buf[(size_t) ((r + 1) % n)]);
     }
+    void write (float v, double delaySeconds, double fs) {
+        const long long n = (long long) buf.size();
+        const double inc = 1.0 / std::max (1.0, delaySeconds * fs);
+        if (k == 1) ph[0] = phase - inc;        // the silent sample "before the start" sits one clock step earlier
+        buf[(size_t) (k % n)] = v; ph[(size_t) (k % n)] = phase; ++k;
+        phase += inc;
+        if (phase > 1.0e6) { for (double& q : ph) q -= 1.0e6; phase -= 1.0e6; }
+    }
+};
+
+// Flush-to-zero / denormals-are-zero for the duration of one process() call (D-012: no slow-down on decaying signals).
+struct NoDenormals {
+#if defined(__SSE__) || defined(_M_X64) || defined(__x86_64__)
+    unsigned old;
+    NoDenormals() : old (_mm_getcsr()) { _mm_setcsr (old | 0x8040u); }
+    ~NoDenormals() { _mm_setcsr (old); }
+#elif defined(__aarch64__)
+    unsigned long long old;
+    NoDenormals() { __asm__ volatile ("mrs %0, fpcr" : "=r" (old)); const unsigned long long v = old | (1ull << 24); __asm__ volatile ("msr fpcr, %0" : : "r" (v)); }
+    ~NoDenormals() { __asm__ volatile ("msr fpcr, %0" : : "r" (old)); }
+#else
+    NoDenormals() {}
+#endif
 };
 
 class Base : public Effect {
@@ -140,6 +171,7 @@ public:
     void setInputConnected (int input, bool c) noexcept override { if (input >= 0 && input < I.numInputs) conn[input] = c; }
     void process (const float* in, float* out) noexcept override {
         if (! prepared) { for (int o = 0; o < I.numOutputs; ++o) out[o] = 0.0f; return; }
+        const NoDenormals noDenormals;
         float x[kMaxPorts];
         for (int i = 0; i < I.numInputs; ++i) x[i] = (conn[i] && std::isfinite (in[i])) ? clampf (in[i], -16.0f, 16.0f) : 0.0f;
         tick (x, out);
@@ -198,8 +230,10 @@ private:
         levelMeter (x);
         const float eFast = fast.next (x), eSlow = slow.next (x);
         const float env = step (pSpeed) == 1 ? eFast : eSlow;
-        const double fc = std::min (std::max ((double) val (pCut, in) * std::pow (2.0, (double) (val (pAmt, in) * env)), 10.0), 40000.0);
-        const float g = tanG (fc, fs), G = g / (1.0f + g), k = 0.5f * val (pRes, in);
+        const double fcRaw = (double) val (pCut, in) * std::pow (2.0, (double) (val (pAmt, in) * env));
+        const double fc = std::min (std::max (fcRaw, 10.0), 20000.0);
+        const float fade = clampf ((float) ((20000.0 - fcRaw) / 4000.0), 0.0f, 1.0f);    // self-oscillation leaves the audible range instead of whistling at the limit
+        const float g = tanG (fc, fs), G = g / (1.0f + g), k = 0.5f * val (pRes, in) * fade;
         rng = rng * 1664525u + 1013904223u;
         const float noise = ((float) (rng >> 8) * (1.0f / 8388608.0f) - 1.0f) * 1.0e-5f; // seeds self-oscillation
         const float xin = x + noise;
@@ -321,11 +355,12 @@ public:
         const float g = target[pFb] / 8.0f;
         if (g >= 1.0f) return 1.0e9f;
         const float d = 0.8f;   // longest delay of either range
-        return g <= 0.001f ? d + 0.1f : d * (1.0f + 6.908f / -std::log (g)) + 0.1f;
+        const float t = g <= 0.001f ? d + 0.1f : d * (1.0f + 6.908f / -std::log (g)) + 0.1f;
+        return t > 60.0f ? 1.0e9f : t;
     }
 private:
-    void doPrepare() override { line.size ((int) (0.85 * fs) + 8); dSm.set (fs, 30.0); }
-    void doReset() noexcept override { line.clear(); lp.reset(); lfo.reset(); tap.reset(); clock.reset(); trig = Schmitt(); lastTapParam = target[pTap]; tapped = false; dSm.y = -1.0f; }
+    void doPrepare() override { line.size ((int) (0.85 * fs) + 8); }
+    void doReset() noexcept override { line.clear(); lp.reset(); lfo.reset(); tap.reset(); clock.reset(); trig = Schmitt(); lastTapParam = target[pTap]; tapped = false; }
     void tick (const float* in, float* out) noexcept override {
         const float x = softclip (dbToGain (val (pDrive, in)) * in[0]);
         levelMeter (x);
@@ -341,14 +376,12 @@ private:
         const float l = lfo.next (step (pWave), val (pRate, in), fs);
         d *= std::pow (2.0, (double) (l * val (pAmt, in) / 10.0f));
         d = std::min (std::max (d, lo), hi);
-        if (dSm.y < 0.0f) dSm.y = (float) d;
-        const double ds = dSm.next ((float) d);
         float lpOut, bp;
-        lp.tick (line.read (ds * fs), tanG (lng ? 1700.0 : 3000.0, fs), 1.41421356f, lpOut, bp);
+        lp.tick (line.read(), tanG (lng ? 1700.0 : 3000.0, fs), 1.41421356f, lpOut, bp);
         const float wet = lpOut;
         const float a = activeGain();
         const float fbSig = conn[iRet] ? in[iRet] : wet;
-        line.write (a * x + (val (pFb, in) / 8.0f) * softclip (fbSig));
+        line.write (a * x + (val (pFb, in) / 8.0f) * softclip (fbSig), d, fs);
         const float m = norm (pMix, in), lvl = dbToGain (val (pOut, in));
         const float spill = step (pSpill) == 1 ? 1.0f : a;      // wet audible while bypassed only in spillover mode
         out[0] = a * lvl * ((1.0f - m) * x + m * wet) + (1.0f - a) * (in[0] + spill * lvl * m * wet);
@@ -357,7 +390,7 @@ private:
         meters[1] = lfo.ph < 0.5 ? 1.0f : 0.0f; meters[2] = a;
     }
     int pDrive, pOut, pTime, pRange, pFb, pRate, pAmt, pWave, pMix, pSpill, pTap, iRet, iTap;
-    DelayLine line; Svf lp; Lfo lfo; TapTempo tap; Clock clock; Schmitt trig; Smooth dSm;
+    ClockedLine line; Svf lp; Lfo lfo; TapTempo tap; Clock clock; Schmitt trig;
     float lastTapParam = 0.0f, tapNorm = 0.0f;
     bool tapped = false;
 };
@@ -449,11 +482,21 @@ public:
     float tailSeconds() const noexcept override { return 1.0f; }
 private:
     void doPrepare() override { env.set (fs, 5.0, 100.0); }
-    void doReset() noexcept override { ph = 0.0; env.y = 0.0f; armed = false; }
-    static float blep (double t, double dt) {
-        if (t < dt) { const double u = t / dt; return (float) (u + u - u * u - 1.0); }
-        if (t > 1.0 - dt) { const double u = (t - 1.0) / dt; return (float) (u * u + u + u + 1.0); }
-        return 0.0f;
+    void doReset() noexcept override { ph = 0.0; pending = 0.0f; pendingNaive = 0.0f; xPrev = 0.0f; env.y = 0.0f; armed = false; }
+    // naive (not band-limited) value of the morphed waveform at phase p, and the weights of its sawtooth and pulse parts
+    static float naive (double p, float w, float& ws, float& wp, double& width) {
+        const float tri = 1.0f - 4.0f * std::fabs ((float) p - 0.5f), saw = (float) (2.0 * p - 1.0);
+        width = w <= 2.0f / 3.0f ? 0.5 : 0.5 - 0.4 * (double) ((w - 2.0f / 3.0f) * 3.0f);
+        const float pulse = p < width ? 1.0f : -1.0f;
+        if (w < 1.0f / 3.0f) { ws = w * 3.0f; wp = 0.0f; return (1.0f - ws) * tri + ws * saw; }
+        if (w < 2.0f / 3.0f) { wp = (w - 1.0f / 3.0f) * 3.0f; ws = 1.0f - wp; return ws * saw + wp * pulse; }
+        ws = 0.0f; wp = 1.0f; return pulse;
+    }
+    // a step of height h that happened t samples (0 <= t < 1) before the present sample: correct the previous and the present sample
+    void step2 (float h, double t, float& cur) {
+        const float a = (float) t, b = 1.0f - a;
+        pending += 0.5f * h * a * a;        // one sample earlier: distance (1 - t) before the step
+        cur -= 0.5f * h * b * b;
     }
     void tick (const float* in, float* out) noexcept override {
         const float x = softclip (dbToGain (val (pDrive, in)) * in[0]);
@@ -462,21 +505,36 @@ private:
         const double oct = 5.0 * (double) in[iFreq] + (double) (val (pEnv, in) * std::min (e, 1.0f)) + 2.0 * (double) (norm (pFm, in) * x);
         const double f = std::min (std::max ((double) val (pFreq, in) * std::pow (2.0, oct), 0.01), std::min (20000.0, 0.45 * fs));
         const double dt = f / fs;
+        const float w = norm (pWave, in);
+        float ws, wp; double width;
+        const double before = ph;
+        ph += dt;
+        bool wrapped = false; double tWrap = 0.0;
+        if (ph >= 1.0) { ph -= 1.0; wrapped = true; tWrap = ph / dt; }
+        float cur = naive (ph, w, ws, wp, width);
+        if (wrapped) step2 (-2.0f * ws + 2.0f * wp, tWrap, cur);                                    // sawtooth falls, pulse rises
+        const bool crossed = wrapped ? (ph >= width) : (before < width && ph >= width);
+        if (crossed && wp > 0.0f) step2 (-2.0f * wp, (ph - width) / dt, cur);                        // pulse falls
         if (step (pSync) == 1) {
             if (x < -0.02f) armed = true;
-            else if (armed && x > 0.02f) { armed = false; ph = 0.0; }
+            else if (armed && x > 0.02f) {
+                // Hard sync. The input crossed +0.02 between the previous sample and this one; t samples ago by linear
+                // interpolation. The phase restarts from 0 at that instant, so it is t * dt now.
+                armed = false;
+                const double t = (x - xPrev) > 1.0e-12f ? std::min (1.0, std::max (0.0, (double) ((x - 0.02f) / (x - xPrev)))) : 0.0;
+                double atCross = ph - t * dt; if (atCross < 0.0) atCross += 1.0;
+                const float raw = naive (atCross, w, ws, wp, width);            // value the waveform had reached when it was reset
+                const float fresh = naive (0.0, w, ws, wp, width);
+                ph = t * dt;
+                // steps already applied for this sample (wrap, pulse edge) are discarded together with the old phase
+                pending = pendingNaive; cur = naive (ph, w, ws, wp, width);
+                step2 (fresh - raw, t, cur);
+            }
         }
-        ph += dt; if (ph >= 1.0) ph -= 1.0;
-        const float w = norm (pWave, in);
-        const float tri = 1.0f - 4.0f * std::fabs ((float) ph - 0.5f);
-        const float saw = (float) (2.0 * ph - 1.0) - blep (ph, dt);
-        const double width = w <= 2.0f / 3.0f ? 0.5 : 0.5 - 0.4 * (double) ((w - 2.0f / 3.0f) * 3.0f);
-        double p2 = ph + (1.0 - width); if (p2 >= 1.0) p2 -= 1.0;
-        const float pulse = (ph < width ? 1.0f : -1.0f) + blep (ph, dt) - blep (p2, dt);
-        float osc;
-        if (w < 1.0f / 3.0f) { const float t = w * 3.0f; osc = (1.0f - t) * tri + t * saw; }
-        else if (w < 2.0f / 3.0f) { const float t = (w - 1.0f / 3.0f) * 3.0f; osc = (1.0f - t) * saw + t * pulse; }
-        else osc = pulse;
+        xPrev = x;
+        pendingNaive = naive (ph, w, ws, wp, width);
+        const float osc = pending;          // the oscillator runs one sample late so that steps can be corrected on both sides
+        pending = cur;
         const float m = norm (pMix, in), lvl = dbToGain (val (pOut, in)), a = activeGain();
         out[0] = a * lvl * ((1.0f - m) * x + m * osc * std::min (e, 1.0f)) + (1.0f - a) * in[0];
         out[1] = std::min (e, 2.0f);
@@ -485,6 +543,7 @@ private:
     }
     int pDrive, pOut, pFreq, pWave, pSync, pFm, pEnv, pMix, iFreq;
     double ph = 0.0;
+    float pending = 0.0f, pendingNaive = 0.0f, xPrev = 0.0f;
     EnvFollower env;
     bool armed = false;
 };
@@ -500,11 +559,12 @@ public:
     float tailSeconds() const noexcept override {
         const float g = 1.25f * std::fabs (target[pFb]);
         if (g >= 1.0f) return 1.0e9f;
-        return g <= 0.001f ? 0.15f : 0.05f * (1.0f + 6.908f / -std::log (g)) + 0.1f;
+        const float t = g <= 0.001f ? 0.15f : 0.05f * (1.0f + 6.908f / -std::log (g)) + 0.1f;
+        return t > 60.0f ? 1.0e9f : t;
     }
 private:
-    void doPrepare() override { line.size ((int) (0.06 * fs) + 8); dSm.set (fs, 5.0); }
-    void doReset() noexcept override { line.clear(); lp.reset(); lfo.reset(); tap.reset(); clock.reset(); trig = Schmitt(); lastTapParam = target[pTap]; tapped = false; dSm.y = -1.0f; }
+    void doPrepare() override { line.size ((int) (0.06 * fs) + 8); }
+    void doReset() noexcept override { line.clear(); lp.reset(); lfo.reset(); tap.reset(); clock.reset(); trig = Schmitt(); lastTapParam = target[pTap]; tapped = false; }
     void tick (const float* in, float* out) noexcept override {
         const float x = softclip (dbToGain (val (pDrive, in)) * in[0]);
         levelMeter (x);
@@ -521,13 +581,11 @@ private:
         double d = lo * std::pow (hi / lo, (double) norm (pTime, in));
         d *= std::pow (hi / lo, 0.5 * (double) (norm (pAmt, in) * l));
         d = std::min (std::max (d, lo), hi);
-        if (dSm.y < 0.0f) dSm.y = (float) d;
-        const double ds = dSm.next ((float) d);
         float lpOut, bp;
-        lp.tick (line.read (ds * fs), tanG (std::min (16000.0, 200.0 / ds), fs), 1.41421356f, lpOut, bp);
+        lp.tick (line.read(), tanG (std::min (16000.0, 200.0 / d), fs), 1.41421356f, lpOut, bp);
         const float wet = lpOut;
         const float fbSig = conn[iRet] ? in[iRet] : wet;
-        line.write (x + 1.25f * val (pFb, in) * softclip (fbSig));
+        line.write (x + 1.25f * val (pFb, in) * softclip (fbSig), d, fs);
         const float m = norm (pMix, in), lvl = dbToGain (val (pOut, in)), a = activeGain();
         out[0] = a * lvl * ((1.0f - m) * x + m * wet) + (1.0f - a) * in[0];
         out[1] = a * lvl * ((1.0f - m) * x - m * wet) + (1.0f - a) * in[0];
@@ -535,7 +593,7 @@ private:
         meters[1] = lfo.ph < 0.5 ? 1.0f : 0.0f; meters[2] = a;
     }
     int pDrive, pOut, pTime, pRange, pFb, pRate, pAmt, pWave, pMix, pTap, iRet, iTap;
-    DelayLine line; Svf lp; Lfo lfo; TapTempo tap; Clock clock; Schmitt trig; Smooth dSm;
+    ClockedLine line; Svf lp; Lfo lfo; TapTempo tap; Clock clock; Schmitt trig;
     float lastTapParam = 0.0f, tapNorm = 0.0f;
     bool tapped = false;
 };
@@ -637,8 +695,8 @@ void RackBridge::process (RackIO& io) noexcept {
         x[i] = io.inVolts[i] * 0.2f;
     }
     fx_->process (x, y);
-    for (int o = 0; o < I.numOutputs; ++o) io.outVolts[o] = 5.0f * y[o];
-    if (I.monoSumsRight && I.rightOutput >= 0 && ! io.outConnected[I.rightOutput]) io.outVolts[0] += io.outVolts[I.rightOutput];
+    for (int o = 0; o < I.numOutputs; ++o) io.outVolts[o] = clampf (5.0f * y[o], -12.0f, 12.0f);
+    if (I.monoSumsRight && I.rightOutput >= 0 && ! io.outConnected[I.rightOutput]) io.outVolts[0] = clampf (io.outVolts[0] + io.outVolts[I.rightOutput], -12.0f, 12.0f);
 }
 
 std::unique_ptr<Effect> createEffect (EffectId id) {

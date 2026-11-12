@@ -179,6 +179,9 @@ TEST_CASE ("T-854 bus layouts: mono or stereo in, never fewer outputs than input
     for (EffectId id : kAll) {
         auto proc = createProcessor (id);
         REQUIRE (proc->getBusCount (true) == 1); REQUIRE (proc->getBusCount (false) == 1);
+        REQUIRE (proc->getBusesLayout().getMainInputChannelSet() == Set::stereo());      // default layout
+        REQUIRE (proc->getBusesLayout().getMainOutputChannelSet() == Set::stereo());
+        REQUIRE (proc->getBypassParameter() == nullptr);
         REQUIRE (proc->checkBusesLayoutSupported (layout (Set::mono(), Set::mono())));
         REQUIRE (proc->checkBusesLayoutSupported (layout (Set::mono(), Set::stereo())));
         REQUIRE (proc->checkBusesLayoutSupported (layout (Set::stereo(), Set::stereo())));
@@ -241,7 +244,7 @@ TEST_CASE ("T-856 output stays finite for hostile audio input", "[vst3][security
                 buf.setSample (ch, i, v);
             }
             proc->processBlock (buf, midi);
-            for (int ch = 0; ch < 2; ++ch) for (int i = 0; i < 128; ++i) ok = ok && std::isfinite (buf.getSample (ch, i)) && std::fabs (buf.getSample (ch, i)) <= 2.0f * kOutputLimit;
+            for (int ch = 0; ch < 2; ++ch) for (int i = 0; i < 128; ++i) ok = ok && std::isfinite (buf.getSample (ch, i)) && std::fabs (buf.getSample (ch, i)) <= kOutputLimit;
         }
         INFO (effectInfo (id).slug);
         REQUIRE (ok);

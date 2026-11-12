@@ -133,6 +133,29 @@ TEST_CASE ("T-108 Drive spans -7 dB to +28 dB into a soft limiter", "[lowpass][m
     REQUIRE (pk > 1.9); REQUIRE (pk <= 2.0);       // limits at +/-2
 }
 
+TEST_CASE ("T-109 Lowpass: self-oscillation fades out above 16 kHz instead of whistling at the limit", "[lowpass][m1]") {
+    for (double fs : { 44100.0, 48000.0, 96000.0 }) {
+        // Cutoff 12 kHz, Resonance 10: oscillates at 12 kHz while there is no input ...
+        ts::Rig q (EffectId::Lowpass, fs);
+        q.set ("cutoff", 12000.0f); q.set ("resonance", 10.0f); q.set ("mix", 1.0f); q.fx->reset();
+        const long n = q.samples (2.0);
+        const auto quiet = q.run (n)[0];
+        INFO ("fs " << fs);
+        REQUIRE (ts::peak (quiet, n / 2, n) > 0.05);
+        REQUIRE (ts::zcFreq (quiet, n / 2, n, fs) == Approx (12000.0).epsilon (0.02));
+        // ... and when a loud input drives the envelope and Amount 5 pushes the cutoff past 20 kHz, the resonance is
+        // faded to nothing: no tone between 13 kHz and the top of the band other than the input's own harmonics.
+        ts::Rig r (EffectId::Lowpass, fs);
+        r.set ("cutoff", 12000.0f); r.set ("resonance", 10.0f); r.set ("env_amount", 5.0f); r.set ("mix", 1.0f); r.fx->reset();
+        const long m = r.samples (1.0);
+        const auto y = r.run (m, { { 0, ts::sine (1000.0, fs, 1.0) } })[0];
+        double worst = 0.0;
+        for (double f = 13250.0; f < std::min (20000.0, 0.45 * fs); f += 500.0) worst = std::max (worst, ts::toneAmp (y, m / 2, m, f, fs));
+        REQUIRE (worst < 0.003);                                           // -50 dB re full scale
+        REQUIRE (ts::toneAmp (y, m / 2, m, 1000.0, fs) > 0.5);             // the input itself passes
+    }
+}
+
 // ============================================================ RingMod
 
 namespace {

@@ -122,6 +122,8 @@ public:
     // Processes one sample frame. `in` holds info().numInputs values, `out` receives info().numOutputs values.
     // Non-finite input values are treated as 0. Every output is finite and within +/- kOutputLimit.
     // Must be preceded by prepare(); before prepare() it writes zeros.
+    // Must not slow down on signals that decay towards zero (no denormal-number penalty), whatever the caller's
+    // floating-point mode: flush states to zero or set flush-to-zero for the duration of the call and restore it.
     virtual void process (const float* in, float* out) noexcept = 0;
 
     // Current indicator value in [0,1]; 0 for an invalid index.
@@ -131,7 +133,8 @@ public:
     virtual int latencySamples() const noexcept = 0;
 
     // Upper bound, in seconds, on how long the output stays above -60 dB (re 1.0) after the input stops, for the
-    // current parameter values and no CV; returns 1.0e9f when the effect can sound for ever (self-oscillation).
+    // current parameter values and no CV; returns 1.0e9f when the effect can sound for ever (self-oscillation) or
+    // when the bound would exceed 60 s. So the result is either at most 60.0f or exactly 1.0e9f.
     virtual float tailSeconds() const noexcept = 0;
 };
 

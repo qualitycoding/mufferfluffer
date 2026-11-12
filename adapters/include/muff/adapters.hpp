@@ -37,8 +37,9 @@ struct RackIO {
 
 // Drives one Effect from per-sample Rack voltages.
 // Inputs: core value = volts / 5 for every port kind; connection flags are forwarded to Effect::setInputConnected.
-// Outputs: volts = core value * 5. When info().monoSumsRight is true and the right output is not connected,
-// outVolts[0] also carries the right output (outVolts[rightOutput] is still written).
+// Outputs: volts = core value * 5, limited to +/-12 V. When info().monoSumsRight is true and the right output is not
+// connected, outVolts[0] also carries the right output, the sum again limited to +/-12 V (outVolts[rightOutput] is
+// still written).
 class RackBridge {
 public:
     explicit RackBridge (EffectId id);

@@ -3,7 +3,7 @@ id: L-20261112T121000Z-planner-claims-labelled-corroborated-on-one-publisher
 title: Planner claims backed by a tag list plus a knowledge-store item were labelled corroborated although both trace to one publisher
 status: active
 supersedes: []
-recurrence_of: L-20261009T234512Z-corroborated-label-on-three-claims-from-one-pu
+recurrence_of: L-20261009T123005Z-corroborated-label-without-independent-sources
 occurrences: 2
 severity: Low
 tags: [phase:research, kind:process]
