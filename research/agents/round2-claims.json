@@ -1,0 +1,943 @@
+[
+ {
+  "claim": "The MF-101 manual puts the Cutoff knob at about 15 Hz fully anticlockwise, about 500 Hz at midpoint and 12 kHz fully clockwise, and calls this a nine-octave range; the manual does not say 20 Hz anywhere in the text read, so the 20 Hz recollection is not supported.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86271-MF101SManual.pdf",
+    "doi": "",
+    "title": "MF-101 Lowpass Filter user manual (Full Compass copy, MF101SManual)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "Touring the Panel Features, The Filter Section; Specifications (nine-octave range)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf101-cutoff",
+  "verdict": "confirmed",
+  "checks": "(1) cutoff knob range about 15 Hz to 12 kHz (first pass also recalled \"20 Hz\")"
+ },
+ {
+  "claim": "The manual says the filter produces its own tone at the cutoff frequency when Resonance is above 8, and repeats the warning that turning past 8 makes the filter oscillate.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86271-MF101SManual.pdf",
+    "doi": "",
+    "title": "MF-101 Lowpass Filter user manual (Full Compass copy, MF101SManual)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "The Filter Section; A WARNING!",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf101-resonance",
+  "verdict": "confirmed",
+  "checks": "(2) resonance self-oscillates above setting 8"
+ },
+ {
+  "claim": "With the envelope Amount knob fully clockwise, the envelope signal opens and closes the filter by as much as five octaves.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86271-MF101SManual.pdf",
+    "doi": "",
+    "title": "MF-101 Lowpass Filter user manual (Full Compass copy, MF101SManual)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "The Envelope Follower Section",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf101-envelope",
+  "verdict": "confirmed",
+  "checks": "(3) envelope Amount sweeps the cutoff by up to about 5 octaves"
+ },
+ {
+  "claim": "The MF-101 has a 2-pole/4-pole switch selecting half the filter (2-pole, brighter) or the whole filter (4-pole, deeper and mellower); the manual gives no dB-per-octave slope, but Sound On Sound independently describes the same switch as 12 dB/octave versus 24 dB/octave.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86271-MF101SManual.pdf",
+    "doi": "",
+    "title": "MF-101 Lowpass Filter user manual (Full Compass copy, MF101SManual)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "The Filter Section",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/big-briar-moogerfooger-filter",
+    "doi": "",
+    "title": "Big Briar Moogerfooger Filter (review)",
+    "publisher": "Sound On Sound",
+    "version": "undated",
+    "locator": "Review text on 2-pole and 4-pole settings",
+    "accessed": "2026-11-11",
+    "tier": 3
+   },
+   {
+    "url": "https://www.soundonsound.com/reviews/big-briar-moogerfoogers",
+    "doi": "",
+    "title": "Big Briar Moogerfoogers (review)",
+    "publisher": "Sound On Sound",
+    "version": "undated",
+    "locator": "Description of MF-101 filter, switchable two-pole or four-pole",
+    "accessed": "2026-11-11",
+    "tier": 3
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "mf101-poles",
+  "verdict": "confirmed",
+  "checks": "(4) 2-pole/4-pole switch"
+ },
+ {
+  "claim": "The manual states the Drive control stays active even when the MF-101 is in Bypass.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86271-MF101SManual.pdf",
+    "doi": "",
+    "title": "MF-101 Lowpass Filter user manual (Full Compass copy, MF101SManual)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "Audio Input Level and Mixing",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf101-drive",
+  "verdict": "confirmed",
+  "checks": "(5) Drive remains active in bypass"
+ },
+ {
+  "claim": "The manual says a change of about 5 volts at the tip of a pedal input is usually equivalent to turning the matching knob through its whole range.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86271-MF101SManual.pdf",
+    "doi": "",
+    "title": "MF-101 Lowpass Filter user manual (Full Compass copy, MF101SManual)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "Technical Information, Pedal Inputs",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf101-cv",
+  "verdict": "confirmed",
+  "checks": "(6) about 5 V at a pedal/CV jack tip sweeps the whole range of its knob"
+ },
+ {
+  "claim": "Carrier frequency is 0.6-80 Hz on LO and 30 Hz-4 kHz on HI.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86272-MF102SManual.pdf",
+    "doi": "",
+    "title": "MF-102 Ring Modulator user manual (Full Compass copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "What Is the Carrier Oscillator?; The Modulator Section",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf102-carrier",
+  "verdict": "confirmed",
+  "checks": "(7) carrier LO range 0.6-80 Hz and HI range 30 Hz-4 kHz"
+ },
+ {
+  "claim": "LFO rate spans 0.1 Hz (one cycle per ten seconds) to 25 Hz, with a switch choosing a square wave or a sine-like wave.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86272-MF102SManual.pdf",
+    "doi": "",
+    "title": "MF-102 Ring Modulator user manual (Full Compass copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "The LFO Section",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf102-lfo",
+  "verdict": "confirmed",
+  "checks": "(8) LFO rate 0.1-25 Hz, sine or square"
+ },
+ {
+  "claim": "With LFO Amount fully clockwise the carrier oscillator is frequency-modulated across three octaves.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86272-MF102SManual.pdf",
+    "doi": "",
+    "title": "MF-102 Ring Modulator user manual (Full Compass copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "The LFO Section",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf102-lfo",
+  "verdict": "confirmed",
+  "checks": "(9) LFO Amount up to about 3 octaves of carrier modulation"
+ },
+ {
+  "claim": "Jack panel specifications: Carrier Out delivers +/-1.25 V, LFO Out delivers +/-1.5 V, and Carrier In accepts an external signal of -4 dBm (0.5 V RMS).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86272-MF102SManual.pdf",
+    "doi": "",
+    "title": "MF-102 Ring Modulator user manual (Full Compass copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "Jack Panel Features / Specifications",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf102-levels",
+  "verdict": "confirmed",
+  "checks": "(10) Carrier Out +/-1.25 V, LFO Out +/-1.5 V, Carrier In about 0.5 V RMS"
+ },
+ {
+  "claim": "Inserting a plug in Carrier In disconnects the internal carrier oscillator from the ring modulator and the plugged signal takes its place.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86272-MF102SManual.pdf",
+    "doi": "",
+    "title": "MF-102 Ring Modulator user manual (Full Compass copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "Expression Pedals and Voltage Control",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf102-carrier-in",
+  "verdict": "confirmed",
+  "checks": "(11) a plug in Carrier In disconnects the internal oscillator"
+ },
+ {
+  "claim": "Rate is 0.01-2.5 Hz with the switch on LO and 1-250 Hz on HI; the LFO Out description names a triangular wave at +/-2.8 V. Both ends of both ranges match the figures.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86275-MF103SManual.pdf",
+    "doi": "",
+    "title": "MF-103 12-Stage Phaser user manual (Full Compass copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "THE LFO (LOW FREQUENCY OSCILLATOR)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf103-lfo",
+  "verdict": "confirmed",
+  "checks": "(12) LFO LO 0.01-2.5 Hz, HI 1-250 Hz (check both ends of both ranges carefully), triangle wave"
+ },
+ {
+  "claim": "Sweep moves the response pattern through six octaves; at the mid setting (5) the mid-shift frequency is a little over two octaves above middle C.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86275-MF103SManual.pdf",
+    "doi": "",
+    "title": "MF-103 12-Stage Phaser user manual (Full Compass copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "PHASER PARAMETERS",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf103-sweep",
+  "verdict": "confirmed",
+  "checks": "(13) Sweep spans six octaves, mid position a little more than two octaves above middle C"
+ },
+ {
+  "claim": "The 6-stage mode has three dips about two octaves apart; the 12-stage mode has six dips with intervals half as wide.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86275-MF103SManual.pdf",
+    "doi": "",
+    "title": "MF-103 12-Stage Phaser user manual (Full Compass copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "FREQUENCIES, FILTERS, AND PHASERS; PHASER PARAMETERS",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf103-stages",
+  "verdict": "confirmed",
+  "checks": "(14) 6-stage gives three response dips about two octaves apart, 12-stage gives six"
+ },
+ {
+  "claim": "LFO Out is +/-2.8 V; Sweep In accepts an external +/-2.5 V control signal that replaces the LFO for the second group of six phase-shift circuits.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86275-MF103SManual.pdf",
+    "doi": "",
+    "title": "MF-103 12-Stage Phaser user manual (Full Compass copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "THE LFO; TECHNICAL INFORMATION",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf103-cv",
+  "verdict": "confirmed",
+  "checks": "(15) LFO Out +/-2.8 V; Sweep In +/-2.5 V acting on the second six stages"
+ },
+ {
+  "claim": "The Aux Out peaks sit at the frequencies of the main output's dips and vice versa. The manual names no Mix control; instead an Output Level control balances phaser signal against bypassed signal, which does the dry/wet job.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.fullcompass.com/common/files/86275-MF103SManual.pdf",
+    "doi": "",
+    "title": "MF-103 12-Stage Phaser user manual (Full Compass copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "AUX OUTPUT; MF-103 SPECIFICATIONS",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf103-aux",
+  "verdict": "confirmed",
+  "checks": "(16) Aux Out has the inverse response; there is no Mix control"
+ },
+ {
+  "claim": "Time adjusts 40-400 ms in Short and 80-800 ms in Long.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://manualsnet.com/moog/mf-104m",
+    "doi": "",
+    "title": "Moog MF-104M user manual (ManualsNet copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "p. 6 and p. 18 (page numbers as shown by the copy)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf104m-time",
+  "verdict": "confirmed",
+  "checks": "(17) delay Short 40-400 ms, Long 80-800 ms"
+ },
+ {
+  "claim": "Figure 6 labels 3.0 kHz beside SHORT and 1.7 kHz beside LONG; this comes from figure labels, not running prose. Prose says only that Short has the higher frequency response.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://manualmachine.com/moog/mf104m/2556949-user-manual",
+    "doi": "",
+    "title": "Moog MF-104M user manual (ManualMachine copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "p. 9, Figure 6 labels; p. 18",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualsnet.com/moog/mf-104m",
+    "doi": "",
+    "title": "Moog MF-104M user manual (ManualsNet copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "p. 9, Figure 6 (pairing there only inferred from layout)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf104m-bandwidth",
+  "verdict": "confirmed",
+  "checks": "(18) nominal bandwidth about 3.0 kHz Short and 1.7 kHz Long"
+ },
+ {
+  "claim": "LFO rate is 0.05-50 Hz and the manual lists six waveforms: sine, triangle, square, sawtooth, ramp and sample-and-hold (random stepped).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://manualsnet.com/moog/mf-104m",
+    "doi": "",
+    "title": "Moog MF-104M user manual (ManualsNet copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "p. 6, p. 7, p. 19",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf104m-lfo",
+  "verdict": "confirmed",
+  "checks": "(19) LFO rate 0.05-50 Hz with six waveforms sine, triangle, square, sawtooth, ramp, sample-and-hold"
+ },
+ {
+  "claim": "The page-6 note says feedback settings above 8 can cause self-oscillation (page 10 says about 8 sustains echoes indefinitely).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://manualmachine.com/moog/mf104m/2556949-user-manual",
+    "doi": "",
+    "title": "Moog MF-104M user manual (ManualMachine copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "p. 6, p. 10",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualsnet.com/moog/mf-104m",
+    "doi": "",
+    "title": "Moog MF-104M user manual (ManualsNet copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "p. 6",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [
+   "Same manual, p. 18: oscillation typically begins at the 3:00 position, which is not obviously the same as a setting of 8 on a 0-10 dial"
+  ],
+  "topic": "mf104m-feedback",
+  "verdict": "confirmed",
+  "checks": "(20) feedback self-oscillation above about 8"
+ },
+ {
+  "claim": "The MF-104M manual gives Drive as about 35 dB of adjustment (p. 6, p. 17). UNKNOWN: the -7 dB and +28 dB endpoints are not in the MF-104M text read; they ARE stated for the MF-108M.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://manualsnet.com/moog/mf-104m",
+    "doi": "",
+    "title": "Moog MF-104M user manual (ManualsNet copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "p. 6, p. 17 (35 dB span only)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualmachine.com/moog/mf104m/2556949-user-manual",
+    "doi": "",
+    "title": "Moog MF-104M user manual (ManualMachine copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "p. 6, p. 17 (35 dB span only; explicitly no -7/+28)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "mf104m-drive",
+  "verdict": "not found",
+  "checks": "(21) Drive about -7 to +28 dB (35 dB span)"
+ },
+ {
+  "claim": "Tap quarter notes three times; after the third tap the unit starts calculating the tempo; wait five seconds, then tap three times again to start over.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://manualmachine.com/moog/mf104m/2556949-user-manual",
+    "doi": "",
+    "title": "Moog MF-104M user manual (ManualMachine copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "p. 15, p. 19",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://manualsnet.com/moog/mf-104m",
+    "doi": "",
+    "title": "Moog MF-104M user manual (ManualsNet copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "p. 15, p. 19",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf104m-tap",
+  "verdict": "confirmed",
+  "checks": "(22) tap tempo: quarter-note taps, calculation begins at the third tap, about five idle seconds restarts"
+ },
+ {
+  "claim": "UNKNOWN: The MF-105M Mids filter centre frequencies (200, 300, 450, 675, 1000, 1500, 2200, 3400 Hz). Not re-verified in round 2: the page-fetch tool hit its usage limit before this manual was re-read, and direct curl is blocked by proxy policy. Opened the Gear4Music copy but my extraction query did not target the filter table; marked not found rather than assumed.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "mf105m-filters",
+  "verdict": "not found",
+  "checks": "(23) Mids centres 200, 300, 450, 675, 1000, 1500, 2200, 3400 Hz"
+ },
+ {
+  "claim": "UNKNOWN: The MF-105M Bass filter centre frequencies (110 Hz low-pass then 160-1800 Hz). Not re-verified in round 2: the page-fetch tool hit its usage limit before this manual was re-read, and direct curl is blocked by proxy policy. Not re-read.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "mf105m-filters",
+  "verdict": "not found",
+  "checks": "(24) Bass: 110 Hz low-pass then 160, 240, 350, 525, 775, 1200, 1800 Hz"
+ },
+ {
+  "claim": "UNKNOWN: The MF-105M has 24 patterns with patterns 1 and 13 static. Not re-verified in round 2: the page-fetch tool hit its usage limit before this manual was re-read, and direct curl is blocked by proxy policy. Not re-read.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "mf105m-patterns",
+  "verdict": "not found",
+  "checks": "(25) 24 patterns, patterns 1 and 13 static"
+ },
+ {
+  "claim": "UNKNOWN: The MF-105M output assignment (odd filters Left/Mono, even filters Right; bypass at Left/Mono only). Not re-verified in round 2: the page-fetch tool hit its usage limit before this manual was re-read, and direct curl is blocked by proxy policy. Not re-read.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "mf105m-outputs",
+  "verdict": "not found",
+  "checks": "(26) odd filters to Left/Mono, even filters to Right; in bypass signal only at Left/Mono"
+ },
+ {
+  "claim": "The MuRF LFO rate runs from 0.08 Hz to 20 Hz and the LFO is a sine wave.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://r2.gear4music.com/media/8/86064/download_86064_1.pdf",
+    "doi": "",
+    "title": "Understanding and Using Your moogerfooger MF-105M MIDI MuRF (Gear4Music CDN copy)",
+    "publisher": "Moog Music",
+    "version": "2009",
+    "locator": "Frequencies and Filters, p. 9",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf105m-lfo",
+  "verdict": "confirmed",
+  "checks": "(27) LFO rate 0.08-20 Hz"
+ },
+ {
+  "claim": "Tapping three times activates tap tempo, and quarter-note taps make the Animation sequencer step in eighth notes.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://r2.gear4music.com/media/8/86064/download_86064_1.pdf",
+    "doi": "",
+    "title": "Understanding and Using Your moogerfooger MF-105M MIDI MuRF (Gear4Music CDN copy)",
+    "publisher": "Moog Music",
+    "version": "2009",
+    "locator": "The MuRF's Tap/Step Input, p. 13",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf105m-tap",
+  "verdict": "confirmed",
+  "checks": "(28) tapped tempo is doubled (quarter-note taps give eighth-note steps)"
+ },
+ {
+  "claim": "UNKNOWN: What the MF-105M manual says about Envelope settings 0, 2, 5, 6, 8 and beyond. Not re-verified in round 2: the page-fetch tool hit its usage limit before this manual was re-read, and direct curl is blocked by proxy policy. Search results listed ManualsOnline page ?p=12 and the Gear4Music PDF but neither was read for this.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "mf105m-envelope",
+  "verdict": "not found",
+  "checks": "(29) Envelope control landmarks (what the manual says about settings 0, 2, 5, 6, 8 and beyond)"
+ },
+ {
+  "claim": "UNKNOWN: Free-running Rate range of the MF-105M Animation sequencer in Hz or BPM. Not re-verified in round 2: the page-fetch tool hit its usage limit before this manual was re-read, and direct curl is blocked by proxy policy. Not located in the Gear4Music extract read (only the LFO 0.08-20 Hz figure appeared).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [],
+  "publisher_count": 0,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "mf105m-rate",
+  "verdict": "not found",
+  "checks": "(30) the free-running RATE range in Hz or BPM if stated anywhere"
+ },
+ {
+  "claim": "Freq knob runs from a nominal 25 Hz to 1.6 kHz (six octaves); Freq CV In accepts -5 to +5 V at one octave per volt and the VCO runs from sub-audio to 20 kHz.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://c3.zzounds.com/media/mf-107-010e54acdc7f718e21350c3661a405ab.pdf",
+    "doi": "",
+    "title": "MF-107 FreqBox user manual (zZounds copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "Front Panel, Freq, p. 18; CV Inputs, p. 20; Specifications, p. 26",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf107-freq",
+  "verdict": "confirmed",
+  "checks": "(31) Freq knob 25 Hz-1.6 kHz; Freq CV 1 V/octave over -5..+5 V up to about 20 kHz"
+ },
+ {
+  "claim": "Wave sweeps triangle, sawtooth, square, pulse, with triangle fully anticlockwise; a 0 to +5 V Wave CV covers 60 percent of the knob range.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://c3.zzounds.com/media/mf-107-010e54acdc7f718e21350c3661a405ab.pdf",
+    "doi": "",
+    "title": "MF-107 FreqBox user manual (zZounds copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "Front Panel, Wave, p. 18; CV Inputs, p. 20; Specifications, p. 26",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf107-wave",
+  "verdict": "confirmed",
+  "checks": "(32) Wave: triangle, sawtooth, square, pulse in that order; Wave CV covers about 60 % of the knob range"
+ },
+ {
+  "claim": "Env Amount lets the envelope follower sweep the VCO frequency by up to 8 octaves.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://c3.zzounds.com/media/mf-107-010e54acdc7f718e21350c3661a405ab.pdf",
+    "doi": "",
+    "title": "MF-107 FreqBox user manual (zZounds copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "Front Panel, Env. Amount, p. 19",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf107-env",
+  "verdict": "confirmed",
+  "checks": "(33) Env Amount up to 8 octaves"
+ },
+ {
+  "claim": "Env Follower Out is nominally 0 to +5 V and only produced when the effect is on and a signal is present; Osc Out is nominally +/-2.5 V (5 V peak-to-peak) and always present because the VCO is always running.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://c3.zzounds.com/media/mf-107-010e54acdc7f718e21350c3661a405ab.pdf",
+    "doi": "",
+    "title": "MF-107 FreqBox user manual (zZounds copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "CV Outputs, p. 20; Specifications, p. 26; p. 15",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf107-outs",
+  "verdict": "confirmed",
+  "checks": "(34) Env Follower Out 0 to +5 V; Osc Out +/-2.5 V, present without input"
+ },
+ {
+  "claim": "The VCO signal amplitude follows the amplitude of the direct input, so with no input the VCO is inaudible at the output.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://c3.zzounds.com/media/mf-107-010e54acdc7f718e21350c3661a405ab.pdf",
+    "doi": "",
+    "title": "MF-107 FreqBox user manual (zZounds copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "Envelope Follower, p. 15; FreqBox Functions, p. 16",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf107-vca",
+  "verdict": "confirmed",
+  "checks": "(35) the VCO's amplitude follows the input envelope"
+ },
+ {
+  "claim": "Delay time is 0.6-10 ms in Flange mode and 5-50 ms in Chorus mode.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.strumentimusicali.net/manuali/MOOGMUSIC_MF108M_ENG.pdf",
+    "doi": "",
+    "title": "MF-108M Cluster Flux user manual (strumentimusicali.net copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "Front Panel TIME/RANGE; Specifications (page numbers inferred by the fetch tool from page markers)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf108m-time",
+  "verdict": "confirmed",
+  "checks": "(36) Flange 0.6-10 ms, Chorus 5-50 ms"
+ },
+ {
+  "claim": "LFO rate is 0.05 Hz to about 50 Hz with six waveforms: sine, triangle, square, sawtooth, ramp, random stepped.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.strumentimusicali.net/manuali/MOOGMUSIC_MF108M_ENG.pdf",
+    "doi": "",
+    "title": "MF-108M Cluster Flux user manual (strumentimusicali.net copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "Front Panel LFO RATE / LFO WAVEFORM, pp. 11-12 (page numbers inferred by the fetch tool from page markers)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [
+   "Specifications section names the shapes 'Saw' and 'Ramp' in a different order; same six shapes"
+  ],
+  "topic": "mf108m-lfo",
+  "verdict": "confirmed",
+  "checks": "(37) LFO 0.05-50 Hz, six panel waveforms sine, triangle, square, sawtooth, ramp, random-stepped"
+ },
+ {
+  "claim": "Feedback is bipolar with zero at mid-position and oscillation begins at the 4th indicator line either side of centre.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.strumentimusicali.net/manuali/MOOGMUSIC_MF108M_ENG.pdf",
+    "doi": "",
+    "title": "MF-108M Cluster Flux user manual (strumentimusicali.net copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "Front Panel FEEDBACK, pp. 11-12 (page numbers inferred by the fetch tool from page markers)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf108m-feedback",
+  "verdict": "confirmed",
+  "checks": "(38) feedback bipolar, oscillation begins near the fourth mark either side of centre (how many marks are there each side?)"
+ },
+ {
+  "claim": "UNKNOWN: total number of indicator marks on each side of the MF-108M Feedback knob centre. The text read only identifies the 4th line as the oscillation point; the panel graphic was not seen.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.strumentimusicali.net/manuali/MOOGMUSIC_MF108M_ENG.pdf",
+    "doi": "",
+    "title": "MF-108M Cluster Flux user manual (strumentimusicali.net copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "Front Panel FEEDBACK (page numbers inferred by the fetch tool from page markers)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "inferred",
+  "contradicted_by": [],
+  "topic": "mf108m-feedback",
+  "verdict": "not found",
+  "checks": "(38) feedback bipolar, oscillation begins near the fourth mark either side of centre (how many marks are there each side?)"
+ },
+ {
+  "claim": "Right Out by default carries dry plus the inverted wet signal (factory default 'right output and mix enabled, wet signal out of phase').",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.strumentimusicali.net/manuali/MOOGMUSIC_MF108M_ENG.pdf",
+    "doi": "",
+    "title": "MF-108M Cluster Flux user manual (strumentimusicali.net copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "Back Panel R OUT, pp. 12-13; Output Configuration, p. 17 (page numbers inferred by the fetch tool from page markers)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf108m-outs",
+  "verdict": "confirmed",
+  "checks": "(39) Right Out default = dry plus inverted wet"
+ },
+ {
+  "claim": "Drive gives -7 dB to +28 dB nominal gain.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://www.strumentimusicali.net/manuali/MOOGMUSIC_MF108M_ENG.pdf",
+    "doi": "",
+    "title": "MF-108M Cluster Flux user manual (strumentimusicali.net copy)",
+    "publisher": "Moog Music",
+    "version": "undated",
+    "locator": "Front Panel DRIVE; Specifications, p. 18 (page numbers inferred by the fetch tool from page markers)",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "mf108m-drive",
+  "verdict": "confirmed",
+  "checks": "(40) Drive -7 to +28 dB"
+ }
+]

@@ -1,0 +1,215 @@
+# Decisions (D-###)
+
+Each decision gives the options considered, the choice, the rationale with claim IDs (`research/claims.json`), and the trigger for revisiting it. "Hardware" means the pedal an effect is modelled on (mapping in D-020 to D-026). Numbers that the hardware documentation does not give are *design choices of this project*; they are listed in D-027 and shown to the owner in the Phase 5 report.
+
+## Project-level
+
+### D-001 Licence: AGPL-3.0-only for the whole repository
+- Options: (a) AGPL-3.0-only for everything; (b) Apache-2.0 for the project's own sources with AGPLv3 applying only to distributed VST3 binaries; (c) GPL-3.0-or-later.
+- Choice: (a). Adopted intake default A-005; one licence for sources, binaries and both plug-in formats.
+- Rationale: JUCE 9.0.5 is offered under AGPLv3 or a commercial licence (C-LEGAL claims "JUCE ... dual-licensed", "JUCE.spdx.json"); a plug-in built under the open option is an AGPLv3 work as a whole. Rack plug-ins that are free of charge may use any licence, and GPLv3 section 13 / AGPLv3 section 13 allow the combination (C-LEGAL "Rack v2.6.6 LICENSE.md", "GPLv3 section 13"). Option (b) is legally possible (knowledge items K-20261007T160137Z, K-20261009T234234Z) and is reported to the owner as an alternative; see lesson L-20261111T152000Z.
+- Consequences: every source file carries `SPDX-License-Identifier: AGPL-3.0-only` (T-906). Rack Component Library SVG files (CC BY-NC 4.0) are never copied into the repository (D-006). The VST3 SDK (MIT, bundled in JUCE) and Catch2 (BSL-1.0) are compatible inputs.
+- Revisit if: the owner prefers Apache-2.0 sources (a documentation and header change; no code change).
+
+### D-002 Language level: C++17 for all code
+- Options: C++20 (intake wording); C++17.
+- Choice: C++17, set by `CMAKE_CXX_STANDARD 17` and by `-std=c++17` in the Rack makefile.
+- Rationale: Rack's `plugin.mk` passes `-std=c++11` and lets a later flag win; Rack itself needs C++17, and its supported toolchains are known to accept C++17 (C-PLANNER "Rack's plugin.mk"). The core is compiled by both build systems, so it uses the level both are known to accept. Nothing in the design needs C++20. This amends the intake wording "C++20" and is reported in Phase 5.
+- Revisit if: a later step needs a C++20 library feature (none is planned).
+
+### D-003 Rack SDK acquisition
+- Choice: CI downloads `https://vcvrack.com/downloads/Rack-SDK-2.6.6-<platform>.zip` for `lin-x64`, `win-x64`, `mac-x64`, `mac-arm64`. Step S-030 records each archive's SHA-256 in `deps.lock.json` at the first download (trust on first use, stated as such in the file) and every later run verifies it before unpacking.
+- Rationale: the host is unreachable from the planning sandbox (C-PLANNER "vcvrack.com cannot be reached"), so no hash could be recorded now; the URL pattern comes from the knowledge store (K-20261009T234202Z). T-905 requires the four hashes to be present.
+- Fallback (pre-decided): if an archive cannot be downloaded in CI after three attempts 30 s apart, the Rack job fails; it is never skipped.
+
+### D-004 Naming and trade marks
+- Choice: brand "Mufferfluffer"; effect names "Fluff Lowpass", "Fluff Ring", "Fluff Phase", "Fluff Delay", "Fluff Bank", "Fluff Osc", "Fluff Swarm". No file outside the planning records (`research/`, `plan/`, `premortem/`, `reviews/`, `lessons/`, `knowledge/`, `evidence/`, `HANDOFF.md`) names the manufacturer, its product family or its model codes; `README.md` may do so on at most one line. "VST" never appears in a product or company name; documentation that mentions the format carries the sentence "VST is a registered trademark of Steinberg Media Technologies GmbH." Panels and editors are this project's own design: no copy of the hardware's panel layout, colours or lettering.
+- Rationale: MURF and FREQBOX are registered marks, the others are claimed marks whose status could not be read (C-LEGAL "Justia lists these marks", "UNKNOWN: current USPTO status"); the manufacturer sells its own plug-in versions (C-LEGAL "released seven official ... plug-ins"); VCV's ethics guidelines ask plug-ins not to copy names, panel design or component layout (C-LEGAL "VCV Plugin Ethics Guidelines"); Steinberg's rules on "VST" (C-LEGAL "Steinberg's SDK README", "VST Usage Guidelines").
+- Enforced by: T-901, T-902, T-907.
+- The Rack manifest carries the tag "Hardware clone", which is the honest description of behaviour-level modelling and is a tag Rack defines (C-PLANNER "Rack v2.6.6 src/tag.cpp").
+
+### D-005 VST3 build
+- Choice: JUCE 9.0.5 fetched by commit with CMake `FetchContent` (override `FETCHCONTENT_SOURCE_DIR_JUCE`). Shell sources live in `vst3/src` and reach every target through the interface library `muff_vst3_sources` (already in `vst3/CMakeLists.txt`). Seven `juce_add_plugin` targets, `FORMATS VST3` only, `COMPANY_NAME "Mufferfluffer"`, `PLUGIN_MANUFACTURER_CODE Muff`, `BUNDLE_ID org.qualitycoding.mufferfluffer.<slug>`, `COPY_PLUGIN_AFTER_BUILD FALSE`, `IS_SYNTH FALSE`, `NEEDS_MIDI_INPUT FALSE`, `VST3_CATEGORIES Fx` plus the category of the table below. Each target defines `MUFF_EFFECT_ID=<n>` and compiles one extra file, `vst3/src/entry/entry.cpp` (not in the glob), whose `createPluginFilter()` returns `muff::createProcessor((muff::EffectId) MUFF_EFFECT_ID).release()`.
+
+| Effect | Target | `PRODUCT_NAME` | `PLUGIN_CODE` | Extra VST3 category |
+|---|---|---|---|---|
+| Lowpass | `MuffLowpass` | Fluff Lowpass | `Mfl1` | Filter |
+| RingMod | `MuffRingMod` | Fluff Ring | `Mfr1` | Modulation |
+| Phaser | `MuffPhaser` | Fluff Phase | `Mfp1` | Modulation |
+| Delay | `MuffDelay` | Fluff Delay | `Mfd1` | Delay |
+| FilterBank | `MuffFilterBank` | Fluff Bank | `Mfb1` | Filter |
+| OscBox | `MuffOscBox` | Fluff Osc | `Mfo1` | Generator |
+| Chorus | `MuffChorus` | Fluff Swarm | `Mfc1` | Modulation |
+
+- Options rejected: one shared static JUCE library for all seven targets (not the build JUCE documents for plug-in targets; untested here; each target compiling its own modules is the documented route and was measured). One multi-effect plug-in (contradicts A-004).
+- Build time (measured): one target's JUCE modules build in 3 min 05 s on 2 vCPU (C-PLANNER "A VST3-only plug-in ... builds"). Seven targets plus the test target are eight such builds: about 25 min on 2 vCPU, estimated 13 min on a 4-vCPU hosted runner. The per-job limit for VST3 jobs is 60 min.
+- Revisit if: a VST3 job exceeds 45 min on any runner (then add `ccache`/`sccache` keyed on the JUCE commit).
+
+### D-006 Rack build and module shells
+- Choice: directory `rack/` holding `plugin.json`, `Makefile` (sets `RACK_DIR ?= ../Rack-SDK`, `FLAGS += -std=c++17 -I../core/include -I../adapters/include`, `SOURCES += $(wildcard src/*.cpp) $(wildcard ../core/src/*.cpp) $(wildcard ../adapters/src/*.cpp)`, then `include $(RACK_DIR)/plugin.mk`), `src/plugin.cpp`, one `src/<Enum>.cpp` per module, and `res/<Enum>.svg`.
+- A module is a thin shell over `muff::RackBridge` (D-013): `configParam`/`configSwitch` for every table entry (continuous parameters are Rack parameters over the unit range `[min, max]` for linear tapers and over `[0, 1]` with a `ParamQuantity` that displays `fromNormalised` for log tapers; stepped parameters are `configSwitch` with the step names; `tap` is a momentary button), `configInput`/`configOutput` with the table names, one light per meter. `process()` copies parameters into the effect, fills `RackIO` (audio input: `getVoltageSum()`, so polyphonic cables are summed; other inputs: channel 0), runs the bridge, and writes outputs (monophonic). `onSampleRateChange` calls `prepare`. `configBypass(0, 0)` routes the audio input to output 0 for Rack's own bypass.
+- Widgets come from Rack's component library through its API (`RoundBlackKnob`, `PJ301MPort`, `CKSS`, small lights); their graphics are used from the Rack installation and are not copied (D-001).
+- Panels are generated by `tools/gen_panels.py` from the fixture: plain rectangles and lines, labels drawn with a built-in single-stroke letter table (upper-case A-Z, digits, `/ - + .`), every label a `<path>`; no `<text>`, no font file (T-903). Panel width: 12 HP for Lowpass, RingMod, Phaser, OscBox; 16 HP for Delay and Chorus; 20 HP for FilterBank.
+- Rationale: C-PLANNER "Rack's plugin.mk"; C-LEGAL "Component Library graphics are ... CC BY-NC 4.0"; knowledge items on panel SVG limits (K-20261009T234210Z family).
+- Verification: the four `rack-*` CI jobs build `make dist` against the SDK and check the package contents (S-033). Loading in a running Rack is checked by the owner at G-LISTEN (it needs a display and Rack itself; R-012).
+
+### D-007 Plug-in validation
+- Choice: pluginval v1.0.4, release archive verified by SHA-256 (hashes in `plan/ENVIRONMENT.md`), run as `pluginval --strictness-level 10 --timeout-ms 600000 --validate <path-to.vst3>` on `vst3-linux` (under `xvfb-run -a`), `vst3-windows` and `vst3-macos`, once per plug-in. The step fails unless the exit status is 0 **and** the captured log contains `SUCCESS` and at least one line starting `Starting tests in:` (C-PLANNER "exit status 0 alone does not prove that tests ran").
+- `vst3-macos-intel` builds and runs the shell tests but not pluginval (one macOS validation is enough for the format; keeps the job inside its limit).
+
+### D-008 Test frameworks
+- C++: Catch2 v3.16.1 by commit (already in `tests/CMakeLists.txt`). Python: `unittest` from the standard library, Python 3.10 or newer.
+
+### D-009 CI matrix (file `.github/workflows/ci.yml`, triggers `push` and `pull_request`)
+| Job | Runner | Does |
+|---|---|---|
+| `repo-checks` | `ubuntu-24.04` | `python3 tools/check_frozen.py`; `python3 -m unittest discover -s tests/py -v`; `python3 tools/gen_expected.py --check ...` |
+| `core-linux` | `ubuntu-24.04` | Release build, `muff_core_tests`, `muff_bench --limit 5` (the only enforced performance gate, D-050) |
+| `core-sanitizers` | `ubuntu-24.04` | GCC, `-fsanitize=address,undefined`, `-DMUFF_SANITIZER_BUILD=ON`, `muff_core_tests` |
+| `core-linux-arm64` | `ubuntu-24.04-arm` | Release build, `muff_core_tests`, `muff_bench --limit 0` |
+| `core-musl` | `ubuntu-24.04`, container `alpine:3.22` | `apk add build-base cmake ninja git python3`; Release build, `muff_core_tests` |
+| `core-oldest-toolchain` | `ubuntu-22.04` | system GCC 11 and CMake 3.22; Release build, `muff_core_tests` |
+| `core-windows` | `windows-2022` | MSVC (Visual Studio 2022 generator, x64), `muff_core_tests`, `muff_bench --limit 0` |
+| `core-macos` | `macos-15` | Apple Clang arm64, `muff_core_tests`, `muff_bench --limit 0` |
+| `core-macos-intel` | `macos-15-intel` | Apple Clang x86_64, `muff_core_tests` |
+| `vst3-linux`, `vst3-windows`, `vst3-macos`, `vst3-macos-intel` | as the `core-*` job of the same platform | `-DMUFF_BUILD_VST3=ON`; build all eight targets; run `muff_vst3_tests`; pluginval per D-007 |
+| `rack-linux`, `rack-windows`, `rack-macos`, `rack-macos-intel` | `ubuntu-24.04`, `windows-2022` (MSYS2 MINGW64), `macos-15`, `macos-15-intel` | D-003 download and verify; `make -C rack dist`; package check (S-033) |
+| `deps-scan` | `ubuntu-24.04` | `python3 tools/check_advisories.py deps.lock.json` (D-061) |
+| `aggregate` | `ubuntu-24.04` | `if: always()`, `needs:` every job above; fails unless every needed job's result is `success` |
+
+- Runner labels: C-PLANNER "GitHub-hosted runner labels". `windows-2022` is chosen over `windows-2025` because the latter now carries Visual Studio 2026 (C-PLANNER "windows-2025 ... Visual Studio 2026"), with which JUCE 9.0.5 is untested here.
+- Default extras of protocol 3.9: ARM64 Linux job: present (`core-linux-arm64`), core only, because Rack ships no Linux ARM64 SDK and A-006 lists no Linux ARM64 product. libc-variant job: present (`core-musl`). Oldest-supported-toolchain job: present (`core-oldest-toolchain`); the oldest supported toolchain is declared to be GCC 11 with CMake 3.22. Items 5 and 6 (Android, iOS): not applicable.
+- Every job has `timeout-minutes` (15 for core and repo jobs, 60 for VST3, 40 for Rack). No job uses `continue-on-error`; no command ends in `|| true` (T-905).
+- No binary is uploaded as a workflow artefact by `ci.yml`: the repository is public, so an artefact is a publication (C-LEGAL "workflow artifacts", A-009). Test logs (text) are uploaded with `if: always()`. Binaries are produced only by the manually dispatched workflow of S-040, behind gate G-002.
+
+### D-010 Repository layout
+`core/` (DSP core: `include/muff/core.hpp`, `include/muff/blocks.hpp`, `src/`), `adapters/` (`include/muff/adapters.hpp`, `src/`), `vst3/` (`include/muff/vst3_shell.hpp`, `src/`, `CMakeLists.txt`), `rack/`, `tests/` (frozen), `tools/` (generators and checkers), `docs/`, `.github/workflows/`, planning records as created by this run. Build output goes to `build/` (ignored by git).
+
+## Interfaces
+
+### D-011 Core interface
+The public interface of the DSP core is exactly `core/include/muff/core.hpp` and `core/include/muff/blocks.hpp` as committed by this plan (frozen: listed in `tests/FROZEN_MANIFEST.sha256`). Every function's inputs, outputs and error behaviour are stated in the header comments; the stubs in `core/src/stubs.cpp` make the tests importable and are deleted by the implementation steps.
+The description tables (`EffectInfo`, `ParamSpec`, `PortSpec`, `MeterSpec`, pattern table) are **generated**: `python3 tools/gen_tables.py tests/fixtures/effects.json core/src/generated_tables.inc`, included once by the core. The fixture is the single source of every user-visible name, range and default (T-001, T-904).
+
+### D-012 Units and control voltages
+- Audio: core unit 1.0 = nominal full scale = 5 V in Rack. CV: 1.0 = +5 V.
+- A `CvNormalised` input adds `depth x cv` to the target parameter's normalised knob position; the sum is clamped to [0, 1]. Depth is 1.0 (5 V sweeps the whole knob travel, as the hardware manuals state: C-PEDALS "about 5 V at the tip sweeps the knob's whole range") except the Wave input of OscBox, depth 0.6 (C-PEDALS "Wave CV ... about 60 percent").
+- A `CvVoltPerOct` input multiplies the target frequency by `2^(5 x cv)`, not limited to the knob range (OscBox Frequency only).
+- A `Trigger` input fires on a rising edge through 0.2 CV units (1 V) and re-arms below 0.02 (0.1 V), so both 5 V gates and Rack's 10 V triggers work (T-812).
+- Disconnected inputs read 0. Non-finite input samples read 0; finite inputs are limited to +/-16 before use. Every output is finite and within +/-4.0 (`kOutputLimit`); if an internal state becomes non-finite the effect resets its audio state and outputs 0 for that sample (T-007).
+
+### D-013 Host adaptors
+`adapters/include/muff/adapters.hpp` as committed (frozen): `BlockRunner` for block hosts, `RackBridge` for per-sample voltages; behaviour in the header comments; tests T-801, T-802, T-811, T-812, T-821.
+
+### D-014 Tap tempo
+`muff::TapTempo` as specified in `blocks.hpp`: the third tap of a run yields the mean interval; later taps refine the mean; a tap more than 5.0 s after the previous one starts a new run (C-PEDALS "begins calculating after the third tap ... five seconds idle resets it"). In an effect, a tap is a rising edge of the `tap_in` trigger input or a 0-to-1 change of the `tap` parameter. A tapped tempo takes control of its target until the target's knob position (including CV) moves by more than 0.01 of its travel from where it was at the tap that made the period available. Targets: Delay: delay time = tapped period, limited to the selected range; Chorus: LFO rate = 1 / period, limited to 0.01-100 Hz; FilterBank: step rate = 2 / period (taps are quarter notes, steps are eighths: C-PEDALS "the tapped tempo is doubled"), limited to 0.05-200 Hz.
+
+### D-015 LFO
+`muff::lfoShape` as specified in `blocks.hpp`. Each LFO is a phase accumulator starting at phase 0 after `reset()`. For `RandomStep` a new uniform value in [-1, 1] is drawn each time the phase wraps, from a generator seeded identically at every `reset()` (T-008 determinism); the value before the first wrap is 0.
+
+### D-016 VST3 shell
+`vst3/include/muff/vst3_shell.hpp` as committed (frozen): the contract in its header comment; tests T-851 to T-856. Auxiliary inputs and CV inputs of the core are not exposed in the VST3 (they stay disconnected); CV outputs are not exposed. The editor is this project's own generic layout: one rotary slider per continuous parameter, one combo box per stepped parameter, a momentary button for `tap`, three small lamps for the meters, laid out in rows of at most six controls on a plain background with the effect name; fixed size 120 px per control column, 140 px per row plus a 40 px header. `hasEditor()` is true; the editor reads meters with a 30 Hz timer.
+
+### D-017 Parameter smoothing and timing
+Continuous parameters are smoothed inside the core with a one-pole of 5 ms time constant applied to the normalised position after CV is added (so CV is smoothed too); stepped parameters switch at once except `active`, which cross-fades over the same 5 ms one-pole. After `reset()` the smoothers start at the parameter targets without CV. Delay time is additionally smoothed (30 ms one-pole on the time in seconds, Delay; 5 ms, Chorus) so a change glides in pitch as a bucket-brigade clock change does.
+
+### D-018 Bypass (`active` = 0)
+- Lowpass and RingMod: output = the driven dry signal (Drive stays in the path: C-PEDALS "DRIVE ... remains active in bypass").
+- Phaser, OscBox, Chorus: every audio output = the input, unity gain. Delay: Mix Out = input; Delay Out and the wet part are silent unless Spillover is on, in which case echoes already in the line continue (also added to Mix Out, scaled by Output and Mix) while no new input is recorded (C-PEDALS "Spillover"). FilterBank: Left = input, Right = silence (C-PEDALS "in bypass the signal goes to LEFT/MONO only").
+- CV outputs and oscillator outputs keep running in bypass.
+
+## Effects (D-020 to D-026)
+Parameter, port and meter tables: `tests/fixtures/effects.json` (authoritative). Common to all: `drive` in dB into `softClip` (D-037); meter `level` = peak of the driven signal with 100 ms decay; meter `active` = the cross-fade position.
+
+### D-020 Lowpass ("Fluff Lowpass", hardware MF-101)
+Signal: in -> Drive -> x. Envelope follower on x (D-030). Cutoff `fc = cutoff x 2^(env_amount x env)`, limited to [10 Hz, min(40 kHz, 0.45 fs)]. Ladder filter (D-030) with loop gain `k = resonance / 2` (self-oscillation from 8 upward: C-PEDALS "self-oscillation above setting 8"). Output tap: stage 4 (`poles` = 4-pole) or stage 2 (2-pole) with the four-stage loop intact. Out = `(1 - mix) x + mix wet`. `env_out` = env limited to 2.0. Cutoff range 15 Hz-12 kHz log (C-PEDALS "about 15 Hz ... 12 kHz"); Amount 0-5 octaves (C-PEDALS "up to about five octaves").
+
+### D-021 RingMod ("Fluff Ring", hardware MF-102)
+Carrier: sine, frequency `f = base(frequency, range) x 2^(0.5 x lfo_amount x lfo)`, base Lo `0.6 x (80/0.6)^n`, Hi `30 x (4000/30)^n` with n the knob position (C-PEDALS "LO range 0.6 to 80 Hz, HI range 30 Hz to 4 kHz"), limited to 0.45 fs. LFO: sine or square, 0.1-25 Hz; `lfo_amount` is the peak-to-peak sweep in octaves, 0-3 (C-PEDALS "0 to about three octaves"). Wet = x times carrier (ideal multiplier, D-031). A connected `carrier_in` replaces the oscillator in the multiplier: carrier = `clamp(7.0711 x carrier_in, -2, 2)` (a 0.5 V RMS sine gives full modulation: C-PEDALS "CARRIER IN about ... 0.5 V RMS"). `carrier_out` = 0.25 x the internal oscillator always (C-PEDALS "+/-1.25 V"); `lfo_out` = 0.3 x LFO whatever the Amount (C-PEDALS "+/-1.5 V ... independent of LFO AMOUNT").
+
+### D-022 Phaser ("Fluff Phase", hardware MF-103)
+x = driven input. Feedback sum `u = x + 0.09 x resonance x tanh(w)` with w the previous sample's chain output. Chain: 6 or 12 first-order all-pass stages (D-032); stage corner `fc = 1100 Hz x 2^(6 x (sweep/10 - 0.5) + 3 x lfo_amount x lfo)`, limited to [20 Hz, 0.45 fs]; LFO triangle, rate `0.01 x 250^n` Hz (Lo) or `1 x 250^n` Hz (Hi) (C-PEDALS "LO range 0.01 to 2.5 Hz, HI range 1 to 250 Hz"). In 12-stage mode with `sweep_in` connected, stages 7-12 use `fc = 1100 Hz x 2^(6 x (sweep/10 - 0.5) + 6 x clamp(sweep_in, -0.5, 0.5))` instead of the LFO (C-PEDALS "SWEEP IN ... +/-2.5 V ... second group of six stages"). Out = `output x 0.5 (u + y)`, Aux = `output x 0.5 (u - y)` (C-PEDALS "AUX OUT ... inverse"), `lfo_out` = 0.56 x LFO (C-PEDALS "+/-2.8 V"). No Mix control (C-PEDALS "there is no dry/wet MIX control").
+
+### D-023 Delay ("Fluff Delay", hardware MF-104M, standard edition)
+Delay time `d = lo x 10^n`, lo = 40 ms (Short) or 80 ms (Long), so 40-400 ms and 80-800 ms (C-PEDALS "Short about 40-400 ms and Long about 80-800 ms"); LFO multiplies d by `2^(lfo x lfo_amount / 10)`; d is limited to the range. The Super Delay edition is out of scope. Wet = two-pole Butterworth low-pass of the delay-line read at 3.0 kHz (Short) or 1.7 kHz (Long) (C-PEDALS "about 3.0 kHz in Short and about 1.7 kHz in Long"). Loop: line input = `a x + (feedback / 8) x softClip(f)`, a = the active cross-fade, f = `fb_return` if connected, else wet; loop gain 1 at Feedback 8 (C-PEDALS "settings above 8 can self-oscillate"). `fb_send` = wet. Mix Out = `output ((1 - mix) x + mix wet)`; Delay Out = `output x wet`. LFO: six shapes (D-015), 0.05-50 Hz. Tap: D-014.
+
+### D-024 FilterBank ("Fluff Bank", hardware MF-105M)
+Eight filters in parallel on the driven input. Mids voicing: band-pass at 200, 300, 450, 675, 1000, 1500, 2200, 3400 Hz. Bass voicing: filter 1 a two-pole Butterworth low-pass at 110 Hz, filters 2-8 band-pass at 160, 240, 350, 525, 775, 1200, 1800 Hz (C-PEDALS "MIDS voicing", "BASS voicing"). Band-pass: state-variable, Q = 5, unity gain at the centre (D-034). All centres are multiplied by `2^shift`: LFO off: `shift = sweep - 0.5` octaves; LFO on: `shift = 0.5 sin(2 pi phase)`, LFO rate `0.08 x 250^sweep` Hz (0.08-20 Hz: C-PEDALS "between about 0.08 Hz and 20 Hz").
+Each filter output is scaled by its slider (`levelN`, linear) and its envelope. Sequencer: step rate = `rate` (0.5-32 steps per second, log) or the tapped rate (D-014) or, when `step_in` is connected, one step per trigger. The first step happens on the first sample after `reset()`. On step s, channel c triggers if its pattern has `x` at position `s mod length_c`. Envelope: on a trigger, rise linearly from the present value to 1 in `attack` steps, then fall linearly to 0 in `decay` steps, `attack` and `decay` from `filterBankEnvelopeTimes(envelope)` (D-015 block, table in `blocks.hpp`), each at least one sample; a new trigger restarts the rise from the present value. Pattern 1 of each bank is static (all envelopes 1).
+**Patterns are this project's own** (24 = 12 per voicing, in the fixture; the Mids bank mirrors the Bass bank's channel order). The hardware's 24 patterns are published only as graphics in a copyrighted manual and could not be read (C-PEDALS "UNKNOWN: the per-step trigger tables"; C-LEGAL "manual text, tables and artwork are copyrighted"); R-003.
+Left = `output ((1 - mix) x + mix x sum of filters 1,3,5,7)`, Right likewise with filters 2,4,6,8 (C-PEDALS "odd-numbered filters ... LEFT/MONO and the even-numbered ... RIGHT"); mono hosts get Left + Right (`monoSumsRight`).
+
+### D-025 OscBox ("Fluff Osc", hardware MF-107)
+x = driven input; env = follower of x (D-035). Oscillator frequency `f = frequency x 2^(5 cv_frequency + env_amount x min(env, 1) + 2 x fm_amount x x)`, limited to [0.01 Hz, min(20 kHz, 0.45 fs)]; knob 25 Hz-1.6 kHz, Env Amount 0-8 octaves upward (C-PEDALS "25 Hz ... 1.6 kHz", "1 V per octave", "up to 8 octaves"). Wave w in [0, 1]: 0 triangle; 1/3 sawtooth (rising); 2/3 square; 1 pulse of 10 % duty; linear cross-fade triangle-saw on [0, 1/3] and saw-square on [1/3, 2/3]; pulse width `0.5 - 0.4 x 3 (w - 2/3)` on [2/3, 1] (order from C-PEDALS "triangle ... sawtooth ... square ... pulse"). Sync on: the phase resets to 0 when x rises through +0.02 after having been below -0.02. Out = `output ((1 - mix) x + mix x osc x min(env, 1))` (C-PEDALS "envelope follower also drives a VCA after the VCO"); `env_out` = env limited to 2.0; `osc_out` = 0.5 x osc, always running (C-PEDALS "+/-2.5 V ... always present").
+
+### D-026 Chorus ("Fluff Swarm", hardware MF-108M)
+Delay `d = lo x (hi/lo)^(time + 0.5 x lfo_amount x lfo)`, limited to [lo, hi]; Flange lo 0.6 ms, hi 10 ms; Chorus lo 5 ms, hi 50 ms (C-PEDALS "Flange range is about 0.6 ms to 10 ms ... Chorus ... 5 ms to 50 ms"). Wet = two-pole Butterworth low-pass of the delay-line read at `min(16 kHz, 200 / d)` Hz (D-036). Loop: line input = `x + 1.25 x feedback x softClip(f)`, f = `fb_return` if connected else wet; feedback in [-1, 1], loop gain 1 at |feedback| = 0.8 (C-PEDALS "oscillation begins near the fourth indicator mark either side of centre"; five marks a side is a design choice, D-027). Left = `output ((1 - mix) x + mix wet)`; Right = `output ((1 - mix) x - mix wet)` (C-PEDALS "R Out by default carries dry plus inverted wet"); `fb_send` = wet. LFO: six shapes, 0.05-50 Hz; tap: D-014. Meter `rate` = 1 while the LFO phase is below 0.5.
+
+### D-027 Design choices where the hardware is undocumented (owner-visible list)
+None of these could be read from any source (C-PEDALS "UNKNOWN" claims); each is a reasoned choice, frozen by tests, and changeable only by re-opening Phase 2.
+1. Drive range -7 to +28 dB for every effect. Those end points are documented for the chorus/flanger pedal only; the delay pedal's manual gives a span of about 35 dB without end points (round 2 could not confirm them), and the other five manuals give no figure. The limiter shape `2 tanh(x/2)` is a design choice.
+2. Output range -24 to +12 dB.
+3. Envelope follower times: Lowpass Fast 2 ms / 50 ms, Smooth 20 ms / 300 ms (attack / release); OscBox 5 ms / 100 ms.
+4. Lowpass 2-pole mode keeps the four-stage feedback loop and taps stage 2; no make-up gain as resonance rises.
+5. RingMod: ideal multiplier, pure sine carrier; the undocumented noise gate reported by one reviewer is not modelled.
+6. Phaser: stage corner 1.1 kHz at Sweep 5; resonance feedback 0-0.9, never self-oscillating; Aux = half of (feedback sum minus chain).
+7. Delay: logarithmic Time knob; fixed two-pole filters; no compander, no clock noise; LFO depth of one octave either way at Amount 10; feedback law linear with unity at 8.
+8. FilterBank: Q = 5; Rate 0.5-32 steps per second; envelope time table; sweep depth half an octave either way; dry signal to both outputs when Mix < 1; **own pattern set**.
+9. OscBox: exponential FM of 2 octaves per core unit at full Amount; sync threshold +/-0.02; linear VCA; pulse width 10 % at the end of the Wave travel.
+10. Chorus: logarithmic Time knob and LFO law; wet bandwidth `min(16 kHz, 200/d)`; unity loop gain at |feedback| 0.8; no compander; right-output modes other than the default are not offered; the Rate CV does not extend the rate beyond the knob's range.
+11. Not modelled anywhere: MIDI, host tempo sync, preset storage, noise, component tolerance and drift.
+
+## Algorithms (D-030 to D-037)
+
+### D-030 Ladder filter and envelope follower
+- Options: (a) Huovilainen's non-linear model with 2x oversampling; (b) zero-delay-feedback ladder of four trapezoidal one-poles with one saturator in the feedback path; (c) D'Angelo-Välimäki generalised ladder.
+- Choice: (b). Stage: `G = g / (1 + g)`, `g = tan(pi fc / fs)`; `v = (in - s) G; y = v + s; s = y + v`. With `S = (1 - G)(G^3 s1 + G^2 s2 + G s3 + s4)`: `u = (x' - k S) / (1 + k G^4)`, then one refinement `u = x' - k softClip(G^4 u + S)`, then the four stages. `x'` = x plus uniform noise of amplitude 1e-5 from a generator seeded at `reset()` (it starts self-oscillation when there is no input).
+- Rationale: k = 4 is the self-oscillation point and the oscillation frequency equals the prewarped cutoff (C-DSP "The 4-pole ladder reaches self-oscillation at feedback gain k = 4", "Zero-delay-feedback solution", "TPT one-pole"); DC gain 1/(1 + k) is left uncompensated (C-DSP "D'Angelo and Valimaki: DC gain ..."). Verified by the oracle: T-103 measures the oscillation within 2 % of the cutoff at 100 Hz, 1 kHz and 5 kHz at 44.1, 48 and 96 kHz.
+- Contradicting evidence, recorded: the literature recommends oversampling non-linear ladders, and one author calls 44.1 kHz usually insufficient (C-DSP "Huovilainen states that oversampling is required", "Zavalishin on oversampling"). This plan ships without oversampling because the single saturator sits in the feedback path only and the tests of tuning and response pass; audible aliasing at high resonance and drive is a named weak spot of the listening gate (question L-3). Pre-decided remedy if the listener reports it: run the ladder loop twice per sample on a linearly interpolated input with `g` computed for 2 fs and take the second result (no added latency); this is unverified and is recorded as R-006.
+- Envelope follower: `r = |x|`; `e += (r > e ? aAtt : aRel)(r - e)`, `a = 1 - exp(-1 / (tau fs))`; no scaling (C-DSP "Giannoulis ... one-pole smoother").
+
+### D-031 Ring modulation
+Ideal multiplication of the driven input by the carrier (C-DSP "Ideal ring modulation is multiplication"); no diode-ring model. Aliasing of the sum frequency above fs/2 is accepted (carrier at most 4 kHz).
+
+### D-032 Phaser all-pass chain
+First-order all-pass per stage: `a = (t - 1)/(t + 1)`, `t = tan(pi fc / fs)`; `y = a x + x1 - a y1`. N equal stages give N/2 dips where the chain phase is an odd multiple of 180 degrees (C-DSP "Phaser notches occur where the all-pass chain phase reaches pi", "First-order digital all-pass"); with equal corners the dips of 6 stages fall where one stage's phase is -30, -90 and -150 degrees, 1.9 octaves apart, matching the manual's "about two octaves" (T-301). Feedback is taken around the whole chain with a one-sample delay and `tanh` on the fed-back sample; the outputs use the feedback sum u, so resonance raises peaks and keeps dips (T-305).
+
+### D-033 Delay line (Delay)
+A circular buffer of `0.85 fs + 8` samples, read with at least four-point (cubic Lagrange or Hermite) interpolation at `d x fs` samples behind the write position; the oracle's linear interpolation is the minimum that passes the tests. Bucket-brigade behaviour is represented by the fixed low-pass inside the loop and the 30 ms time glide; clock-rate sampling, companding and noise are not modelled (C-DSP "Raffel and Smith", "Holters and Parker" give fuller models; not adopted in this version: D-027 item 7).
+
+### D-034 Filter-bank filters
+Zavalishin trapezoidal state-variable filter: `hp = (x - (k + g) s1 - s2)/(1 + k g + g^2)`, `bp = g hp + s1`, `lp = g bp + s2`, state updates `s1 = bp + g hp`, `s2 = lp + g bp`, `g = tan(pi fc / fs)`, `k = 1/Q` (C-DSP "Zavalishin's TPT SVF"). Band-pass output `k bp` (unity at the centre); low-pass uses `k = sqrt(2)`. Stable under the half-octave sweep (C-DSP "Stability under modulation").
+
+### D-035 Oscillator
+Phase accumulator with a two-sample polynomial band-limited step (polyBLEP) at every sawtooth wrap and pulse edge (C-DSP "polyBLEP/integrated-polynomial-interpolation"); the triangle is the naive triangle. Hard-sync resets are band-limited with the same residual scaled by the size of the jump (the oracle resets without it, which the tests accept; the implementer adds it: D-035 is a quality requirement checked at review, not by a frozen test). FM and envelope modulation change the phase increment per sample (C-DSP "FM with polyBLEP ... agent's inference", accepted as a design risk R-007).
+
+### D-036 Chorus delay
+Circular buffer of `0.06 fs + 8` samples, same interpolation rule as D-033, 5 ms glide. Wet bandwidth: the bucket-brigade device and its filters are unknown (C-PEDALS "UNKNOWN: the BBD part numbers"), so a clock-tracking bandwidth `min(16 kHz, 200 / d)` stands in for the tracking a clocked delay line shows (C-DSP "BBD delay relation: total delay = N / (2 f_clock)").
+
+### D-037 Drive stage
+`softClip(g x)` with `g = 10^(drive/20)`, memoryless, no anti-aliasing filter. The frozen tests compare the dry path sample-exactly with `2 tanh(x/2)` (T-010, T-107, T-206), so anti-aliasing that adds delay is not possible without re-opening the tests. Antiderivative anti-aliasing (C-DSP "First-order antiderivative anti-aliasing") was considered and rejected for that reason; aliasing of hard-driven high-frequency input is weak-spot question L-3 of the listening gate.
+
+## Quality and gates
+
+### D-040 Listening references and the form of the listening gate
+- Search result: no redistributable recording (CC0, CC BY, CC BY-SA) of any of the seven pedals was found, and no dry/wet pair with stated settings under any licence (C-REF "per pedal summaries"; search log in `research/SOURCES.md`). Several hosts could not be searched from this environment (Freesound content, Wikimedia Commons, SoundCloud); that gap is recorded as R-004. The restrictive recordings found (music under CC BY-NC-SA / BY-NC-ND on the Internet Archive) state no settings and have no dry counterpart, so they cannot support a blind comparison and are not used.
+- Decision (protocol 3.10.1): the blind A/B test is **replaced by a demo bundle** with fixed questions. The goal "sounds like the hardware" stays, but it is judged by the owner's ear against whatever they know of the hardware, not by a scored comparison. This weakens SC-10 from "indistinguishable in a blind test" to "the owner accepts the demos"; reported in Phase 5.
+- Dry material for the demos is synthesised by a committed script (`tools/make_demo_inputs.py`: plucked-string tones, a sawtooth bass line, a drum-like noise pattern, a held chord), so every file in the bundle is this project's own work and may sit on a public branch.
+
+### D-041 Publication
+The repository is public. Allowed on public branches: source, plans, test logs, demo audio made entirely by this project. Not allowed without G-002: built binaries (VST3 bundles, `.vcvplugin` packages). Never allowed: third-party recordings, manual pages, manufacturer artwork.
+
+### D-050 Performance gate
+`muff_bench --limit 5` on `core-linux` (`ubuntu-24.04`, x64) is the gate for SC-6. Measured planning value: the oracle uses 0.41-0.94 % per effect on a 2-vCPU sandbox (C-PLANNER "The oracle core ... uses 0.41 % to 0.94 %"), so 5 % leaves about a factor of five for interpolation quality, band-limiting and runner variance (C-PLANNER "CPU-percentage benchmarks ... vary"). Other platforms run `--limit 0` and record the numbers in the job log; they do not gate. If `core-linux` fails the gate, the pre-decided response is profiling and optimisation of the failing effect (S-018), never raising the limit.
+
+### D-060 Mutation testing
+See step S-MUTATE in `plan/PLAN.md` for the full record required by the skill. Tool: Mull, the `mull-19` package from the `mull-stable` Cloudsmith repository with clang-19; scope `core/src/*.cpp` and `adapters/src/*.cpp` (not the generated tables, not `vst3/`, not `rack/`); floor 60 % project score.
+
+### D-061 Dependency vulnerability scan
+`tools/check_advisories.py` posts each pinned commit of `deps.lock.json` to `https://api.osv.dev/v1/query` as `{"commit": "<sha>"}` and fails if any response contains a non-empty `vulns` list, or if a request fails after three attempts 20 s apart (C-PLANNER "OSV API ... query by commit"). An empty answer means "none known", not "proven safe"; that limit is stated in the script's output.
+
+### D-062 Code review
+Protocol 3.7 as written: three fresh-context reviewers per milestone (correctness, security and real-time safety, maintainability), findings in `reviews/REVIEW-M<n>.md`, zero unresolved Critical or High before the next milestone.
+
+### D-070 Versions
+VST3 plug-ins `0.1.0` (CMake project version). Rack plug-in `2.0.0` (Rack requires major version 2).

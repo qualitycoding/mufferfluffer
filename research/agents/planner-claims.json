@@ -1,0 +1,532 @@
+[
+ {
+  "claim": "JUCE tag 9.0.5 is commit d60b7a78030661574a615b586d9325ba7a7fa7dd and is the newest 9.0.x tag.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://github.com/juce-framework/JUCE",
+    "doi": "",
+    "title": "git ls-remote --tags https://github.com/juce-framework/JUCE",
+    "publisher": "juce-framework",
+    "version": "9.0.5",
+    "locator": "tag list, 2026-11-11",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "verified",
+  "contradicted_by": [],
+  "topic": "pins",
+  "spike": "research/spikes/juce-vst3-build"
+ },
+ {
+  "claim": "A VST3-only plug-in using juce_add_plugin(... FORMATS VST3) and juce::juce_audio_utils configures (38.6 s) and builds (3 min 05 s on 2 vCPU) with JUCE 9.0.5, GCC 13.3 and CMake 3.28.3 on Ubuntu 24.04 after installing 12 X11/ALSA/freetype development packages.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "",
+    "doi": "",
+    "title": "research/spikes/juce-vst3-build/RESULT.md",
+    "publisher": "this run (spike)",
+    "version": "2026-11-11",
+    "locator": "RESULT.md",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "verified",
+  "contradicted_by": [],
+  "topic": "juce-build",
+  "spike": "research/spikes/juce-vst3-build"
+ },
+ {
+  "claim": "VCV Rack tag v2.6.6 is commit 061ccf63c1758599396ac1bb10d47345d9d34076 and is the newest v2 tag.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://github.com/VCVRack/Rack",
+    "doi": "",
+    "title": "git ls-remote --tags https://github.com/VCVRack/Rack",
+    "publisher": "VCVRack",
+    "version": "v2.6.6",
+    "locator": "tag list, 2026-11-11",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://github.com/qualitycoding/knowledge",
+    "doi": "",
+    "title": "knowledge store item K-20261009T234200Z (vcv-rack-release-and-sdk)",
+    "publisher": "qualitycoding knowledge store (earlier planning runs)",
+    "version": "commit af4c545",
+    "locator": "knowledge/vcv-rack-release-and-sdk/K-20261009T234200Z.md",
+    "accessed": "2026-11-11",
+    "tier": 2
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "pins",
+  "spike": ""
+ },
+ {
+  "claim": "Rack v2.6.6 src/tag.cpp lists the module tags used by tests/py/test_repo.py, including 'Hardware clone', 'Filter', 'Ring modulator', 'Phaser', 'Delay', 'Sequencer', 'Oscillator', 'Chorus', 'Flanger' and 'Effect'.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://github.com/VCVRack/Rack",
+    "doi": "",
+    "title": "src/tag.cpp",
+    "publisher": "VCV",
+    "version": "v2.6.6 (061ccf6)",
+    "locator": "src/tag.cpp lines 10-75",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "verified",
+  "contradicted_by": [],
+  "topic": "rack-manifest",
+  "spike": "read from the pinned checkout"
+ },
+ {
+  "claim": "Catch2 tag v3.16.1 dereferences to commit 08092139210881f01a34e60c5f2fd6afa0ea4024; FetchContent of that commit with FETCHCONTENT_SOURCE_DIR_CATCH2 builds Catch2WithMain and catch_discover_tests works with CMake 3.28.3.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://github.com/catchorg/Catch2",
+    "doi": "",
+    "title": "git ls-remote --tags https://github.com/catchorg/Catch2",
+    "publisher": "catchorg",
+    "version": "v3.16.1",
+    "locator": "tag list, 2026-11-11",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "",
+    "doi": "",
+    "title": "build of tests/CMakeLists.txt in this run",
+    "publisher": "this run (spike)",
+    "version": "2026-11-11",
+    "locator": "research/spikes/red-verification/RESULT.md",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "verified",
+  "contradicted_by": [],
+  "topic": "pins",
+  "spike": "research/spikes/red-verification"
+ },
+ {
+  "claim": "pluginval's newest stable release is v1.0.4 (tag commit ed19c2c16b57a6d94db391bea3ef4a80b769d5bf); 2.x exists only as betas.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://github.com/Tracktion/pluginval",
+    "doi": "",
+    "title": "git ls-remote --tags https://github.com/Tracktion/pluginval",
+    "publisher": "Tracktion",
+    "version": "v1.0.4",
+    "locator": "tag list, 2026-11-11",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://github.com/qualitycoding/knowledge",
+    "doi": "",
+    "title": "knowledge store item K-20261029T030000Z (pluginval)",
+    "publisher": "qualitycoding knowledge store (earlier planning runs)",
+    "version": "commit af4c545",
+    "locator": "knowledge/pluginval/K-20261029T030000Z.md",
+    "accessed": "2026-11-11",
+    "tier": 2
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "pins",
+  "spike": ""
+ },
+ {
+  "claim": "pluginval v1.0.4 release archives: pluginval_Linux.zip sha256 c01c49d8063965c4c2dea8324468336768f5c9139e0b1caebde14c2400b55352; pluginval_macOS.zip 3c4c533bda0c5059eea3ddaea752d757ee2025041f0f47e6bcb0e87f6082b29f; pluginval_Windows.zip c08e61ce3b96db41636f8ec7e76f4c7e2c13ebdac7fa1b5a1f52b4f32ec715ab.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://github.com/qualitycoding/knowledge",
+    "doi": "",
+    "title": "knowledge store item K-20261007T160009Z (pluginval)",
+    "publisher": "qualitycoding knowledge store (earlier planning runs)",
+    "version": "commit af4c545",
+    "locator": "knowledge/pluginval/K-20261007T160009Z.md",
+    "accessed": "2026-11-11",
+    "tier": 2
+   },
+   {
+    "url": "https://github.com/qualitycoding/knowledge",
+    "doi": "",
+    "title": "knowledge store item K-20261104T004400Z (pluginval)",
+    "publisher": "qualitycoding knowledge store (earlier planning runs)",
+    "version": "commit af4c545",
+    "locator": "knowledge/pluginval/K-20261104T004400Z.md",
+    "accessed": "2026-11-11",
+    "tier": 2
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [
+   "Not re-downloaded in this run (release assets are not reachable from the planning sandbox); S-021 verifies the hash at download time, so a wrong value fails closed."
+  ],
+  "topic": "pins",
+  "spike": ""
+ },
+ {
+  "claim": "pluginval v1.0.4 command line: --strictness-level 1..10 (default 5), --timeout-ms, --validate <path>; exit status 0 alone does not prove that tests ran because tests can be skipped by strictness or options.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://github.com/qualitycoding/knowledge",
+    "doi": "",
+    "title": "knowledge store item K-20261007T160012Z (pluginval)",
+    "publisher": "qualitycoding knowledge store (earlier planning runs)",
+    "version": "commit af4c545",
+    "locator": "knowledge/pluginval/K-20261007T160012Z.md",
+    "accessed": "2026-11-11",
+    "tier": 2
+   },
+   {
+    "url": "https://github.com/qualitycoding/knowledge",
+    "doi": "",
+    "title": "knowledge store item K-20261104T005300Z (pluginval)",
+    "publisher": "qualitycoding knowledge store (earlier planning runs)",
+    "version": "commit af4c545",
+    "locator": "knowledge/pluginval/K-20261104T005300Z.md",
+    "accessed": "2026-11-11",
+    "tier": 2
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "pluginval",
+  "spike": ""
+ },
+ {
+  "claim": "actions/checkout v7.0.1 = 3d3c42e5aac5ba805825da76410c181273ba90b1; actions/upload-artifact v7.0.2 = cf430e030ddbb5b0abf93d22962f4752f3646cd9; actions/download-artifact v8.0.2 = 9000827ccba6bdab643e8b6fd33ac0654aef8333; actions/cache v6.1.0 = 55cc8345863c7cc4c66a329aec7e433d2d1c52a9; msys2/setup-msys2 v2.33.0 = 2ff06a04f6edec2a4d4bad38c3bfb2df71f4b9f2.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://github.com/actions/checkout",
+    "doi": "",
+    "title": "git ls-remote --tags of each action repository",
+    "publisher": "GitHub (actions) / msys2",
+    "version": "2026-11-11",
+    "locator": "tag lists",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://github.com/qualitycoding/knowledge",
+    "doi": "",
+    "title": "knowledge store item K-20261007T160017Z (github-actions-pins)",
+    "publisher": "qualitycoding knowledge store (earlier planning runs)",
+    "version": "commit af4c545",
+    "locator": "knowledge/github-actions-pins/K-20261007T160017Z.md",
+    "accessed": "2026-11-11",
+    "tier": 2
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "pins",
+  "spike": ""
+ },
+ {
+  "claim": "GitHub-hosted runner labels that exist for public repositories: ubuntu-24.04, ubuntu-22.04 (x64, 4 vCPU), ubuntu-24.04-arm (arm64), windows-2022 and windows-2025 (x64), macos-15 (arm64, 3 cores), macos-15-intel (x64).",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://docs.github.com/en/actions/reference/runners/github-hosted-runners",
+    "doi": "",
+    "title": "Supported runners and hardware resources",
+    "publisher": "GitHub Docs",
+    "version": "2026-11-11",
+    "locator": "table 'Standard GitHub-hosted runners for public repositories'",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://github.com/actions/runner-images",
+    "doi": "",
+    "title": "README, Available Images",
+    "publisher": "actions/runner-images",
+    "version": "2026-11-11 (search result of the README)",
+    "locator": "Available Images table",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "ci",
+  "spike": ""
+ },
+ {
+  "claim": "windows-2025 and windows-latest map to an image with Visual Studio 2026 since June 2026; Visual Studio 2022 requires windows-2022.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://github.com/qualitycoding/knowledge",
+    "doi": "",
+    "title": "knowledge store item K-20261007T160024Z (github-actions-pins)",
+    "publisher": "qualitycoding knowledge store (earlier planning runs)",
+    "version": "commit af4c545",
+    "locator": "knowledge/github-actions-pins/K-20261007T160024Z.md",
+    "accessed": "2026-11-11",
+    "tier": 2
+   },
+   {
+    "url": "https://github.com/actions/runner-images",
+    "doi": "",
+    "title": "README, Available Images",
+    "publisher": "actions/runner-images",
+    "version": "2026-11-11 (search result of the README)",
+    "locator": "row 'windows-latest, windows-2025, or windows-2025-vs2026'",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "corroborated",
+  "contradicted_by": [],
+  "topic": "ci",
+  "spike": ""
+ },
+ {
+  "claim": "Mull's newest tag is 0.37.0; earlier runs used mull-runner-19 from the mull-stable Cloudsmith repository with clang-19; include and exclude paths live in mull.yml; the SQLite report table 'mutant' has execution_status 2 = survived.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://github.com/mull-project/mull",
+    "doi": "",
+    "title": "git ls-remote --tags https://github.com/mull-project/mull",
+    "publisher": "mull-project",
+    "version": "0.37.0",
+    "locator": "tag list, 2026-11-11",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://github.com/qualitycoding/knowledge",
+    "doi": "",
+    "title": "knowledge store item K-20261029T030100Z (mull)",
+    "publisher": "qualitycoding knowledge store (earlier planning runs)",
+    "version": "commit af4c545",
+    "locator": "knowledge/mull/K-20261029T030100Z.md",
+    "accessed": "2026-11-11",
+    "tier": 2
+   },
+   {
+    "url": "https://github.com/qualitycoding/knowledge",
+    "doi": "",
+    "title": "knowledge store item K-20261029T030200Z (mull)",
+    "publisher": "qualitycoding knowledge store (earlier planning runs)",
+    "version": "commit af4c545",
+    "locator": "knowledge/mull/K-20261029T030200Z.md",
+    "accessed": "2026-11-11",
+    "tier": 2
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "single-source",
+  "contradicted_by": [
+   "Which LLVM majors Mull 0.37.0 packages exist for was not checked in this run; S-MUTATE pins the package that installs for clang-19 and records its version."
+  ],
+  "topic": "mutation",
+  "spike": ""
+ },
+ {
+  "claim": "google/osv-scanner's newest tag is v2.7.1 (commit 37b2f9f0f43ff1d6cb24d7c5ea104b0eb5b4b2a2).",
+  "kind": "software",
+  "load_bearing": false,
+  "sources": [
+   {
+    "url": "https://github.com/google/osv-scanner",
+    "doi": "",
+    "title": "git ls-remote --tags https://github.com/google/osv-scanner",
+    "publisher": "google",
+    "version": "v2.7.1",
+    "locator": "tag list, 2026-11-11",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "verified",
+  "contradicted_by": [],
+  "topic": "pins",
+  "spike": ""
+ },
+ {
+  "claim": "The Rack SDK archive host vcvrack.com cannot be reached from the planning sandbox (CONNECT 403), but Rack's headers at tag v2.6.6 can be cloned from GitHub.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "",
+    "doi": "",
+    "title": "environment diagnostic of this run",
+    "publisher": "this run (spike)",
+    "version": "2026-11-11",
+    "locator": ".checkpoints/state.json environment.reachability",
+    "accessed": "2026-11-11",
+    "tier": 1
+   },
+   {
+    "url": "https://github.com/qualitycoding/knowledge",
+    "doi": "",
+    "title": "knowledge store item K-20261009T234202Z (vcv-rack-release-and-sdk)",
+    "publisher": "qualitycoding knowledge store (earlier planning runs)",
+    "version": "commit af4c545",
+    "locator": "knowledge/vcv-rack-release-and-sdk/K-20261009T234202Z.md",
+    "accessed": "2026-11-11",
+    "tier": 2
+   }
+  ],
+  "publisher_count": 2,
+  "confidence": "verified",
+  "contradicted_by": [],
+  "topic": "rack-build",
+  "spike": "environment diagnostic"
+ },
+ {
+  "claim": "Rack's plugin.mk adds -std=c++11 before EXTRA flags, so a later -std=c++17 wins; the engine itself needs C++17; Windows plug-ins build under MSYS2 MINGW64; a stub libRack suffices to link a plug-in for a compile check.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://github.com/qualitycoding/knowledge",
+    "doi": "",
+    "title": "knowledge store item K-20261009T234214Z (vcv-plugin-build)",
+    "publisher": "qualitycoding knowledge store (earlier planning runs)",
+    "version": "commit af4c545",
+    "locator": "knowledge/vcv-plugin-build/K-20261009T234214Z.md",
+    "accessed": "2026-11-11",
+    "tier": 2
+   },
+   {
+    "url": "https://github.com/qualitycoding/knowledge",
+    "doi": "",
+    "title": "knowledge store item K-20261009T234204Z (vcv-plugin-build)",
+    "publisher": "qualitycoding knowledge store (earlier planning runs)",
+    "version": "commit af4c545",
+    "locator": "knowledge/vcv-plugin-build/K-20261009T234204Z.md",
+    "accessed": "2026-11-11",
+    "tier": 2
+   },
+   {
+    "url": "https://github.com/qualitycoding/knowledge",
+    "doi": "",
+    "title": "knowledge store item K-20261009T234242Z (vcv-plugin-build)",
+    "publisher": "qualitycoding knowledge store (earlier planning runs)",
+    "version": "commit af4c545",
+    "locator": "knowledge/vcv-plugin-build/K-20261009T234242Z.md",
+    "accessed": "2026-11-11",
+    "tier": 2
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "rack-build",
+  "spike": ""
+ },
+ {
+  "claim": "The 77 frozen C++ core and adaptor tests, the 6 VST3 shell tests and the 9 repository tests are satisfiable: an oracle implementation written against the public headers passes all of them (also under ASan+UBSan), and all of them fail against the stubs.",
+  "kind": "software",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "",
+    "doi": "",
+    "title": "research/spikes/red-verification/RESULT.md",
+    "publisher": "this run (spike)",
+    "version": "2026-11-11",
+    "locator": "RESULT.md",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "verified",
+  "contradicted_by": [],
+  "topic": "tests",
+  "spike": "research/spikes/red-verification"
+ },
+ {
+  "claim": "The oracle core, unoptimised and without oversampling, uses 0.41 % to 0.94 % of one core per effect at 48 kHz with 64-sample blocks on the 2-vCPU planning sandbox.",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "",
+    "doi": "",
+    "title": "research/spikes/red-verification/RESULT.md",
+    "publisher": "this run (spike)",
+    "version": "2026-11-11",
+    "locator": "section 'Benchmark'",
+    "accessed": "2026-11-11",
+    "tier": 1
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "verified",
+  "contradicted_by": [],
+  "topic": "performance",
+  "spike": "research/spikes/red-verification"
+ },
+ {
+  "claim": "CPU-percentage benchmarks on GitHub-hosted runners vary between runs by tens of per cent of the measured value (different host CPUs).",
+  "kind": "numerical",
+  "load_bearing": true,
+  "sources": [
+   {
+    "url": "https://github.com/qualitycoding/knowledge",
+    "doi": "",
+    "title": "knowledge store item K-20261029T030800Z (github-hosted-runner-performance)",
+    "publisher": "qualitycoding knowledge store (earlier planning runs)",
+    "version": "commit af4c545",
+    "locator": "knowledge/github-hosted-runner-performance/K-20261029T030800Z.md",
+    "accessed": "2026-11-11",
+    "tier": 2
+   }
+  ],
+  "publisher_count": 1,
+  "confidence": "single-source",
+  "contradicted_by": [],
+  "topic": "performance",
+  "spike": ""
+ }
+]
