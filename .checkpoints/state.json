@@ -1,7 +1,7 @@
 {
  "run_id": "gen-20261111T151412Z-mufferfluffer-vst-vcv",
  "branch": "gen-20261111T151412Z-mufferfluffer-vst-vcv",
- "sequence": 6,
+ "sequence": 7,
  "profiles": [
   "software"
  ],
@@ -18,7 +18,7 @@
   "commit": "b110439286e18eb41660a7bf92ec1efb0300a834"
  },
  "phase": "3",
- "subphase": "3.1",
+ "subphase": "3.5",
  "active_step_id": "",
  "research_round": 3,
  "exploration_round": 0,
@@ -92,7 +92,9 @@
   }
  },
  "artifacts": {
+  ".gitattributes": "1dd5d959f6445f5085c3e24ea4abaac258cd0c76dd99b8c7ed1753835c104529",
   "CMakeLists.txt": "89f9cb2a7dca6f1d983d7d44acad9f3b519f6da5c75415f4d8fea545c2569f57",
+  "HANDOFF.md": "b640d317d056e98d9acdadee4fd485c44fbe8a441892dbd273a7ddca3f611220",
   "LICENSE": "d8a6cc31abc16b6748c7a21f21611f5a1ec33f67d22ca23d7da1c19b95496bee",
   "README.md": "32d78965f7f595101da9c59874f31406f9860d084e725576858483e30b86a5aa",
   "adapters/include/muff/adapters.hpp": "8cb7596fe5d738aed77435371a974937bbc0fee9508c8155b107d42edf5231d8",
@@ -104,12 +106,16 @@
   "lessons/L-20261111T152000Z-licence-constraint-stated-at-intake-before-r0.md": "99cdf301378f9cdb56717995f22ef54da0bf826121b051cc6ac5ddf7487d060d",
   "plan/ASSUMPTIONS.md": "cff8fe0c945eec237b2a65cc5ed3df48143457658ee3f5f5bbf7e7e71b08acde",
   "plan/DECISIONS.md": "0a336cc7230c7c8f823ecd441c28228f325ca130ec1c9e48f3dcd1b155b42112",
-  "plan/ENVIRONMENT.md": "0a267f943cb284775cb4444ab66ca622af48cfcca41dd830227bd1ac2dcb0577",
-  "plan/PLAN.md": "4b706b03cb77b18c1f1f7da29bf8d6551488c74b2c2761566b2ac91d7e92b0d8",
+  "plan/ENVIRONMENT.md": "3e950e0da6cd504e7a1918ee3c4dd3df2848c05b0951effddd6602f7413d86e4",
+  "plan/GATES.md": "f24c4aaeadbd55624eac90de152c988ed96e74932d2e0f1c639b3d7af33f780a",
+  "plan/PLAN.md": "6d7f3253b3bb04827ed8e62dca24f6b879a1dd0fa65825a1891e068c4b3f0c0b",
   "plan/PROFILE.md": "3bf92769d77ec71c0a29db4078840405255310cb2efc7b0149141c6c939fbe0f",
   "plan/RISKS.md": "294d87ab650da5971d3d6fd9cd07b1b3eb95b246ad0d669503567c99ff647996",
+  "plan/SOURCE_REGISTER.md": "ed603cc9cc892da8dca70e8cbcd33bba1bdd721a59982634e67d8c8f4842bcf0",
+  "plan/TRACEABILITY.md": "e77b9b783df96cecb96f9e6531700ee9418310415fae4950ee0c062ea1d5c91c",
+  "research/PRIOR_KNOWLEDGE.md": "d692e886859907f3edaec7bb8c538a91660fc32d0abd09f30e8de4cca538898a",
   "research/QUESTIONS.md": "593624d323538f79928d98ba3c63afa45765ce0549ee9d09f956b9c13f1924ed",
-  "research/SOURCES.md": "a7d470ed773ef8b723d6baa5da4e8f2f25ba092c840a0c3a026283e5831d9352",
+  "research/SOURCES.md": "c398a457c67017d2c60f102888a4c86f974c51c8c18ce8498d3209903f38c665",
   "research/agents/dsp-claims.json": "50df2664b38c4887f203faa12d7a2f85ae769d01e209fb72a3b4d96c1ff269d7",
   "research/agents/dsp-sources.md": "08149c246662aa71296a3364c75b8b6cca739d273a4416d88662df942f3eadaf",
   "research/agents/legal-claims.json": "82512a7004387fe30a7cea234a1821820c82df1a5b1d8888c3f2ce2941b42124",
@@ -120,7 +126,7 @@
   "research/agents/pedals-b-sources.md": "c86b3171c4b675f0bf1ff3aea2ceb5de3cb7ac088958b49947e259e5bebdf863",
   "research/agents/pedals-c-claims.json": "82c5fdacea31173c11fe84bbe6cf396fbefa5f2c11986bbdd91050b4115a0f0c",
   "research/agents/pedals-c-sources.md": "38384ab7294fa6941358c24ae0f543576806db8ec4e3c327303317872f37beca",
-  "research/agents/planner-claims.json": "c84bdeaf220390f5d8d7391ac32377e13daa702c89a1807520a9ad21e097e6e2",
+  "research/agents/planner-claims.json": "ee2c38356318f497231f5ba15ad6b5a4dd281e5c4000acdf4538edd0c545a779",
   "research/agents/planner-sources.md": "c365364df063e5b8aa0f99febb13a1c36722413af40a0465ba64c45c9c8653ed",
   "research/agents/references-claims.json": "a5f3b3078d43ebbf9ee78468c56f86b3f3084b01fde9ab3ebde2b53d4c4b6344",
   "research/agents/references-sources.md": "624da7503719b8040d1266364d32f45197e798091ceea0c5479b285d8841ff70",
@@ -128,16 +134,17 @@
   "research/agents/round2-sources.md": "2fc53ad4219b5677abd07c38f1c211d894306a95c270612b2da59251106b2a59",
   "research/agents/round3-claims.json": "eb65233fbb371f8590543b4cc82c2abdc5b73d16df0752203c15ea06a948d50e",
   "research/agents/round3-sources.md": "5bb57f3bcf608977bf2f01ee1dd0f60f339fdc94d8fdcc6d7eb589fd8c99f056",
-  "research/claims.json": "ac23e86fe11e0d5fa8b4de7de6014ff5d8e3cbc0032901fb30c9677083b0fa84",
+  "research/claims.json": "0af2903fdda0d643aecb13d897088064ed90a83557c3c4842414007aea9f042a",
   "research/rounds/round-1.md": "76d6181e4aadd64d2aa867b7d8fc86414b5e320f8bbaccf5de7e4b76038917d7",
   "research/rounds/round-2.md": "7f8e3fc768b72fdf9cd946b248d9da964bfea47828aafc4c3d2db6c26ba2643c",
+  "research/rounds/round-3.md": "6f9ca1a7236c56443b8ecc12397f6eb84198fcc7af97edd3935d23d4a7eedb23",
   "research/spikes/juce-vst3-build/CMakeLists.txt": "29ea5d04d4924da7c02b0fa34d13fb4c92e2192f10074a385cba9505c96e90f9",
   "research/spikes/juce-vst3-build/Plugin.cpp": "71475eceee0ac2c5982035b84b5cee2f69ef523241893baf96b96f5b113498f7",
   "research/spikes/juce-vst3-build/RESULT.md": "6cad57987a6d12a34abd0d2ddf738c04d581d5ce5a4c8ee389cd8eccf2b441f5",
   "research/spikes/oracle/generated_tables.inc": "5e58ee3b5213e00198de5d0a2fb9f2d4c95a8aee66a20b0f79260dad53096c4c",
   "research/spikes/oracle/oracle_core.cpp": "d65d28c6dc71d41255ce034bda54417573e4b8343a316dfeab03bbbcfd4f3580",
   "research/spikes/oracle_repo/make_tree.py": "24fb4aa8651e9c7baf14306e99c806ddfe8b536f556c84b9afbd5cad443341ae",
-  "research/spikes/oracle_vst3/processor.cpp": "ab8574bf5e9ea530571245a22dbd316f5174a573ae4775413dc58e08316177d4",
+  "research/spikes/oracle_vst3/processor.cpp": "5fe6dac5bf54a153e513ccf4f9485280d024a4125c69c64c517f443cd9fcaceb",
   "research/spikes/red-verification/RESULT.md": "acae44d2053c098b2a9c1f259e122a85bd94edff0af701e40015a291b937ccc8",
   "tests/CMakeLists.txt": "47317a9d5c724836a8a0fd0906254a72b96e02f04c53654c63f65142b1cdcf67",
   "tests/core/expected_effects.inc": "8fb8bd0e3360bb858b3e1d7370a6569b89922f61cbf018731dd3230b33f98f8b",
@@ -152,25 +159,26 @@
   "tests/py/__pycache__/test_repo.cpython-313.pyc": "d7d4b88131fbf39cd2c28dc056b03934f03ee51c441d96406887d937c663c31c",
   "tests/py/test_repo.py": "fcdebc039fa100008e728da4bd2de85b0d0b7b656eff6d79e4c4a54d9e48cc20",
   "tests/vst3/CMakeLists.txt": "cbd3bdb6d23b29ad116301f17ad77f9a4c38e3789cd51ed834724d849ecb5575",
-  "tests/vst3/test_vst3.cpp": "9d4a2c5fb00edb1dd11aed53dfd6bf4bc7280f34b9e4544d636463afa24c7e76",
+  "tests/vst3/test_vst3.cpp": "54c5d956d89fbe93cc643110cffe76f60163783f8d7c0463980f754be3a5992b",
+  "tools/check_frozen.py": "d6d14d3d9d78817085aa021fb7e1133e25a59421a30b0bd3a8ddebb11eafde76",
   "tools/gen_expected.py": "9ee3b9b91d6a59fe0b6dad5ef8598ace7bf7cbc9c14d0a01c6894be9bbbe6654",
   "tools/gen_tables.py": "caf0ea49388b17e0aa7e414ea88125e4dfb1fe1a2ecfeef227037427d5d94d8e",
   "tools/make_effects_fixture.py": "f4e7ed6a740ce1c9a94d6ef759c1ae686986d6d60bd38ed2f8817ce7ff34a0de",
-  "tools/merge_research.py": "fcc4e9c9220f34de770ec03b5946e1389211ec498537eecdfb8c2e350f8daf04",
+  "tools/merge_research.py": "d504519ed9b4fad32ad10d82489ea4ddd1e98848a506abd6c2c31122956db3bd",
   "vst3/CMakeLists.txt": "27942eb0946a3280230eeb028241a3dccdfd1ac514d63f7a566f7d9f082e5c04",
-  "vst3/include/muff/vst3_shell.hpp": "23b0516bcb78b99b5c91cb20b84f8ca2ee79e0a1bffe2b760da182c9aef47155",
+  "vst3/include/muff/vst3_shell.hpp": "a27fc0b3b4be614199b6aadd3b5dae6cb8f29eff592e3c6e11e3d9ed565336f8",
   "vst3/src/stubs.cpp": "0da43f067c134ece5dc3b0ba2790774fd1e58e308096085324fdc731510798e8"
  },
  "execution_context": {
-  "current_objective": "plan steps, environment, risks, round notes drafted; R5 adversarial pass running",
+  "current_objective": "prior-knowledge table written; R5 adversarial agent interrupted by rate limit, being resumed",
   "call_stack": [
    "Phase 1"
   ],
   "step_pointer": {
    "phase": "3",
-   "subphase": "3.1",
+   "subphase": "3.5",
    "item_index": 0,
-   "sub_action": "plan steps, environment, risks, round notes drafted; R5 adversarial pass running",
+   "sub_action": "prior-knowledge table written; R5 adversarial agent interrupted by rate limit, being resumed",
    "retry_count": 0
   },
   "scratchpad": "",
@@ -363,5 +371,5 @@
   "L-20261111T152000Z-licence-constraint-stated-at-intake-before-r0"
  ],
  "knowledge_added": [],
- "updated_at": "2026-11-12T08:18:31Z"
+ "updated_at": "2026-11-12T13:34:33Z"
 }
