@@ -17,12 +17,12 @@ G-001 (headline-result gate of the `math`/`computational` profiles) is not appli
 ## G-LISTEN Listening validation
 - Trigger step: S-LISTEN (each round).
 - Evidence bundle in `GATE-G-LISTEN.md`: the zip URL and raw URLs of branch `evidence/G-LISTEN`; `INDEX.md` (settings of each demo); the summary line of the behavioural tests on the bundle's commit; the list of design choices D-027; for round 2 and later, what was changed since the previous round.
-- Listening instructions: headphones; each demo starts with three seconds of the unprocessed input.
+- Listening instructions: headphones; each demo starts with three seconds of the unprocessed input. You may compare, privately, with any recording or official demonstration of the hardware you have access to; if you have the hardware and can record a dry signal and the same signal through a pedal with the settings noted, say so in your answer and a blind comparison will be added.
 - Questions (fixed):
   - L-1 Do the demos sound like the effects they model, as far as you know the hardware? Which, if any, sound wrong, and how (too clean, too bright, too dull, wrong sweep range, wrong speed, wrong level)?
   - L-2 Lowpass (demos 01 to 03): does the resonance and self-oscillation behave as you expect, and do the Fast and Smooth envelope speeds feel right?
-  - L-3 Weak spot, aliasing: in demos 03, 08, 12 and 19 (high resonance, runaway feedback, synced oscillator sweep) do you hear inharmonic whistles, roughness or metallic tones that do not belong?
-  - L-4 Weak spot, delay and chorus character (demos 10 to 13, 21, 22): the bucket-brigade circuits are represented only by a low-pass filter and a pitch glide (no companding, no clock noise). Is the repeat tone too clean or otherwise unlike what you expect?
+  - L-3 Weak spot, aliasing: in demos 03, 08, 12, 19 and 23 (high resonance, runaway feedback, synced oscillator sweep, high drive) do you hear inharmonic whistles, roughness or metallic tones that do not belong?
+  - L-4 Weak spot, delay and chorus character (demos 10 to 13, 21, 22): the bucket-brigade circuits are represented by a clocked delay line and a low-pass filter (no companding, no clock noise, no clock-rate sampling). Is the repeat tone too clean or otherwise unlike what you expect?
   - L-5 Weak spot, filter bank (demos 14 to 17): the patterns are this project's own, not the hardware's. Are the patterns and envelope shapes acceptable, or do you want the hardware patterns transcribed (R-003)?
   - L-6 Oscillator box (demos 18 to 20): does the oscillator track the playing dynamics and does hard sync sound right?
   - L-7 Levels: is any demo much louder or quieter than its dry section?

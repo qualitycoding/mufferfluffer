@@ -214,3 +214,30 @@ Severity = likelihood x cost, Critical / High / Medium / Low.
 ## Reproduction of measurements
 - Probe drivers: `/tmp/r5/drv.cpp` (modes `ladder`, `drive`, `denorm`), `drv2.cpp`, `drv3.cpp` (ladder at the clamp), `drv4.cpp` (sync aliasing). Built as `g++ -O2 -std=c++17 -Icore/include -Iadapters/include -Iresearch/spikes/oracle research/spikes/oracle/oracle_core.cpp /tmp/r5/<driver>.cpp`, run from the repository root. They are outside the repository and are temporary; re-create them from this description if needed.
 - Sources consulted on the web: Mull CHANGELOG and MODULE.bazel (raw.githubusercontent.com, mull-project/mull main); https://osv.dev/vulnerability/CVE-2021-23521; https://osv.dev/blog/posts/introducing-broad-c-c++-support; https://vcvrack.com/manual/VoltageStandards; https://forum.juce.com/t/pluginval-can-set-an-audioparameterbools-to-odd-values/50971?page=2; https://www.endoflife.date/github-actions-runner-images; https://shakfu.github.io/gen-dsp/backends/vcvrack; https://github.blog/changelog/2026-09-23-node-20-is-no-longer-available-in-github-actions (title only, from search results).
+
+---
+
+## Disposition (added by the planner, 2026-11-12)
+
+Every item of the report, what was done, and where. "Verified" means the planner re-ran the suite against the revised oracle (`research/spikes/red-verification/RESULT.md`, update section).
+
+| Item | Severity given | Disposition | Where |
+|---|---|---|---|
+| D-060 Mull install source and runner name out of date | High | Accepted. Install from a GitHub release asset with a recorded hash; runner name taken from the package. Not verified here (no install possible in planning). | D-060, S-MUTATE, `plan/ENVIRONMENT.md`, R-010 |
+| D-030 full-scale whistle at the top of the band; filter-free two-pass remedy does not remove aliasing | High | Accepted. Cutoff limited to 20 kHz with the resonance faded out from 16 kHz; new test T-109; the two-pass remedy is withdrawn and oversampling is named as a Phase 2 re-opening. Verified. | D-020, D-030, T-109, R-006 |
+| D-035 hard sync under-specified; aliases at -32 dB; no test | High | Accepted. Oscillator runs one sample late; steps and sync fully specified with sub-sample timing; new test T-607. Verified: -66 dB or better, -46 dB for the synced narrow pulse. | D-035, T-607, R-007 |
+| D-037 "sample-exact" wording wrong; drive aliasing measured at -21 dB | High | Wording corrected; the memoryless drive is kept for stated reasons; the measured cost is recorded, with a new demo (23) and question L-3. Risk raised to High. Not fixed. | D-037, R-006, S-LISTEN |
+| D-016 stereo collapse in "Active = Bypass", JUCE's own bypass, tail overflow, denormals, default layout | Medium-High | Default layout and host bypass specified and tested; tail capped at 60 s or reported as infinite (T-017, core header); denormal protection required (core header, D-012). The mono/left-only behaviour of the modelled footswitch is kept as faithful and explained. Verified. | D-016, D-018, T-017, T-854, core.hpp |
+| D-050 benchmark blind to denormals (filter bank 9.3 % in silence) | Medium-High | Accepted. Benchmark has a silence phase; oracle protected. Verified: 0.53 to 1.9 %. | D-050, D-012, `tests/perf/bench.cpp` |
+| D-009 `ubuntu-22.04` leaving support; CMake on PATH; JavaScript actions in containers; untested compilers | Medium | Oldest-toolchain job moved into an `ubuntu:22.04` container that prints and checks its CMake version; container jobs use no JavaScript actions. MSVC and Apple Clang remain untested until S-001/S-021 (R-008, R-015). | D-009, S-001 |
+| D-007 intermittent pluginval failures; no negative control | Medium | Fixed seed, negative-control self-test, repeat-once rule. Not verified here. | D-007, S-021, R-011 |
+| D-033/D-036 fixed-rate line gives a chirp, not a replay | Medium | Accepted. Clocked delay line for Delay and Chorus; new test T-409. Verified. | D-033, D-036, T-409 |
+| D-024 wrong legal citation; owner can read the pattern grids | Medium | Citation corrected; the decision now says the legal question is unanswered and the owner decides. | D-024, R-003, L-5 |
+| D-061 scan cannot see libraries bundled in JUCE | Medium | Limit stated in D-061 and in the tool's output. | D-061 |
+| D-005 build time measured on one compiler; spike text contradicted the decision | Medium | Compiler cache from the start on Linux and macOS; spike text corrected; shared static library named as the reviewed next step. | D-005, R-008 |
+| D-040 no references | Medium | Gate text invites private comparison and the owner's own recordings. Unchanged otherwise. | D-040, G-LISTEN, R-004 |
+| D-002/D-006 Rack compiler flags untested; widget choices missing | Low-Medium | Rack-flag test run added to `rack-linux` (verified against the oracle); widget table added. | D-006, S-033 |
+| D-012 +/-20 V possible in Rack; 0-10 V sources saturate at half | Low-Medium | Rack bridge limits to +/-12 V (T-812); 5 V full sweep kept as on the hardware and documented. Verified. | D-012, adapters.hpp, T-812 |
+| D-004 the name echoes the manufacturer's mark | Low-Medium | Not changed: the repository name is the owner's. Reported to the owner in Phase 5 and in R-013. | R-013 |
+| SC-7 limit 4.0 against the VST3 test's 8.0 | consistency | T-856 now asserts 4.0. | T-856 |
+| D-001 | not broken | none | |

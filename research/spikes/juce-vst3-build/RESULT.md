@@ -8,5 +8,5 @@
   - `cmake -S research/spikes/juce-vst3-build -B /home/claude/build/juce-spike -G Ninja -DCMAKE_BUILD_TYPE=Release -DJUCE_SOURCE_DIR_OVERRIDE=/home/claude/deps/JUCE` -> exit 0, 38.6 s wall.
   - `cmake --build /home/claude/build/juce-spike --target MuffSpike_VST3 -j2` -> exit 0, 3 min 05 s wall (5 min 42 s CPU), 54 build edges.
 - **Result**: `MuffSpike_artefacts/Release/VST3/MuffSpike.vst3/Contents/x86_64-linux/MuffSpike.so` (12 894 504 bytes) and `Contents/Resources/moduleinfo.json` produced.
-- **Observations**: JUCE 9.0.5 prints a compile-time note that `JUCE_DISPLAY_SPLASH_SCREEN` is ignored (no splash screen exists in this version). The first build of the JUCE modules dominates; seven plug-ins sharing one static JUCE library target avoid paying it seven times (D-005).
+- **Observations**: JUCE 9.0.5 prints a compile-time note that `JUCE_DISPLAY_SPLASH_SCREEN` is ignored (no splash screen exists in this version). The build of the JUCE modules dominates the time. Each plug-in target compiles them again; D-005 keeps that documented structure and adds a compiler cache, and names a shared static JUCE library only as the reviewed next step if job time exceeds its limit.
 - **Not covered**: loading the plug-in in a host; pluginval (runs in CI, S-021).

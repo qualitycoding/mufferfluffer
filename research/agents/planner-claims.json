@@ -366,7 +366,8 @@
   "publisher_count": 2,
   "confidence": "single-source",
   "contradicted_by": [
-   "Which LLVM majors Mull 0.37.0 packages exist for was not checked in this run; S-MUTATE pins the package that installs for clang-19 and records its version."
+   "Which LLVM majors Mull 0.37.0 packages exist for was not checked in this run; S-MUTATE pins the package that installs for clang-19 and records its version.",
+   "Adversarial pass (2026-11-12): Mull's changelog says the Cloudsmith repository is exhausted and the versioned runner name was dropped in recent releases; S-MUTATE installs from a GitHub release asset instead."
   ],
   "topic": "mutation",
   "spike": ""
@@ -468,7 +469,7 @@
   "spike": ""
  },
  {
-  "claim": "The 77 frozen C++ core and adaptor tests, the 6 VST3 shell tests and the 9 repository tests are satisfiable: an oracle implementation written against the public headers passes all of them (also under ASan+UBSan), and all of them fail against the stubs.",
+  "claim": "The 80 frozen C++ core and adaptor tests, the 6 VST3 shell tests and the 9 repository tests are satisfiable: an oracle implementation written against the public headers passes all of them (the core tests also under ASan+UBSan and with Rack's compiler flags), and all of them fail against the stubs.",
   "kind": "software",
   "load_bearing": true,
   "sources": [
@@ -490,7 +491,7 @@
   "spike": "research/spikes/red-verification"
  },
  {
-  "claim": "The oracle core, unoptimised and without oversampling, uses 0.41 % to 0.94 % of one core per effect at 48 kHz with 64-sample blocks on the 2-vCPU planning sandbox.",
+  "claim": "The oracle core, unoptimised and without oversampling, uses 0.53 % to 1.9 % of one core per effect at 48 kHz with 64-sample blocks on the 2-vCPU planning sandbox (slower of a steady-tone phase and a silence-after-tone phase).",
   "kind": "numerical",
   "load_bearing": true,
   "sources": [

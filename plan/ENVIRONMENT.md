@@ -9,7 +9,7 @@ Every version below was read from its source on 2026-11-11 or 2026-11-12 (claims
 | Catch2 | v3.16.1, commit `08092139210881f01a34e60c5f2fd6afa0ea4024` | `FetchContent` `GIT_TAG` in `tests/CMakeLists.txt` | yes |
 | VCV Rack SDK | 2.6.6 (Rack tag `v2.6.6` = `061ccf63c1758599396ac1bb10d47345d9d34076`) | archive URL of D-003 + SHA-256 in `deps.lock.json` (recorded by S-030) | headers only (cloned tag); archive not reachable from the sandbox |
 | pluginval | v1.0.4 (tag commit `ed19c2c16b57a6d94db391bea3ef4a80b769d5bf`) | release archive + SHA-256: Linux `c01c49d8063965c4c2dea8324468336768f5c9139e0b1caebde14c2400b55352`, macOS `3c4c533bda0c5059eea3ddaea752d757ee2025041f0f47e6bcb0e87f6082b29f`, Windows `c08e61ce3b96db41636f8ec7e76f4c7e2c13ebdac7fa1b5a1f52b4f32ec715ab` | no (hashes from the knowledge store; the download step verifies them, so a wrong hash stops the job) |
-| Mull | package `mull-19` from the `mull-stable` Cloudsmith repository, with `clang-19` | version recorded by S-MUTATE.1 in `deps.lock.json` | no |
+| Mull | newest GitHub release of `mull-project/mull` that has a `.deb` for Ubuntu 24.04 and LLVM 19 (0.37.0 was the newest tag on 2026-11-11), with `clang-19` | release tag, asset name and SHA-256 recorded by S-MUTATE.1 in `deps.lock.json` | no |
 | Python | 3.10 or newer, standard library only | runner default | 3.13 here |
 | CMake | 3.22 or newer | `cmake_minimum_required` | 3.28.3 here |
 
@@ -24,7 +24,7 @@ Release archive URLs: pluginval `https://github.com/Tracktion/pluginval/releases
 | `actions/cache` | v6.1.0 | `55cc8345863c7cc4c66a329aec7e433d2d1c52a9` |
 | `msys2/setup-msys2` | v2.33.0 | `2ff06a04f6edec2a4d4bad38c3bfb2df71f4b9f2` |
 
-Runner labels (C-PLANNER-010, C-PLANNER-011): `ubuntu-24.04`, `ubuntu-22.04`, `ubuntu-24.04-arm`, `windows-2022`, `macos-15`, `macos-15-intel`. Never a `-latest` label.
+Runner labels (C-PLANNER-010, C-PLANNER-011): `ubuntu-24.04`, `ubuntu-24.04-arm`, `windows-2022`, `macos-15`, `macos-15-intel`. Never a `-latest` label. Container images: `alpine:3.22` (`core-musl`), `ubuntu:22.04` (`core-oldest-toolchain`).
 
 ## Linux packages
 - JUCE VST3 build and tests (Ubuntu 24.04; run `sudo apt-get update` first): `libasound2-dev libxrandr-dev libxinerama-dev libxcursor-dev libglu1-mesa-dev libxcomposite-dev libxi-dev libfreetype-dev libfontconfig1-dev libx11-dev libxext-dev libxrender-dev ninja-build xvfb`.

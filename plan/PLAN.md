@@ -1,6 +1,6 @@
 # Execution plan
 
-Read `HANDOFF.md` first. Step template: protocol 3.1. All paths are relative to the repository root. "The suite" means `muff_core_tests` (77 cases), `muff_vst3_tests` (6 cases) and `tests/py` (9 cases). Commands are for Linux unless a step says otherwise; exact build commands are in `plan/ENVIRONMENT.md`. A filter such as `"[lowpass]"` is passed to the test binary: `build/core/tests/muff_core_tests "[lowpass]"`.
+Read `HANDOFF.md` first. Step template: protocol 3.1. All paths are relative to the repository root. "The suite" means `muff_core_tests` (80 cases), `muff_vst3_tests` (6 cases) and `tests/py` (9 cases). Commands are for Linux unless a step says otherwise; exact build commands are in `plan/ENVIRONMENT.md`. A filter such as `"[lowpass]"` is passed to the test binary: `build/core/tests/muff_core_tests "[lowpass]"`.
 
 Rules that apply to every step (not repeated below):
 - Never edit a file listed in `tests/FROZEN_MANIFEST.sha256`; `python3 tools/check_frozen.py` must exit 0 before every commit.
@@ -26,7 +26,7 @@ Independent groups that may run concurrently once their dependencies pass: {S-01
   1. `git fetch origin && git checkout -b impl-<run_id> origin/<generation branch>` where `<run_id>` is the generation branch name without its `gen-` prefix.
   2. Install the Linux packages of `plan/ENVIRONMENT.md` (JUCE list). Record `cmake --version`, `g++ --version`, `python3 --version`, `nproc`.
   3. `python3 tools/check_frozen.py` (expect exit 0 and the line `frozen files intact: <n> files`).
-  4. Red baseline: run the three "core + adaptor tests" commands of `plan/ENVIRONMENT.md`; expect `ctest` to report 77 of 77 tests failed. Run `python3 -m unittest discover -s tests/py`; expect `FAILED (failures=9)`.
+  4. Red baseline: run the three "core + adaptor tests" commands of `plan/ENVIRONMENT.md`; expect `ctest` to report 80 of 80 tests failed. Run `python3 -m unittest discover -s tests/py`; expect `FAILED (failures=9)`.
   5. Access checks: `git push -u origin impl-<run_id>` (push permission); `gh api repos/qualitycoding/mufferfluffer/actions/runs --jq '.total_count'` or the equivalent GitHub tool (permission to read Actions runs; needed from S-001 on); `git ls-remote https://github.com/juce-framework/JUCE 9.0.5` and `git ls-remote https://github.com/catchorg/Catch2 v3.16.1` (reachability; expect the commits of `plan/ENVIRONMENT.md`).
   6. Create `EXECUTION_LOG.md` with the header `| UTC time | Step | Attempt | Outcome | Commit | Note |` and this step's line. Create empty `DEVIATIONS.md` with the header `| UTC time | Step | Deviation | Reason | Reversible? |`.
 - Outputs: branch `impl-<run_id>`; `EXECUTION_LOG.md`; `DEVIATIONS.md`.
@@ -47,7 +47,7 @@ Independent groups that may run concurrently once their dependencies pass: {S-01
 - Actions:
   1. Create `.gitignore` with the lines `build/`, `Rack-SDK/`, `rack/build/`, `rack/dist/`, `rack/plugin.*` (not `plugin.json`: add the negation line `!rack/plugin.json`), `__pycache__/`, `*.pyc`.
   2. Create `deps.lock.json` with the keys `juce`, `catch2`, `pluginval`, `rack-sdk` holding the versions, commits and the three pluginval hashes of `plan/ENVIRONMENT.md`; give `rack-sdk` `"version": "2.6.6"` and `"sha256": {}` (filled by S-030).
-  3. Create `.github/workflows/ci.yml`: `on: [push, pull_request]`; top-level `permissions:` with `contents: read`; `concurrency` group `ci-${{ github.ref }}` with `cancel-in-progress: true`; a top-level `env:` entry `MUFF_TEST_FILTER: "T-00[1-3]*,T-02*"` (the temporary filter, widened by later steps and removed by S-018); the jobs `repo-checks`, `core-linux`, `core-sanitizers`, `core-linux-arm64`, `core-musl`, `core-oldest-toolchain`, `core-windows`, `core-macos`, `core-macos-intel` and `aggregate` exactly as tabled in D-009, except that until S-018 each core job runs `muff_core_tests "$MUFF_TEST_FILTER"` instead of `ctest` and does not run `muff_bench`, and `repo-checks` runs only `python3 tools/check_frozen.py` and `python3 tools/gen_expected.py --check tests/fixtures/effects.json tests/core/expected_effects.inc`. Every `uses:` is pinned to the commit in `plan/ENVIRONMENT.md`. Every job sets `timeout-minutes`. Each job's first step prints the tool versions it relies on. Test logs are written with `2>&1 | tee <job>.log` under `shell: bash` with `set -o pipefail`, and uploaded with `actions/upload-artifact` under `if: always()` and `if-no-files-found: error`.
+  3. Create `.github/workflows/ci.yml`: `on: [push, pull_request]`; top-level `permissions:` with `contents: read`; `concurrency` group `ci-${{ github.ref }}` with `cancel-in-progress: true`; a top-level `env:` entry `MUFF_TEST_FILTER: "T-00[1-3]*,T-02*"` (the temporary filter, widened by later steps and removed by S-018); the jobs `repo-checks`, `core-linux`, `core-sanitizers`, `core-linux-arm64`, `core-musl`, `core-oldest-toolchain` (a container job, like `core-musl`: no JavaScript actions, source fetched by `git`, per D-009), `core-windows`, `core-macos`, `core-macos-intel` and `aggregate` exactly as tabled in D-009, except that until S-018 each core job runs `muff_core_tests "$MUFF_TEST_FILTER"` instead of `ctest` and does not run `muff_bench`, and `repo-checks` runs only `python3 tools/check_frozen.py` and `python3 tools/gen_expected.py --check tests/fixtures/effects.json tests/core/expected_effects.inc`. Every `uses:` is pinned to the commit in `plan/ENVIRONMENT.md`. Every job sets `timeout-minutes`. Each job's first step prints the tool versions it relies on. Test logs are written with `2>&1 | tee <job>.log` under `shell: bash` with `set -o pipefail`, and uploaded with `actions/upload-artifact` under `if: always()` and `if-no-files-found: error`.
   4. `aggregate`: `if: always()`, `needs:` all other jobs, one step that fails unless every entry of `${{ toJSON(needs) }}` has `"result": "success"` (use `python3 -c` reading the JSON from an environment variable).
   5. Push and read the run. The core is still stubs at this step, so the test step of each core job is expected to fail; what this step proves is that every job builds and reaches its test step on every platform. Record each job's conclusion and the name of its failing step in `EXECUTION_LOG.md`.
 - Outputs: `.gitignore`, `deps.lock.json`, `.github/workflows/ci.yml`.
@@ -67,7 +67,7 @@ Independent groups that may run concurrently once their dependencies pass: {S-01
 - Inputs: `core/include/muff/core.hpp`, `core/include/muff/blocks.hpp`, `tests/fixtures/effects.json`, `tools/gen_tables.py`, D-011, D-014, D-015, D-017.
 - Actions:
   1. `python3 tools/gen_tables.py tests/fixtures/effects.json core/src/generated_tables.inc`; commit the output.
-  2. Delete `core/src/stubs.cpp`. Create `core/src/tables.cpp` (includes `generated_tables.inc` once; implements `effectInfo`, `findParam`, `findInput`, `findOutput`, `findMeter`, `toNormalised`, `fromNormalised` exactly as the header comments specify), `core/src/blocks.cpp` (`softClip`, `lfoShape`, `TapTempo`, `filterBankEnvelopeTimes`), `core/src/effect_base.hpp` and `.cpp` (a private base class providing: parameter storage with clamping and rounding; connection flags; input sanitising and output limiting of D-012; 5 ms smoothing of D-017; the `active` cross-fade; the level meter; `prepare` validation), and `core/src/create.cpp` (`createEffect`: throws `std::out_of_range` for an invalid id; for a valid id whose effect is not yet written, throws `muff::NotImplemented`).
+  2. Delete `core/src/stubs.cpp`. Create `core/src/tables.cpp` (includes `generated_tables.inc` once; implements `effectInfo`, `findParam`, `findInput`, `findOutput`, `findMeter`, `toNormalised`, `fromNormalised` exactly as the header comments specify), `core/src/blocks.cpp` (`softClip`, `lfoShape`, `TapTempo`, `filterBankEnvelopeTimes`), `core/src/effect_base.hpp` and `.cpp` (a private base class providing: parameter storage with clamping and rounding; connection flags; input sanitising, output limiting and denormal protection of D-012; 5 ms smoothing of D-017; the `active` cross-fade; the level meter; `prepare` validation), and `core/src/create.cpp` (`createEffect`: throws `std::out_of_range` for an invalid id; for a valid id whose effect is not yet written, throws `muff::NotImplemented`).
   3. Every new file starts with `// SPDX-License-Identifier: AGPL-3.0-only`.
 - Outputs: the files named above.
 - Evidence produced: T-001, T-002, T-003, T-020, T-021, T-022, T-023, T-024
@@ -84,10 +84,10 @@ Independent groups that may run concurrently once their dependencies pass: {S-01
 - Profile: software
 - Depends on: S-010
 - Inputs: D-018, D-020, D-030, D-037; `research/spikes/oracle/oracle_core.cpp` may be read as a satisfiability reference (it is not a quality bar and must not be copied wholesale: it lacks the structure of S-010).
-- Actions: create `core/src/lowpass.cpp` implementing the effect per D-020 and D-030 on the base class of S-010; register it in `core/src/create.cpp`. `tailSeconds()`: `1.0e9f` when `resonance >= 8`, else `1.0f`. `latencySamples()`: 0. In `.github/workflows/ci.yml` append `,[lowpass]` to `MUFF_TEST_FILTER`.
+- Actions: create `core/src/lowpass.cpp` implementing the effect per D-020 and D-030 (including the resonance fade above 16 kHz) on the base class of S-010; register it in `core/src/create.cpp`. `tailSeconds()`: `1.0e9f` when `resonance >= 8`, else `1.0f`. `latencySamples()`: 0. In `.github/workflows/ci.yml` append `,[lowpass]` to `MUFF_TEST_FILTER`.
 - Outputs: `core/src/lowpass.cpp`; edits to `create.cpp`, `ci.yml`.
-- Evidence produced: T-101 to T-108
-- Done when: `build/core/tests/muff_core_tests "[lowpass]"` reports `All tests passed` with 8 test cases; CI green in all core jobs.
+- Evidence produced: T-101 to T-109
+- Done when: `build/core/tests/muff_core_tests "[lowpass]"` reports `All tests passed` with 9 test cases; CI green in all core jobs.
 - Checkpoint: `active_step_id: "S-011"`.
 - On failure: three implementation attempts; if T-103 (self-oscillation frequency) cannot be met within 2 % with the D-030 equations, stop and write `BLOCKED.md` quoting the measured frequencies (the oracle meets it, so this indicates an implementation defect; do not change the algorithm family without re-opening Phase 2).
 - Gate: none
@@ -132,32 +132,32 @@ Independent groups that may run concurrently once their dependencies pass: {S-01
 - Profile: software
 - Depends on: S-010
 - Inputs: D-014, D-015, D-017, D-018, D-023, D-033.
-- Actions: create `core/src/delay.cpp` per D-023 and D-033 (delay-line buffer sized in `prepare`, never in `process`); register it; `tailSeconds()`: with `g = feedback / 8`: `1.0e9f` if `g >= 1`; `0.9f` if `g <= 0.001`; else `0.8f * (1 + 6.908f / -ln(g)) + 0.1f`; append `,[delay]` to `MUFF_TEST_FILTER`.
+- Actions: create `core/src/clocked_line.hpp` (the clocked delay line of D-033, shared with S-015; whichever of S-014 and S-015 runs first creates it, buffers sized in `prepare`, never in `process`) and `core/src/delay.cpp` per D-023; register it; `tailSeconds()`: with `g = feedback / 8`: `1.0e9f` if `g >= 1`; `0.9f` if `g <= 0.001`; else `t = 0.8f * (1 + 6.908f / -ln(g)) + 0.1f`, returned as `1.0e9f` when `t > 60`; append `,[delay]` to `MUFF_TEST_FILTER`.
 - Outputs: `core/src/delay.cpp`; edits to `create.cpp`, `ci.yml`.
-- Evidence produced: T-401 to T-408
-- Done when: `muff_core_tests "[delay]"`: `All tests passed`, 8 test cases; CI green in all core jobs.
+- Evidence produced: T-401 to T-409
+- Done when: `muff_core_tests "[delay]"`: `All tests passed`, 9 test cases; CI green in all core jobs.
 - Checkpoint: `active_step_id: "S-014"`.
 - On failure: as S-011.
 - Gate: none
 - Relevant decisions/claims: D-023, D-033; C-PEDB-003, C-PEDB-012
 - Lessons applied: none specific
-- Exclusive resources: none
+- Exclusive resources: `core/src/clocked_line.hpp` (shared with S-015)
 
 ### S-015 Chorus
 - Tier: Opus
 - Profile: software
 - Depends on: S-010
 - Inputs: D-014, D-015, D-018, D-026, D-036.
-- Actions: create `core/src/chorus.cpp` per D-026 and D-036; register it; `tailSeconds()`: with `g = 1.25 * |feedback|`: `1.0e9f` if `g >= 1`; `0.15f` if `g <= 0.001`; else `0.05f * (1 + 6.908f / -ln(g)) + 0.1f`; append `,[chorus]` to `MUFF_TEST_FILTER`.
+- Actions: create `core/src/chorus.cpp` per D-026, D-033 and D-036 (using `core/src/clocked_line.hpp`); register it; `tailSeconds()`: with `g = 1.25 * |feedback|`: `1.0e9f` if `g >= 1`; `0.15f` if `g <= 0.001`; else `t = 0.05f * (1 + 6.908f / -ln(g)) + 0.1f`, returned as `1.0e9f` when `t > 60`; append `,[chorus]` to `MUFF_TEST_FILTER`.
 - Outputs: `core/src/chorus.cpp`; edits to `create.cpp`, `ci.yml`.
 - Evidence produced: T-701 to T-707
 - Done when: `muff_core_tests "[chorus]"`: `All tests passed`, 7 test cases; CI green in all core jobs.
 - Checkpoint: `active_step_id: "S-015"`.
 - On failure: as S-011.
 - Gate: none
-- Relevant decisions/claims: D-026, D-036
+- Relevant decisions/claims: D-026, D-033, D-036
 - Lessons applied: none specific
-- Exclusive resources: none
+- Exclusive resources: `core/src/clocked_line.hpp` (shared with S-014)
 
 ### S-016 FilterBank
 - Tier: Opus
@@ -180,10 +180,10 @@ Independent groups that may run concurrently once their dependencies pass: {S-01
 - Profile: software
 - Depends on: S-010
 - Inputs: D-018, D-025, D-035.
-- Actions: create `core/src/oscbox.cpp` per D-025 and D-035 (band-limited steps at wraps, pulse edges and sync resets); register it; `tailSeconds()` returns `1.0f`; append `,[oscbox]` to `MUFF_TEST_FILTER`.
+- Actions: create `core/src/oscbox.cpp` per D-025 and D-035 (the one-sample-late oscillator with band-limited steps at wraps, pulse edges and sub-sample-timed sync resets, exactly as D-035 states); register it; `tailSeconds()` returns `1.0f`; append `,[oscbox]` to `MUFF_TEST_FILTER`.
 - Outputs: `core/src/oscbox.cpp`; edits to `create.cpp`, `ci.yml`.
-- Evidence produced: T-601 to T-606
-- Done when: `muff_core_tests "[oscbox]"`: `All tests passed`, 6 test cases; CI green in all core jobs.
+- Evidence produced: T-601 to T-607
+- Done when: `muff_core_tests "[oscbox]"`: `All tests passed`, 7 test cases; CI green in all core jobs.
 - Checkpoint: `active_step_id: "S-017"`.
 - On failure: as S-011.
 - Gate: none
@@ -202,7 +202,7 @@ Independent groups that may run concurrently once their dependencies pass: {S-01
   3. Run the sanitizer commands of `plan/ENVIRONMENT.md` locally.
 - Outputs: `adapters/src/adapters.cpp`; `ci.yml`.
 - Evidence produced: T-004 to T-018, T-801, T-802, T-811, T-812, T-821, T-PERF-1, T-CI-SAN
-- Done when: `ctest --test-dir build/core --output-on-failure` reports `100% tests passed, 0 tests failed out of 77`; the sanitizer binary reports `All tests passed` (76 test cases); `build/core/tests/muff_bench --limit 5` exits 0 and prints seven lines; the CI run is green in `repo-checks`, all eight core jobs and `aggregate`; `grep -c MUFF_TEST_FILTER .github/workflows/ci.yml` prints 0.
+- Done when: `ctest --test-dir build/core --output-on-failure` reports `100% tests passed, 0 tests failed out of 80`; the sanitizer binary reports `All tests passed` (79 test cases); `build/core/tests/muff_bench --limit 5` exits 0 and prints seven lines; the CI run is green in `repo-checks`, all eight core jobs and `aggregate`; `grep -c MUFF_TEST_FILTER .github/workflows/ci.yml` prints 0.
 - Checkpoint: `active_step_id: "S-018"`, the seven benchmark numbers from the `core-linux` log.
 - On failure: a common test fails for one effect: return to that effect's step. `muff_bench` at or above 5 % for an effect on `core-linux`: profile that effect (`perf record` or manual timers), optimise (hoist `tan`/`pow` calls to control rate with per-sample linear interpolation of coefficients, at most every 16 samples; never change audible behaviour covered by a test), three attempts, then `BLOCKED.md`; never raise the limit (D-050). The gate failing once and passing on re-run of the same commit: R-009.
 - Gate: none
@@ -237,13 +237,13 @@ Independent groups that may run concurrently once their dependencies pass: {S-01
   1. Create `vst3/src/editor.hpp`, `vst3/src/editor.cpp` (the editor of D-016; `createEditor()` in `processor.cpp` returns it) and `vst3/src/entry/entry.cpp` (D-005).
   2. Below the marked line of `vst3/CMakeLists.txt` add the seven `juce_add_plugin` targets with the properties of D-005; each links `muff_vst3_sources` and `juce::juce_recommended_warning_flags`, adds `src/entry/entry.cpp`, and defines `MUFF_EFFECT_ID`.
   3. Create `tools/fetch_pluginval.py <platform> <dest>`: downloads the archive for `Linux`, `macOS` or `Windows`, verifies its SHA-256 against `deps.lock.json` before unpacking, exits non-zero on mismatch or after three failed attempts 30 s apart.
-  4. Create `tools/run_pluginval.py <pluginval-binary> <vst3-bundle>...`: for each bundle runs the command of D-007, captures the log to `pluginval-<name>.log`, and applies the pass rule of D-007; exits non-zero if any bundle fails.
-  5. Add jobs `vst3-windows`, `vst3-macos`, `vst3-macos-intel` and extend `vst3-linux`: build all targets; run `muff_vst3_tests`; on Linux, Windows and macOS arm64 run steps 3 and 4 over the seven bundles (Linux under `xvfb-run -a`). Upload the pluginval logs (text) with `if: always()`. No bundle is uploaded.
+  4. Create `tools/run_pluginval.py <pluginval-binary> <vst3-bundle>...`: for each bundle runs the command of D-007, captures the log to `pluginval-<name>.log`, and applies the pass rule of D-007; exits non-zero if any bundle fails. With `--self-test <pluginval-binary>` it creates an empty directory `NotAPlugin.vst3`, applies the same rule and exits 0 only if the rule reports failure (D-007 negative control); every validating job runs the self-test first.
+  5. Add jobs `vst3-windows`, `vst3-macos`, `vst3-macos-intel` and extend `vst3-linux`: compiler cache on Linux and macOS as D-005 states; build all targets; run `muff_vst3_tests`; on Linux, Windows and macOS arm64 run steps 3 and 4 over the seven bundles (Linux under `xvfb-run -a`). Upload the pluginval logs (text) with `if: always()`. No bundle is uploaded.
 - Outputs: the files named; `ci.yml`.
 - Evidence produced: T-CI-PLUGINVAL; first part of T-901 (plug-in targets exist)
 - Done when: on Linux, `cmake --build build/vst3` produces seven directories `build/vst3/vst3/Muff*_artefacts/Release/VST3/*.vst3`, each containing a shared library larger than 1 MB (print sizes); `python3 tools/run_pluginval.py` over the seven exits 0 locally or in CI; CI green in all four `vst3-*` jobs and `aggregate`.
 - Checkpoint: `active_step_id: "S-021"`, per-platform build minutes from the job summaries.
-- On failure: pluginval reports a failure: fix the shell or editor (the contract is fixed); if the failing check contradicts the frozen contract, stop and write `BLOCKED.md` (R-011). A VST3 job over 45 min: apply D-005's revisit rule (add `actions/cache` for a `ccache`/`sccache` directory keyed on the JUCE commit and runner label) and record it in `DEVIATIONS.md`. pluginval download hash mismatch: stop and write `BLOCKED.md` (do not update the hash).
+- On failure: pluginval rejects an option of D-007's command line (`--seed`): print `pluginval --help`, drop only that option, record it in `DEVIATIONS.md`. pluginval reports a failure: re-run once with the same seed to tell a repeatable failure from an intermittent one and record both logs; then fix the shell or editor (the contract is fixed); if the failing check contradicts the frozen contract, stop and write `BLOCKED.md` (R-011). A VST3 job over 45 min: apply D-005's revisit rule (add `actions/cache` for a `ccache`/`sccache` directory keyed on the JUCE commit and runner label) and record it in `DEVIATIONS.md`. pluginval download hash mismatch: stop and write `BLOCKED.md` (do not update the hash).
 - Gate: none
 - Relevant decisions/claims: D-005, D-007, D-016; C-PLANNER-006, C-PLANNER-007, C-PLANNER-008
 - Lessons applied: `research/PRIOR_KNOWLEDGE.md` rows "pluginval exit status is not proof", "headless plug-in validation"
@@ -308,7 +308,7 @@ Independent groups that may run concurrently once their dependencies pass: {S-01
 - Profile: software
 - Depends on: S-032
 - Inputs: D-009, `plan/ENVIRONMENT.md` (packages), `tools/fetch_rack_sdk.py`.
-- Actions: add jobs `rack-linux`, `rack-windows` (steps under `msys2/setup-msys2` with `msystem: MINGW64` and `shell: msys2 {0}`), `rack-macos`, `rack-macos-intel`: fetch and verify the SDK for the job's platform, `make -C rack RACK_DIR=... dist`, then `python3 tools/check_rack_package.py rack/dist` (new tool: asserts exactly one `*.vcvplugin` file larger than 100 kB whose name contains the platform token; unpacks it (it is a zstd-compressed tar: `zstd -d` then `tar -t`) and asserts it contains `Mufferfluffer/plugin.json`, the platform's plug-in library (`plugin.so`, `plugin.dll` or `plugin.dylib`), `Mufferfluffer/LICENSE*` and the seven `res/*.svg`). Add the four jobs to `aggregate`. No package is uploaded.
+- Actions: add jobs `rack-linux`, `rack-windows` (steps under `msys2/setup-msys2` with `msystem: MINGW64` and `shell: msys2 {0}`), `rack-macos`, `rack-macos-intel`: fetch and verify the SDK for the job's platform, `make -C rack RACK_DIR=... dist` (on `rack-linux` also: build and run `muff_core_tests` with Rack's compiler flags, the command of D-006), then `python3 tools/check_rack_package.py rack/dist` (new tool: asserts exactly one `*.vcvplugin` file larger than 100 kB whose name contains the platform token; unpacks it (it is a zstd-compressed tar: `zstd -d` then `tar -t`) and asserts it contains `Mufferfluffer/plugin.json`, the platform's plug-in library (`plugin.so`, `plugin.dll` or `plugin.dylib`), `Mufferfluffer/LICENSE*` and the seven `res/*.svg`). Add the four jobs to `aggregate`. No package is uploaded.
 - Outputs: `tools/check_rack_package.py`; `ci.yml`.
 - Evidence produced: T-CI-RACKPKG
 - Done when: CI green in the four `rack-*` jobs and `aggregate`; each job's log shows the package name and size.
@@ -359,7 +359,7 @@ Independent groups that may run concurrently once their dependencies pass: {S-01
 - Actions: three fresh-context reviewers that wrote none of the code, each given the diff and one brief: (1) correctness against D-011 to D-037 and anti-patterns (dead code, duplication, hidden mutation, naming, needless complexity); (2) security and real-time safety (memory handling in delay lines and state parsing, allocation or locking on the audio thread, denormals, integer overflow in sample counters, division by zero at parameter extremes); (3) untested code paths (every new function mapped to a T- id or named as a gap) and dependency currency (each pin compared with the newest tag by `git ls-remote --tags`, differences listed). Merge into `reviews/CODE_REVIEW.md` with one row per finding: id, severity (protocol Rule 4), file and line, description, resolution (fix commit or R- entry). Fix every Critical and High finding; record each fix of an implementer mistake as a lesson (Rule 11).
 - Outputs: `reviews/CODE_REVIEW.md`; fix commits; lessons.
 - Evidence produced: none
-- Done when: `reviews/CODE_REVIEW.md` has no Critical or High row without a fix commit; the suite status is unchanged or better (`ctest` 77 of 77; `muff_vst3_tests` 6 of 6); CI green.
+- Done when: `reviews/CODE_REVIEW.md` has no Critical or High row without a fix commit; the suite status is unchanged or better (`ctest` 80 of 80; `muff_vst3_tests` 6 of 6); CI green.
 - Checkpoint: `active_step_id: "S-REVIEW"`, counts by severity.
 - On failure: a finding needs a new test: `HANDOFF.md` section 6 (Phase 2 re-opening); a finding disputes a decision: record it as an R- entry at its severity and continue unless Critical or High, in which case `BLOCKED.md`.
 - Gate: none
@@ -389,7 +389,7 @@ Independent groups that may run concurrently once their dependencies pass: {S-01
 - Depends on: S-ADVERSARIAL
 - Inputs: skills `mutation-testing-in-ci` and `mutation-sharding` of `qualitycoding/skills` (read both `SKILL.md` files and copy their scripts `mull_score.py`, `mull_include_paths.py` and the example workflow as the starting point; record the skills-repository commit used); D-060.
 - Pre-decided record (protocol 3.8):
-  - Tool and pin: Mull, package `mull-19` from `https://dl.cloudsmith.io/public/mull-project/mull-stable/` with `clang-19` and `libclang-rt-19-dev` on `ubuntu-24.04`; the installed package version is printed by the job and written to `deps.lock.json` under `mull` by sub-step 1; the configuration file `mull.yml` (mutators: the tool's default set; `includePaths: ["core/src/.*", "adapters/src/.*"]`; `excludePaths: [".*generated_tables.*", ".*tests/.*", ".*_deps/.*"]`) is part of the pin.
+  - Tool and pin: Mull for LLVM 19 on `ubuntu-24.04` with `clang-19` and `libclang-rt-19-dev`, installed from a release `.deb` of `https://github.com/mull-project/mull/releases` (sub-step 1 lists the release's assets with `gh release view --repo mull-project/mull --json tagName,assets`, takes the newest release that has an asset for Ubuntu 24.04 and LLVM 19, and writes its tag, asset name and SHA-256 to `deps.lock.json` under `mull`; later runs verify the hash before `dpkg -i`). The Cloudsmith repository is not used. The runner executable is whatever that package installs (`ls /usr/bin/mull*` is printed; earlier packages named it `mull-runner-19`, newer ones `mull-runner`); the configuration file `mull.yml` (mutators: the tool's default set; `includePaths: ["core/src/.*", "adapters/src/.*"]`; `excludePaths: [".*generated_tables.*", ".*tests/.*", ".*_deps/.*"]`) is part of the pin.
   - Scope: `core/src/*.cpp`, `adapters/src/*.cpp`. Out of scope: generated tables, `vst3/`, `rack/` (shells; covered by T-851 to T-856, pluginval and package checks).
   - Floor: project score 60 %, chosen before the first run; after the first real full run it is raised to five points below the achieved score, never lowered without a D- entry.
   - Test list: the whole of `muff_core_tests` is too slow per mutant, so each shard runs only the tests that exercise its file: `lowpass.cpp` -> `"[lowpass]"`; `ringmod.cpp` -> `"[ringmod]"`; `phaser.cpp` -> `"[phaser]"`; `delay.cpp` -> `"[delay]"`; `chorus.cpp` -> `"[chorus]"`; `filterbank.cpp` -> `"[filterbank]"`; `oscbox.cpp` -> `"[oscbox]"`; `tables.cpp`, `blocks.cpp`, `effect_base.cpp`, `create.cpp` -> `"[tables],[params],[blocks],[lifecycle],[cv],[bypass],[smoothing],[meters]"`; `adapters.cpp` -> `"[adapters]"`. Omitted for every shard: T-007 (robustness sweep), T-011 (allocation hook), T-017, T-018 and, for the effect shards, the common tests; mutants only those tests would kill count as survivors, so the score is conservative (this omission is decision D-060 and is restated in `reviews/MUTATION.md`).
@@ -405,7 +405,7 @@ Independent groups that may run concurrently once their dependencies pass: {S-01
 - Evidence produced: T-905 (workflow test) turns green
 - Done when: a full run on the pushed commit is green in `mutation-gate` with the project score printed and at or above the floor; an incremental run triggered by a one-line change to `core/src/phaser.cpp` mutates only that file (log shows one shard) and a documentation-only push reports `mode: not-applicable`; `python3 -m unittest discover -s tests/py -v` reports `OK` (9 tests); `reviews/MUTATION.md` holds the measured numbers, the failing-gate demonstration and the survivor table.
 - Checkpoint: after each sub-step: `active_step_id: "S-MUTATE.<n>"`, run URLs, scores. Resume: re-dispatch the failed shard only (shard reports are separate artefacts).
-- On failure: `mull-19` does not install: R-010's response. First real score below 60 %: do not lower the floor; work survivors (sub-step 3) until the floor is met, at most three full runs, then `BLOCKED.md` with the per-file table. A shard times out at 120 min: sharding skill, then `BLOCKED.md` if still over.
+- On failure: no release asset for Ubuntu 24.04 with LLVM 19 exists or it does not install: R-010's response. First real score below 60 %: do not lower the floor; work survivors (sub-step 3) until the floor is met, at most three full runs, then `BLOCKED.md` with the per-file table. A shard times out at 120 min: sharding skill, then `BLOCKED.md` if still over.
 - Gate: none
 - Relevant decisions/claims: D-060; C-PLANNER-012
 - Lessons applied: every lesson tagged `tech:mull` in `research/PRIOR_KNOWLEDGE.md` (score from the report; gate shown to fail; no path-filtered required workflow; survivors by file)
@@ -440,7 +440,7 @@ Independent groups that may run concurrently once their dependencies pass: {S-01
   - Frozen metrics that stand under the listening gate: all behavioural tests T-101 to T-707 (ranges, frequencies, times). The gate never relaxes them.
   - Pass condition: the owner's response is `proceed` or `proceed-with-rescope`.
   - Round limit: 3 `iterate` rounds, then escalate with the residual remarks; the owner chooses `proceed-with-rescope` or `stop`.
-  - Demo list (22 files, 48 kHz, 24-bit WAV, each 12 to 25 s, peak-normalised to -3 dBFS; every demo starts with 3 s of the dry input, then the processed signal):
+  - Demo list (23 files, 48 kHz, 24-bit WAV, each 12 to 25 s, peak-normalised to -3 dBFS; every demo starts with 3 s of the dry input, then the processed signal):
     - `demo-01-lowpass-sweep`: saw bass line; cutoff swept 60 Hz to 8 kHz and back by automation, resonance 5.
     - `demo-02-lowpass-envelope`: plucked chords; cutoff 150 Hz, Amount 4, Fast then Smooth (switch at half time), resonance 6.
     - `demo-03-lowpass-selfosc`: silence in; resonance 10, cutoff stepped through 110, 220, 440, 880 Hz; then drum pattern in with resonance 9, 2-pole then 4-pole.
@@ -463,9 +463,10 @@ Independent groups that may run concurrently once their dependencies pass: {S-01
     - `demo-20-osc-fm-env`: drum pattern; FM Amount 0.7, Env Amount 3, frequency 80 Hz, Wave 0.
     - `demo-21-swarm-chorus`: plucked chords; Chorus range, Time 0.4, LFO 0.6 Hz Amount 0.3, feedback 0.2, mix 0.5; stereo.
     - `demo-22-swarm-flange`: drum pattern then held chord; Flange range, LFO 0.15 Hz Amount 0.9, feedback 0.7 then -0.7, mix 0.5; stereo.
+    - `demo-23-drive`: plucked chords through Fluff Lowpass with cutoff 12 kHz, resonance 0, mix 1; Drive stepped 0, +9, +18, +28 dB for 5 s each (aliasing and limiter character at high drive).
 - Actions:
-  1. Create `tools/render/muff_render.cpp` (built as target `muff_render` in the top-level `CMakeLists.txt` when `-DMUFF_BUILD_TOOLS=ON`; uses `BlockRunner` at 48 kHz; usage `muff_render <slug> <in.f32> <out.f32> <events.txt>`; raw little-endian float32 mono in, stereo interleaved out; the event file has one event per line: `<seconds> <param id> <value>`, sorted by time, applied at the first sample at or after that time), `tools/make_demo_inputs.py` (writes the four dry inputs of D-040 as float32 files; deterministic, standard library only: additive plucked tones with exponential decay, a 55 Hz sawtooth bass line of eighth notes, a noise-burst drum pattern from a seeded generator, a held three-note chord of detuned sawtooths), `tools/render_demos.py` (renders the 22 demos from `demos/demo-NN-<name>.txt` event files, prepends the dry section, normalises, writes 24-bit WAV with the `wave` module, writes `SHA256SUMS` and `INDEX.md` with one line per demo naming effect and settings, the peak level of the processed section before normalisation in dBFS, and the gain applied, so that level problems are visible and not hidden by normalisation; the script fails if any processed section peaks above +9 dBFS or below -40 dBFS before normalisation), and the 22 event files under `demos/`.
-  2. Add workflow `.github/workflows/evidence.yml`: runs on `push` only when the head commit message contains `[gate-evidence G-LISTEN]`; its own concurrency group `evidence-G-LISTEN` (no cancellation); `permissions: contents: write` for this workflow only; builds `muff_render`, renders the bundle, asserts 22 WAV files each between 0.5 MB and 20 MB and a non-silent RMS (above -50 dBFS), and force-pushes them with `SHA256SUMS`, `INDEX.md` and a `README.md` stating that every file is this project's own work under the repository licence to the orphan branch `evidence/G-LISTEN`.
+  1. Create `tools/render/muff_render.cpp` (built as target `muff_render` in the top-level `CMakeLists.txt` when `-DMUFF_BUILD_TOOLS=ON`; uses `BlockRunner` at 48 kHz; usage `muff_render <slug> <in.f32> <out.f32> <events.txt>`; raw little-endian float32 mono in, stereo interleaved out; the event file has one event per line: `<seconds> <param id> <value>`, sorted by time, applied at the first sample at or after that time), `tools/make_demo_inputs.py` (writes the four dry inputs of D-040 as float32 files; deterministic, standard library only: additive plucked tones with exponential decay, a 55 Hz sawtooth bass line of eighth notes, a noise-burst drum pattern from a seeded generator, a held three-note chord of detuned sawtooths), `tools/render_demos.py` (renders the 23 demos from `demos/demo-NN-<name>.txt` event files, prepends the dry section, normalises, writes 24-bit WAV with the `wave` module, writes `SHA256SUMS` and `INDEX.md` with one line per demo naming effect and settings, the peak level of the processed section before normalisation in dBFS, and the gain applied, so that level problems are visible and not hidden by normalisation; the script fails if any processed section peaks above +9 dBFS or below -40 dBFS before normalisation), and the 23 event files under `demos/`.
+  2. Add workflow `.github/workflows/evidence.yml`: runs on `push` only when the head commit message contains `[gate-evidence G-LISTEN]`; its own concurrency group `evidence-G-LISTEN` (no cancellation); `permissions: contents: write` for this workflow only; builds `muff_render`, renders the bundle, asserts 23 WAV files each between 0.5 MB and 20 MB and a non-silent RMS (above -50 dBFS), and force-pushes them with `SHA256SUMS`, `INDEX.md` and a `README.md` stating that every file is this project's own work under the repository licence to the orphan branch `evidence/G-LISTEN`.
   3. Push a marker commit `S-LISTEN round <n> [gate-evidence G-LISTEN]`; verify the branch updated and one raw URL downloads with the listed hash.
   4. Halt at G-LISTEN: write `GATE-G-LISTEN.md` with the zip URL `https://github.com/qualitycoding/mufferfluffer/archive/refs/heads/evidence/G-LISTEN.zip`, per-file raw URLs, the behavioural test summary, and the questions of `plan/GATES.md`.
   5. On `iterate: <notes>`: follow the skill's section 7: use the owner's words to choose the analysis, make one targeted change per reported difference with a general mechanism, re-run the suite, record the round in `reviews/LISTENING.md` (remarks verbatim, measured difference, change, commit), push a new marker commit, ask the same questions. If the remark matches a pre-decided remedy (R-006 aliasing, R-007 oscillator), apply that remedy first.
@@ -487,7 +488,7 @@ Independent groups that may run concurrently once their dependencies pass: {S-01
 - Actions: open a pull request from `impl-<run_id>` to `main` titled `mufferfluffer 0.1.0: seven effects, VST3 and Rack` and do not merge it (merging is the owner's decision; say so in `COMPLETION.md` together with the fact that the scheduled and manually dispatched workflows become live only after the merge). On the head commit run `python3 tools/check_frozen.py`; the core, VST3 and repository test commands of `plan/ENVIRONMENT.md`; read the CI run of that commit (`ci.yml` and `mutation.yml`); fill `plan/TRACEABILITY.md`'s "Result" column for every success criterion with the test ids and the run URL; write `COMPLETION.md` listing each SC-1 to SC-10 as met or not met with evidence, every `DEVIATIONS.md` row, every open R- entry, and what was not verified (R-012 unless the owner reported a hands-on trial).
 - Outputs: `COMPLETION.md`; `plan/TRACEABILITY.md` (Result column only).
 - Evidence produced: SC-1 to SC-9 (summary)
-- Done when: `ctest` 77 of 77; `muff_vst3_tests` `All tests passed` (6); `python3 -m unittest discover -s tests/py` `OK` (9); `aggregate` and `mutation-gate` green on the head commit; `COMPLETION.md` exists with ten SC rows.
+- Done when: `ctest` 80 of 80; `muff_vst3_tests` `All tests passed` (6); `python3 -m unittest discover -s tests/py` `OK` (9); `aggregate` and `mutation-gate` green on the head commit; `COMPLETION.md` exists with ten SC rows.
 - Checkpoint: `active_step_id: "S-FINAL"`.
 - On failure: any test red: return to the owning step.
 - Gate: none

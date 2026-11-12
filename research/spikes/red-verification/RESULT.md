@@ -25,3 +25,20 @@ The sanitizer run then found one more test defect: T-503 read past the end of it
 
 ## What this does not show
 The oracle is not a quality bar: it has no oversampling, linear delay interpolation and a generic editor. The deliverable is written under the plan's steps, review and mutation gates. Rack module shells and the seven plug-in targets are not built here.
+
+## Update after the adversarial pass (2026-11-12)
+The adversarial review (`research/rounds/R5-adversarial.md`) led to changes in decisions D-012, D-016, D-020, D-033, D-035 and D-050, three new tests (T-109, T-409, T-607), stricter assertions in T-017, T-812, T-854 and T-856, a second (silence) phase in the benchmark, and matching changes to the oracle (clocked delay line, resonance fade, flush-to-zero during `process`, one-sample-late oscillator with sub-sample sync, +/-12 V limit in the Rack bridge). Re-run on the final test files:
+
+| Build | Result |
+|---|---|
+| Core + adaptor tests against the oracle | exit 0, "All tests passed (299407 assertions in 80 test cases)" |
+| Same against the stubs | "test cases: 80 \| 80 failed" |
+| Oracle under AddressSanitizer + UndefinedBehaviourSanitizer | "All tests passed (299400 assertions in 79 test cases)" |
+| Oracle built with Rack's flags (`-O3 -march=nehalem -funsafe-math-optimizations -fno-omit-frame-pointer`) | "All tests passed (299407 assertions in 80 test cases)" |
+| VST3 shell tests against the oracle shell | "All tests passed (1591 assertions in 6 test cases)" |
+| VST3 shell tests against the stubs | "test cases: 6 \| 6 failed" |
+| Benchmark against the oracle, `--seconds 5`, slower of tone and silence phases | lowpass 1.018, ringmod 0.711, phaser 0.734, delay 0.903, filterbank 1.879, oscbox 0.649, chorus 1.024 (per cent of one core); exit 0 |
+| Benchmark against the stubs | exit 3 |
+
+Oscillator aliasing measured on the oracle (strongest alias between 200 Hz and 6 kHz relative to the strongest of the first 20 harmonics, 48 kHz): without sync -61 to -76 dB; with sub-sample-timed sync -66 to -74 dB, except the synced 10 % pulse at 1333 Hz: -46.5 dB; with sync quantised to the sample grid (the first oracle): -30 to -37 dB.
+The numbers in the earlier sections of this file describe the first freeze candidate (77 tests) and are kept as the record of what was run then.

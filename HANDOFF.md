@@ -21,7 +21,7 @@ Reference only: `research/` (claims, sources, spikes), `premortem/`, `reviews/`.
 
 ## 4. Environment, tests and the freeze
 - Setup and every command: `plan/ENVIRONMENT.md`. First step: S-000.
-- The frozen suite: `muff_core_tests` (77 Catch2 cases: `tests/core/`), `muff_vst3_tests` (6 cases: `tests/vst3/`), `tests/py/test_repo.py` (9 `unittest` cases), plus the benchmark `muff_bench` (`tests/perf/`). How to run each: `plan/ENVIRONMENT.md`, section "Commands".
+- The frozen suite: `muff_core_tests` (80 Catch2 cases: `tests/core/`), `muff_vst3_tests` (6 cases: `tests/vst3/`), `tests/py/test_repo.py` (9 `unittest` cases), plus the benchmark `muff_bench` (`tests/perf/`). How to run each: `plan/ENVIRONMENT.md`, section "Commands".
 - The freeze: `python3 tools/check_frozen.py` verifies `tests/FROZEN_MANIFEST.sha256` (tests, fixtures, the four public headers and three generator tools). It must exit 0 before every commit. Never edit a frozen file, never add a file under `tests/`, never change a tolerance. The only route to a test change is section 6.
 - Stubs: `core/src/stubs.cpp`, `adapters/src/stubs.cpp` and `vst3/src/stubs.cpp` make the tests build and fail; steps S-010, S-018 and S-020 delete them.
 - The oracle: `research/spikes/oracle/`, `research/spikes/oracle_vst3/` and `research/spikes/oracle_repo/` are the planner's proof that the tests can pass (`research/spikes/red-verification/RESULT.md`). They are a reference for what the tests accept, not the deliverable and not a quality bar: build the structure the steps describe, and do not ship files from `research/`.

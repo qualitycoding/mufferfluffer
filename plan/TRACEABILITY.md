@@ -5,7 +5,7 @@
 | SC | Statement (short) | Tests | Decisions | Steps | Result (filled by S-FINAL) |
 |---|---|---|---|---|---|
 | SC-1 | Seven effects with exactly the tabled parameters and ports | T-001, T-002, T-003, T-004, T-015, T-851, T-904, T-907 | D-011, D-020..D-026 | S-010..S-018, S-020 | |
-| SC-2 | Behaviour within tolerance of the specification | T-010, T-012..T-014, T-017, T-020..T-024, T-101..T-108, T-201..T-206, T-301..T-307, T-401..T-408, T-501..T-507, T-601..T-606, T-701..T-707 | D-012..D-037 | S-010..S-018 | |
+| SC-2 | Behaviour within tolerance of the specification | T-010, T-012..T-014, T-017, T-020..T-024, T-101..T-109, T-201..T-206, T-301..T-307, T-401..T-409, T-501..T-507, T-601..T-607, T-701..T-707 | D-012..D-037 | S-010..S-018 | |
 | SC-3 | Seven VST3 plug-ins build on four platforms and pass pluginval | T-851, T-854, T-CI-PLUGINVAL, T-905 | D-005, D-007, D-016 | S-020, S-021 | |
 | SC-4 | Rack plug-in with seven modules builds on four platforms; manifest and panels valid | T-902, T-903, T-CI-RACKPKG, T-905 | D-003, D-006 | S-030..S-033 | |
 | SC-5 | VST3 path and Rack path give the same audio (difference at most 1e-6) | T-016, T-801, T-802, T-811, T-812, T-821, T-852 | D-013, D-016 | S-018, S-020 | |
@@ -41,6 +41,7 @@ Categories required by the protocol and where they are met: unit (core behaviour
 | T-103 | Lowpass self-oscillates at the cutoff frequency when resonance is 10 | unit (behaviour) | SC-2 | D-020, D-030 | S-011 |
 | T-306 | Phaser Sweep In moves the second six stages in 12-stage mode only | unit (behaviour) | SC-2 | D-022, D-032 | S-013 |
 | T-108 | Drive spans -7 dB to +28 dB into a soft limiter | unit (behaviour) | SC-2 | D-020, D-030 | S-011 |
+| T-109 | Lowpass: self-oscillation fades out above 16 kHz instead of whistling at the limit | unit (behaviour) | SC-2 | D-020, D-030 | S-011 |
 | T-101 | Lowpass 4-pole response without resonance | unit (behaviour) | SC-2 | D-020, D-030 | S-011 |
 | T-502 | FilterBank stereo split: odd filters left, even filters right; sliders | unit (behaviour) | SC-2 | D-024, D-034, D-014 | S-016 |
 | T-507 | FilterBank LFO/Sweep shifts all centre frequencies by up to half an | unit (behaviour) | SC-2 | D-024, D-034, D-014 | S-016 |
@@ -78,6 +79,7 @@ Categories required by the protocol and where they are met: unit (core behaviour
 | T-017 | tailSeconds is an upper bound and reports self-oscillation | unit | SC-2 | D-011, D-023, D-026 | S-018 |
 | T-004 | parameters start at defaults, clamp, round and ignore bad values | unit | SC-1, SC-7 | D-011, D-012 | S-018 |
 | T-408 | Delay feedback insert, Delay Out and Mix | unit (behaviour) | SC-2 | D-023, D-033, D-014 | S-014 |
+| T-409 | Delay: shortening the time replays the stored signal faster, for one new delay time | unit (behaviour) | SC-2 | D-023, D-033 | S-014 |
 | T-704 | Chorus self-oscillates from |Feedback| 0.8 and decays below it | unit (behaviour) | SC-2 | D-026, D-036, D-014 | S-015 |
 | T-018 | behaviour is the same at 44.1 kHz and 192 kHz | integration (sample rates) | SC-7 | D-012, D-030, D-033 | S-018 |
 | T-023 | filterBankEnvelopeTimes interpolates the frozen table | unit | SC-2 | D-014, D-015, D-024, D-037 | S-010 |
@@ -97,6 +99,7 @@ Categories required by the protocol and where they are met: unit (core behaviour
 | T-104 | Lowpass does not self-oscillate at resonance 7 | unit (behaviour) | SC-2 | D-020, D-030 | S-011 |
 | T-802 | BlockRunner channel rules: stereo in is averaged, mono out sums a split | integration (host adaptor) | SC-5 | D-013 | S-018 |
 | T-606 | OscBox FM Amount and Env Amount move the oscillator frequency | unit (behaviour) | SC-2 | D-025, D-035 | S-017 |
+| T-607 | OscBox: wraps, pulse edges and hard-sync resets are band-limited | unit (behaviour) | SC-2 | D-025, D-035 | S-017 |
 | T-022 | TapTempo needs three taps, averages, and restarts after five idle | unit | SC-2 | D-014, D-015, D-024, D-037 | S-010 |
 | T-601 | OscBox frequency range 25 Hz-1.6 kHz; Oscillator Out is +/-2.5 V with | unit (behaviour) | SC-2 | D-025, D-035 | S-017 |
 | T-303 | Phaser Sweep spans six octaves around 1.1 kHz | unit (behaviour) | SC-2 | D-022, D-032 | S-013 |
@@ -144,5 +147,5 @@ Categories required by the protocol and where they are met: unit (core behaviour
 - Every test asserts on behaviour visible through a public header, the fixture or a repository file; none asserts on private structure.
 - Expected values come from the decisions' formulas or from analytic results (for example the gain of four cascaded one-poles, the phase of an all-pass chain, the product of two sines), computed inside the test, not from the oracle's output.
 - Tolerances are stated next to each assertion with the analytic value they surround.
-- Each test was shown to fail (against the stubs) and to pass (against an independent oracle), and the C++ tests ran clean under AddressSanitizer and UndefinedBehaviourSanitizer: `research/spikes/red-verification/RESULT.md`.
-- Known limits of the suite, accepted: aliasing is not measured (D-030, D-037; question L-3); interpolation quality of the delay lines is not measured; the oscillator's band-limiting under sync is checked at review, not by a test (D-035); the Rack module shells have no automated behavioural test (R-012); the VST3 editor is exercised only by pluginval.
+- Each test was shown to fail (against the stubs) and to pass (against an independent oracle), the C++ core tests ran clean under AddressSanitizer and UndefinedBehaviourSanitizer and also pass when built with Rack's compiler flags: `research/spikes/red-verification/RESULT.md`.
+- Known limits of the suite, accepted: aliasing of the drive stage and of the ladder's saturator is not measured (D-030, D-037; question L-3); interpolation quality of the delay lines is not measured; the oscillator's band-limiting is measured without FM only (T-607); the Rack module shells have no automated behavioural test (R-012); the VST3 editor is exercised only by pluginval.
