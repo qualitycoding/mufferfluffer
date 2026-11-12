@@ -1,6 +1,6 @@
 # Human gates
 
-Gates are pre-planned so the implementer never improvises a question. While halted at a gate the implementer may continue any step that does not depend on its outcome, but never an external or irreversible action. Each gate is a file `GATE-<id>.md` committed and pushed; the owner's answer is recorded verbatim in `GATE-<id>.RESPONSE.md`.
+Gates are pre-planned so the implementer never improvises a question. While halted at a gate the implementer may continue any step that does not depend on its outcome, but never an external or irreversible action. Each gate is a file `GATE-<id>.md` committed and pushed; the owner's answer is recorded verbatim under the heading `## Answer` in `GATE-<id>.RESPONSE.md`, and facts that follow from it (run URLs, checksums) under `## Record`. How the question reaches the owner, how the answer comes back and what "no response" means: `HANDOFF.md` section 9.2. Gate files are scanned by T-901: they name effects by this project's names and never name the manufacturer, its product family or a model code (cite D-004 and R-013 by id instead).
 
 G-001 (headline-result gate of the `math`/`computational` profiles) is not applicable to this plan.
 
@@ -10,9 +10,9 @@ G-001 (headline-result gate of the `math`/`computational` profiles) is not appli
 - Evidence bundle in `GATE-G-002.md`: the commit to be built; the list of eight archives the workflow would upload and their 14-day retention; the naming and trade-mark position (D-004) and R-013; a statement that the binaries are AGPL-3.0-only works whose source is that commit.
 - Question: "May the `packages` workflow upload the VST3 bundles and Rack packages of commit `<sha>` as workflow artefacts of the public repository for 14 days, so that you can try them hands-on?"
 - Allowed responses and branches:
-  - `proceed`: dispatch the workflow; record run URL and checksums; S-LISTEN's gate text then also asks the hands-on questions H-1 and H-2.
+  - `proceed`: push the approval-marker commit of S-040 action 3, which starts the workflow; record run URL and checksums; S-LISTEN's gate text then also asks the hands-on questions H-1 and H-2.
   - `decline`: no upload; hands-on trial needs a local build (`README.md`); R-012 stays open in `COMPLETION.md`.
-  - No response: treated as `decline` for the purpose of continuing; the question stays open until S-FINAL.
+  - No response by the time S-MUTATE and S-LISTEN are done: treated as `decline` for the purpose of continuing; the question stays open until S-FINAL, and an answer arriving before then is applied.
 
 ## G-LISTEN Listening validation
 - Trigger step: S-LISTEN (each round).
@@ -26,7 +26,7 @@ G-001 (headline-result gate of the `math`/`computational` profiles) is not appli
   - L-5 Weak spot, filter bank (demos 14 to 17): the patterns are this project's own, not the hardware's. Are the patterns and envelope shapes acceptable, or do you want the hardware patterns transcribed (R-003)?
   - L-6 Oscillator box (demos 18 to 20): does the oscillator track the playing dynamics and does hard sync sound right?
   - L-7 Levels: is any demo much louder or quieter than its dry section?
-  - H-1 (only if G-002 was `proceed` or you built locally) Do all seven plug-ins load in your VST3 host and all seven modules in VCV Rack, and does every control do something audible?
+  - H-1 (asked when `GATE-G-002.RESPONSE.md` records `proceed`; otherwise the gate text says the owner may answer it if they built the plug-ins themselves) Do all seven plug-ins load in your VST3 host and all seven modules in VCV Rack, and does every control do something audible?
   - H-2 (same condition) In Rack, do the CV inputs sweep their controls over the full range with 0 to 5 V, and do the tap inputs follow a clock?
 - Allowed responses and branches:
   - `proceed`: S-LISTEN is done.
@@ -41,7 +41,7 @@ G-001 (headline-result gate of the `math`/`computational` profiles) is not appli
 - Evidence bundle in `GATE-G-003.md`: the list of lessons and knowledge items to push (id, title, tags), with the source register (`plan/SOURCE_REGISTER.md`) named on its own line together with its number of sources and the number of rows whose licence is `unknown` or `none stated`; the proposed targets: lessons to `qualitycoding/Lessons`, knowledge to `qualitycoding/knowledge` (A-012).
 - Question: "Push these lessons and knowledge items to the proposed stores?"
 - Allowed responses: `push-to-proposed`; `push-to: <lesson-target> [knowledge-target]`; `do-not-push`.
-- Branches: as protocol 3.7.2 (push, retry up to three times per store, bundle fallback). No response: write the bundles and report their paths.
+- Branches: as section 3.7.2 of `plan/protocol/planning-protocol.md` (push, retry up to three times per store, bundle fallback). The two bundles are written when the step halts, so they exist whether or not an answer comes; no response: report their paths (`HANDOFF.md` section 9.2).
 
 ## No other gates
 No deployment, release, package publication or external submission is planned (A-009), so no further gate is required.

@@ -1,4 +1,4 @@
-# mufferfluffer — VST3 build. Plan step S-020 adds the seven juce_add_plugin targets below the marked line.
+# mufferfluffer — VST3 build. Plan step S-021 adds the seven juce_add_plugin targets below the marked line.
 # SPDX-License-Identifier: AGPL-3.0-only
 include(FetchContent)
 # JUCE 9.0.5 pinned by commit (plan/ENVIRONMENT.md). Offline: -DFETCHCONTENT_SOURCE_DIR_JUCE=<checkout>.
@@ -20,4 +20,4 @@ if(MUFF_BUILD_TESTS)
   add_subdirectory("${CMAKE_SOURCE_DIR}/tests/vst3" "${CMAKE_BINARY_DIR}/tests_vst3")
 endif()
 
-# ---- S-020: plug-in targets go below this line -------------------------------------------------------------
+# ---- S-021: plug-in targets go below this line -------------------------------------------------------------

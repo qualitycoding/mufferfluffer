@@ -1,0 +1,17 @@
+# Cold-read gate (protocol 3.6): record of passes
+
+Each pass used two new agents with no knowledge of the planning conversation, given only a fresh clone of the branch: a Sonnet agent that dry-ran `HANDOFF.md` and `plan/PLAN.md` without executing anything and listed every question, undefined term, missing input, ambiguous instruction, unstated credential and judgement call; and a Haiku agent that checked mechanically that every referenced path, command and id exists or is created by an earlier step, and the structural requirements of 3.6 item 2. Every item was resolved by amending the plan, never by an answer outside it.
+
+| Pass | Commit read | Dry-run items | Mechanical failures | Resolution |
+|---|---|---|---|---|
+| 1 | `4e4aab9` | 92 | 4 | All amended in the commit after this one's parent (see below). |
+
+## Pass 1: what the items were and what changed
+- Protocol and skills were cited but not on the branch (items 1 to 5): copied to `plan/protocol/` with their source commit; `premortem/` and `reviews/` now exist; "Lessons applied" lines cite lesson ids, not row names that did not exist.
+- Access and environment (6, 7, 14 to 17): S-000 now probes workflow-file permission, log reading and the hosts later steps need, and separates blocking checks from recorded ones; the implementation branch name is literal.
+- Process (8 to 13, 92): `HANDOFF.md` section 9 added: agents and tiers, gate answers and waiting, root records and the naming test, adding a frozen test, licence headers, commit markers, checkpoint schema; step commit and log commit distinguished; counts defined after added tests; the default rule made mechanical.
+- Wrong or vacuous commands (18, 27, 33, 41, 42, 58): the Catch2 filter of S-001 (a bracket begins a tag, so `T-00[1-3]*` matched nothing) replaced by explicit names; `[filterbank]` selects 9 cases; `unittest -k` used with repeated options and an expected test count; pluginval tools given real arguments; `ctest -V`.
+- Contradictions between documents (11, 21, 35, 39, 43, 63, 74, 76, 78, 84): section references, stub and CMake comments, the 45-minute rule, D-062 against S-REVIEW, dispatch against push markers, the response file's two parts, the round limit, job-level write permission.
+- Under-specified work (19, 20, 22 to 26, 28 to 32, 40, 44 to 57, 59 to 62, 64 to 73, 75, 77, 79 to 83, 85 to 91): container shell; literal `deps.lock.json`; per-platform command lines; pattern-table accessors; effect registration; tail-time bounds that hold; the delay line's owner; the editor before S-021; Rack SDK recording without hand-typed hashes; a complete panel layout rule; module descriptions and the template design; the licence file in the Rack package; the advisory tool's options; README and user-guide wording; review briefs and pin-currency method; thread-sanitizer recipe; where the mutation floor lives, the job id `mutate`, the survivor stopping rule; package contents; marker commits that cannot fire by accident; the five dry inputs and how demo lines become event files; which CI run each Done-when reads.
+- Planner tools that named the hardware sat in `tools/`, where test T-901 would have failed on them at S-035 (59): moved to `research/tools/`.
+- Mechanical failures: undefined id ranges written as "D-001 to D-070", "D-011 to D-037", "T-101 to T-707" now name the real blocks; `[filterbank]` count; missing directories; American spellings were found only inside the verbatim protocol quotations, which stay as quoted.

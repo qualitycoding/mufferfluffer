@@ -1,4 +1,4 @@
-// STUB implementation of muff/adapters.hpp (plan Phase 2.2). Plan step S-017 replaces this file.
+// STUB implementation of muff/adapters.hpp (plan Phase 2.2). Plan step S-018 replaces this file.
 // SPDX-License-Identifier: AGPL-3.0-only
 #include "muff/adapters.hpp"
 

@@ -1,4 +1,4 @@
-# mufferfluffer — top-level build (plan step S-001 completes this file; the parts below are frozen build wiring).
+# mufferfluffer — top-level build (build wiring written by the planner; not in the frozen manifest. The only planned edit is S-LISTEN adding the MUFF_BUILD_TOOLS option and the muff_render target; any other edit is a DEVIATIONS.md row).
 # SPDX-License-Identifier: AGPL-3.0-only
 cmake_minimum_required(VERSION 3.22)
 project(mufferfluffer VERSION 0.1.0 LANGUAGES C CXX)

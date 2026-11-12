@@ -1,0 +1,164 @@
+# WORKED EXAMPLE (one instance, not a generic template): the three-tier mutation workflow of the
+# guitar-amp-vst repository (C++, CMake, Mull 19, GitHub Actions), copied from its .github/workflows/mutation.yml.
+# Lines to adapt are listed under PROJECT-SPECIFIC; everything else is the pattern from SKILL.md. For another tool
+# (Stryker, PIT, mutmut) keep the scope step, the report gate, the artifact upload and the aggregate job, and
+# replace the install/build/run steps.
+#
+# Observed running (2026-11-01):
+#   not-applicable : a documentation-only push finished in about 1 minute; the aggregate job printed the mode and passed.
+#   incremental    : a one-line change in one source file mutated only that file (9 mutants, 8 killed) in about
+#                    11 minutes, against about 150 minutes for the full run; the per-file gate passed.
+# NOT yet observed at that date: the full-run path under this exact file, the nightly schedule, and a failing
+# gate in this workflow. Run those once on a throwaway branch before relying on them.
+#
+# PROJECT-SPECIFIC inputs: branches, the cron time, runtime budget (timeout-minutes), source scope prefixes,
+# the paths that widen a run to full (tests/, mull.yml, tools/ci/mull_*), the Mull install and build commands,
+# worker count and timeouts, the fast-test list, the floor (75), minimum mutant counts (150 full / 1 incremental),
+# the per-file baseline path (reviews/mutation-baseline.json), the --strip fragment, and the action SHAs.
+# The scripts tools/ci/mull_score.py and tools/ci/mull_include_paths.py are copies of
+# skills/mutation-testing-in-ci/scripts/ in the qualitycoding/skills repository.
+
+# T-070 mutation testing, three tiers (skill: mutation-testing-in-ci, qualitycoding/skills).
+#   Tier 1  pull_request / push : only the changed in-scope files (a change to the tests or to the mutation
+#           config widens it to a full run); reports "not-applicable" when no mutable file changed.
+#   Tier 2  schedule            : full run. GitHub only runs schedules from the default branch's copy of this file.
+#   Tier 3  workflow_dispatch   : full or incremental on demand.
+# `mutation-gate` is the only job meant to be a required status check. There is deliberately no `paths:`
+# filter here: a path-filtered workflow never runs when nothing matches, and a required check would stay pending.
+name: mutation
+
+on:
+  pull_request:
+  push:
+    branches: [ impl-*, main, master ]
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+    inputs:
+      scope:
+        description: 'full or incremental'
+        default: 'full'
+
+permissions:
+  contents: read
+  issues: write          # used only to report a failed scheduled run
+
+jobs:
+  mutation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240      # measured: about 150 minutes for the full run (66 minutes before the CR-004/005 tests)
+    outputs:
+      mode: ${{ steps.scope.outputs.mode }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262   # v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Decide scope (full, incremental or not-applicable)
+        id: scope
+        shell: bash
+        run: |
+          set -o pipefail
+          event="${{ github.event_name }}"
+          if [ "$event" = "schedule" ] || { [ "$event" = "workflow_dispatch" ] && [ "${{ inputs.scope }}" != "incremental" ]; }; then
+            cp mull.yml mull.run.yml
+            echo "mode=full" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          base="${{ github.event.pull_request.base.sha || github.event.before }}"
+          if [ -z "$base" ] || [ "$base" = "0000000000000000000000000000000000000000" ] || ! git cat-file -e "$base^{commit}" 2>/dev/null; then
+            base=$(git rev-list --max-parents=0 HEAD | tail -1)      # unknown base: compare with the first commit (large diff)
+          fi
+          git diff --name-only "$base"...HEAD > changed.txt
+          # a change to the tests that kill mutants, or to the mutation config, can change any file's score
+          if grep -E '^(tests/|mull\.yml$|tools/ci/mull_)' changed.txt > /dev/null; then
+            cp mull.yml mull.run.yml
+            echo "mode=full" >> "$GITHUB_OUTPUT"
+          elif python3 tools/ci/mull_include_paths.py --scope 'Source/DSP/' --scope 'Source/Presets/' \
+                 --base mull.yml --out mull.run.yml < changed.txt; then
+            echo "mode=incremental" >> "$GITHUB_OUTPUT"
+          else
+            echo "mode=not-applicable" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Mull 0.34.x line: package, plugin path and clang major must agree (K-20261027T123200Z)
+      - name: Install Mull + clang 19
+        if: steps.scope.outputs.mode != 'not-applicable'
+        run: |
+          curl -1sLf 'https://dl.cloudsmith.io/public/mull-project/mull-stable/setup.deb.sh' | sudo -E bash
+          sudo apt-get install -y mull-19 clang-19 lld-19 libasound2-dev libx11-dev libxrandr-dev libxinerama-dev libxcursor-dev libxext-dev libfreetype-dev libfontconfig1-dev libgl1-mesa-dev
+
+      - name: Build test suite with Mull instrumentation (-O0)
+        if: steps.scope.outputs.mode != 'not-applicable'
+        run: |
+          cp mull.run.yml mull.yml          # Mull reads mull.yml from the working tree at compile and run time
+          cmake -B build-mull -DCMAKE_BUILD_TYPE=Debug \
+                -DCMAKE_C_COMPILER=clang-19 -DCMAKE_CXX_COMPILER=clang++-19 \
+                -DCMAKE_CXX_FLAGS="-O0 -g -grecord-command-line -fpass-plugin=/usr/lib/mull-ir-frontend-19" \
+                -DCMAKE_EXE_LINKER_FLAGS="-fuse-ld=lld-19"
+          cmake --build build-mull --target grimamp_tests
+
+      # Every mutant re-runs the test executable, so only the fast tests are used (D-001l):
+      # silence (T-004) and denormals (T-007) take ~18 s each in Release and fuzz_presets
+      # (T-013) needs the ctest-generated corpus.
+      - name: Run Mull (T-070)
+        if: steps.scope.outputs.mode != 'not-applicable'
+        shell: bash
+        run: |
+          set -o pipefail
+          mull-runner-19 --report-name mull --reporters SQLite --reporters IDE \
+              --workers 4 --timeout 900000 --minimum-timeout 120000 \
+              --allow-surviving \
+              ./build-mull/tests/grimamp_tests \
+              skeleton param_inventory param_ranges sine_sanity harmonics preset_roundtrip \
+              state_restore smoothing gestures ir_loading \
+              boost_reference gate_reference tonestack_reference poweramp_reference posteq_reference biquad_design retune_equivalence \
+              cabir_selection userir_loader preset_list 2>&1 | tee mull.log
+
+      # Floor 75 % (T-070) for the project score on a full run. An incremental run is gated per file against the
+      # scores recorded from the last full run (reviews/mutation-baseline.json, tolerance 5 points): some files
+      # score below the project floor with justified survivors (reviews/MUTATION.md).
+      - name: Mutation score gate (T-070)
+        if: steps.scope.outputs.mode != 'not-applicable'
+        shell: bash
+        run: |
+          set -o pipefail
+          if [ "${{ steps.scope.outputs.mode }}" = "incremental" ]; then
+            python3 tools/ci/mull_score.py mull.sqlite --floor 75 --baseline reviews/mutation-baseline.json \
+                --tolerance 5 --min-mutants 1 --strip 'guitar-amp-vst/' | tee score.txt
+          else
+            python3 tools/ci/mull_score.py mull.sqlite --floor 75 --min-mutants 150 --strip 'guitar-amp-vst/' | tee score.txt
+          fi
+
+      - name: Upload Mull report
+        if: always() && steps.scope.outputs.mode != 'not-applicable'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02   # v4
+        with:
+          name: mull-report
+          path: |
+            mull.sqlite
+            mull.log
+            score.txt
+          if-no-files-found: error
+
+      - name: Open an issue when the scheduled run fails
+        if: failure() && github.event_name == 'schedule'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh issue create --title "Nightly mutation run failed" --body "See ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
+  mutation-gate:
+    # The required status check. Always runs and fails unless the mutation job passed; "not-applicable"
+    # (no mutable file changed) is a pass that says so.
+    if: always()
+    needs: [mutation]
+    runs-on: ubuntu-24.04
+    steps:
+      - shell: bash
+        run: |
+          result="${{ needs.mutation.result }}"
+          mode="${{ needs.mutation.outputs.mode }}"
+          echo "mutation job result: $result, mode: $mode"
+          if [ "$mode" = "not-applicable" ]; then echo "No mutable source files changed: mutation testing is not applicable to this change."; fi
+          [ "$result" = "success" ]

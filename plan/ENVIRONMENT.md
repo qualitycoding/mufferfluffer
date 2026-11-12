@@ -9,7 +9,7 @@ Every version below was read from its source on 2026-11-11 or 2026-11-12 (claims
 | Catch2 | v3.16.1, commit `08092139210881f01a34e60c5f2fd6afa0ea4024` | `FetchContent` `GIT_TAG` in `tests/CMakeLists.txt` | yes |
 | VCV Rack SDK | 2.6.6 (Rack tag `v2.6.6` = `061ccf63c1758599396ac1bb10d47345d9d34076`) | archive URL of D-003 + SHA-256 in `deps.lock.json` (recorded by S-030) | headers only (cloned tag); archive not reachable from the sandbox |
 | pluginval | v1.0.4 (tag commit `ed19c2c16b57a6d94db391bea3ef4a80b769d5bf`) | release archive + SHA-256: Linux `c01c49d8063965c4c2dea8324468336768f5c9139e0b1caebde14c2400b55352`, macOS `3c4c533bda0c5059eea3ddaea752d757ee2025041f0f47e6bcb0e87f6082b29f`, Windows `c08e61ce3b96db41636f8ec7e76f4c7e2c13ebdac7fa1b5a1f52b4f32ec715ab` | no (hashes from the knowledge store; the download step verifies them, so a wrong hash stops the job) |
-| Mull | newest GitHub release of `mull-project/mull` that has a `.deb` for Ubuntu 24.04 and LLVM 19 (0.37.0 was the newest tag on 2026-11-11), with `clang-19` | release tag, asset name and SHA-256 recorded by S-MUTATE.1 in `deps.lock.json` | no |
+| Mull | newest GitHub release of `mull-project/mull` that has a `.deb` for Ubuntu 24.04 and LLVM 19 (0.37.0 was the newest tag on 2026-11-11), with `clang-19` and `libclang-rt-19-dev` from the Ubuntu 24.04 archive | release tag, asset name and SHA-256 recorded by S-MUTATE.1 in `deps.lock.json` | no |
 | Python | 3.10 or newer, standard library only | runner default | 3.13 here |
 | CMake | 3.22 or newer | `cmake_minimum_required` | 3.28.3 here |
 
@@ -56,6 +56,15 @@ python3 -m unittest discover -s tests/py -v
 # Rack plug-in (SDK unpacked to ./Rack-SDK)
 make -C rack RACK_DIR="$PWD/Rack-SDK" dist
 ```
+## Per-platform command lines (core)
+| Platform | Configure | Build | Test binary |
+|---|---|---|---|
+| Linux (x64, arm64, both containers) | `cmake -S . -B build/core -DCMAKE_BUILD_TYPE=Release` (the containers add `-G Ninja`) | `cmake --build build/core --parallel` | `build/core/tests/muff_core_tests` |
+| macOS (arm64 on `macos-15`, x86_64 on `macos-15-intel`; the runner's native architecture, no architecture flag) | as Linux | as Linux | as Linux |
+| Windows (`windows-2022`) | `cmake -S . -B build/core -G "Visual Studio 17 2022" -A x64` | `cmake --build build/core --config Release --parallel` | `build/core/tests/Release/muff_core_tests.exe` |
+
+The VST3 tree uses the same generator arguments with `-B build/vst3 -DMUFF_BUILD_VST3=ON`. On Windows the workflow steps still use `shell: bash` (Git Bash is on the hosted image). These Windows and macOS lines were not run in planning (R-015); a wrong path is corrected in the workflow and noted in `DEVIATIONS.md`.
+
 Offline or cached dependencies: add `-DFETCHCONTENT_SOURCE_DIR_CATCH2=<dir>` and `-DFETCHCONTENT_SOURCE_DIR_JUCE=<dir>`.
 
 ## Planning sandbox (for the record)

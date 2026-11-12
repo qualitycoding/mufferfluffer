@@ -1,0 +1,219 @@
+# Structural template for a per-file mutation-testing matrix.
+# Replace every PROJECT-SPECIFIC command, path, score floor and script with the target repository's checked-in tooling.
+# Keep the properties that make the pattern safe: generated matrix, fail-fast false, bounded install retries,
+# per-shard report gate, always-uploaded reports, and an aggregate job that checks completeness.
+
+name: mutation-sharded
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '23 2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+env:
+  MUTATION_TOOL_VERSION: '19'              # PROJECT-SPECIFIC
+  SHARD_CPU_CAP: '4'                       # measured cores available to one shard job
+  SHARD_MEMORY_MIB: '16384'                # measured RAM available to one shard job
+  SHARD_MAX_PARALLEL: '4'                  # pool budget, not the shard count
+  INSTALL_ATTEMPTS: '3'
+  INSTALL_ATTEMPT_TIMEOUT_SECONDS: '600'
+  SHARD_JOB_TIMEOUT_MINUTES: '120'         # below the planned CI budget
+  FULL_FLOOR: '75'                         # PROJECT-SPECIFIC
+
+jobs:
+  shard-plan:
+    runs-on: ubuntu-24.04                  # pinned, existence-checked label
+    timeout-minutes: 15
+    outputs:
+      mode: ${{ steps.plan.outputs.mode }}
+      matrix: ${{ steps.plan.outputs.matrix }}
+      shard-count: ${{ steps.plan.outputs.shard-count }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262   # v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate per-file shard plan
+        id: plan
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/ci/mutation_shard_plan.py \
+            --config mull.yml \
+            --baseline reviews/mutation-baseline.json \
+            --budget-minutes 45 \
+            --max-mutants-per-shard 40 \
+            --event "$GITHUB_EVENT_NAME" \
+            --json-out shard-plan.json
+
+          mode=$(python3 -c 'import json; print(json.load(open("shard-plan.json"))["mode"])')
+          matrix=$(python3 -c 'import json; print(json.dumps(json.load(open("shard-plan.json"))["matrix"]))')
+          count=$(python3 -c 'import json; print(len(json.load(open("shard-plan.json"))["matrix"]["include"]))')
+          {
+            echo "mode=$mode"
+            echo "matrix=$matrix"
+            echo "shard-count=$count"
+          } >> "$GITHUB_OUTPUT"
+          cat shard-plan.json
+
+      - name: Upload shard plan
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02   # v4
+        with:
+          name: mutation-shard-plan
+          path: shard-plan.json
+          if-no-files-found: error
+
+  mutation-shard:
+    needs: [shard-plan]
+    if: needs.shard-plan.outputs.mode != 'not-applicable'
+    runs-on: ubuntu-24.04                  # label must document cores and RAM for the caps above
+    timeout-minutes: ${{ fromJSON(env.SHARD_JOB_TIMEOUT_MINUTES) }}
+    strategy:
+      fail-fast: false
+      max-parallel: ${{ fromJSON(env.SHARD_MAX_PARALLEL) }}
+      matrix: ${{ fromJSON(needs.shard-plan.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262   # v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Install mutation tool with bounded retries
+        shell: bash
+        run: |
+          set -o pipefail
+          for attempt in $(seq 1 "$INSTALL_ATTEMPTS"); do
+            echo "::group::Install attempt ${attempt}"
+            start=$(date -u +%s)
+            if timeout "$INSTALL_ATTEMPT_TIMEOUT_SECONDS" bash tools/ci/install_mutation_tool.sh \
+                 --version "$MUTATION_TOOL_VERSION"; then
+              end=$(date -u +%s)
+              echo "install-attempt=${attempt} status=success seconds=$((end-start))"
+              exit 0
+            fi
+            status=$?
+            end=$(date -u +%s)
+            echo "install-attempt=${attempt} status=${status} seconds=$((end-start))"
+            echo "::endgroup::"
+            if [ "$attempt" -lt "$INSTALL_ATTEMPTS" ]; then sleep $((attempt * 2)); fi
+          done
+          exit 1
+
+      - name: Verify tool versions
+        shell: bash
+        run: tools/ci/verify_mutation_tool_versions.sh --version "$MUTATION_TOOL_VERSION"
+
+      - name: Build instrumented test binary for this shard
+        shell: bash
+        run: |
+          tools/ci/build_mutation_shard.sh \
+            --shard-id "${{ matrix.shard-id }}" \
+            --include-paths '${{ matrix.include-paths-json }}'
+
+      - name: Run mutation shard
+        shell: bash
+        run: |
+          set -o pipefail
+          timeout 90m tools/ci/run_mutation_shard.sh \
+            --shard-id "${{ matrix.shard-id }}" \
+            --workers "${{ matrix.workers }}" \
+            --report "mull-${{ matrix.shard-id }}.sqlite" \
+            --log "mull-${{ matrix.shard-id }}.log" \
+            --include-paths '${{ matrix.include-paths-json }}'
+
+      - name: Gate this shard from its report
+        shell: bash
+        run: |
+          set -o pipefail
+          python3 tools/ci/mull_score.py "mull-${{ matrix.shard-id }}.sqlite" \
+            --min-mutants "${{ matrix.min-mutants }}" \
+            --baseline reviews/mutation-baseline.json \
+            --tolerance 5 \
+            --strip "${{ github.workspace }}/" \
+            | tee "score-${{ matrix.shard-id }}.txt"
+
+      - name: Upload shard report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02   # v4
+        with:
+          name: mutation-shard-${{ matrix.shard-id }}
+          path: |
+            mull-${{ matrix.shard-id }}.sqlite
+            mull-${{ matrix.shard-id }}.log
+            score-${{ matrix.shard-id }}.txt
+          if-no-files-found: error
+
+      - name: Open an issue when the scheduled run fails
+        if: failure() && github.event_name == 'schedule'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "Scheduled sharded mutation run failed" \
+            --body "See ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
+  mutation-aggregate:
+    if: always()
+    needs: [shard-plan, mutation-shard]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262   # v4
+
+      - name: Download shard plan
+        if: needs.shard-plan.outputs.mode != 'not-applicable'
+        uses: actions/download-artifact@d3f86a10647d0cb627fffeb7ac840441d868e04f   # v5
+        with:
+          name: mutation-shard-plan
+          path: shard-plan-artifact
+
+      - name: Download shard reports
+        if: needs.shard-plan.outputs.mode != 'not-applicable'
+        uses: actions/download-artifact@d3f86a10647d0cb627fffeb7ac840441d868e04f   # v5
+        with:
+          pattern: mutation-shard-*
+          path: shard-reports
+          merge-multiple: true
+
+      - name: Verify completeness and gate aggregate score
+        shell: bash
+        run: |
+          set -euo pipefail
+          mode="${{ needs.shard-plan.outputs.mode }}"
+          echo "mode=$mode"
+          if [ "$mode" = "not-applicable" ]; then
+            echo "No mutable source files changed: sharded mutation testing is not applicable."
+            exit 0
+          fi
+
+          expected="${{ needs.shard-plan.outputs.shard-count }}"
+          python3 tools/ci/check_shard_completeness.py \
+            --expected "$expected" \
+            --reports shard-reports \
+            --plan shard-plan-artifact/shard-plan.json
+
+          python3 tools/ci/merge_mull_reports.py \
+            --reports shard-reports/mull-*.sqlite \
+            --out mull-merged.sqlite
+
+          python3 tools/ci/mull_score.py mull-merged.sqlite \
+            --floor "$FULL_FLOOR" \
+            --strip "${{ github.workspace }}/" \
+            | tee score-merged.txt
+
+      - name: Upload merged mutation report
+        if: always() && needs.shard-plan.outputs.mode != 'not-applicable'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02   # v4
+        with:
+          name: mutation-merged-report
+          path: |
+            mull-merged.sqlite
+            score-merged.txt
+          if-no-files-found: error

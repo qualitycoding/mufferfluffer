@@ -1,6 +1,6 @@
 // STUB implementation of muff/core.hpp and muff/blocks.hpp (plan Phase 2.2). Every entry point reports
 // "not implemented": functions that may throw do so; noexcept functions return a value no test accepts.
-// Plan steps S-010..S-016 replace this file. SPDX-License-Identifier: AGPL-3.0-only
+// Plan step S-010 deletes this file; S-010 to S-017 write the real core. SPDX-License-Identifier: AGPL-3.0-only
 #include "muff/blocks.hpp"
 #include "muff/core.hpp"
 
