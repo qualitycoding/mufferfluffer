@@ -5,7 +5,8 @@ Each pass used two new agents with no knowledge of the planning conversation, gi
 | Pass | Commit read | Dry-run items | Mechanical failures | Resolution |
 |---|---|---|---|---|
 | 1 | `4e4aab9` | 92 | 4 | All amended in commit `3f32f27` (see below). |
-| 2 | `02dc5ef` | 8 | 2 (neither a defect: a gate id mentioned only as not applicable; American spellings only inside verbatim source titles) | All amended (see below). |
+| 2 | `02dc5ef` | 8 | 2 (neither a defect: a gate id mentioned only as not applicable; American spellings only inside verbatim source titles) | All amended in commit `430bf47` (see below). |
+| 3 | `430bf47` | 8 | 1 (two citations of `HANDOFF.md` section 9.2 for things it did not state) | All amended (see below). |
 
 ## Pass 1: what the items were and what changed
 - Protocol and skills were cited but not on the branch (items 1 to 5): copied to `plan/protocol/` with their source commit; `premortem/` and `reviews/` now exist; "Lessons applied" lines cite lesson ids, not row names that did not exist.
@@ -27,3 +28,14 @@ Each pass used two new agents with no knowledge of the planning conversation, gi
 7. S-040 required the checksum file to exceed 100 kB: corrected.
 8. `cancel-in-progress` would cancel the run of a step or marker commit when a log commit followed: one run per commit, never cancelled.
 Mechanical note: the gates file's mention of the protocol's headline-result gate was reworded so that it is not read as a reference to a gate of this plan.
+
+## Pass 3: what the items were and what changed
+1. The demo renderer's right channel had two conflicting rules, one of which could put a control signal in a demo: the renderer now takes the right output as a required argument and the demo script passes `copy` except for the four stereo demos.
+2. The limit of three full mutation runs clashed with full runs that start by themselves when tests change: the limit now counts rounds of survivor work.
+3. A mutation shard for a file with almost no mutants would fail the minimum-mutant rule with no response: the four shared files form one shard, and small shards are merged.
+4. The Done-when of S-REVIEW and S-ADVERSARIAL could pass with an empty review: each now requires a populated section per brief and a row per attack with its observed result.
+5. No check that a pull request can be opened: S-FINAL has a fallback (compare link for the owner).
+6. S-018 told the sanitizer job to run `ctest` in a tree it does not build: it keeps its own tree and must show 79 cases.
+7. The Rack package check had no platform argument: each job passes its platform literally.
+8. The panel label rule depended on an unstated letter width: the advance is given, with a two-line fallback.
+Mechanical: `HANDOFF.md` section 9.2 now states the `## Record` rule and what to report at G-003 without an answer.
