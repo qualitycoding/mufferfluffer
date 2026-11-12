@@ -6,7 +6,8 @@ Each pass used two new agents with no knowledge of the planning conversation, gi
 |---|---|---|---|---|
 | 1 | `4e4aab9` | 92 | 4 | All amended in commit `3f32f27` (see below). |
 | 2 | `02dc5ef` | 8 | 2 (neither a defect: a gate id mentioned only as not applicable; American spellings only inside verbatim source titles) | All amended in commit `430bf47` (see below). |
-| 3 | `430bf47` | 8 | 1 (two citations of `HANDOFF.md` section 9.2 for things it did not state) | All amended (see below). |
+| 3 | `430bf47` | 8 | 1 (two citations of `HANDOFF.md` section 9.2 for things it did not state) | All amended in commit `2795122` (see below). |
+| 4 | `2795122` | 0 | 1 (`rack/plugin.so` used in a Done-when without being named a build product; a note was added) and 1 not a defect ("sanitizer" is the tools' own name) | Gate passed: the dry run returned zero items. |
 
 ## Pass 1: what the items were and what changed
 - Protocol and skills were cited but not on the branch (items 1 to 5): copied to `plan/protocol/` with their source commit; `premortem/` and `reviews/` now exist; "Lessons applied" lines cite lesson ids, not row names that did not exist.
@@ -39,3 +40,6 @@ Mechanical note: the gates file's mention of the protocol's headline-result gate
 7. The Rack package check had no platform argument: each job passes its platform literally.
 8. The panel label rule depended on an unstated letter width: the advance is given, with a two-line fallback.
 Mechanical: `HANDOFF.md` section 9.2 now states the `## Record` rule and what to report at G-003 without an answer.
+
+## Pass 4
+The dry-run agent reported zero items and listed five minor points it rejected as covered by the default rule of `HANDOFF.md` section 6 (the count of non-container jobs in S-001, since clarified; how the inputs of demos 03 and 22 are joined; where a two-line label starts shrinking; the order in which S-MUTATE creates its tools; the unmeasured 5 MB floor of S-030, which the step already labels as the planner's choice). The cold-read gate is closed after four of the five passes allowed.
