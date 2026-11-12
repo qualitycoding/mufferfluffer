@@ -47,3 +47,16 @@ Profile branch: `software` (engineering). `math`, `computational` and `publicati
 
 ## Pruned
 - Host tempo sync, MIDI implementation charts, preset formats: inform nothing (out of scope, A-007).
+
+## Status after round 3
+| Leaf | Status | Closed by |
+|---|---|---|
+| Q1.1-Q1.7 | answered (manufacturer manuals, one publisher; 39 of 40 load-bearing figures re-read independently) | D-020..D-026, R-001 |
+| Q1.8 | answered | D-012 |
+| Q1.9 | answered: 44 undocumented facts | D-027, R-005 |
+| Q2.1-Q2.8 | answered | D-030..D-037, R-006, R-007 |
+| Q3.1-Q3.6 | answered and exercised where the sandbox allowed | D-001..D-009, spikes |
+| Q3.7 | partly answered: tool and package named, runtime not measurable in planning | S-MUTATE, R-010 |
+| Q3.8, Q3.9 | answered | D-061, T-011, T-855, T-CI-SAN |
+| Q4.1-Q4.4 | answered; mark status of three names unread | D-001, D-004, D-041, R-013 |
+| Q5.1-Q5.3 | answered: none found | D-040, R-004 |
