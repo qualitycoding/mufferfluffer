@@ -11,7 +11,7 @@ Build an original software reimplementation of the behaviour of seven analogue e
 ## 3. Reading order
 1. This file.
 2. `plan/ASSUMPTIONS.md` (what was asked and agreed).
-3. `plan/DECISIONS.md` (every design decision: project and build D-001 to D-018, effect behaviour D-020 to D-027, algorithms D-030 to D-037, gates and quality D-040, D-041, D-050, D-060 to D-063, versions D-070, compatibility D-071, amendments after the assumption audit D-072; the numbers in between are unused; D-027 lists the choices made where the hardware is undocumented).
+3. `plan/DECISIONS.md` (every design decision: project and build D-001 to D-018, effect behaviour D-020 to D-027, algorithms D-030 to D-037, gates and quality D-040, D-041, D-050, D-060 to D-063, versions D-070, compatibility D-071, amendments after the assumption audit D-072; the numbers in between are unused; D-027 lists the project's design choices, including deliberate divergences from the hardware in items 13 and 17, all of which the owner is shown).
 4. `plan/ENVIRONMENT.md` (pins and exact commands).
 5. `plan/PLAN.md` (the steps, in order).
 6. `plan/GATES.md`, `plan/RISKS.md`, `plan/TRACEABILITY.md`.
@@ -92,7 +92,7 @@ Rule 14 (honest verification) is applied by the plan's "Done when" lines; its fu
 ## 8. What the plan does not prove (read before promising anything)
 - Fidelity to the hardware is judged by the owner's ear on demos, not by a blind comparison: no reference recording could be obtained (D-040, R-004).
 - The filter bank's patterns are this project's own (D-024, R-003).
-- Many constants are design choices because the hardware is undocumented (D-027).
+- Many constants are design choices because the hardware is undocumented, and two things differ from the hardware on purpose: one control-voltage law for all seven effects, and no control inputs on the VST3 plug-ins (D-027, items 13 and 17 in particular; D-072).
 - The Rack modules are built and packaged on four platforms but never run inside Rack by an automated test (R-012).
 - pluginval, the Rack SDK download, Mull and the OSV scan were not executed during planning (hosts unreachable from the planning sandbox); their first runs are in S-021, S-030, S-MUTATE and S-034, each with a pre-decided response to failure in its step's "On failure" line.
 

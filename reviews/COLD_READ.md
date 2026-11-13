@@ -52,3 +52,6 @@ A new dry-run agent reported 3 items, all amended: `HANDOFF.md` still described 
 
 ## Pass 7 (after pre-mortem rounds 3 and 4 and the assumption audit; commit read `b05d2bb`)
 A new dry-run agent reported 2 items, both amended: `HANDOFF.md` gave D-071 as the highest decision number although D-072 exists, and its section 9.6 described `[mutation full]` as starting a workflow that in fact runs on every push. Confirmed again: 87 core cases (86 under the sanitizers), 7 VST3, 9 Python, per-tag counts, the S-035 selection, and every planned state of `deps.lock.json` against its test.
+
+## After pass 7
+The later changes (pre-mortem rounds 5 and 6) were checked by those rounds' own reviewers, who read the changed parts as a dry run and found no item that would block or mislead the implementer after the fixes recorded in `premortem/round-5.md` and `premortem/round-6.md`.

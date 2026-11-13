@@ -174,10 +174,10 @@ None of these could be read from any source (C-PEDA-018 claims); each is a reaso
 11. Not modelled anywhere: MIDI, host tempo sync, preset storage, noise, component tolerance and drift.
 12. Lowpass cutoff knob law: logarithmic from 15 Hz to 12 kHz, which puts the knob's centre at 424 Hz; one manual reading gives the centre as roughly 500 Hz (C-PEDA-001), so the centre is about a quarter-octave lower than that reading.
 13. Control voltages on the Delay, FilterBank and Chorus: like every CV they add to the knob with the depth of D-012, so 0 V leaves the knob's setting and +5 V adds the full travel. Their hardware manuals describe a response centred on 2.5 V instead (C-PEDB-020, C-PEDB-051, C-PEDC-033, C-PEDC-034): half the range either side of the knob. Kept as one law for all seven effects (D-072); subtracting 2.5 V in Rack gives a response centred on the knob. Whether the delay's Time input also runs in the opposite sense on the hardware was not settled.
-17. VST3 and control jacks: the VST3 plug-ins have no control-voltage inputs. Each jack that modulates a knob is reached by automating that knob. What has no VST3 counterpart and exists only on the Rack modules: the Phaser's Sweep In; trigger inputs (the FilterBank's step input, tap inputs); the OscBox's volt-per-octave input beyond the knob's range; audio-rate modulation of any control; and every control-voltage output (envelope, LFO, carrier and similar). This list is the reference; A-007 and `HANDOFF.md` section 8 point to it (D-072).
 14. Phaser Sweep In scaling: 6 octaves per core unit (5 V), the same law as the Sweep knob's CV; the manual gives the jack's voltage range but no scale (C-PEDA-046).
 15. Delay tap switch: a tap sets the delay time only. On the hardware, holding the switch for about a second makes taps set the LFO rate instead (C-PEDB-017); that mode is not modelled.
 16. Readings of the manuals that tests now fix: Phaser Amount at maximum sweeps three octaves each way (the manual says only "full sweep range", C-PEDA-041); RingMod LFO Amount is the peak-to-peak sweep in octaves (C-PEDA-028); a FilterBank trigger arriving during an envelope continues from the present level (no source).
+17. VST3 and control jacks: the VST3 plug-ins have no control-voltage inputs. Each jack that modulates a knob is reached by automating that knob. What has no VST3 counterpart and exists only on the Rack modules: the Phaser's Sweep In; trigger inputs (the FilterBank's step input, tap inputs); the OscBox's volt-per-octave input beyond the knob's range; audio-rate modulation of any control; and every control-voltage output (envelope, LFO, carrier and similar). This list is the reference; A-007 and `HANDOFF.md` section 8 point to it (D-072).
 
 ## Algorithms (D-030 to D-037)
 
@@ -253,6 +253,9 @@ After the second round, in the same way: T-308 (Phaser LFO depth), T-411 (Delay 
 - `README.md` `## Install` also says that on macOS a downloaded bundle must have its quarantine attribute removed (`xattr -dr com.apple.quarantine <bundle>`), because the bundles are not signed or notarised (A-009: no release).
 - Not verified in planning (no macOS machine): if JUCE 9.0.5 refuses a deployment target of 11.0 at configure time, use the lowest value its error message names and record it in `DEVIATIONS.md`.
 
+### D-070 Versions
+VST3 plug-ins `0.1.0` (CMake project version). Rack plug-in `2.0.0` (Rack requires major version 2).
+
 ### D-072 Amendments after the assumption audit
 The audit of section 4.7 (`premortem/ASSUMPTION_AUDIT.md`) gave 154 verdicts: 114 confirmed, 8 falsified (six distinct matters), 32 unverifiable. Amendments:
 1. **Rack tag.** The premise that "Hardware clone" merely describes behaviour-level modelling was false (see D-004). The tag is removed, T-902 now forbids it, and the manifest was re-frozen (synthetic tree: 9 pass; with the tag added to one module, `test_manifest` fails).
@@ -261,6 +264,3 @@ The audit of section 4.7 (`premortem/ASSUMPTION_AUDIT.md`) gave 154 verdicts: 11
 4. **A-007 in the VST3.** The assumption that every jack has a VST3 counterpart was false for the jacks listed in D-027 item 17. A-007 is narrowed to say so; no side-chain bus is added (it would change the frozen shell interface for a use no ordinary host offers).
 5. **Two rationale errors** with no effect on any decision: Rack's own language level (D-002) and the cost of first-order anti-aliasing (D-037) are corrected in place.
 Lessons: `L-20261113T170000Z-platform-tag-used-without-reading-its-definition`, `L-20261113T170500Z-one-law-assumed-across-a-product-family`. Knowledge items: `K-20261113T170000Z-rack-hardware-clone-tag-needs-permission`, `K-20261113T170100Z-mull-two-packages-since-0-36`, `K-20261113T170200Z-m-series-cv-law-centred-on-2v5`, `K-20261113T170300Z-first-order-adaa-droop`, `K-20261113T170400Z-rack-2-6-6-builds-as-cpp11`.
-
-### D-070 Versions
-VST3 plug-ins `0.1.0` (CMake project version). Rack plug-in `2.0.0` (Rack requires major version 2).

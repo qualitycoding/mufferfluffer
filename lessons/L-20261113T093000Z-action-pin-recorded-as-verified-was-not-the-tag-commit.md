@@ -6,7 +6,7 @@ supersedes: []
 severity: High
 tags: [tech:github-actions, tech:mull, phase:research, kind:integrity]
 recurrence_of: L-20261028T200000Z-pinned-tool-version-does-not-exist
-occurrences: 2
+occurrences: 3
 recorded_by: planner
 run: gen-20261111T151412Z-mufferfluffer-vst-vcv
 recorded_at: 2026-11-13T09:30:00Z

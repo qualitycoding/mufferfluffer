@@ -4,7 +4,7 @@ title: A frozen test's estimator was far tighter than its stated tolerance, and 
 status: active
 supersedes: []
 severity: High
-tags: [domain:audio, domain:dsp, phase:test-design, kind:test-validity, tech:cpp]
+tags: [domain:audio, phase:specification, kind:verification-gap, tech:cpp]
 recurrence_of: null
 occurrences: 1
 recorded_by: planner

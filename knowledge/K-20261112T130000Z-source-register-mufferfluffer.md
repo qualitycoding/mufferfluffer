@@ -1,6 +1,6 @@
 ---
 id: K-20261112T130000Z-source-register-mufferfluffer
-statement: "Source register for the mufferfluffer planning run (gen-20261111T151412Z-mufferfluffer-vst-vcv): 261 external sources checked, 119 used, 39 corroborating, 18 rejected, 48 unreachable, 37 not relevant; 171 have an unknown or unstated licence."
+statement: "Source register for the mufferfluffer planning run (gen-20261111T151412Z-mufferfluffer-vst-vcv): 266 external sources checked, 123 used, 40 corroborating, 18 rejected, 48 unreachable, 37 not relevant; 173 have an unknown or unstated licence."
 status: current
 supersedes: []
 tags: [subject:moogerfooger-pedals, subject:analogue-modelling-dsp, subject:plugin-licensing-and-marks, domain:audio, phase:research, kind:source-register]
@@ -16,7 +16,7 @@ Every external source consulted or attempted during planning, with the licence o
 
 Rules applied (protocol Rule 15, hobby project A-013): facts, ranges and equations are used with attribution in claims and code comments; no manual text, table, figure, panel artwork or recording is copied into the repository; third-party code enters only as pinned dependencies fetched at build time (JUCE, Catch2, Rack SDK), never vendored.
 
-Sources listed: 261. Rows whose licence is `unknown` or `none stated`: 171.
+Sources listed: 266. Rows whose licence is `unknown` or `none stated`: 173.
 
 | # | Strand | Source | URL or DOI | Version or date | Tier | Outcome | Licence or terms | Use made |
 |---|---|---|---|---|---|---|---|---|
@@ -281,3 +281,9 @@ Sources listed: 261. Rows whose licence is `unknown` or `none stated`: 171.
 | 259 | round3 | Moog MF-105M addendum, zZounds CDN | https://c3.zzounds.com/media/addendum_mf105m_81409-8f06e4ab2649aea0b5d8042e66d86c38.pdf | unknown | 1 | unreachable: curl blocked by the proxy (403); not retried through WebFetch because the fetch budget was used | none stated | none (not read) |
 | 260 | round3 | Moog Music website manual PDF guessed path | https://www.moogmusic.com/wp-content/uploads/2024/01/MF-105M_manual.pdf | n/a | 1 | unreachable: curl blocked (403), and the path was a guess | none stated | none (not read) |
 | 261 | round3 | Web search results page (Moog MF-105M manual query) and Sound on Sound / reviews query | search engine results | 2026-11-11 | 4 | not relevant: used to locate sources only | none stated | facts and figures cited in claims; no text, tables or images copied |
+| 262 | audit | VCV Rack manual: Plugin Manifest (module tags; `modularGridUrl`) | https://vcvrack.com/manual/Manifest | 2026-11-13 | 1 | used: definition of the "Hardware clone" tag (D-072 item 1) | none stated | fact cited; no text copied |
+| 263 | audit | Mull 0.38.0 `docs/Installation.rst` and `mull_package.bzl` | https://github.com/mull-project/mull/blob/0.38.0/docs/Installation.rst | 0.38.0 | 1 | used: two-package install and asset naming (D-072 item 2) | Apache-2.0 | facts cited; no text copied |
+| 264 | audit | Hardware manual copies re-read by the assumption auditor (six of the seven models) | manual hosting sites listed in rows of strands pedals-a, pedals-b, pedals-c | 2026-11-13 | 3 | corroborating: every figure a frozen test pins matched; control-voltage law of three models found to differ (D-072 item 3) | none stated | facts and figures cited; no text, tables or images copied |
+| 265 | premortem | pluginval 1.0.4 release archives and source (options, log strings), downloaded by reviewers of rounds 1 and 3 | https://github.com/Tracktion/pluginval/releases/tag/v1.0.4 | v1.0.4 | 1 | used: `--random-seed`, pass-rule strings, archive hashes confirmed (D-007) | GPL-3.0 | tool executed; no text copied |
+| 266 | premortem | GitHub documentation: skipping workflow runs; runner images | https://docs.github.com/en/actions/how-tos/manage-workflow-runs/skip-workflow-runs | 2026-11-13 | 1 | used: `[skip ci]` behaviour and its effect on required checks (round 2) | CC-BY-4.0 | facts cited; no text copied |
+
