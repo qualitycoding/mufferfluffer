@@ -43,3 +43,6 @@ Mechanical: `HANDOFF.md` section 9.2 now states the `## Record` rule and what to
 
 ## Pass 4
 The dry-run agent reported zero items and listed five minor points it rejected as covered by the default rule of `HANDOFF.md` section 6 (the count of non-container jobs in S-001, since clarified; how the inputs of demos 03 and 22 are joined; where a two-line label starts shrinking; the order in which S-MUTATE creates its tools; the unmeasured 5 MB floor of S-030, which the step already labels as the planner's choice). The cold-read gate is closed after four of the five passes allowed.
+
+## Pass 5 (after the changes of pre-mortem round 1; commit read `432a8de`)
+Protocol Phase 4 item 4 requires the cold read to run again after a plan change. A new dry-run agent, told which parts had changed, reported 5 items, all amended: D-060 still named the old file for the mutation floor; the Rack-flags core test on arm64 macOS used an x86 flag; the score cross-check had no input at the gate (now made per shard, where Mull's log exists); the macOS deployment-target check ran only in the gated package workflow (now also in the two macOS VST3 jobs of `ci.yml`); a header-only change was `not-applicable` to the mutation scope (now `full`). Test counts were confirmed against the files (83 core cases; 6; 9).
