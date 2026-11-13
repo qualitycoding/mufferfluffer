@@ -12,7 +12,7 @@ recorded_at: 2026-11-13T09:30:00Z
 ---
 **Trigger.** Writing a commit hash for a pinned action or dependency into a plan, claim or lock file.
 
-**Mistake.** Five action pins were recorded in one claim with the status "verified" and the note that each tag had been read with `git ls-remote`. Four were right. The fifth (`msys2/setup-msys2` v2.33.0) was a hash that no ref of the repository reaches; it had come from an earlier note, not from the command. A frozen test checked only that pins have the form of a full hash. Two review passes and four cold reads did not notice; a pre-mortem reviewer who re-ran the command did.
+**Mistake.** Five action pins were recorded in one claim with the status "verified" and the note that each tag had been read with `git ls-remote`. Four were right. The fifth (`msys2/setup-msys2` v2.33.0) was a hash that no ref of the repository reaches; it had come from the planner's own working notes, not from the command (neither the lesson store nor the knowledge store contains that hash, so no stored item needs superseding). A frozen test checked only that pins have the form of a full hash. Two review passes and four cold reads did not notice; a pre-mortem reviewer who re-ran the command did.
 
 **Correction.** The pin was corrected, every pin was re-read, and the plan now has a tool, run in CI, that compares each pinned commit with the commit of the tag named beside it.
 

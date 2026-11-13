@@ -77,3 +77,6 @@ Variants of the oracle, each run against the whole core suite (87 cases):
 | FilterBank LFO depth 0.8 octave | 86 passed, 1 failed: T-508 |
 | FilterBank envelope restarts from zero on a trigger | 86 passed, 1 failed: T-509 |
 | VST3 shell that always asks the runner for two outputs | 6 passed, 1 failed: T-857 (filter bank) |
+
+## Re-freeze after pre-mortem round 3 (2026-11-13)
+Test amended: T-308 finds the LFO's top by its signed maximum (the helper it used before takes the largest absolute value, which made the test fail for a correct implementation whose LFO phase is held in single precision). Re-run: oracle 87 of 87 (86 under the sanitizers, 87 with Rack flags); the one-octave-depth variant still fails exactly T-308; stubs 87 failed. The round 3 reviewer ran the same change against a single-precision-phase variant and a variant with the rate 3e-7 low: both pass.

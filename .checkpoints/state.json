@@ -1,7 +1,7 @@
 {
  "run_id": "gen-20261111T151412Z-mufferfluffer-vst-vcv",
  "branch": "gen-20261111T151412Z-mufferfluffer-vst-vcv",
- "sequence": 12,
+ "sequence": 13,
  "profiles": [
   "software"
  ],
@@ -18,7 +18,7 @@
   "commit": "b110439286e18eb41660a7bf92ec1efb0300a834"
  },
  "phase": "4",
- "subphase": "4.2",
+ "subphase": "4.3",
  "active_step_id": "",
  "research_round": 3,
  "exploration_round": 0,
@@ -96,7 +96,7 @@
  "artifacts": {
   ".gitattributes": "1dd5d959f6445f5085c3e24ea4abaac258cd0c76dd99b8c7ed1753835c104529",
   "CMakeLists.txt": "bb4d114b438d1ecf7f3548bccf8fecfa01f96c083240fa319d0ac3bf02fa0b87",
-  "HANDOFF.md": "4fde9659c28a68da4139dff8ca425954e7b0598a23e7c71edafd8257495fb234",
+  "HANDOFF.md": "e7b4b61b1b454483ae49c866f137977136d7a6deb23cb12d8d1c6860d3cee789",
   "LICENSE": "d8a6cc31abc16b6748c7a21f21611f5a1ec33f67d22ca23d7da1c19b95496bee",
   "README.md": "32d78965f7f595101da9c59874f31406f9860d084e725576858483e30b86a5aa",
   "adapters/include/muff/adapters.hpp": "6a5d180193097a06f41bfbbf80faf4dbd9fe93803c2c02729ef72654c29159a4",
@@ -485,12 +485,12 @@
   "lessons/L-20261112T121000Z-planner-claims-labelled-corroborated-on-one-publisher.md": "dbb31edfb28810a207eb36eca1f0eec8ac17ef8d5d4abd547b2304d5e119e129",
   "lessons/L-20261112T121500Z-sub-agent-research-lost-to-rate-limits.md": "3f40be6b109ce97140bc09d6c1fd12cd0b3f37558c41fa88f8ac7d04a16ec7d3",
   "lessons/L-20261112T205000Z-test-estimator-tighter-than-its-stated-tolerance.md": "e98a69eed5b4a591cb5a72a362d4c72c24fd1128e3c4ad87c92da5b2aa903e2c",
-  "lessons/L-20261113T093000Z-action-pin-recorded-as-verified-was-not-the-tag-commit.md": "f0b95585eaa5ff4d69dad68ca1a920cd781151e6b80c3ed9f5c98847d26e1366",
+  "lessons/L-20261113T093000Z-action-pin-recorded-as-verified-was-not-the-tag-commit.md": "af1341b4a4ae39575f9780b414564b698c9e335bcdb1fd08d576ae758a45c689",
   "plan/ASSUMPTIONS.md": "cff8fe0c945eec237b2a65cc5ed3df48143457658ee3f5f5bbf7e7e71b08acde",
-  "plan/DECISIONS.md": "774a776bb4a4a672ee5d7e5f23e216015f222a04581d96123357b1f1fd859e09",
+  "plan/DECISIONS.md": "9c1de43b1921a35beec11e3a0077bf184e92951a29ef52e5f814781cedd0e4cf",
   "plan/ENVIRONMENT.md": "93ba8761d53bba312ee0865874acc62446b8d5bf8d320ded1650900395d32fe2",
   "plan/GATES.md": "39c5398dda6e995a648c65e3f32a5013699fe6215ae4b82005c0dafa3c33c184",
-  "plan/PLAN.md": "997a46d1aa3a19cd51837082d4640c99a80d56ce798d14b18a1c5acb12f038a2",
+  "plan/PLAN.md": "f3bbec25ef0cd05dff36c6f749007948253e1b449a7489e29cca365666a302f9",
   "plan/PROFILE.md": "3bf92769d77ec71c0a29db4078840405255310cb2efc7b0149141c6c939fbe0f",
   "plan/RISKS.md": "bb8e7b2fbd4d4737b013baa62b8d2ab9f486a3c6f0b14934282c1eb1007826ac",
   "plan/SOURCE_REGISTER.md": "ed603cc9cc892da8dca70e8cbcd33bba1bdd721a59982634e67d8c8f4842bcf0",
@@ -512,6 +512,7 @@
   "premortem/RISK_REGISTER.md": "5a514b4b0e7f3c3387748f863c59a7adbe215aff6825fc3263087e4dab7fff1e",
   "premortem/round-1.md": "3619186a38aae2b7c375b5ba5fd13a77a46f2e179d7c12d9377bfe411f980c15",
   "premortem/round-2.md": "ca9827ee2fa0ca8aba6cc2154ce9155605946915b688212b7dac991a6ada77cf",
+  "premortem/round-3.md": "7564ea670b4e9b129a79516cb15aed6a6c009897f1c458daacd0ec62d406bb40",
   "research/PRIOR_KNOWLEDGE.md": "7b63dc7d8a2002ac2d2874593993567f9c6d9b1859d6a3f5d09c9cc96d994f42",
   "research/QUESTIONS.md": "ca0d95227d7e5c6e20c07f4ab2f617734d3668a5c1dcb90043fb65b7d5e5df08",
   "research/SOURCES.md": "c398a457c67017d2c60f102888a4c86f974c51c8c18ce8498d3209903f38c665",
@@ -545,17 +546,17 @@
   "research/spikes/oracle/oracle_core.cpp": "2aa22295082f85de342de448d75078cf75fb6d3f2f73a4f73e91bf425abd1263",
   "research/spikes/oracle_repo/make_tree.py": "24fb4aa8651e9c7baf14306e99c806ddfe8b536f556c84b9afbd5cad443341ae",
   "research/spikes/oracle_vst3/processor.cpp": "5fe6dac5bf54a153e513ccf4f9485280d024a4125c69c64c517f443cd9fcaceb",
-  "research/spikes/red-verification/RESULT.md": "a65178d600a7d7f3fca29fce480e8dda8780953e81d7335b4d54654c4585e5ad",
+  "research/spikes/red-verification/RESULT.md": "d58294914a5acebda41ca4dccdbfff53e2b8967f7164d3b3306488c2cc1409fa",
   "research/tools/make_knowledge.py": "896030c3d61624c6ed316e03a6afefbb4d39369391e2f0d83809e82c49a47c31",
   "research/tools/make_source_register_item.py": "18e983570b6a0b0d2a70d494331389534b74c704bd6e28620eb493a680b4c1c3",
   "research/tools/merge_research.py": "d504519ed9b4fad32ad10d82489ea4ddd1e98848a506abd6c2c31122956db3bd",
-  "reviews/COLD_READ.md": "547664c9d5852567baa0bdba0507c475b410d92b7b4dd64d9984902d3063fa5f",
+  "reviews/COLD_READ.md": "be669039f7fb4932ee2785646dbc63b80b9ccecabf7f652e36220f3478e6e149",
   "tests/CMakeLists.txt": "47317a9d5c724836a8a0fd0906254a72b96e02f04c53654c63f65142b1cdcf67",
-  "tests/FROZEN_MANIFEST.sha256": "82b79b4556bb2f07edf239386f4066c72aa7f7bd6ce1c7e0fc06c4ed1e69d3eb",
+  "tests/FROZEN_MANIFEST.sha256": "93668a4a3e17c0df34e465568700ea3f439ba8efd352dfdeb298585dc72b7c39",
   "tests/core/expected_effects.inc": "8fb8bd0e3360bb858b3e1d7370a6569b89922f61cbf018731dd3230b33f98f8b",
   "tests/core/test_adapters.cpp": "612615aa2cd1f98b36db3a57be7f5d940645325621cdb06ed6619407ccb892ab",
   "tests/core/test_common.cpp": "21bcccca85b3a0f2f96b8028cc95416df809935bf49d1518f5f409e428065f65",
-  "tests/core/test_m1.cpp": "91b95ba7bc82ca6a5d177b12b05f163d93d9a18a1684b66880dcfd68bad05d14",
+  "tests/core/test_m1.cpp": "d68519c6515d5afc79f549f2801a1d9aaee8edfe189c6faa8a56117ed6dd33e3",
   "tests/core/test_m2.cpp": "73367e86d99159ad8bcd7d92e853d9100b84ff25b7e6da2535af43b71d8654ce",
   "tests/core/test_m3.cpp": "7634dc4a5fff61fafd5a2b66871eb2f54fe3d527821ae112e42ee155832cfb9d",
   "tests/core/test_support.hpp": "10fc8cb6e13f647c52ed5c9b05e2380857aaf628a6a278038427ec4cc2152d5e",
@@ -574,15 +575,15 @@
   "vst3/src/stubs.cpp": "0da43f067c134ece5dc3b0ba2790774fd1e58e308096085324fdc731510798e8"
  },
  "execution_context": {
-  "current_objective": "Pre-mortem round 2: 0 Critical, 3 High fixed; tests T-308, T-411, T-508, T-509, T-857 added, T-905 tightened, re-frozen (87 core, 7 VST3); cold read and round 3 pending",
+  "current_objective": "Pre-mortem round 3: 0 Critical, 1 High fixed (T-308 amended, re-frozen); round 4 pending",
   "call_stack": [
    "Phase 1"
   ],
   "step_pointer": {
    "phase": "4",
-   "subphase": "4.2",
+   "subphase": "4.3",
    "item_index": 0,
-   "sub_action": "Pre-mortem round 2: 0 Critical, 3 High fixed; tests T-308, T-411, T-508, T-509, T-857 added, T-905 tightened, re-frozen (87 core, 7 VST3); cold read and round 3 pending",
+   "sub_action": "Pre-mortem round 3: 0 Critical, 1 High fixed (T-308 amended, re-frozen); round 4 pending",
    "retry_count": 0
   },
   "scratchpad": "",
@@ -1155,5 +1156,5 @@
   "K-20261112T120000Z-c-ref-035",
   "K-20261112T130000Z-source-register-mufferfluffer"
  ],
- "updated_at": "2026-11-13T09:00:49Z"
+ "updated_at": "2026-11-13T13:12:00Z"
 }
