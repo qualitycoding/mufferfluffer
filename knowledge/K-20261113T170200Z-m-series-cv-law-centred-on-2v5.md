@@ -5,11 +5,11 @@ status: current
 supersedes: []
 tags: [subject:moogerfooger-pedals, domain:audio, phase:research]
 applies_to_version: "hardware manuals as published"
-source: {"url": "https://www.manualslib.com/", "doi": "", "title": "MF-104M and MF-105M manuals (copies), MF-108M press text and reviews", "locator": "control-voltage input descriptions", "accessed": "2026-11-13", "tier": 3}
+source: {"url": "https://www.manualslib.com/brand/moog/", "doi": "", "title": "MF-104M and MF-105M manuals (copies), MF-108M press text and reviews", "locator": "control-voltage input descriptions", "accessed": "2026-11-13", "tier": 3}
 confidence: single-source
 derived_from: []
 discovered_by: assumption audit (fresh-context reviewer), confirmed by planner
 run: gen-20261111T151412Z-mufferfluffer-vst-vcv
 recorded_at: 2026-11-13T17:00:00Z
 ---
-Checked by: the auditor re-read the MF-104M and MF-105M manual copies on 2026-11-13; the MF-108M manual was out of reach and its figures were checked against secondary sources. Related claims of this run: C-PEDB-020, C-PEDB-051, C-PEDC-033, C-PEDC-034, C-PEDA-011. Whether the Time control's CV direction is inverted on the delay was not settled.
+Checked by: the auditor re-read the MF-104M and MF-105M manual copies on 2026-11-13; the MF-108M manual was out of reach and its figures were checked against secondary sources. Related claims of this run: C-PEDB-020, C-PEDB-051, C-PEDC-033, C-PEDC-034, C-PEDA-011. Whether the Time control's CV direction is inverted on the delay was not settled. Open question recorded by the audit and not settled: one reading of the delay's manual has the Time input run from the longest to the shortest time as the voltage rises, the opposite sense to the knob; a model of that input should not assume the direction without re-reading the manual.

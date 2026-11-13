@@ -5,7 +5,7 @@ status: current
 supersedes: []
 tags: [domain:dsp, subject:analogue-modelling-dsp, phase:research]
 applies_to_version: "version-independent"
-source: {"url": "", "doi": "", "title": "Derivation and simulation by the assumption auditor", "locator": "two-tap mean of the linearised non-linearity; simulation with 2 tanh(x/2) at amplitude 0.05", "accessed": "2026-11-13", "tier": 1}
+source: {"url": "premortem/ASSUMPTION_AUDIT.md", "doi": "", "title": "Derivation and simulation by the assumption auditor", "locator": "two-tap mean of the linearised non-linearity; simulation with 2 tanh(x/2) at amplitude 0.05", "accessed": "2026-11-13", "tier": 1}
 confidence: verified
 derived_from: []
 discovered_by: assumption audit (fresh-context reviewer), confirmed by planner

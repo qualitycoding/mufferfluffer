@@ -17,7 +17,7 @@ Build an original software reimplementation of the behaviour of seven analogue e
 6. `plan/GATES.md`, `plan/RISKS.md`, `plan/TRACEABILITY.md`.
 7. The frozen interfaces: `core/include/muff/core.hpp`, `core/include/muff/blocks.hpp`, `adapters/include/muff/adapters.hpp`, `vst3/include/muff/vst3_shell.hpp`; the fixture `tests/fixtures/effects.json`.
 8. `research/PRIOR_KNOWLEDGE.md` (lessons from earlier runs, mapped to steps) when a step's "Lessons applied" points there.
-9. Section 9 of this file (working conventions) before S-000.
+9. Section 9 of this file (working conventions) before S-000. D-072 in `plan/DECISIONS.md` records what the assumption audit changed; D-027 lists every choice the owner is shown.
 Reference only: `research/` (claims, sources, spikes, the planner's own tools in `research/tools/`), `premortem/` and `reviews/COLD_READ.md` (the planner's review records), `plan/protocol/` (consult where a step cites it). You add your own review records to `reviews/`.
 
 ## 4. Environment, tests and the freeze

@@ -80,3 +80,6 @@ Variants of the oracle, each run against the whole core suite (87 cases):
 
 ## Re-freeze after pre-mortem round 3 (2026-11-13)
 Test amended: T-308 finds the LFO's top by its signed maximum (the helper it used before takes the largest absolute value, which made the test fail for a correct implementation whose LFO phase is held in single precision). Re-run: oracle 87 of 87 (86 under the sanitizers, 87 with Rack flags); the one-octave-depth variant still fails exactly T-308; stubs 87 failed. The round 3 reviewer ran the same change against a single-precision-phase variant and a variant with the rate 3e-7 low: both pass.
+
+## Re-freeze after the assumption audit (2026-11-13)
+Test amended: T-902 `test_manifest` now fails if any module carries the tag "Hardware clone" (it required the tag before; D-072 item 1). Repository tests on the synthetic tree without the tag: "OK" (9 tests); with the tag added to one module: `test_manifest` fails; on the real branch: 9 fail (nothing is built yet). No C++ test changed.
