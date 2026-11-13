@@ -49,3 +49,6 @@ Protocol Phase 4 item 4 requires the cold read to run again after a plan change.
 
 ## Pass 6 (after the changes of pre-mortem round 2; commit read `736de5a`)
 A new dry-run agent reported 3 items, all amended: `HANDOFF.md` still described the decision numbers as they were before D-063 and D-071; S-FINAL asked for a mutation result on the empty hand-over commit; the Lowpass tail rule returned 60 s where the true bound is longer (now computed, and reported as endless above 60 s as the frozen header requires). Counts confirmed: 87 core (86 under the sanitizers), 7 VST3, 9 Python; every test id has a traceability row.
+
+## Pass 7 (after pre-mortem rounds 3 and 4 and the assumption audit; commit read `b05d2bb`)
+A new dry-run agent reported 2 items, both amended: `HANDOFF.md` gave D-071 as the highest decision number although D-072 exists, and its section 9.6 described `[mutation full]` as starting a workflow that in fact runs on every push. Confirmed again: 87 core cases (86 under the sanitizers), 7 VST3, 9 Python, per-tag counts, the S-035 selection, and every planned state of `deps.lock.json` against its test.
