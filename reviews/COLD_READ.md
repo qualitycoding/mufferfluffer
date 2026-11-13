@@ -46,3 +46,6 @@ The dry-run agent reported zero items and listed five minor points it rejected a
 
 ## Pass 5 (after the changes of pre-mortem round 1; commit read `432a8de`)
 Protocol Phase 4 item 4 requires the cold read to run again after a plan change. A new dry-run agent, told which parts had changed, reported 5 items, all amended: D-060 still named the old file for the mutation floor; the Rack-flags core test on arm64 macOS used an x86 flag; the score cross-check had no input at the gate (now made per shard, where Mull's log exists); the macOS deployment-target check ran only in the gated package workflow (now also in the two macOS VST3 jobs of `ci.yml`); a header-only change was `not-applicable` to the mutation scope (now `full`). Test counts were confirmed against the files (83 core cases; 6; 9).
+
+## Pass 6 (after the changes of pre-mortem round 2; commit read `736de5a`)
+A new dry-run agent reported 3 items, all amended: `HANDOFF.md` still described the decision numbers as they were before D-063 and D-071; S-FINAL asked for a mutation result on the empty hand-over commit; the Lowpass tail rule returned 60 s where the true bound is longer (now computed, and reported as endless above 60 s as the frozen header requires). Counts confirmed: 87 core (86 under the sanitizers), 7 VST3, 9 Python; every test id has a traceability row.
