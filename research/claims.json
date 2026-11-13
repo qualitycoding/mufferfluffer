@@ -9786,7 +9786,7 @@
   "contradicted_by": [],
   "spike": "read from the pinned checkout",
   "verdict": "",
-  "checks": "",
+  "checks": " Note 2026-11-13: the tag list shows which tags are valid, not when each applies; the manifest guide restricts 'Hardware clone' (K-20261113T170000Z-rack-hardware-clone-tag-needs-permission, D-072).",
   "depends_on": []
  },
  {
@@ -10212,7 +10212,7 @@
   "contradicted_by": [],
   "spike": "",
   "verdict": "",
-  "checks": "",
+  "checks": " Corrected 2026-11-13 by the assumption audit: Rack 2.6.6 builds itself with -std=c++11 (compile.mk); it does not need C++17. A plug-in's later -std=c++17 wins. See knowledge item K-20261113T170400Z-rack-2-6-6-builds-as-cpp11.",
   "depends_on": []
  },
  {

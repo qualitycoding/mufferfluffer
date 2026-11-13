@@ -26,7 +26,7 @@ subprocess.run([sys.executable, str(src / "tools/gen_tables.py"), str(src / "tes
 tags = {"Lowpass": ["Filter"], "RingMod": ["Ring modulator"], "Phaser": ["Phaser"], "Delay": ["Delay"], "FilterBank": ["Filter", "Sequencer"], "OscBox": ["Oscillator"], "Chorus": ["Chorus", "Flanger"]}
 w("rack/plugin.json", json.dumps({"slug": "Mufferfluffer", "name": "Mufferfluffer", "brand": "Mufferfluffer", "version": "2.0.0", "license": "AGPL-3.0-only",
    "author": "qualitycoding", "sourceUrl": "https://github.com/qualitycoding/mufferfluffer",
-   "modules": [{"slug": e["enum"], "name": e["name"], "description": "Effect module", "tags": tags[e["enum"]] + ["Hardware clone", "Effect"]} for e in fx]}, indent=1))
+   "modules": [{"slug": e["enum"], "name": e["name"], "description": "Effect module", "tags": tags[e["enum"]] + ["Effect"]} for e in fx]}, indent=1))
 for e in fx:
     w(f"rack/res/{e['enum']}.svg", '<svg xmlns="http://www.w3.org/2000/svg" width="60.96mm" height="128.5mm" viewBox="0 0 60.96 128.5"><path d="M0 0h60.96v128.5H0z"/><path d="M1 1h2"/><path d="M3 3h2"/></svg>')
 h = "0" * 64

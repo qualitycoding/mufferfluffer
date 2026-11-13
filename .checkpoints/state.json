@@ -1,7 +1,7 @@
 {
  "run_id": "gen-20261111T151412Z-mufferfluffer-vst-vcv",
  "branch": "gen-20261111T151412Z-mufferfluffer-vst-vcv",
- "sequence": 14,
+ "sequence": 15,
  "profiles": [
   "software"
  ],
@@ -477,6 +477,11 @@
   "knowledge/K-20261112T120000Z-c-ref-034.md": "ef1eca7aac46fcb8f99537a2ff208b95bb41d1e9b7da3445cc9f11f809bf32ea",
   "knowledge/K-20261112T120000Z-c-ref-035.md": "88a154f3ed7fbe5311e9ccff9c4c63d87a3352b31020a64b660be0c2a15c7c94",
   "knowledge/K-20261112T130000Z-source-register-mufferfluffer.md": "6788c3ca6997a002873f4922739204990f17824ce55e975a8bb49ae2fe9c6c7f",
+  "knowledge/K-20261113T170000Z-rack-hardware-clone-tag-needs-permission.md": "cc9e832380ed0a95ecbe17ae041cec676c3c023696d4a993f7c3ae711676d740",
+  "knowledge/K-20261113T170100Z-mull-two-packages-since-0-36.md": "8c895912f2a2e7ac60210333fbbb8bd6dd0712924de2b1be474f41f85af334f3",
+  "knowledge/K-20261113T170200Z-m-series-cv-law-centred-on-2v5.md": "5fb0b695fddc1c5b95ee4026a26fddd62d0e5cea15390e3b0232df215758d46f",
+  "knowledge/K-20261113T170300Z-first-order-adaa-droop.md": "682393ad5eeae96d5b854be55f5aa5e969d1b2cfaa28f9de3ec0c8762781ec18",
+  "knowledge/K-20261113T170400Z-rack-2-6-6-builds-as-cpp11.md": "bb077b6dd4dce1e91ed063a9ab9e39bee215c656ef8f0425e6e806d4e256758d",
   "knowledge/TAXONOMY-ADDITIONS.md": "f9e26734d45ea4223d76130bd866711a902e696323a2f45859a6a0fb63ae2b62",
   "lessons/L-20261111T151500Z-download-output-committed-unchecked.md": "27816b83eeaab6735f74407b7600ab106d1f6274a0b1c6e6bdcecf00538083eb",
   "lessons/L-20261111T152000Z-licence-constraint-stated-at-intake-before-r0.md": "99cdf301378f9cdb56717995f22ef54da0bf826121b051cc6ac5ddf7487d060d",
@@ -487,13 +492,15 @@
   "lessons/L-20261112T121500Z-sub-agent-research-lost-to-rate-limits.md": "3f40be6b109ce97140bc09d6c1fd12cd0b3f37558c41fa88f8ac7d04a16ec7d3",
   "lessons/L-20261112T205000Z-test-estimator-tighter-than-its-stated-tolerance.md": "e98a69eed5b4a591cb5a72a362d4c72c24fd1128e3c4ad87c92da5b2aa903e2c",
   "lessons/L-20261113T093000Z-action-pin-recorded-as-verified-was-not-the-tag-commit.md": "af1341b4a4ae39575f9780b414564b698c9e335bcdb1fd08d576ae758a45c689",
-  "plan/ASSUMPTIONS.md": "cff8fe0c945eec237b2a65cc5ed3df48143457658ee3f5f5bbf7e7e71b08acde",
-  "plan/DECISIONS.md": "49c69fd8694a52eb4de216623a4d34c30723a807965df1ab235b16a446b384dc",
-  "plan/ENVIRONMENT.md": "93ba8761d53bba312ee0865874acc62446b8d5bf8d320ded1650900395d32fe2",
-  "plan/GATES.md": "20dec528cb407787914871e71d1ed5e5e30cb0f4affc83796601e7d77208d825",
-  "plan/PLAN.md": "fc123767b3847584e28222e6777538d47c164b15f978fe05aea70ef6de750c90",
+  "lessons/L-20261113T170000Z-platform-tag-used-without-reading-its-definition.md": "4c90a8cf40dc9c143aca23752d82e38f4dac91cf8d31d676b40b0b3e5ac90097",
+  "lessons/L-20261113T170500Z-one-law-assumed-across-a-product-family.md": "966c4881c79024b81106e98ac044fb8f21deac2c3128fcab3034584f5163a2d5",
+  "plan/ASSUMPTIONS.md": "9188d2d4a974329e6e0a8556af327f3f000cf6e6554f0a14c6efdb98c102e161",
+  "plan/DECISIONS.md": "4e66a26414aff731276fe13a86fed32a06616a307f12249c33ecadc9f3339ed3",
+  "plan/ENVIRONMENT.md": "80b06a9b861eaa513e21a99fb3ef23abf09d1e87c7bc4cf07db5cd220484e163",
+  "plan/GATES.md": "458af38c74ac7cfb1e493f0ea7491cc0e61015adb4a5d4e493445d789af301a8",
+  "plan/PLAN.md": "15fb6ffbbb282a7744afb045471741f7afce6947570e102e486659f22a0534c9",
   "plan/PROFILE.md": "3bf92769d77ec71c0a29db4078840405255310cb2efc7b0149141c6c939fbe0f",
-  "plan/RISKS.md": "bb8e7b2fbd4d4737b013baa62b8d2ab9f486a3c6f0b14934282c1eb1007826ac",
+  "plan/RISKS.md": "d7aee0cafd8160dd4e2fc70d7c7b48cf81f79f65365870afaa741414b274e621",
   "plan/SOURCE_REGISTER.md": "ed603cc9cc892da8dca70e8cbcd33bba1bdd721a59982634e67d8c8f4842bcf0",
   "plan/TRACEABILITY.md": "f9cc4c943e638f9ef65427a6d712bb320daab0e8274794fb0bbc5df6d04b0211",
   "plan/protocol/LICENSE-Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
@@ -509,6 +516,7 @@
   "plan/protocol/skills/mutation-testing-in-ci/references/example-mutation-workflow.yml": "fb0a0ef33ca5a28939a7eb31c6c0fe9225f59392701b4242814a10183d1b2845",
   "plan/protocol/skills/mutation-testing-in-ci/scripts/mull_include_paths.py": "11390259eb4b635ff278b8a56b0ddaa63cc12cc458351dc9e04b4b4f07fe448a",
   "plan/protocol/skills/mutation-testing-in-ci/scripts/mull_score.py": "7c2ebd26677381a20de30f3e4a3b8c39d69f3c91e63b38c7e5abd0bb8db3d59f",
+  "premortem/ASSUMPTION_AUDIT.md": "18b016ccb909789de7e0de0acb48e24be163d402738ac318316aabcf214ec4e8",
   "premortem/README.md": "5a74c3c10ebab6d27b41f723b39db3304809ac3ada290008fedd5ec9fb533408",
   "premortem/RISK_REGISTER.md": "5a514b4b0e7f3c3387748f863c59a7adbe215aff6825fc3263087e4dab7fff1e",
   "premortem/round-1.md": "3619186a38aae2b7c375b5ba5fd13a77a46f2e179d7c12d9377bfe411f980c15",
@@ -536,7 +544,7 @@
   "research/agents/round2-sources.md": "2fc53ad4219b5677abd07c38f1c211d894306a95c270612b2da59251106b2a59",
   "research/agents/round3-claims.json": "eb65233fbb371f8590543b4cc82c2abdc5b73d16df0752203c15ea06a948d50e",
   "research/agents/round3-sources.md": "5bb57f3bcf608977bf2f01ee1dd0f60f339fdc94d8fdcc6d7eb589fd8c99f056",
-  "research/claims.json": "b711d7d1c26f6cf55d410e6977b522ff51f14b6d7e1cda544fe349a2bf3a8649",
+  "research/claims.json": "27237386267403516e73236d364fce3bb2c361ec524ec90f1e92528036a3ba58",
   "research/rounds/R5-adversarial.md": "74857e33d50ee84a5e6cc593cca85164590e2714f6db705f6066ae641534e10b",
   "research/rounds/round-1.md": "76d6181e4aadd64d2aa867b7d8fc86414b5e320f8bbaccf5de7e4b76038917d7",
   "research/rounds/round-2.md": "7f8e3fc768b72fdf9cd946b248d9da964bfea47828aafc4c3d2db6c26ba2643c",
@@ -546,7 +554,7 @@
   "research/spikes/juce-vst3-build/RESULT.md": "5d2d356f81a226b616eca3c1bb05b4f8736199fd3e8a8fe82755808a9f81aca9",
   "research/spikes/oracle/generated_tables.inc": "5e58ee3b5213e00198de5d0a2fb9f2d4c95a8aee66a20b0f79260dad53096c4c",
   "research/spikes/oracle/oracle_core.cpp": "2aa22295082f85de342de448d75078cf75fb6d3f2f73a4f73e91bf425abd1263",
-  "research/spikes/oracle_repo/make_tree.py": "24fb4aa8651e9c7baf14306e99c806ddfe8b536f556c84b9afbd5cad443341ae",
+  "research/spikes/oracle_repo/make_tree.py": "829786c4820f6e42a26660247989c72630114abb6a689ccf996c49f8c6e6cb61",
   "research/spikes/oracle_vst3/processor.cpp": "5fe6dac5bf54a153e513ccf4f9485280d024a4125c69c64c517f443cd9fcaceb",
   "research/spikes/red-verification/RESULT.md": "d58294914a5acebda41ca4dccdbfff53e2b8967f7164d3b3306488c2cc1409fa",
   "research/tools/make_knowledge.py": "896030c3d61624c6ed316e03a6afefbb4d39369391e2f0d83809e82c49a47c31",
@@ -554,7 +562,7 @@
   "research/tools/merge_research.py": "d504519ed9b4fad32ad10d82489ea4ddd1e98848a506abd6c2c31122956db3bd",
   "reviews/COLD_READ.md": "be669039f7fb4932ee2785646dbc63b80b9ccecabf7f652e36220f3478e6e149",
   "tests/CMakeLists.txt": "47317a9d5c724836a8a0fd0906254a72b96e02f04c53654c63f65142b1cdcf67",
-  "tests/FROZEN_MANIFEST.sha256": "93668a4a3e17c0df34e465568700ea3f439ba8efd352dfdeb298585dc72b7c39",
+  "tests/FROZEN_MANIFEST.sha256": "34337796f840a7a68ee062eec20a43294c53ac58bd189e938d686cab6a99e4ec",
   "tests/core/expected_effects.inc": "8fb8bd0e3360bb858b3e1d7370a6569b89922f61cbf018731dd3230b33f98f8b",
   "tests/core/test_adapters.cpp": "612615aa2cd1f98b36db3a57be7f5d940645325621cdb06ed6619407ccb892ab",
   "tests/core/test_common.cpp": "21bcccca85b3a0f2f96b8028cc95416df809935bf49d1518f5f409e428065f65",
@@ -564,7 +572,7 @@
   "tests/core/test_support.hpp": "10fc8cb6e13f647c52ed5c9b05e2380857aaf628a6a278038427ec4cc2152d5e",
   "tests/fixtures/effects.json": "d2d38c9b7235b6fa465e2665a2a347b78822b48394c32b1b9cac7b8a0279a4f7",
   "tests/perf/bench.cpp": "0e8063e4356e18752d0c1972dacb948970560880df5746738823153d1e39ac7a",
-  "tests/py/test_repo.py": "6105b818d308a40ee5908528dab9b5a2cadfb66ca492516fbc93bb7b641c6960",
+  "tests/py/test_repo.py": "32a4d6d6f0896891c54613b95372e56d4f5abf49a727d0a2a54cf62c73031e11",
   "tests/vst3/CMakeLists.txt": "cbd3bdb6d23b29ad116301f17ad77f9a4c38e3789cd51ed834724d849ecb5575",
   "tests/vst3/test_vst3.cpp": "448bfacc5703404bd9ff8eb87d082dbc93b9837fc8e010937353fdff73ecb9e5",
   "tools/check_frozen.py": "d6d14d3d9d78817085aa021fb7e1133e25a59421a30b0bd3a8ddebb11eafde76",
@@ -576,7 +584,7 @@
   "vst3/src/stubs.cpp": "0da43f067c134ece5dc3b0ba2790774fd1e58e308096085324fdc731510798e8"
  },
  "execution_context": {
-  "current_objective": "Pre-mortem converged at round 4 (0 Critical, 0 High); assumption audit starting",
+  "current_objective": "Assumption audit: 114 confirmed, 8 falsified (6 matters) amended via D-072, 32 unverifiable; T-902 re-frozen; cold read and one pre-mortem round on the changes pending",
   "call_stack": [
    "Phase 1"
   ],
@@ -584,7 +592,7 @@
    "phase": "4",
    "subphase": "4.7",
    "item_index": 0,
-   "sub_action": "Pre-mortem converged at round 4 (0 Critical, 0 High); assumption audit starting",
+   "sub_action": "Assumption audit: 114 confirmed, 8 falsified (6 matters) amended via D-072, 32 unverifiable; T-902 re-frozen; cold read and one pre-mortem round on the changes pending",
    "retry_count": 0
   },
   "scratchpad": "",
@@ -781,7 +789,9 @@
   "L-20261112T121000Z-planner-claims-labelled-corroborated-on-one-publisher",
   "L-20261112T121500Z-sub-agent-research-lost-to-rate-limits",
   "L-20261112T205000Z-test-estimator-tighter-than-its-stated-tolerance",
-  "L-20261113T093000Z-action-pin-recorded-as-verified-was-not-the-tag-commit"
+  "L-20261113T093000Z-action-pin-recorded-as-verified-was-not-the-tag-commit",
+  "L-20261113T170000Z-platform-tag-used-without-reading-its-definition",
+  "L-20261113T170500Z-one-law-assumed-across-a-product-family"
  ],
  "knowledge_added": [
   "K-20261112T120000Z-c-dsp-001",
@@ -1155,7 +1165,12 @@
   "K-20261112T120000Z-c-ref-033",
   "K-20261112T120000Z-c-ref-034",
   "K-20261112T120000Z-c-ref-035",
-  "K-20261112T130000Z-source-register-mufferfluffer"
+  "K-20261112T130000Z-source-register-mufferfluffer",
+  "K-20261113T170000Z-rack-hardware-clone-tag-needs-permission",
+  "K-20261113T170100Z-mull-two-packages-since-0-36",
+  "K-20261113T170200Z-m-series-cv-law-centred-on-2v5",
+  "K-20261113T170300Z-first-order-adaa-droop",
+  "K-20261113T170400Z-rack-2-6-6-builds-as-cpp11"
  ],
- "updated_at": "2026-11-13T13:33:43Z"
+ "updated_at": "2026-11-13T16:32:37Z"
 }

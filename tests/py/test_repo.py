@@ -99,7 +99,7 @@ class T902RackManifest(unittest.TestCase):
             tags = set(x["tags"])
             self.assertTrue(tags <= RACK_TAGS, f"unknown Rack tags {tags - RACK_TAGS}")
             self.assertTrue(REQUIRED_TAGS[e["enum"]] <= tags)
-            self.assertIn("Hardware clone", tags)
+            self.assertNotIn("Hardware clone", tags, "that tag is for modules that copy a hardware panel and layout with the owner's permission")
             self.assertIsNone(FORBIDDEN.search(json.dumps(x)))
 
 

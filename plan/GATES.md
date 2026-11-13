@@ -28,6 +28,7 @@ The protocol's headline-result gate (numbered 001 there, for the `math` and `com
   - L-7 Levels: is any demo much louder or quieter than its dry section?
   - H-1 (asked when `GATE-G-002.RESPONSE.md` records `proceed`; otherwise the gate text says the owner may answer it if they built the plug-ins themselves) Do all seven plug-ins load in your VST3 host and all seven modules in VCV Rack, and does every control do something audible?
   - H-2 (same condition) In Rack, do the CV inputs sweep their controls over the full range with 0 to 5 V, and do the tap inputs follow a clock?
+  - L-8 Control-voltage law (no listening needed): on the Delay, FilterBank and Chorus the hardware's control inputs are centred (2.5 V leaves the knob's setting; 0 V and 5 V move it half the range down and up), while this project uses one law for all seven effects (0 V leaves the setting; 5 V adds the full range). Keep the single law, or change those three to the centred law? (D-072 item 3; changing it is an amendment that re-freezes tests.)
 - Allowed responses and branches:
   - `proceed`: S-LISTEN is done.
   - `iterate: <notes>`: S-LISTEN action 5; at most 3 rounds, then the gate text says so and offers only `proceed-with-rescope`, `stop` or `extend-rounds`.
