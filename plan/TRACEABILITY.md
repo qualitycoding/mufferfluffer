@@ -47,7 +47,7 @@ Categories required by the protocol and where they are met: unit (core behaviour
 | T-502 | FilterBank stereo split: odd filters left, even filters right; sliders | unit (behaviour) | SC-2 | D-024, D-034, D-014 | S-016 |
 | T-507 | FilterBank LFO/Sweep shifts all centre frequencies by up to half an | unit (behaviour) | SC-2 | D-024, D-034, D-014 | S-016 |
 | T-508 | FilterBank LFO depth: half an octave each way, no further | unit (behaviour) | SC-2 | D-024 | S-016 |
-| T-509 | FilterBank: a new trigger continues the envelope from its present value | unit (behaviour) | SC-2 | D-024 | S-016 |
+| T-509 | FilterBank: a new trigger continues the envelope from its present value | unit (behaviour) | SC-2 | D-024, D-027 (item 16) | S-016 |
 | T-021 | lfoShape produces the six documented shapes | unit | SC-2 | D-014, D-015, D-024, D-037 | S-010 |
 | T-506 | FilterBank Rate, tap tempo (taps are quarter notes, steps are eighths) | unit (behaviour) | SC-2 | D-024, D-034, D-014 | S-016 |
 | T-405 | Delay LFO modulates the delay time; Amount 0 leaves the pitch alone | unit (behaviour) | SC-2 | D-023, D-033, D-014 | S-014 |

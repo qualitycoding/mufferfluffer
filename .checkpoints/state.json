@@ -1,7 +1,7 @@
 {
  "run_id": "gen-20261111T151412Z-mufferfluffer-vst-vcv",
  "branch": "gen-20261111T151412Z-mufferfluffer-vst-vcv",
- "sequence": 13,
+ "sequence": 14,
  "profiles": [
   "software"
  ],
@@ -18,7 +18,7 @@
   "commit": "b110439286e18eb41660a7bf92ec1efb0300a834"
  },
  "phase": "4",
- "subphase": "4.3",
+ "subphase": "4.7",
  "active_step_id": "",
  "research_round": 3,
  "exploration_round": 0,
@@ -95,8 +95,9 @@
  },
  "artifacts": {
   ".gitattributes": "1dd5d959f6445f5085c3e24ea4abaac258cd0c76dd99b8c7ed1753835c104529",
+  ".gitignore": "862263fa1f46c20f0d1e4dac5ffcc75abd55c08211b2c3864c5f8764b9d87793",
   "CMakeLists.txt": "bb4d114b438d1ecf7f3548bccf8fecfa01f96c083240fa319d0ac3bf02fa0b87",
-  "HANDOFF.md": "e7b4b61b1b454483ae49c866f137977136d7a6deb23cb12d8d1c6860d3cee789",
+  "HANDOFF.md": "31b500800511a73064ad4a927222ba3cdde8bfffa7df5bd73d6de10f1d838cd5",
   "LICENSE": "d8a6cc31abc16b6748c7a21f21611f5a1ec33f67d22ca23d7da1c19b95496bee",
   "README.md": "32d78965f7f595101da9c59874f31406f9860d084e725576858483e30b86a5aa",
   "adapters/include/muff/adapters.hpp": "6a5d180193097a06f41bfbbf80faf4dbd9fe93803c2c02729ef72654c29159a4",
@@ -487,14 +488,14 @@
   "lessons/L-20261112T205000Z-test-estimator-tighter-than-its-stated-tolerance.md": "e98a69eed5b4a591cb5a72a362d4c72c24fd1128e3c4ad87c92da5b2aa903e2c",
   "lessons/L-20261113T093000Z-action-pin-recorded-as-verified-was-not-the-tag-commit.md": "af1341b4a4ae39575f9780b414564b698c9e335bcdb1fd08d576ae758a45c689",
   "plan/ASSUMPTIONS.md": "cff8fe0c945eec237b2a65cc5ed3df48143457658ee3f5f5bbf7e7e71b08acde",
-  "plan/DECISIONS.md": "9c1de43b1921a35beec11e3a0077bf184e92951a29ef52e5f814781cedd0e4cf",
+  "plan/DECISIONS.md": "49c69fd8694a52eb4de216623a4d34c30723a807965df1ab235b16a446b384dc",
   "plan/ENVIRONMENT.md": "93ba8761d53bba312ee0865874acc62446b8d5bf8d320ded1650900395d32fe2",
-  "plan/GATES.md": "39c5398dda6e995a648c65e3f32a5013699fe6215ae4b82005c0dafa3c33c184",
-  "plan/PLAN.md": "f3bbec25ef0cd05dff36c6f749007948253e1b449a7489e29cca365666a302f9",
+  "plan/GATES.md": "20dec528cb407787914871e71d1ed5e5e30cb0f4affc83796601e7d77208d825",
+  "plan/PLAN.md": "fc123767b3847584e28222e6777538d47c164b15f978fe05aea70ef6de750c90",
   "plan/PROFILE.md": "3bf92769d77ec71c0a29db4078840405255310cb2efc7b0149141c6c939fbe0f",
   "plan/RISKS.md": "bb8e7b2fbd4d4737b013baa62b8d2ab9f486a3c6f0b14934282c1eb1007826ac",
   "plan/SOURCE_REGISTER.md": "ed603cc9cc892da8dca70e8cbcd33bba1bdd721a59982634e67d8c8f4842bcf0",
-  "plan/TRACEABILITY.md": "5b11fb1a256bcc5d62eb8d9754290acb2b853bf89f71c2dc8092f834e98ce424",
+  "plan/TRACEABILITY.md": "f9cc4c943e638f9ef65427a6d712bb320daab0e8274794fb0bbc5df6d04b0211",
   "plan/protocol/LICENSE-Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
   "plan/protocol/README.md": "1790711e0b200ed255684fe342b9ff106fcf2a7c1c9570318fed321ed9c7a697",
   "plan/protocol/planning-protocol.md": "7780c3d1a1a77b58a40aa7f32d2c5a213dfa76e94eb44ca9470801ba23caf5b3",
@@ -513,6 +514,7 @@
   "premortem/round-1.md": "3619186a38aae2b7c375b5ba5fd13a77a46f2e179d7c12d9377bfe411f980c15",
   "premortem/round-2.md": "ca9827ee2fa0ca8aba6cc2154ce9155605946915b688212b7dac991a6ada77cf",
   "premortem/round-3.md": "7564ea670b4e9b129a79516cb15aed6a6c009897f1c458daacd0ec62d406bb40",
+  "premortem/round-4.md": "6298fdd65d1ccd78f84be02da1de27c2eadf98235ff030aaacbf797ee4bf4851",
   "research/PRIOR_KNOWLEDGE.md": "7b63dc7d8a2002ac2d2874593993567f9c6d9b1859d6a3f5d09c9cc96d994f42",
   "research/QUESTIONS.md": "ca0d95227d7e5c6e20c07f4ab2f617734d3668a5c1dcb90043fb65b7d5e5df08",
   "research/SOURCES.md": "c398a457c67017d2c60f102888a4c86f974c51c8c18ce8498d3209903f38c665",
@@ -562,7 +564,6 @@
   "tests/core/test_support.hpp": "10fc8cb6e13f647c52ed5c9b05e2380857aaf628a6a278038427ec4cc2152d5e",
   "tests/fixtures/effects.json": "d2d38c9b7235b6fa465e2665a2a347b78822b48394c32b1b9cac7b8a0279a4f7",
   "tests/perf/bench.cpp": "0e8063e4356e18752d0c1972dacb948970560880df5746738823153d1e39ac7a",
-  "tests/py/__pycache__/test_repo.cpython-313.pyc": "1c1149e7f0eb5f02bf7c7207eebf662ce0793a098f76b4315411ec530ba69abb",
   "tests/py/test_repo.py": "6105b818d308a40ee5908528dab9b5a2cadfb66ca492516fbc93bb7b641c6960",
   "tests/vst3/CMakeLists.txt": "cbd3bdb6d23b29ad116301f17ad77f9a4c38e3789cd51ed834724d849ecb5575",
   "tests/vst3/test_vst3.cpp": "448bfacc5703404bd9ff8eb87d082dbc93b9837fc8e010937353fdff73ecb9e5",
@@ -575,15 +576,15 @@
   "vst3/src/stubs.cpp": "0da43f067c134ece5dc3b0ba2790774fd1e58e308096085324fdc731510798e8"
  },
  "execution_context": {
-  "current_objective": "Pre-mortem round 3: 0 Critical, 1 High fixed (T-308 amended, re-frozen); round 4 pending",
+  "current_objective": "Pre-mortem converged at round 4 (0 Critical, 0 High); assumption audit starting",
   "call_stack": [
    "Phase 1"
   ],
   "step_pointer": {
    "phase": "4",
-   "subphase": "4.3",
+   "subphase": "4.7",
    "item_index": 0,
-   "sub_action": "Pre-mortem round 3: 0 Critical, 1 High fixed (T-308 amended, re-frozen); round 4 pending",
+   "sub_action": "Pre-mortem converged at round 4 (0 Critical, 0 High); assumption audit starting",
    "retry_count": 0
   },
   "scratchpad": "",
@@ -1156,5 +1157,5 @@
   "K-20261112T120000Z-c-ref-035",
   "K-20261112T130000Z-source-register-mufferfluffer"
  ],
- "updated_at": "2026-11-13T13:12:00Z"
+ "updated_at": "2026-11-13T13:33:43Z"
 }
