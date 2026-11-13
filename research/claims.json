@@ -2664,7 +2664,9 @@
   "status": "single-source",
   "round": 1,
   "topic": "mf104m-cv",
-  "contradicted_by": [],
+  "contradicted_by": [
+   "D-012 (design): one additive law for every CV input, taken from C-PEDA-011; with Time at noon the Delay's Time CV reaches the end of the range at 2.5 V, not 5 V. Recorded as a design choice in D-027 item 13."
+  ],
   "spike": "",
   "verdict": "",
   "checks": "",
@@ -9939,7 +9941,7 @@
  },
  {
   "id": "C-PLANNER-009",
-  "claim": "actions/checkout v7.0.1 = 3d3c42e5aac5ba805825da76410c181273ba90b1; actions/upload-artifact v7.0.2 = cf430e030ddbb5b0abf93d22962f4752f3646cd9; actions/download-artifact v8.0.2 = 9000827ccba6bdab643e8b6fd33ac0654aef8333; actions/cache v6.1.0 = 55cc8345863c7cc4c66a329aec7e433d2d1c52a9; msys2/setup-msys2 v2.33.0 = 2ff06a04f6edec2a4d4bad38c3bfb2df71f4b9f2.",
+  "claim": "actions/checkout v7.0.1 = 3d3c42e5aac5ba805825da76410c181273ba90b1; actions/upload-artifact v7.0.2 = cf430e030ddbb5b0abf93d22962f4752f3646cd9; actions/download-artifact v8.0.2 = 9000827ccba6bdab643e8b6fd33ac0654aef8333; actions/cache v6.1.0 = 55cc8345863c7cc4c66a329aec7e433d2d1c52a9; msys2/setup-msys2 v2.33.0 = ec48f7c5447b3140e2b088413ae3a55687bccb6e.",
   "kind": "software",
   "load_bearing": true,
   "sources": [
@@ -9969,9 +9971,9 @@
   "round": 1,
   "topic": "pins",
   "contradicted_by": [],
-  "spike": "git ls-remote --tags, 2026-11-11",
+  "spike": "git ls-remote of each tag, 2026-11-13",
   "verdict": "",
-  "checks": "",
+  "checks": "Corrected 2026-11-13: the msys2/setup-msys2 commit first recorded here (2ff06a04...) was not the commit of tag v2.33.0 and is not reachable from any ref; pre-mortem round 2 found it. All five action pins, and the JUCE and Catch2 commits, were re-read with `git ls-remote` on 2026-11-13 and match their tags.",
   "depends_on": []
  },
  {

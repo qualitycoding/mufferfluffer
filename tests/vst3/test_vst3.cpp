@@ -206,6 +206,29 @@ TEST_CASE ("T-854 bus layouts: mono or stereo in, never fewer outputs than input
     }
 }
 
+TEST_CASE ("T-857 a mono track hears what a mono host is promised (the filter bank keeps all eight filters)", "[vst3]") {
+    using Set = juce::AudioChannelSet;
+    for (EffectId id : kAll) {
+        auto proc = createProcessor (id);
+        juce::AudioProcessor::BusesLayout l; l.inputBuses.add (Set::mono()); l.outputBuses.add (Set::mono());
+        REQUIRE (proc->setBusesLayout (l));
+        proc->setRateAndBufferSizeDetails (48000.0, 64); proc->prepareToPlay (48000.0, 64);
+        BlockRunner ref (id); ref.prepare (48000.0);
+        juce::AudioBuffer<float> buf (1, 64); juce::MidiBuffer midi; std::vector<float> in (64), M (64);
+        double worst = 0.0, energy = 0.0;
+        for (int b = 0; b < 40; ++b) {
+            for (int i = 0; i < 64; ++i) { in[(size_t) i] = (float) (0.3 * std::sin (6.283185307179586 * 300.0 * (b * 64 + i) / 48000.0)); buf.setSample (0, i, in[(size_t) i]); }
+            proc->processBlock (buf, midi);
+            const float* ins[1] = { in.data() }; float* outs[1] = { M.data() };
+            ref.process (ins, 1, outs, 1, 64);
+            for (int i = 0; i < 64; ++i) { worst = std::max (worst, (double) std::fabs (buf.getSample (0, i) - M[(size_t) i])); energy += (double) M[(size_t) i] * M[(size_t) i]; }
+        }
+        INFO (effectInfo (id).slug);
+        REQUIRE (worst <= 1.0e-6);
+        REQUIRE (energy > 1.0e-3);
+    }
+}
+
 #ifndef MUFF_NO_ALLOC_HOOK
 TEST_CASE ("T-855 processBlock performs no heap allocation", "[vst3][realtime]") {
     for (EffectId id : kAll) {

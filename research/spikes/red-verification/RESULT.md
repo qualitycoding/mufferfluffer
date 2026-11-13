@@ -53,3 +53,27 @@ Tests added: T-110 (Lowpass 2-pole self-oscillation), T-410 (Delay repeats darke
 | Oracle, Rack compiler flags | "All tests passed (299451 assertions in 83 test cases)" |
 | Stubs | "test cases: 83 | 83 failed" |
 | Mutant of the oracle whose Delay and Chorus loops feed back the unfiltered line read | "test cases: 83 | 81 passed | 2 failed": exactly T-410 and T-708 fail (measured low-minus-high step 0.03 dB and 0.00 dB against the required 1.8 dB) |
+
+## Re-freeze after pre-mortem round 2 (2026-11-13)
+Tests added: T-308, T-411, T-508, T-509 (core), T-857 (VST3 shell). Test amended: T-905 `test_workflows` (the `aggregate` job needs a job-level `if: always()`).
+
+| Build | Result |
+|---|---|
+| Oracle, Release | "All tests passed (299647 assertions in 87 test cases)" |
+| Oracle, AddressSanitizer + UndefinedBehaviourSanitizer | "All tests passed (299640 assertions in 86 test cases)" |
+| Oracle, Rack compiler flags | "All tests passed (299647 assertions in 87 test cases)" |
+| Stubs | "test cases: 87 | 87 failed" |
+| Oracle VST3 shell | "All tests passed (1612 assertions in 7 test cases)" |
+| Stub VST3 shell | "test cases: 7 | 7 failed" |
+| Repository tests on the synthetic tree | "OK" (9 tests); with the `aggregate` job's `if: always()` moved to a step: `test_workflows` fails |
+
+Variants of the oracle, each run against the whole core suite (87 cases):
+
+| Variant | Result |
+|---|---|
+| Phaser LFO depth one octave instead of three | 86 passed, 1 failed: T-308 |
+| Delay LFO depth a quarter of the specified | 86 passed, 1 failed: T-411 |
+| FilterBank LFO depth 0.2 octave | 86 passed, 1 failed: T-508 |
+| FilterBank LFO depth 0.8 octave | 86 passed, 1 failed: T-508 |
+| FilterBank envelope restarts from zero on a trigger | 86 passed, 1 failed: T-509 |
+| VST3 shell that always asks the runner for two outputs | 6 passed, 1 failed: T-857 (filter bank) |

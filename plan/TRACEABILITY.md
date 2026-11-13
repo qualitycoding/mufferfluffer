@@ -5,7 +5,7 @@
 | SC | Statement (short) | Tests | Decisions | Steps | Result (filled by S-FINAL) |
 |---|---|---|---|---|---|
 | SC-1 | Seven effects with exactly the tabled parameters and ports | T-001, T-002, T-003, T-004, T-015, T-851, T-904, T-907 | D-011, D-020..D-026 | S-010..S-018, S-020 | |
-| SC-2 | Behaviour within tolerance of the specification | T-010, T-012..T-014, T-017, T-020..T-024, T-101..T-110, T-201..T-206, T-301..T-307, T-401..T-410, T-501..T-507, T-601..T-607, T-701..T-708 | D-012..D-037 | S-010..S-018 | |
+| SC-2 | Behaviour within tolerance of the specification | T-010, T-012..T-014, T-017, T-020..T-024, T-101..T-110, T-201..T-206, T-301..T-308, T-401..T-411, T-501..T-509, T-601..T-607, T-701..T-708 | D-012..D-037 | S-010..S-018 | |
 | SC-3 | Seven VST3 plug-ins build on four platforms and pass pluginval | T-851, T-854, T-CI-PLUGINVAL, T-905 | D-005, D-007, D-016 | S-020, S-021 | |
 | SC-4 | Rack plug-in with seven modules builds on four platforms; manifest and panels valid | T-902, T-903, T-CI-RACKPKG, T-905 | D-003, D-006 | S-030..S-033 | |
 | SC-5 | VST3 path and Rack path give the same audio (difference at most 1e-6) | T-016, T-801, T-802, T-811, T-812, T-821, T-852 | D-013, D-016 | S-018, S-020 | |
@@ -46,6 +46,8 @@ Categories required by the protocol and where they are met: unit (core behaviour
 | T-101 | Lowpass 4-pole response without resonance | unit (behaviour) | SC-2 | D-020, D-030 | S-011 |
 | T-502 | FilterBank stereo split: odd filters left, even filters right; sliders | unit (behaviour) | SC-2 | D-024, D-034, D-014 | S-016 |
 | T-507 | FilterBank LFO/Sweep shifts all centre frequencies by up to half an | unit (behaviour) | SC-2 | D-024, D-034, D-014 | S-016 |
+| T-508 | FilterBank LFO depth: half an octave each way, no further | unit (behaviour) | SC-2 | D-024 | S-016 |
+| T-509 | FilterBank: a new trigger continues the envelope from its present value | unit (behaviour) | SC-2 | D-024 | S-016 |
 | T-021 | lfoShape produces the six documented shapes | unit | SC-2 | D-014, D-015, D-024, D-037 | S-010 |
 | T-506 | FilterBank Rate, tap tempo (taps are quarter notes, steps are eighths) | unit (behaviour) | SC-2 | D-024, D-034, D-014 | S-016 |
 | T-405 | Delay LFO modulates the delay time; Amount 0 leaves the pitch alone | unit (behaviour) | SC-2 | D-023, D-033, D-014 | S-014 |
@@ -55,6 +57,7 @@ Categories required by the protocol and where they are met: unit (core behaviour
 | T-020 | softClip is 2*tanh(x/2) | unit | SC-2 | D-014, D-015, D-024, D-037 | S-010 |
 | T-604 | OscBox: the oscillator's loudness follows the input envelope; Envelope | unit (behaviour) | SC-2 | D-025, D-035 | S-017 |
 | T-307 | Phaser LFO Amount sweeps the dips by up to +/-3 octaves; Output scales | unit (behaviour) | SC-2 | D-022, D-032 | S-013 |
+| T-308 | Phaser LFO depth: three octaves each way at Amount 1, half at 0.5 | unit (behaviour) | SC-2 | D-022 | S-013 |
 | T-002 | table lookups reject unknown ids | contract | SC-1 | D-011, D-020..D-026 | S-010 |
 | T-105 | Lowpass resonance: loop gain k = resonance / 2 | unit (behaviour) | SC-2 | D-020, D-030 | S-011 |
 | T-008 | processing is deterministic and reset restores the initial audio state | unit | SC-1, SC-7 | D-011, D-012 | S-018 |
@@ -83,6 +86,7 @@ Categories required by the protocol and where they are met: unit (core behaviour
 | T-408 | Delay feedback insert, Delay Out and Mix | unit (behaviour) | SC-2 | D-023, D-033, D-014 | S-014 |
 | T-409 | Delay: shortening the time replays the stored signal faster, for one new delay time | unit (behaviour) | SC-2 | D-023, D-033 | S-014 |
 | T-410 | Delay repeats darken: the loop passes through the wet filter | unit (behaviour) | SC-2 | D-023 | S-014 |
+| T-411 | Delay LFO depth: one octave each way at Amount 10 | unit (behaviour) | SC-2 | D-023 | S-014 |
 | T-704 | Chorus self-oscillates from |Feedback| 0.8 and decays below it | unit (behaviour) | SC-2 | D-026, D-036, D-014 | S-015 |
 | T-018 | behaviour is the same at 44.1 kHz and 192 kHz | integration (sample rates) | SC-7 | D-012, D-030, D-033 | S-018 |
 | T-023 | filterBankEnvelopeTimes interpolates the frozen table | unit | SC-2 | D-014, D-015, D-024, D-037 | S-010 |
@@ -120,6 +124,7 @@ Categories required by the protocol and where they are met: unit (core behaviour
 | T-855 | processBlock performs no heap allocation | operational (real-time safety) | SC-8 | D-016 | S-020 |
 | T-852 | processBlock equals the core driven with the host's parameter values | integration | SC-5 | D-016 | S-020 |
 | T-856 | output stays finite for hostile audio input | security | SC-7 | D-016 | S-020 |
+| T-857 | A mono track gets the mono-host signal (all eight filters of the filter bank) | integration (VST3 shell) | SC-5 | D-013, D-016, D-024 | S-020 |
 | T-854 | bus layouts: mono or stereo in, never fewer outputs than inputs | integration | SC-3 | D-016 | S-020 |
 | T-851 | the host parameters mirror the core tables | contract | SC-1, SC-3 | D-016 | S-020 |
 

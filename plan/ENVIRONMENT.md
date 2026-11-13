@@ -22,7 +22,7 @@ Release archive URLs: pluginval `https://github.com/Tracktion/pluginval/releases
 | `actions/upload-artifact` | v7.0.2 | `cf430e030ddbb5b0abf93d22962f4752f3646cd9` |
 | `actions/download-artifact` | v8.0.2 | `9000827ccba6bdab643e8b6fd33ac0654aef8333` |
 | `actions/cache` | v6.1.0 | `55cc8345863c7cc4c66a329aec7e433d2d1c52a9` |
-| `msys2/setup-msys2` | v2.33.0 | `2ff06a04f6edec2a4d4bad38c3bfb2df71f4b9f2` |
+| `msys2/setup-msys2` | v2.33.0 | `ec48f7c5447b3140e2b088413ae3a55687bccb6e` |
 
 Runner labels (C-PLANNER-010, C-PLANNER-011): `ubuntu-24.04`, `ubuntu-24.04-arm`, `windows-2022`, `macos-15`, `macos-15-intel`. Never a `-latest` label. Container images: `alpine:3.22` (`core-musl`), `ubuntu:22.04` (`core-oldest-toolchain`).
 

@@ -414,3 +414,26 @@ TEST_CASE ("T-307 Phaser LFO Amount sweeps the dips by up to +/-3 octaves; Outpu
     const auto ya = a.run (9600, src), yb = b.run (9600, src);
     for (int o : { 0, 1 }) REQUIRE (ts::dB (ts::rms (yb[(size_t) o], 4800, 9600) / ts::rms (ya[(size_t) o], 4800, 9600)) == Approx (-12.0).margin (0.1));
 }
+
+TEST_CASE ("T-308 Phaser LFO depth: Amount 1 moves the dips three octaves each way, Amount 0.5 half as far", "[phaser][m1]") {
+    // Lo range, knob 0.5: 0.158 Hz, so the triangle is almost still for the length of an impulse response.
+    // Pass 1 finds when the LFO output is at its extremes; pass 2 measures the response just before each.
+    for (float amount : { 1.0f, 0.5f }) {
+        auto make = [amount] (ts::Rig& r) { r.set ("sweep", 5.0f); r.set ("lfo_range", 0.0f); r.set ("lfo_rate", 0.5f); r.set ("lfo_amount", amount); r.set ("stages", 0.0f); r.fx->reset(); };
+        ts::Rig a (EffectId::Phaser, kFs); make (a);
+        const long n = a.samples (7.0), len = 16384, lead = 240;
+        const auto lfo = a.run (n)[(size_t) a.out ("lfo_out")];
+        const long top = ts::argPeak (lfo, lead, n - len), from = top > n / 2 ? lead : top + a.samples (1.0);
+        long bottom = from; for (long i = from; i < std::min (n - len, from + a.samples (5.0)); ++i) if (lfo[(size_t) i] < lfo[(size_t) bottom]) bottom = i;
+        REQUIRE (lfo[(size_t) top] > 0.5); REQUIRE (lfo[(size_t) bottom] < -0.5);
+        for (long at : { top, bottom }) {
+            ts::Rig b (EffectId::Phaser, kFs); make (b);
+            const auto y = b.run (at - lead + len, { { 0, ts::impulseAt (at - lead, 0.01f) } })[0];
+            const ts::Signal h (y.begin() + (at - lead), y.end());
+            const auto d = dips (h, kFs);
+            INFO ("amount " << amount << (at == top ? " top" : " bottom"));
+            REQUIRE (d.size() == 3);
+            REQUIRE (d[1] == Approx (stageFreq (1100.0 * std::pow (2.0, (at == top ? 3.0 : -3.0) * amount), 45.0, kFs)).epsilon (0.06));
+        }
+    }
+}

@@ -199,6 +199,26 @@ TEST_CASE ("T-410 Delay repeats darken: the loop passes through the wet filter",
     REQUIRE (low - high < 4.5);
 }
 
+TEST_CASE ("T-411 Delay LFO depth: Amount 10 swings the delay time one octave each way", "[delay][m2]") {
+    // Square LFO at 0.5 Hz: the delay sits at twice and at half the knob's time for a second each.
+    // Bursts sent at eight offsets across one LFO cycle: the settled halves give the longest and the shortest arrival.
+    const double d0 = 0.04 * std::sqrt (10.0);
+    double lo = 1.0e9, hi = 0.0;
+    for (int k = 0; k < 8; ++k) {
+        ts::Rig r (EffectId::Delay, kFs);
+        r.set ("time", 0.5f); r.set ("feedback", 0.0f); r.set ("lfo_rate", 0.5f); r.set ("lfo_amount", 10.0f); r.set ("lfo_wave", 2.0f); r.set ("mix", 1.0f); r.fx->reset();
+        const long t0 = r.samples (2.0 + 0.25 * k), len = r.samples (0.005), n = t0 + r.samples (0.6);
+        const auto y = r.run (n, { { 0, ts::burst (1000.0, kFs, 0.2, t0, t0 + len) } })[(size_t) r.out ("delay_out")];
+        long first = -1;
+        for (long i = t0; i < n; ++i) if (std::fabs (y[(size_t) i]) > 0.02f) { first = i; break; }
+        REQUIRE (first > 0);
+        const double d = (double) (first - t0) / kFs;
+        lo = std::min (lo, d); hi = std::max (hi, d);
+    }
+    REQUIRE (hi == Approx (2.0 * d0).epsilon (0.05));
+    REQUIRE (lo == Approx (0.5 * d0).epsilon (0.05));
+}
+
 TEST_CASE ("T-701 Chorus delay ranges: Flange 0.6-10 ms, Chorus 5-50 ms", "[chorus][m2]") {
     const double fs = 192000.0;
     struct Case { float range, knob; double seconds; };

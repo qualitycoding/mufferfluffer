@@ -204,6 +204,52 @@ TEST_CASE ("T-507 FilterBank LFO/Sweep shifts all centre frequencies by up to ha
     REQUIRE (peaks >= 9); REQUIRE (peaks <= 11);    // 2 * 1.265 Hz * 4 s = 10.1
 }
 
+TEST_CASE ("T-508 FilterBank LFO depth: the centres swing half an octave each way, no further", "[filterbank][m3]") {
+    // LFO on at its slowest (0.08 Hz, 12.5 s a cycle): over one cycle the filter at 1 kHz passes fully over tones half an
+    // octave away, and only half-way (Q = 5) over a tone three quarters of an octave up.
+    auto best = [] (double freq, float lfo) {
+        ts::Rig r (EffectId::FilterBank, kFs);
+        r.set ("voicing", 1.0f); r.set ("pattern", 0.0f); r.set ("mix", 1.0f); r.set ("lfo", lfo); r.set ("sweep", lfo > 0.5f ? 0.0f : 0.5f); soloFilter (r, 4); r.fx->reset();
+        const long n = r.samples (lfo > 0.5f ? 13.5 : 1.0);
+        const auto y = r.run (n, { { 0, ts::sine (freq, kFs, 0.1) } });
+        double hi = 0.0;
+        for (long w = r.samples (0.5); w + 960 <= n; w += 960) {
+            double s = 0.0; for (long i = w; i < w + 960; ++i) { const double v = (double) y[0][(size_t) i] + (double) y[1][(size_t) i]; s += v * v; }
+            hi = std::max (hi, std::sqrt (s / 960.0));
+        }
+        return hi;
+    };
+    const double full = best (1000.0, 0.0f);
+    REQUIRE (full > 0.05);
+    REQUIRE (best (1000.0 * std::sqrt (2.0), 1.0f) > 0.9 * full);
+    REQUIRE (best (1000.0 / std::sqrt (2.0), 1.0f) > 0.9 * full);
+    const double beyond = best (1000.0 * std::pow (2.0, 0.75), 1.0f) / full;
+    REQUIRE (beyond > 0.38); REQUIRE (beyond < 0.64);      // 0.50 expected
+}
+
+TEST_CASE ("T-509 FilterBank: a new trigger continues the envelope from its present value", "[filterbank][m3]") {
+    // Bass pattern 9 ("Polymetre"): filter 1 fires on every step. Envelope 6 rises over two steps, so with a trigger on
+    // every step the envelope reaches full level and never falls far; an envelope that restarted from zero at each
+    // trigger would never pass half level and would return to zero on every step.
+    const long T = 12000, win = 2182;      // window: five cycles of 110 Hz
+    auto levels = [&] (float pattern) {
+        ts::Rig r (EffectId::FilterBank, kFs);
+        r.set ("voicing", 0.0f); r.set ("pattern", pattern); r.set ("rate", 4.0f); r.set ("envelope", 6.0f); r.set ("mix", 1.0f); soloFilter (r, 0); r.fx->reset();
+        const auto y = r.run (10 * T, { { 0, ts::sine (kBass[0], kFs, 0.1) } });
+        double lo = 1.0e9, hi = 0.0;
+        for (long w = 6 * T; w + win <= 10 * T; w += win / 2) {
+            double s = 0.0; for (long i = w; i < w + win; ++i) { const double v = (double) y[0][(size_t) i] + (double) y[1][(size_t) i]; s += v * v; }
+            lo = std::min (lo, std::sqrt (s / (double) win)); hi = std::max (hi, std::sqrt (s / (double) win));
+        }
+        return std::pair<double, double> (lo, hi);
+    };
+    const double full = levels (0.0f).first;        // static pattern: envelope held at 1
+    const auto moving = levels (8.0f);
+    REQUIRE (full > 0.02);
+    REQUIRE (moving.second > 0.85 * full);
+    REQUIRE (moving.first > 0.3 * full);            // 0.5 expected
+}
+
 // ============================================================ OscBox
 
 TEST_CASE ("T-601 OscBox frequency range 25 Hz-1.6 kHz; Oscillator Out is +/-2.5 V with no input", "[oscbox][m3]") {
