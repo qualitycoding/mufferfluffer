@@ -580,9 +580,43 @@ jobs:
           path: rack-linux.log
           if-no-files-found: error
 
+  deps-scan:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Scan the pinned commits for advisories (D-061)
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/check_advisories.py deps.lock.json 2>&1 | tee deps-scan.log
+          test "$(grep -cE '^(juce|catch2) [0-9a-f]{40}: [0-9]+ advisories' deps-scan.log)" -eq 2
+      - name: Demonstration - an unknown commit gives none known, not proof of safety
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -c 'import json; d = json.load(open("deps.lock.json")); d["juce"]["commit"] = "0" * 40; json.dump(d, open("lock-zero.json", "w"))'
+          python3 tools/check_advisories.py lock-zero.json 2>&1 | tee -a deps-scan.log
+          grep -F "juce 0000000000000000000000000000000000000000: 0 advisories" deps-scan.log
+      - name: Demonstration - the gate can fail
+        shell: bash
+        run: |
+          set -euo pipefail
+          if MUFF_OSV_URL=https://api.osv.dev/v1/nonexistent python3 tools/check_advisories.py deps.lock.json 2>&1 | tee -a deps-scan.log; then
+            echo "the scan did not fail on an unreachable endpoint" >&2
+            exit 1
+          fi
+          echo "the scan failed as expected on an unreachable endpoint" | tee -a deps-scan.log
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: deps-scan-log
+          path: deps-scan.log
+          if-no-files-found: error
+
   aggregate:
     if: always()
-    needs: [repo-checks, core-linux, core-sanitizers, core-linux-arm64, core-musl, core-oldest-toolchain, core-windows, core-macos, core-macos-intel, vst3-linux, vst3-windows, vst3-macos, vst3-macos-intel, rack-linux]
+    needs: [repo-checks, core-linux, core-sanitizers, core-linux-arm64, core-musl, core-oldest-toolchain, core-windows, core-macos, core-macos-intel, vst3-linux, vst3-windows, vst3-macos, vst3-macos-intel, rack-linux, deps-scan]
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
