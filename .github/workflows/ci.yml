@@ -1,0 +1,28 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+name: ci
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  repo-checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Tool versions
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 --version
+      - name: Frozen files and generated expectations
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/check_frozen.py 2>&1 | tee repo-checks.log
+          python3 tools/gen_expected.py --check tests/fixtures/effects.json tests/core/expected_effects.inc 2>&1 | tee -a repo-checks.log
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: repo-checks-log
+          path: repo-checks.log
+          if-no-files-found: error
