@@ -1,0 +1,9 @@
+{
+  "juce": {"version": "9.0.5", "commit": "d60b7a78030661574a615b586d9325ba7a7fa7dd"},
+  "catch2": {"version": "3.16.1", "commit": "08092139210881f01a34e60c5f2fd6afa0ea4024"},
+  "pluginval": {"version": "1.0.4", "sha256": {
+    "Linux": "c01c49d8063965c4c2dea8324468336768f5c9139e0b1caebde14c2400b55352",
+    "macOS": "3c4c533bda0c5059eea3ddaea752d757ee2025041f0f47e6bcb0e87f6082b29f",
+    "Windows": "c08e61ce3b96db41636f8ec7e76f4c7e2c13ebdac7fa1b5a1f52b4f32ec715ab"}},
+  "rack-sdk": {"version": "2.6.6", "sha256": {}}
+}

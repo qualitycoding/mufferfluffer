@@ -3,10 +3,15 @@ name: ci
 on: [push, pull_request]
 permissions:
   contents: read
+concurrency:
+  group: ci-${{ github.sha }}
+  cancel-in-progress: false
+env:
+  MUFF_TEST_FILTER: "T-001*,T-002*,T-003*,T-020*,T-021*,T-022*,T-023*,T-024*"
 jobs:
   repo-checks:
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Tool versions
@@ -14,11 +19,13 @@ jobs:
         run: |
           set -euo pipefail
           python3 --version
-      - name: Frozen files and generated expectations
+          git --version
+      - name: Repository checks
         shell: bash
         run: |
           set -euo pipefail
           python3 tools/check_frozen.py 2>&1 | tee repo-checks.log
+          python3 tools/check_pins.py 2>&1 | tee -a repo-checks.log
           python3 tools/gen_expected.py --check tests/fixtures/effects.json tests/core/expected_effects.inc 2>&1 | tee -a repo-checks.log
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: always()
@@ -26,3 +33,267 @@ jobs:
           name: repo-checks-log
           path: repo-checks.log
           if-no-files-found: error
+
+  core-linux:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Tool versions
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake --version | head -1
+          g++ --version | head -1
+          python3 --version
+      - name: Configure and build
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake -S . -B build/core -DCMAKE_BUILD_TYPE=Release
+          cmake --build build/core --config Release --parallel
+      - name: Test
+        shell: bash
+        run: |
+          set -euo pipefail
+          build/core/tests/muff_core_tests "$MUFF_TEST_FILTER" 2>&1 | tee core-linux.log
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: core-linux-log
+          path: core-linux.log
+          if-no-files-found: error
+
+  core-sanitizers:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Tool versions
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake --version | head -1
+          g++ --version | head -1
+      - name: Configure and build with sanitizers
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake -S . -B build/asan -DCMAKE_BUILD_TYPE=RelWithDebInfo -DMUFF_SANITIZER_BUILD=ON \
+            -DCMAKE_CXX_FLAGS="-fsanitize=address,undefined -fno-sanitize-recover=undefined -fno-omit-frame-pointer" \
+            -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address,undefined"
+          cmake --build build/asan --parallel
+      - name: Test
+        shell: bash
+        run: |
+          set -euo pipefail
+          build/asan/tests/muff_core_tests "$MUFF_TEST_FILTER" 2>&1 | tee core-sanitizers.log
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: core-sanitizers-log
+          path: core-sanitizers.log
+          if-no-files-found: error
+
+  core-linux-arm64:
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Tool versions
+        shell: bash
+        run: |
+          set -euo pipefail
+          uname -m
+          cmake --version | head -1
+          g++ --version | head -1
+      - name: Configure and build
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake -S . -B build/core -DCMAKE_BUILD_TYPE=Release
+          cmake --build build/core --config Release --parallel
+      - name: Test
+        shell: bash
+        run: |
+          set -euo pipefail
+          build/core/tests/muff_core_tests "$MUFF_TEST_FILTER" 2>&1 | tee core-linux-arm64.log
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: core-linux-arm64-log
+          path: core-linux-arm64.log
+          if-no-files-found: error
+
+  core-musl:
+    runs-on: ubuntu-24.04
+    container: alpine:3.22
+    timeout-minutes: 15
+    steps:
+      - name: Install toolchain
+        shell: sh
+        run: |
+          set -eu
+          apk add build-base cmake ninja git python3
+          cmake --version
+          g++ --version
+      - name: Fetch source
+        shell: sh
+        run: |
+          set -eu
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git init .
+          git remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --depth 1 origin "$GITHUB_SHA"
+          git checkout FETCH_HEAD
+      - name: Configure and build
+        shell: sh
+        run: |
+          set -eu
+          cmake -S . -B build/core -G Ninja -DCMAKE_BUILD_TYPE=Release
+          cmake --build build/core --parallel
+      - name: Test
+        shell: sh
+        run: |
+          set -eu
+          build/core/tests/muff_core_tests "$MUFF_TEST_FILTER"
+
+  core-oldest-toolchain:
+    runs-on: ubuntu-24.04
+    container: ubuntu:22.04
+    timeout-minutes: 15
+    env:
+      DEBIAN_FRONTEND: noninteractive
+    steps:
+      - name: Install toolchain
+        shell: sh
+        run: |
+          set -eu
+          apt-get update
+          apt-get install -y g++ cmake ninja-build git python3 ca-certificates
+          cmake --version
+          g++ --version
+          cmake --version | grep -F "cmake version 3.22."
+      - name: Fetch source
+        shell: sh
+        run: |
+          set -eu
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git init .
+          git remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --depth 1 origin "$GITHUB_SHA"
+          git checkout FETCH_HEAD
+      - name: Configure and build
+        shell: sh
+        run: |
+          set -eu
+          cmake -S . -B build/core -G Ninja -DCMAKE_BUILD_TYPE=Release
+          cmake --build build/core --parallel
+      - name: Test
+        shell: sh
+        run: |
+          set -eu
+          build/core/tests/muff_core_tests "$MUFF_TEST_FILTER"
+
+  core-windows:
+    runs-on: windows-2022
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Tool versions
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake --version | head -1
+          python --version
+      - name: Configure and build
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake -S . -B build/core -G "Visual Studio 17 2022" -A x64
+          cmake --build build/core --config Release --parallel
+      - name: Test
+        shell: bash
+        run: |
+          set -euo pipefail
+          build/core/tests/Release/muff_core_tests.exe "$MUFF_TEST_FILTER" 2>&1 | tee core-windows.log
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: core-windows-log
+          path: core-windows.log
+          if-no-files-found: error
+
+  core-macos:
+    runs-on: macos-15
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Tool versions
+        shell: bash
+        run: |
+          set -euo pipefail
+          uname -m
+          cmake --version | head -1
+          c++ --version | head -1
+      - name: Configure and build
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake -S . -B build/core -DCMAKE_BUILD_TYPE=Release
+          cmake --build build/core --config Release --parallel
+      - name: Test
+        shell: bash
+        run: |
+          set -euo pipefail
+          build/core/tests/muff_core_tests "$MUFF_TEST_FILTER" 2>&1 | tee core-macos.log
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: core-macos-log
+          path: core-macos.log
+          if-no-files-found: error
+
+  core-macos-intel:
+    runs-on: macos-15-intel
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Tool versions
+        shell: bash
+        run: |
+          set -euo pipefail
+          uname -m
+          cmake --version | head -1
+          c++ --version | head -1
+      - name: Configure and build
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake -S . -B build/core -DCMAKE_BUILD_TYPE=Release
+          cmake --build build/core --config Release --parallel
+      - name: Test
+        shell: bash
+        run: |
+          set -euo pipefail
+          build/core/tests/muff_core_tests "$MUFF_TEST_FILTER" 2>&1 | tee core-macos-intel.log
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: core-macos-intel-log
+          path: core-macos-intel.log
+          if-no-files-found: error
+
+  aggregate:
+    if: always()
+    needs: [repo-checks, core-linux, core-sanitizers, core-linux-arm64, core-musl, core-oldest-toolchain, core-windows, core-macos, core-macos-intel]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Every needed job must have succeeded
+        shell: bash
+        env:
+          NEEDS_JSON: ${{ toJSON(needs) }}
+        run: |
+          set -euo pipefail
+          python3 -c 'import json, os, sys; n = json.loads(os.environ["NEEDS_JSON"]); r = {k: v.get("result") for k, v in n.items()}; print(r); sys.exit(0 if r and all(v == "success" for v in r.values()) else 1)'

@@ -1,2 +1,10 @@
 __pycache__/
 *.pyc
+build/
+Rack-SDK/
+rack/build/
+rack/dist/
+rack/core/
+rack/adapters/
+rack/plugin.*
+!rack/plugin.json
