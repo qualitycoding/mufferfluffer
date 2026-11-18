@@ -563,21 +563,137 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          ls -l rack/dist/*.vcvplugin | tee -a rack-linux.log
-          pkgs=(rack/dist/*.vcvplugin)
-          test "${#pkgs[@]}" -eq 1
-          test "$(basename "${pkgs[0]}")" = "Mufferfluffer-2.0.0-lin-x64.vcvplugin"
-          size=$(stat -c %s "${pkgs[0]}")
-          echo "package ${pkgs[0]}: ${size} bytes" | tee -a rack-linux.log
-          test "${size}" -gt 50000
+          python3 tools/check_rack_package.py rack/dist lin-x64 | tee -a rack-linux.log
           inits=$(nm -D --defined-only rack/plugin.so | grep -c ' init$')
           echo "init symbols: ${inits}" | tee -a rack-linux.log
           test "${inits}" -eq 1
+      - name: Core tests with Rack's floating-point flags (D-006)
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake -S . -B build/rackflags -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-O3 -march=nehalem -funsafe-math-optimizations -fno-omit-frame-pointer"
+          cmake --build build/rackflags --parallel
+          build/rackflags/tests/muff_core_tests 2>&1 | tee -a rack-linux.log
+          grep -F "All tests passed" rack-linux.log
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: always()
         with:
           name: rack-linux-log
           path: rack-linux.log
+          if-no-files-found: error
+
+  rack-windows:
+    runs-on: windows-2022
+    timeout-minutes: 40
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: msys2/setup-msys2@ec48f7c5447b3140e2b088413ae3a55687bccb6e # v2.33.0
+        with:
+          msystem: MINGW64
+          update: true
+          install: make jq zstd mingw-w64-x86_64-toolchain mingw-w64-x86_64-python
+      - name: Fetch and verify the Rack SDK
+        run: |
+          set -euo pipefail
+          python tools/fetch_rack_sdk.py win-x64 . 2>&1 | tee rack-windows.log
+      - name: Build the plug-in package
+        run: |
+          set -euo pipefail
+          make -C rack dist 2>&1 | tee -a rack-windows.log
+      - name: Check the package
+        run: |
+          set -euo pipefail
+          python tools/check_rack_package.py rack/dist win-x64 | tee -a rack-windows.log
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: rack-windows-log
+          path: rack-windows.log
+          if-no-files-found: error
+
+  rack-macos:
+    runs-on: macos-15
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Install tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          brew install jq zstd
+          c++ --version | head -1
+      - name: Fetch and verify the Rack SDK
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/fetch_rack_sdk.py mac-arm64 . 2>&1 | tee rack-macos.log
+      - name: Build the plug-in package
+        shell: bash
+        run: |
+          set -euo pipefail
+          make -C rack RACK_DIR="$PWD/Rack-SDK" dist 2>&1 | tee -a rack-macos.log
+      - name: Check the package
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/check_rack_package.py rack/dist mac-arm64 | tee -a rack-macos.log
+      - name: Core tests with Rack's floating-point flags (D-006)
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake -S . -B build/rackflags -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-O3 -march=armv8-a+fp+simd -funsafe-math-optimizations -fno-omit-frame-pointer"
+          cmake --build build/rackflags --parallel
+          build/rackflags/tests/muff_core_tests 2>&1 | tee -a rack-macos.log
+          grep -F "All tests passed" rack-macos.log
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: rack-macos-log
+          path: rack-macos.log
+          if-no-files-found: error
+
+  rack-macos-intel:
+    runs-on: macos-15-intel
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Install tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          brew install jq zstd
+          c++ --version | head -1
+      - name: Fetch and verify the Rack SDK
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/fetch_rack_sdk.py mac-x64 . 2>&1 | tee rack-macos-intel.log
+      - name: Build the plug-in package
+        shell: bash
+        run: |
+          set -euo pipefail
+          make -C rack RACK_DIR="$PWD/Rack-SDK" dist 2>&1 | tee -a rack-macos-intel.log
+      - name: Check the package
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/check_rack_package.py rack/dist mac-x64 | tee -a rack-macos-intel.log
+      - name: Core tests with Rack's floating-point flags (D-006)
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake -S . -B build/rackflags -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-O3 -march=nehalem -funsafe-math-optimizations -fno-omit-frame-pointer"
+          cmake --build build/rackflags --parallel
+          build/rackflags/tests/muff_core_tests 2>&1 | tee -a rack-macos-intel.log
+          grep -F "All tests passed" rack-macos-intel.log
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: rack-macos-intel-log
+          path: rack-macos-intel.log
           if-no-files-found: error
 
   deps-scan:
@@ -616,7 +732,7 @@ jobs:
 
   aggregate:
     if: always()
-    needs: [repo-checks, core-linux, core-sanitizers, core-linux-arm64, core-musl, core-oldest-toolchain, core-windows, core-macos, core-macos-intel, vst3-linux, vst3-windows, vst3-macos, vst3-macos-intel, rack-linux, deps-scan]
+    needs: [repo-checks, core-linux, core-sanitizers, core-linux-arm64, core-musl, core-oldest-toolchain, core-windows, core-macos, core-macos-intel, vst3-linux, vst3-windows, vst3-macos, vst3-macos-intel, rack-linux, rack-windows, rack-macos, rack-macos-intel, deps-scan]
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
