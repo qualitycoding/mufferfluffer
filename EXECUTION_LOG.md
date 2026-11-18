@@ -5,3 +5,4 @@
 | 2026-11-18T15:59Z | S-010 | 1 | pass | b3dc5f5 | run https://github.com/qualitycoding/mufferfluffer/actions/runs/44341266471: all nine jobs built; core foundation (tables, blocks, effect base, dsp_common) in place; effect factories still throw NotImplemented until S-011..S-017 |
 | 2026-11-18T21:42Z | S-011 | 1 | pass | 8afd8af | run https://github.com/qualitycoding/mufferfluffer/actions/runs/44343469407: all jobs green; Lowpass [lowpass] 10 cases |
 | 2026-11-18T21:42Z | S-012 | 1 | pass | c1dc3e0 | run https://github.com/qualitycoding/mufferfluffer/actions/runs/44343519747: all jobs green; Ring Mod [ringmod] 6 cases |
+| 2026-11-18T21:42Z | S-013 | 1 | pass | 90b0381 | run https://github.com/qualitycoding/mufferfluffer/actions/runs/44343567578: all jobs green; Phaser [phaser] 8 cases |
