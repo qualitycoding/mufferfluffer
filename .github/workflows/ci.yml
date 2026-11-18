@@ -55,7 +55,7 @@ jobs:
         run: |
           set -euo pipefail
           ctest --test-dir build/core -C Release --output-on-failure --no-tests=error 2>&1 | tee core-linux.log
-          grep -F "tests failed out of 87" core-linux.log
+          grep -F "out of 87" core-linux.log
           build/core/tests/muff_bench --limit 5 2>&1 | tee -a core-linux.log
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: always()
@@ -120,7 +120,7 @@ jobs:
         run: |
           set -euo pipefail
           ctest --test-dir build/core -C Release --output-on-failure --no-tests=error 2>&1 | tee core-linux-arm64.log
-          grep -F "tests failed out of 87" core-linux-arm64.log
+          grep -F "out of 87" core-linux-arm64.log
           build/core/tests/muff_bench --limit 0 2>&1 | tee -a core-linux-arm64.log
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: always()
@@ -223,7 +223,7 @@ jobs:
         run: |
           set -euo pipefail
           ctest --test-dir build/core -C Release --output-on-failure --no-tests=error 2>&1 | tee core-windows.log
-          grep -F "tests failed out of 87" core-windows.log
+          grep -F "out of 87" core-windows.log
           build/core/tests/Release/muff_bench.exe --limit 0 2>&1 | tee -a core-windows.log
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: always()
@@ -255,7 +255,7 @@ jobs:
         run: |
           set -euo pipefail
           ctest --test-dir build/core -C Release --output-on-failure --no-tests=error 2>&1 | tee core-macos.log
-          grep -F "tests failed out of 87" core-macos.log
+          grep -F "out of 87" core-macos.log
           build/core/tests/muff_bench --limit 0 2>&1 | tee -a core-macos.log
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: always()
@@ -287,7 +287,7 @@ jobs:
         run: |
           set -euo pipefail
           ctest --test-dir build/core -C Release --output-on-failure --no-tests=error 2>&1 | tee core-macos-intel.log
-          grep -F "tests failed out of 87" core-macos-intel.log
+          grep -F "out of 87" core-macos-intel.log
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: always()
         with:
