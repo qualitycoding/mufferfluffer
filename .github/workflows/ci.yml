@@ -536,9 +536,53 @@ jobs:
             vst3-macos-intel.log
           if-no-files-found: error
 
+  rack-linux:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Tool versions
+        shell: bash
+        run: |
+          set -euo pipefail
+          g++ --version | head -1
+          make --version | head -1
+          jq --version
+          zstd --version
+      - name: Fetch and verify the Rack SDK
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/fetch_rack_sdk.py lin-x64 . 2>&1 | tee rack-linux.log
+      - name: Build the plug-in package
+        shell: bash
+        run: |
+          set -euo pipefail
+          make -C rack RACK_DIR="$PWD/Rack-SDK" dist 2>&1 | tee -a rack-linux.log
+      - name: Check the package
+        shell: bash
+        run: |
+          set -euo pipefail
+          ls -l rack/dist/*.vcvplugin | tee -a rack-linux.log
+          pkgs=(rack/dist/*.vcvplugin)
+          test "${#pkgs[@]}" -eq 1
+          test "$(basename "${pkgs[0]}")" = "Mufferfluffer-2.0.0-lin-x64.vcvplugin"
+          size=$(stat -c %s "${pkgs[0]}")
+          echo "package ${pkgs[0]}: ${size} bytes" | tee -a rack-linux.log
+          test "${size}" -gt 100000
+          inits=$(nm -D --defined-only rack/plugin.so | grep -c ' init$')
+          echo "init symbols: ${inits}" | tee -a rack-linux.log
+          test "${inits}" -eq 1
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: rack-linux-log
+          path: rack-linux.log
+          if-no-files-found: error
+
   aggregate:
     if: always()
-    needs: [repo-checks, core-linux, core-sanitizers, core-linux-arm64, core-musl, core-oldest-toolchain, core-windows, core-macos, core-macos-intel, vst3-linux, vst3-windows, vst3-macos, vst3-macos-intel]
+    needs: [repo-checks, core-linux, core-sanitizers, core-linux-arm64, core-musl, core-oldest-toolchain, core-windows, core-macos, core-macos-intel, vst3-linux, vst3-windows, vst3-macos, vst3-macos-intel, rack-linux]
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:

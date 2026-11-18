@@ -1,0 +1,53 @@
+{
+  "slug": "Mufferfluffer",
+  "name": "Mufferfluffer",
+  "version": "2.0.0",
+  "license": "AGPL-3.0-only",
+  "brand": "Mufferfluffer",
+  "author": "qualitycoding",
+  "sourceUrl": "https://github.com/qualitycoding/mufferfluffer",
+  "modules": [
+    {
+      "slug": "Lowpass",
+      "name": "Fluff Lowpass",
+      "description": "Resonant 2-pole or 4-pole ladder low-pass filter with envelope follower and drive",
+      "tags": ["Filter", "Effect"]
+    },
+    {
+      "slug": "RingMod",
+      "name": "Fluff Ring",
+      "description": "Ring modulator with a wide-range sine carrier and an LFO",
+      "tags": ["Ring modulator", "Effect"]
+    },
+    {
+      "slug": "Phaser",
+      "name": "Fluff Phase",
+      "description": "6-stage or 12-stage phaser with resonance and a two-range LFO",
+      "tags": ["Phaser", "Effect"]
+    },
+    {
+      "slug": "Delay",
+      "name": "Fluff Delay",
+      "description": "Dark analogue-style delay with feedback loop insert, six-shape LFO and tap tempo",
+      "tags": ["Delay", "Effect"]
+    },
+    {
+      "slug": "FilterBank",
+      "name": "Fluff Bank",
+      "description": "Eight-band resonant filter bank animated by a pattern sequencer",
+      "tags": ["Filter", "Sequencer", "Effect"]
+    },
+    {
+      "slug": "OscBox",
+      "name": "Fluff Osc",
+      "description": "Oscillator that follows your signal: hard sync, FM and envelope-controlled level",
+      "tags": ["Oscillator", "Effect"]
+    },
+    {
+      "slug": "Chorus",
+      "name": "Fluff Swarm",
+      "description": "Chorus and flanger with positive or negative feedback and a six-shape LFO",
+      "tags": ["Chorus", "Flanger", "Effect"]
+    }
+  ]
+}

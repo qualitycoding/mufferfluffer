@@ -8,3 +8,4 @@ rack/core/
 rack/adapters/
 rack/plugin.*
 !rack/plugin.json
+rack/LICENSE
