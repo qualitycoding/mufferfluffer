@@ -16,7 +16,7 @@ std::unique_ptr<Effect> createEffect (EffectId id) {
         case EffectId::Delay: return detail::makeDelay();
         case EffectId::FilterBank: return detail::makeFilterBank();
         case EffectId::OscBox: return detail::makeOscBox();
-        case EffectId::Chorus: throw NotImplemented ("Chorus");
+        case EffectId::Chorus: return detail::makeChorus();
         default: throw std::out_of_range ("createEffect: invalid effect id");
     }
 }
