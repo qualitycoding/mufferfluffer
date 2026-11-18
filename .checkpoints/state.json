@@ -19,7 +19,7 @@
   },
   "phase": "impl",
   "subphase": "5.3",
-  "active_step_id": "S-012",
+  "active_step_id": "S-013",
   "research_round": 3,
   "exploration_round": 0,
   "proof_review_round": 0,
@@ -1180,7 +1180,8 @@
     "S-000",
     "S-001",
     "S-010",
-    "S-011"
+    "S-011",
+    "S-012"
   ],
   "implementer": {
     "os": "Ubuntu 24.04 (Linux x86_64)",
@@ -1212,6 +1213,10 @@
     "S-011": {
       "run": "https://github.com/qualitycoding/mufferfluffer/actions/runs/44343469407",
       "commit": "8afd8af"
+    },
+    "S-012": {
+      "run": "https://github.com/qualitycoding/mufferfluffer/actions/runs/44343519747",
+      "commit": "c1dc3e0"
     }
   }
 }
