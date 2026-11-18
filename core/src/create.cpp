@@ -12,7 +12,7 @@ std::unique_ptr<Effect> createEffect (EffectId id) {
     switch (id) {
         case EffectId::Lowpass: return detail::makeLowpass();
         case EffectId::RingMod: return detail::makeRingMod();
-        case EffectId::Phaser: throw NotImplemented ("Phaser");
+        case EffectId::Phaser: return detail::makePhaser();
         case EffectId::Delay: throw NotImplemented ("Delay");
         case EffectId::FilterBank: throw NotImplemented ("FilterBank");
         case EffectId::OscBox: throw NotImplemented ("OscBox");
