@@ -25,6 +25,7 @@ jobs:
           python3 tools/check_frozen.py 2>&1 | tee repo-checks.log
           python3 tools/check_pins.py 2>&1 | tee -a repo-checks.log
           python3 tools/gen_expected.py --check tests/fixtures/effects.json tests/core/expected_effects.inc 2>&1 | tee -a repo-checks.log
+          python3 -m unittest discover -s tests/py -v -k T901 -k T902 -k T903 -k T904 -k T906 -k T907 -k test_dependency_lock 2>&1 | tee -a repo-checks.log
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: always()
         with:
