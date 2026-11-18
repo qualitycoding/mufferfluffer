@@ -6,7 +6,7 @@ usage: fetch_rack_sdk.py <platform> <dest> [--record]
 
 platform is lin-x64, win-x64, mac-x64 or mac-arm64. Without --record the archive's SHA-256 must equal the value in
 deps.lock.json (a missing entry or a mismatch fails before anything is unpacked). With --record the check is skipped
-and one line `RACK_SDK_RECORD {...}` is printed for tools/apply_rack_record.py; an archive under 5 000 000 bytes is
+and one line `RACK_SDK_RECORD {...}` is printed for tools/apply_rack_record.py; an archive under 1 000 000 bytes is
 rejected (an error page or a truncated download). The SDK is unpacked so that <dest>/Rack-SDK/plugin.mk and
 <dest>/Rack-SDK/include/rack.hpp exist.
 """
@@ -26,7 +26,7 @@ PLATFORMS = ("lin-x64", "win-x64", "mac-x64", "mac-arm64")
 URL = "https://vcvrack.com/downloads/Rack-SDK-{version}-{platform}.zip"
 ATTEMPTS = 3
 WAIT_SECONDS = 30
-MIN_BYTES = 5_000_000
+MIN_BYTES = 1_000_000  # the plan said 5 000 000; the real win-x64 archive is 3 154 102 bytes (DEVIATIONS.md)
 
 
 def fail(message):
@@ -108,7 +108,7 @@ def main(argv):
     digest = sha256_of(archive)
     if record:
         if size < MIN_BYTES:
-            fail(f"archive is {size} bytes, under the {MIN_BYTES} floor: not an SDK archive")
+            fail(f"archive is {size} bytes, under the {MIN_BYTES}-byte floor: not an SDK archive")
         print("RACK_SDK_RECORD " + json.dumps({"platform": platform, "sha256": digest, "bytes": size}))
     else:
         want = lock.get("sha256", {}).get(platform)
