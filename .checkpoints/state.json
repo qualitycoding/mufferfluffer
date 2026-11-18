@@ -1176,7 +1176,9 @@
   ],
   "updated_at": "2026-11-13T20:00:54Z",
   "status": "READY",
-  "completed_steps": [],
+  "completed_steps": [
+    "S-000"
+  ],
   "implementer": {
     "os": "Ubuntu 24.04 (Linux x86_64)",
     "compiler": "g++ 13.3.0",
@@ -1191,5 +1193,10 @@
       "qualitycoding/knowledge (no credentials)"
     ]
   },
-  "step_facts": {}
+  "step_facts": {
+    "S-000": {
+      "ci_run": "https://github.com/qualitycoding/mufferfluffer/actions/runs/44339760806",
+      "run_reading": "unauthenticated REST (gh token invalid)"
+    }
+  }
 }
