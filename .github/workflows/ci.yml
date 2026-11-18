@@ -319,7 +319,7 @@ jobs:
           set -euo pipefail
           cmake -S . -B build/vst3 -DCMAKE_BUILD_TYPE=Release -DMUFF_BUILD_VST3=ON \
             -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
-          cmake --build build/vst3 --config Release --parallel
+          cmake --build build/vst3 --config Release --parallel "$(nproc)"
       - name: Test
         shell: bash
         run: |
@@ -434,7 +434,7 @@ jobs:
           set -euo pipefail
           cmake -S . -B build/vst3 -DCMAKE_BUILD_TYPE=Release -DMUFF_BUILD_VST3=ON -DCMAKE_OSX_DEPLOYMENT_TARGET=11.0 \
             -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
-          cmake --build build/vst3 --config Release --parallel
+          cmake --build build/vst3 --config Release --parallel "$(sysctl -n hw.ncpu)"
       - name: Test
         shell: bash
         run: |
@@ -505,7 +505,7 @@ jobs:
           set -euo pipefail
           cmake -S . -B build/vst3 -DCMAKE_BUILD_TYPE=Release -DMUFF_BUILD_VST3=ON -DCMAKE_OSX_DEPLOYMENT_TARGET=11.0 \
             -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
-          cmake --build build/vst3 --config Release --parallel
+          cmake --build build/vst3 --config Release --parallel "$(sysctl -n hw.ncpu)"
       - name: Test
         shell: bash
         run: |
