@@ -1,0 +1,34 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# One-off recording of the Rack SDK archive hashes (D-003, trust on first use). Runs only on a push whose commit
+# subject starts with the marker below; the log is read by tools/apply_rack_record.py.
+name: record-rack-sdk
+on: push
+permissions:
+  contents: read
+jobs:
+  record:
+    if: startsWith(github.event.head_commit.message, '[record-rack-sdk]')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Record lin-x64
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/fetch_rack_sdk.py lin-x64 "$RUNNER_TEMP/sdk-lin-x64" --record
+      - name: Record win-x64
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/fetch_rack_sdk.py win-x64 "$RUNNER_TEMP/sdk-win-x64" --record
+      - name: Record mac-x64
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/fetch_rack_sdk.py mac-x64 "$RUNNER_TEMP/sdk-mac-x64" --record
+      - name: Record mac-arm64
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/fetch_rack_sdk.py mac-arm64 "$RUNNER_TEMP/sdk-mac-arm64" --record
