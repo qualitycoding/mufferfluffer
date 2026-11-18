@@ -1,2 +1,3 @@
 | UTC time | Step | Deviation | Reason | Reversible? |
 |---|---|---|---|---|
+| 2026-11-18T15:54Z | S-010 | Added private files `core/src/dsp_common.hpp` and `core/src/dsp_common.cpp` (Smoother, EnvelopeFollower, Lfo, TriggerDetector, StateVariableFilter, prewarp, dbToGain) that S-010 does not list | Shared building blocks that S-011 to S-017 would otherwise each duplicate (S-REVIEW brief 1 checks duplication); private helper files are a "continue with a row" case (HANDOFF section 6). S-MUTATE: `dsp_common.cpp` needs its own shard entry in `tools/mull_shards.py` with the effect tags as its test list. | yes |
