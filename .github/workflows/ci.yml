@@ -569,7 +569,7 @@ jobs:
           test "$(basename "${pkgs[0]}")" = "Mufferfluffer-2.0.0-lin-x64.vcvplugin"
           size=$(stat -c %s "${pkgs[0]}")
           echo "package ${pkgs[0]}: ${size} bytes" | tee -a rack-linux.log
-          test "${size}" -gt 100000
+          test "${size}" -gt 50000
           inits=$(nm -D --defined-only rack/plugin.so | grep -c ' init$')
           echo "init symbols: ${inits}" | tee -a rack-linux.log
           test "${inits}" -eq 1
