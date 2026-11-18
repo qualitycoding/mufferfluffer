@@ -10,7 +10,7 @@ namespace muff {
 
 std::unique_ptr<Effect> createEffect (EffectId id) {
     switch (id) {
-        case EffectId::Lowpass: throw NotImplemented ("Lowpass");
+        case EffectId::Lowpass: return detail::makeLowpass();
         case EffectId::RingMod: throw NotImplemented ("RingMod");
         case EffectId::Phaser: throw NotImplemented ("Phaser");
         case EffectId::Delay: throw NotImplemented ("Delay");
