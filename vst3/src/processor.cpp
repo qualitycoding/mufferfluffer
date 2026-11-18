@@ -4,6 +4,7 @@
 // One processor wraps one muff::BlockRunner. Threads: the effect is touched only by prepareToPlay and processBlock
 // (never concurrently, by JUCE's guarantee); parameter values cross from the host's threads through the parameter
 // objects' own atomics; the tail length crosses back through a std::atomic<double>.
+#include "editor.hpp"
 #include "muff/adapters.hpp"
 #include "muff/vst3_shell.hpp"
 
@@ -80,6 +81,7 @@ private:
     BlockRunner runner_;
     std::vector<HostParam> params_;                 // sized in the constructor, read-only afterwards
     std::atomic<double> tailSeconds_ { 0.0 };
+    std::atomic<float> meters_[kMaxMeterLamps] {};  // written at the end of every block, read by the editor's timer
     bool prepared_ = false;                         // touched only by prepareToPlay and processBlock
 };
 
@@ -162,10 +164,12 @@ void Processor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer
         buffer.clear (ch, 0, numFrames);
 
     tailSeconds_.store (hostTailSeconds (fx.tailSeconds()), std::memory_order_relaxed);
+    for (int m = 0; m < info_.numMeters; ++m)
+        meters_[m].store (fx.getMeter (m), std::memory_order_relaxed);
 }
 
 juce::AudioProcessorEditor* Processor::createEditor() {
-    return new juce::GenericAudioProcessorEditor (*this);
+    return new Editor (*this, info_, meters_);
 }
 
 void Processor::getStateInformation (juce::MemoryBlock& destData) {

@@ -318,7 +318,7 @@ jobs:
           set -euo pipefail
           cmake -S . -B build/vst3 -DCMAKE_BUILD_TYPE=Release -DMUFF_BUILD_VST3=ON \
             -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
-          cmake --build build/vst3 --config Release --target muff_vst3_tests --parallel
+          cmake --build build/vst3 --config Release --parallel
       - name: Test
         shell: bash
         run: |
@@ -328,16 +328,217 @@ jobs:
           grep -F "in 7 test cases" vst3-linux.log
           grep -F "100% tests passed, 0 tests failed out of 1" vst3-linux.log
           ccache -s | tee -a vst3-linux.log
+      - name: Check the seven bundles
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build/vst3 -name '*.vst3' -type d | sort
+          test "$(find build/vst3 -name '*.vst3' -type d | wc -l)" -eq 7
+          test "$(find build/vst3 -name '*.so' -path '*.vst3/*' -size +1M | wc -l)" -eq 7
+      - name: Fetch pluginval
+        shell: bash
+        run: |
+          set -euo pipefail
+          PV=$(python3 tools/fetch_pluginval.py Linux build/pluginval | tail -1)
+          echo "PLUGINVAL=$PV" >> "$GITHUB_ENV"
+      - name: pluginval negative control
+        shell: bash
+        run: |
+          set -euo pipefail
+          xvfb-run -a python3 tools/run_pluginval.py --self-test "$PLUGINVAL"
+      - name: Validate the seven plug-ins
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build/vst3 -name '*.vst3' -type d -print0 | xargs -0 xvfb-run -a python3 tools/run_pluginval.py "$PLUGINVAL" 2>&1 | tee pluginval-summary.log
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: always()
         with:
           name: vst3-linux-log
-          path: vst3-linux.log
+          path: |
+            vst3-linux.log
+            pluginval-*.log
+          if-no-files-found: error
+
+  vst3-windows:
+    runs-on: windows-2022
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Tool versions
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake --version | head -1
+          python --version
+      - name: Configure and build
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake -S . -B build/vst3 -G "Visual Studio 17 2022" -A x64 -DMUFF_BUILD_VST3=ON
+          cmake --build build/vst3 --config Release --parallel
+      - name: Test
+        shell: bash
+        run: |
+          set -euo pipefail
+          ctest --test-dir build/vst3 -C Release -V -R muff_vst3_tests --no-tests=error 2>&1 | tee vst3-windows.log
+          grep -F "All tests passed" vst3-windows.log
+          grep -F "in 7 test cases" vst3-windows.log
+          grep -F "100% tests passed, 0 tests failed out of 1" vst3-windows.log
+      - name: Fetch pluginval
+        shell: bash
+        run: |
+          set -euo pipefail
+          PV=$(python tools/fetch_pluginval.py Windows build/pluginval | tail -1)
+          echo "PLUGINVAL=$PV" >> "$GITHUB_ENV"
+      - name: pluginval negative control
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/run_pluginval.py --self-test "$PLUGINVAL"
+      - name: Validate the seven plug-ins
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(find build/vst3 -name '*.vst3' -type d | wc -l)" -eq 7
+          find build/vst3 -name '*.vst3' -type d -print0 | xargs -0 python tools/run_pluginval.py "$PLUGINVAL" 2>&1 | tee pluginval-summary.log
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: vst3-windows-log
+          path: |
+            vst3-windows.log
+            pluginval-*.log
+          if-no-files-found: error
+
+  vst3-macos:
+    runs-on: macos-15
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Install ccache
+        shell: bash
+        run: |
+          set -euo pipefail
+          brew install ccache
+          cmake --version | head -1
+          c++ --version | head -1
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/Library/Caches/ccache
+          key: ccache-macos-15-d60b7a78030661574a615b586d9325ba7a7fa7dd-${{ hashFiles('vst3/CMakeLists.txt') }}
+      - name: Configure and build
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake -S . -B build/vst3 -DCMAKE_BUILD_TYPE=Release -DMUFF_BUILD_VST3=ON -DCMAKE_OSX_DEPLOYMENT_TARGET=11.0 \
+            -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
+          cmake --build build/vst3 --config Release --parallel
+      - name: Test
+        shell: bash
+        run: |
+          set -euo pipefail
+          ctest --test-dir build/vst3 -C Release -V -R muff_vst3_tests --no-tests=error 2>&1 | tee vst3-macos.log
+          grep -F "All tests passed" vst3-macos.log
+          grep -F "in 7 test cases" vst3-macos.log
+          grep -F "100% tests passed, 0 tests failed out of 1" vst3-macos.log
+          ccache -s | tee -a vst3-macos.log
+      - name: Check the bundles and the minimum macOS version (D-071)
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(find build/vst3 -name '*.vst3' -type d | wc -l)" -eq 7
+          count=0
+          while IFS= read -r -d '' lib; do
+            minos=$(otool -l "$lib" | awk '/LC_BUILD_VERSION/ { f = 1 } f && /minos/ { print $2; exit }')
+            echo "$lib: minos $minos"
+            test -n "$minos"
+            python3 -c 'import sys; sys.exit(0 if tuple(int(x) for x in sys.argv[1].split(".")) <= (11, 0) else 1)' "$minos"
+            count=$((count + 1))
+          done < <(find build/vst3 -path '*.vst3/Contents/MacOS/*' -type f -print0)
+          test "$count" -eq 7
+      - name: Fetch pluginval
+        shell: bash
+        run: |
+          set -euo pipefail
+          PV=$(python3 tools/fetch_pluginval.py macOS build/pluginval | tail -1)
+          echo "PLUGINVAL=$PV" >> "$GITHUB_ENV"
+      - name: pluginval negative control
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/run_pluginval.py --self-test "$PLUGINVAL"
+      - name: Validate the seven plug-ins
+        shell: bash
+        run: |
+          set -euo pipefail
+          find build/vst3 -name '*.vst3' -type d -print0 | xargs -0 python3 tools/run_pluginval.py "$PLUGINVAL" 2>&1 | tee pluginval-summary.log
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: vst3-macos-log
+          path: |
+            vst3-macos.log
+            pluginval-*.log
+          if-no-files-found: error
+
+  vst3-macos-intel:
+    runs-on: macos-15-intel
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Install ccache
+        shell: bash
+        run: |
+          set -euo pipefail
+          brew install ccache
+          cmake --version | head -1
+          c++ --version | head -1
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/Library/Caches/ccache
+          key: ccache-macos-15-intel-d60b7a78030661574a615b586d9325ba7a7fa7dd-${{ hashFiles('vst3/CMakeLists.txt') }}
+      - name: Configure and build
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake -S . -B build/vst3 -DCMAKE_BUILD_TYPE=Release -DMUFF_BUILD_VST3=ON -DCMAKE_OSX_DEPLOYMENT_TARGET=11.0 \
+            -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
+          cmake --build build/vst3 --config Release --parallel
+      - name: Test
+        shell: bash
+        run: |
+          set -euo pipefail
+          ctest --test-dir build/vst3 -C Release -V -R muff_vst3_tests --no-tests=error 2>&1 | tee vst3-macos-intel.log
+          grep -F "All tests passed" vst3-macos-intel.log
+          grep -F "in 7 test cases" vst3-macos-intel.log
+          grep -F "100% tests passed, 0 tests failed out of 1" vst3-macos-intel.log
+          ccache -s | tee -a vst3-macos-intel.log
+      - name: Check the bundles and the minimum macOS version (D-071)
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(find build/vst3 -name '*.vst3' -type d | wc -l)" -eq 7
+          count=0
+          while IFS= read -r -d '' lib; do
+            minos=$(otool -l "$lib" | awk '/LC_BUILD_VERSION/ { f = 1 } f && /minos/ { print $2; exit }')
+            echo "$lib: minos $minos"
+            test -n "$minos"
+            python3 -c 'import sys; sys.exit(0 if tuple(int(x) for x in sys.argv[1].split(".")) <= (11, 0) else 1)' "$minos"
+            count=$((count + 1))
+          done < <(find build/vst3 -path '*.vst3/Contents/MacOS/*' -type f -print0)
+          test "$count" -eq 7
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: vst3-macos-intel-log
+          path: |
+            vst3-macos-intel.log
           if-no-files-found: error
 
   aggregate:
     if: always()
-    needs: [repo-checks, core-linux, core-sanitizers, core-linux-arm64, core-musl, core-oldest-toolchain, core-windows, core-macos, core-macos-intel, vst3-linux]
+    needs: [repo-checks, core-linux, core-sanitizers, core-linux-arm64, core-musl, core-oldest-toolchain, core-windows, core-macos, core-macos-intel, vst3-linux, vst3-windows, vst3-macos, vst3-macos-intel]
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:

@@ -21,3 +21,31 @@ if(MUFF_BUILD_TESTS)
 endif()
 
 # ---- S-021: plug-in targets go below this line -------------------------------------------------------------
+
+# One plug-in target per effect (D-005): FORMATS VST3 only; every target compiles the shared shell sources, the editor and
+# its own entry file, which creates the processor for MUFF_EFFECT_ID (the numeric muff::EffectId).
+function(muff_add_plugin target code product effect_id slug category)
+  juce_add_plugin(${target}
+    FORMATS VST3
+    PRODUCT_NAME "${product}"
+    COMPANY_NAME "Mufferfluffer"
+    PLUGIN_MANUFACTURER_CODE Muff
+    PLUGIN_CODE ${code}
+    BUNDLE_ID org.qualitycoding.mufferfluffer.${slug}
+    COPY_PLUGIN_AFTER_BUILD FALSE
+    IS_SYNTH FALSE
+    NEEDS_MIDI_INPUT FALSE
+    NEEDS_MIDI_OUTPUT FALSE
+    VST3_CATEGORIES Fx ${category})
+  target_sources(${target} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src/entry/entry.cpp")
+  target_compile_definitions(${target} PRIVATE MUFF_EFFECT_ID=${effect_id})
+  target_link_libraries(${target} PRIVATE muff_vst3_sources juce::juce_recommended_warning_flags)
+endfunction()
+
+muff_add_plugin(MuffLowpass    Mfl1 "Fluff Lowpass" 0 lowpass    Filter)
+muff_add_plugin(MuffRingMod    Mfr1 "Fluff Ring"    1 ringmod    Modulation)
+muff_add_plugin(MuffPhaser     Mfp1 "Fluff Phase"   2 phaser     Modulation)
+muff_add_plugin(MuffDelay      Mfd1 "Fluff Delay"   3 delay      Delay)
+muff_add_plugin(MuffFilterBank Mfb1 "Fluff Bank"    4 filterbank Filter)
+muff_add_plugin(MuffOscBox     Mfo1 "Fluff Osc"     5 oscbox     Generator)
+muff_add_plugin(MuffChorus     Mfc1 "Fluff Swarm"   6 chorus     Modulation)
