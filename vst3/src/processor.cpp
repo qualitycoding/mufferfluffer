@@ -12,7 +12,9 @@
 
 #include <atomic>
 #include <cmath>
+#include <cstdlib>
 #include <limits>
+#include <string>
 #include <vector>
 
 namespace muff {
@@ -32,8 +34,11 @@ bool parseStateValue (const juce::String& text, float& result) {
     const juce::String t = text.trim();
     if (t.isEmpty() || ! t.containsOnly ("0123456789+-.eE") || ! t.containsAnyOf ("0123456789"))
         return false;
-    const double v = t.getDoubleValue();
-    if (! std::isfinite (v))
+    // strtod must consume the whole text: "e5", "--5", "1e" and "1.2.3" are malformed (S-ADVERSARIAL ADV-02).
+    const std::string utf8 = t.toStdString();
+    char* end = nullptr;
+    const double v = std::strtod (utf8.c_str(), &end);
+    if (end != utf8.c_str() + utf8.size() || ! std::isfinite (v))
         return false;
     result = (float) juce::jlimit ((double) -std::numeric_limits<float>::max(), (double) std::numeric_limits<float>::max(), v);
     return true;
@@ -120,8 +125,13 @@ Processor::Processor (EffectId id)
 void Processor::prepareToPlay (double sampleRate, int) {
     // An unsupported rate leaves the effect unprepared and the output silent rather than throwing into the host.
     prepared_ = std::isfinite (sampleRate) && sampleRate >= kMinSampleRate && sampleRate <= kMaxSampleRate;
-    if (prepared_)
+    if (prepared_) {
         runner_.prepare (sampleRate);
+        // A host asks for the tail right after this call, possibly with a loaded project: hand the effect the current
+        // values first, so the tail is the one the parameters call for (S-ADVERSARIAL ADV-01).
+        for (int k = 0; k < info_.numParams; ++k)
+            runner_.effect().setParam (k, currentValue (k));
+    }
     setLatencySamples (runner_.effect().latencySamples());
     tailSeconds_.store (hostTailSeconds (runner_.effect().tailSeconds()), std::memory_order_relaxed);
 }
