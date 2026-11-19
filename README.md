@@ -62,7 +62,7 @@ ctest --test-dir build/vst3 -C Release --output-on-failure -R muff_vst3_tests
 ```
 
 `check_frozen.py` confirms that the frozen test files are unchanged. The Python tests check naming, the Rack manifest and panels, the
-dependency pins, workflow hygiene, licence headers and the documentation. The core suite has 87 cases and the VST3 shell suite has 7. The benchmark is a
+dependency pins, workflow hygiene, licence headers and the documentation. The core suite has 98 cases and the VST3 shell suite has 7. The benchmark is a
 timing gate for Linux x64; use `--limit 0` elsewhere. Continuous integration runs all of these on Linux, Windows and macOS and
 scans the pinned dependencies for known advisories.
 

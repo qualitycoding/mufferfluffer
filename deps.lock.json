@@ -30,5 +30,19 @@
       "win-x64": 3154102
     },
     "sha256_note": "trust on first use: recorded from vcvrack.com on 2026-11-18 by run https://github.com/qualitycoding/mufferfluffer/actions/runs/44406561738"
+  },
+  "mull": {
+    "version": "0.39.0",
+    "assets": [
+      {
+        "name": "Mull-0.39.0-ubuntu-amd64-24.04.deb",
+        "sha256": "dfae322fcb6363741de1b3fa2b3e948796892accda63da3ffc29f8f43334722a"
+      },
+      {
+        "name": "Mull-19-0.39.0-LLVM-19.1.1-ubuntu-amd64-24.04.deb",
+        "sha256": "39097dc27184b894c668141deac2fb364b938eea8ab7d5031685524188231fb5"
+      }
+    ],
+    "sha256_note": "trust on first use: recorded from the release listing by run https://github.com/qualitycoding/mufferfluffer/actions/runs/44441090332; later runs verify both packages against these values"
   }
 }

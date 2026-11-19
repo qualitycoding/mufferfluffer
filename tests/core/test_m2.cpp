@@ -219,6 +219,94 @@ TEST_CASE ("T-411 Delay LFO depth: Amount 10 swings the delay time one octave ea
     REQUIRE (lo == Approx (0.5 * d0).epsilon (0.05));
 }
 
+// ---- added by S-MUTATE sub-step 3 (HANDOFF section 9.4)
+
+TEST_CASE ("T-412 Delay tailSeconds follows the bound of S-014 (with S-REVIEW B1-01) exactly", "[delay][m2]") {
+    // S-014: g = feedback / 8 (D-023); 1e9 (for ever) if g >= 1; longest delay + margin if g <= 0.001; otherwise
+    // longest x (1 + N / -ln g) + margin, reported as 1e9 when above 60 s (core.hpp). Longest delay 0.8 s (D-023: Long,
+    // 80 ms x 10); N = 9.0 nepers (S-REVIEW B1-01: from the largest first echo, 2 x 3.98 at Output +12 dB, down to 1e-3);
+    // margin 0.1 s.
+    const double kLongest = 0.080 * 10.0, kNepers = 9.0, kMargin = 0.1, kUnity = 8.0;
+    const float kNegligible = 0.001f;
+    ts::Rig r (EffectId::Delay, kFs);
+    auto tail = [&] (float feedback) { r.set ("feedback", feedback); return r.fx->tailSeconds(); };
+    for (float fb : { 1.0f, 4.0f, 6.0f, 7.0f }) {
+        const double g = (double) fb / kUnity;
+        INFO ("feedback " << fb);
+        REQUIRE (tail (fb) == Approx (kLongest * (1.0 + kNepers / -std::log (g)) + kMargin).epsilon (1.0e-5));
+    }
+    REQUIRE (tail (0.0f) == Approx (kLongest + kMargin).epsilon (1.0e-6));
+    // at the boundary itself: 0.008 / 8 is exactly 0.001f (dividing by 8 is exact in binary floating point)
+    REQUIRE (0.008f / 8.0f == kNegligible);
+    REQUIRE (tail (0.008f) == Approx (kLongest + kMargin).epsilon (1.0e-6));
+    REQUIRE (tail (8.0f) == 1.0e9f);            // g = 1: self-oscillation
+    REQUIRE (tail (10.0f) == 1.0e9f);
+}
+
+TEST_CASE ("T-413 Delay Mix Out: Mix 0 is the driven dry signal alone, Mix 1 the wet signal alone", "[delay][m2]") {
+    // D-023: Mix Out = output ((1 - mix) x + mix wet), Delay Out = output x wet, x the driven input softClip(g in) (D-037).
+    {
+        ts::Rig r (EffectId::Delay, kFs);
+        r.set ("mix", 0.0f); r.set ("drive", 6.0f); r.fx->reset();
+        const auto y = r.run (9600, { { 0, ts::sine (300.0, kFs, 0.3) } })[0];
+        double worst = 0.0;
+        for (long n = 0; n < 9600; ++n) {
+            const double x = 2.0 * std::tanh (0.5 * std::pow (10.0, 6.0 / 20.0) * 0.3 * std::sin (2.0 * ts::kPi * 300.0 * (double) n / kFs));
+            worst = std::max (worst, std::fabs ((double) y[(size_t) n] - x));
+        }
+        REQUIRE (worst < 1.0e-3);
+    }
+    ts::Rig r (EffectId::Delay, kFs);
+    r.set ("mix", 1.0f); r.set ("feedback", 4.0f); r.set ("lfo_amount", 0.0f); r.fx->reset();
+    const auto y = r.run (r.samples (0.5), { { 0, ts::sine (300.0, kFs, 0.3) } });
+    const ts::Signal& mixOut = y[0];
+    const ts::Signal& delayOut = y[(size_t) r.out ("delay_out")];
+    REQUIRE (ts::peak (mixOut, 0, r.samples (0.03)) < 1.0e-6);              // before the first echo (Time 0.5: 126 ms): nothing
+    double worst = 0.0;
+    for (size_t i = 0; i < mixOut.size(); ++i) worst = std::max (worst, (double) std::fabs (mixOut[i] - delayOut[i]));
+    REQUIRE (worst < 1.0e-6);                                               // Mix Out is Delay Out
+    REQUIRE (ts::peak (delayOut, r.samples (0.2), r.samples (0.5)) > 0.1);   // and there is a wet signal to compare
+}
+
+TEST_CASE ("T-414 Delay LFO sense: the first half of a square LFO cycle lengthens the delay, the second half shortens it", "[delay][m2]") {
+    // D-015: the LFO starts at phase 0 after reset(); the square wave is +1 for the first half of its cycle (T-021).
+    // D-023: the LFO multiplies d by 2^(lfo x amount / 10), so at Amount 10 the first half doubles d, the second halves it.
+    const double d0 = 0.04 * std::sqrt (10.0);      // Time 0.5, Short
+    for (const auto& c : { std::pair<double, double> { 0.25, 2.0 }, std::pair<double, double> { 1.25, 0.5 } }) {
+        ts::Rig r (EffectId::Delay, kFs);
+        r.set ("time", 0.5f); r.set ("feedback", 0.0f); r.set ("lfo_rate", 0.5f); r.set ("lfo_amount", 10.0f); r.set ("lfo_wave", 2.0f); r.set ("mix", 1.0f); r.fx->reset();
+        const long t0 = r.samples (c.first), len = r.samples (0.005), n = t0 + r.samples (0.6);
+        const auto y = r.run (n, { { 0, ts::burst (1000.0, kFs, 0.2, t0, t0 + len) } })[(size_t) r.out ("delay_out")];
+        long first = -1;
+        for (long i = t0; i < n; ++i) if (std::fabs (y[(size_t) i]) > 0.02f) { first = i; break; }
+        INFO ("burst at " << c.first << " s");
+        REQUIRE (first > 0);
+        REQUIRE ((double) (first - t0) / kFs == Approx (c.second * d0).epsilon (0.05));    // the tolerance of T-411
+    }
+}
+
+TEST_CASE ("T-415 Delay tap tempo: moving Time by exactly 0.01 of its travel keeps the tapped time; further hands it back", "[delay][m2][tap]") {
+    // D-014: the tapped tempo keeps control until the knob moves by MORE than 0.01 of its travel from where it was at the
+    // tap. Time is a linear knob, so 0.01 is the position 0.01f exactly, and reset() starts the smoother there; Time then
+    // goes to 0, and once the 5 ms smoothing has settled the knob has moved by |0 - 0.01f| = 0.01f exactly.
+    ts::Rig r (EffectId::Delay, kFs);
+    r.set ("time", 0.01f); r.set ("feedback", 0.0f); r.set ("lfo_amount", 0.0f); r.set ("mix", 1.0f); r.connect ("tap_in"); r.fx->reset();
+    REQUIRE (toNormalised (r.info->params[r.param ("time")], 0.01f) == 0.01f);
+    const long t0 = r.samples (0.1), gap = r.samples (0.3);
+    r.run (t0 + 2 * gap + r.samples (0.3), { { r.in ("tap_in"), ts::pulsesAt ({ t0, t0 + gap, t0 + 2 * gap }, 480) } });
+    auto measure = [&] () {
+        const long begin = r.clock, at = begin + r.samples (0.05), len = r.samples (0.002);
+        const auto y = r.run (r.samples (0.7), { { 0, ts::burst (1000.0, kFs, 0.5, at, at + len) } })[(size_t) r.out ("delay_out")];
+        return (double) (ts::argPeak (y, at - begin + len + 2, (long) y.size()) - (at - begin)) / kFs - 0.001;
+    };
+    r.set ("time", 0.0f);
+    r.run (r.samples (0.5));                    // a hundred time constants: settled
+    REQUIRE (measure() == Approx (0.3).epsilon (0.03));
+    r.set ("time", 0.05f);                      // 0.04 beyond the tap's position: control returns to the knob
+    r.run (r.samples (0.5));
+    REQUIRE (measure() == Approx (0.04 * std::pow (10.0, 0.05)).epsilon (0.03));
+}
+
 TEST_CASE ("T-701 Chorus delay ranges: Flange 0.6-10 ms, Chorus 5-50 ms", "[chorus][m2]") {
     const double fs = 192000.0;
     struct Case { float range, knob; double seconds; };

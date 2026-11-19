@@ -5,12 +5,12 @@
 | SC | Statement (short) | Tests | Decisions | Steps | Result (filled by S-FINAL) |
 |---|---|---|---|---|---|
 | SC-1 | Seven effects with exactly the tabled parameters and ports | T-001, T-002, T-003, T-004, T-015, T-851, T-904, T-907 | D-011, D-020..D-026 | S-010..S-018, S-020 | |
-| SC-2 | Behaviour within tolerance of the specification | T-010, T-012..T-014, T-017, T-020..T-024, T-101..T-110, T-201..T-206, T-301..T-308, T-401..T-411, T-501..T-509, T-601..T-607, T-701..T-708 | D-012..D-037 | S-010..S-018 | |
+| SC-2 | Behaviour within tolerance of the specification | T-010, T-012..T-014, T-017, T-020..T-024, T-101..T-110, T-201..T-206, T-301..T-308, T-401..T-411, T-501..T-509, T-601..T-607, T-701..T-708, T-027, T-028, T-030, T-031, T-309, T-412..T-415 | D-012..D-037 | S-010..S-018 | |
 | SC-3 | Seven VST3 plug-ins build on four platforms and pass pluginval | T-851, T-854, T-CI-PLUGINVAL, T-905 | D-005, D-007, D-016 | S-020, S-021 | |
 | SC-4 | Rack plug-in with seven modules builds on four platforms; manifest and panels valid | T-902, T-903, T-CI-RACKPKG, T-905 | D-003, D-006 | S-030..S-033 | |
 | SC-5 | VST3 path and Rack path give the same audio (difference at most 1e-6) | T-016, T-801, T-802, T-811, T-812, T-821, T-852 | D-013, D-016 | S-018, S-020 | |
 | SC-6 | Under 5 % of one core per effect on `ubuntu-24.04` x64 | T-PERF-1 | D-050 | S-018 | |
-| SC-7 | Finite, bounded output for any parameters, input and sample rate | T-005, T-006, T-007, T-018, T-812, T-853, T-856, T-CI-SAN | D-012 | S-018, S-020 | |
+| SC-7 | Finite, bounded output for any parameters, input and sample rate | T-005, T-006, T-007, T-018, T-019, T-029, T-812, T-853, T-856, T-CI-SAN | D-012 | S-018, S-020 | |
 | SC-8 | No allocation or lock on the audio path | T-011, T-855 | D-011, D-016 | S-018, S-020 | |
 | SC-9 | No third-party marks in the product; licence headers | T-901, T-902, T-906 | D-001, D-004 | S-021, S-032, S-035 | |
 | SC-10 | Listening gate passed | gate G-LISTEN (not a test) | D-040 | S-LISTEN | |
@@ -127,6 +127,17 @@ Categories required by the protocol and where they are met: unit (core behaviour
 | T-857 | A mono track gets the mono-host signal (all eight filters of the filter bank) | integration (VST3 shell) | SC-5 | D-013, D-016, D-024 | S-020 |
 | T-854 | bus layouts: mono or stereo in, never fewer outputs than inputs | integration | SC-3 | D-016 | S-020 |
 | T-851 | the host parameters mirror the core tables | contract | SC-1, SC-3 | D-016 | S-020 |
+| T-019 | process writes exactly numOutputs values and neither writes nor reads the rest of the caller's buffer | contract | SC-7 | D-011 | S-MUTATE |
+| T-027 | the Active cross-fade and its meter start at the Active setting after prepare and reset, then follow a switch | operational (indicators) | SC-2 | D-017, D-018, D-020..D-026 | S-MUTATE |
+| T-028 | a Drive change reaches the output while processing, through the 5 ms smoothing, without a reset | unit (behaviour) | SC-2 | D-017, D-018, D-037 | S-MUTATE |
+| T-029 | every output is limited to +/-kOutputLimit: a bypassed unity path fed +/-10 gives +/-4 | security | SC-7 | D-012, D-018 | S-MUTATE |
+| T-030 | a patched auxiliary input is used: a connected, silent Feedback Return breaks the Delay's loop | unit (behaviour) | SC-2 | D-012, D-023 | S-MUTATE |
+| T-031 | a meter set by an effect reaches getMeter: the Chorus Rate meter is lit for the first half of each LFO cycle | operational (indicators) | SC-2 | D-015, D-026 | S-MUTATE |
+| T-309 | Phaser tailSeconds follows the bound of S-013 (with S-REVIEW B1-02) exactly | unit | SC-2 | D-011, D-022 | S-MUTATE |
+| T-412 | Delay tailSeconds follows the bound of S-014 (with S-REVIEW B1-01) exactly | unit | SC-2 | D-011, D-023 | S-MUTATE |
+| T-413 | Delay Mix Out: Mix 0 is the driven dry signal alone, Mix 1 the wet signal alone | unit (behaviour) | SC-2 | D-023, D-037 | S-MUTATE |
+| T-414 | Delay LFO sense: the first half of a square LFO cycle lengthens the delay, the second half shortens it | unit (behaviour) | SC-2 | D-015, D-023 | S-MUTATE |
+| T-415 | Delay tap tempo: moving Time by exactly 0.01 of its travel keeps the tapped time; further hands it back | unit (behaviour) | SC-2 | D-014, D-023 | S-MUTATE |
 
 ### Repository tests (`tests/py/test_repo.py`)
 

@@ -438,3 +438,23 @@ TEST_CASE ("T-308 Phaser LFO depth: Amount 1 moves the dips three octaves each w
         }
     }
 }
+
+// ---- added by S-MUTATE sub-step 3 (HANDOFF section 9.4)
+
+TEST_CASE ("T-309 Phaser tailSeconds follows the bound of S-013 (with S-REVIEW B1-02) exactly", "[phaser][m1]") {
+    // S-013: g = 0.09 x Resonance (D-022); fmin = max(20, 1100 x 2^(6 (sweep/10 - 0.5) - 3 x lfo_amount)) Hz, the lowest
+    // stage corner the LFO can reach (D-022); D = stages / (pi fmin), the chain's low-frequency group delay;
+    // T = 0.1 + 2 D (1 + 6.908 / -ln g), and 0.1 + 2 D when g <= 0.001 (B1-02: the group delay stays in the bound).
+    const double kCentreHz = 1100.0, kSweepOctaves = 6.0, kLfoOctaves = 3.0, kFloorHz = 20.0, kPerStep = 0.09, kBase = 0.1, kSixtyDb = 6.908;
+    struct Case { float sweep, amount, stages, resonance; };
+    for (const Case& c : { Case { 5.0f, 0.5f, 1.0f, 10.0f }, Case { 5.0f, 0.5f, 0.0f, 0.0f }, Case { 7.5f, 0.25f, 0.0f, 4.0f }, Case { 0.0f, 1.0f, 1.0f, 2.0f } }) {
+        ts::Rig r (EffectId::Phaser, kFs);
+        r.set ("sweep", c.sweep); r.set ("lfo_amount", c.amount); r.set ("stages", c.stages); r.set ("resonance", c.resonance);
+        const double fmin = std::max (kFloorHz, kCentreHz * std::pow (2.0, kSweepOctaves * ((double) c.sweep / 10.0 - 0.5) - kLfoOctaves * (double) c.amount));
+        const double groupDelay = (c.stages > 0.5f ? 12.0 : 6.0) / (ts::kPi * fmin);
+        const double g = kPerStep * (double) c.resonance;
+        const double want = g <= 0.001 ? kBase + 2.0 * groupDelay : kBase + 2.0 * groupDelay * (1.0 + kSixtyDb / -std::log (g));
+        INFO ("sweep " << c.sweep << " amount " << c.amount << " stages " << c.stages << " resonance " << c.resonance);
+        REQUIRE (r.fx->tailSeconds() == Approx (want).epsilon (1.0e-5));
+    }
+}

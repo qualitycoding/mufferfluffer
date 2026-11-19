@@ -172,6 +172,26 @@ jobs:
           echo "::group::surviving mutants, ${SHARD}"
           if [ -f "mull-${SHARD}.txt" ]; then sed "s|/home/runner/work/mufferfluffer/mufferfluffer/||g" "mull-${SHARD}.txt"; else echo "no IDE report"; fi
           echo "::endgroup::"
+      - name: Show that the scoring gate can fail (adapters report only)
+        if: always() && matrix.shard == 'adapters'
+        shell: bash
+        run: |
+          # Evidence for reviews/MUTATION.md, sub-step 2: a floor above the score, and a report with a not-covered row.
+          set +e
+          echo "--- floor 99 on the real report"
+          python3 tools/mull_score.py mull-adapters.sqlite --strip mufferfluffer/mufferfluffer/ --floor 99
+          echo "exit status $?"
+          echo "--- the same report with one mutant's execution_status set to 8 (not covered)"
+          cp mull-adapters.sqlite not-covered.sqlite
+          python3 - <<'PY'
+          import sqlite3
+          con = sqlite3.connect("not-covered.sqlite")
+          rid = con.execute("select min(rowid) from mutant where execution_status = 2").fetchone()[0]
+          con.execute("update mutant set execution_status = 8 where rowid = ?", (rid,))
+          con.commit()
+          PY
+          python3 tools/mull_score.py not-covered.sqlite --strip mufferfluffer/mufferfluffer/
+          echo "exit status $?"
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: always()
         with:

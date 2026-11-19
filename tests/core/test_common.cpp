@@ -404,6 +404,127 @@ TEST_CASE ("T-018 behaviour is the same at 44.1 kHz and 192 kHz", "[common][samp
     }
 }
 
+// ------------------------------------------------------------------ added by S-MUTATE sub-step 3 (HANDOFF section 9.4)
+
+TEST_CASE ("T-019 process writes exactly numOutputs values and neither writes nor reads the rest of the caller's buffer (D-011)", "[common][lifecycle]") {
+    // core.hpp (D-011): `out` receives info().numOutputs values. The slots after them belong to the caller: process()
+    // must neither write them (before prepare() it writes zeros to the outputs only) nor let their contents change
+    // what it computes (a NaN left there by the caller is not one of the effect's outputs).
+    const float nan = std::numeric_limits<float>::quiet_NaN();
+    for (EffectId id : ts::kAllEffects) {
+        auto fx = createEffect (id), ref = createEffect (id);
+        const EffectInfo& e = fx->info();
+        INFO (e.slug);
+        REQUIRE (e.numOutputs < kMaxPorts);
+        float x[kMaxPorts] {}, y[kMaxPorts], z[kMaxPorts];
+        for (int k = 0; k < kMaxPorts; ++k) y[k] = 123.0f;
+        fx->process (x, y);
+        for (int k = 0; k < kMaxPorts; ++k) REQUIRE (y[k] == (k < e.numOutputs ? 0.0f : 123.0f));
+        fx->prepare (48000.0); ref->prepare (48000.0);
+        bool same = true, untouched = true, nanKept = true;
+        for (long n = 0; n < 4800; ++n) {
+            x[0] = (float) (0.5 * std::sin (2.0 * ts::kPi * 440.0 * (double) n / 48000.0));
+            for (int k = 0; k < kMaxPorts; ++k) { y[k] = (n % 2 == 0) ? 123.0f : nan; z[k] = 0.0f; }
+            fx->process (x, y); ref->process (x, z);
+            for (int o = 0; o < e.numOutputs; ++o) same = same && y[o] == z[o];
+            for (int k = e.numOutputs; k < kMaxPorts; ++k) {
+                if (n % 2 == 0) untouched = untouched && y[k] == 123.0f;
+                else nanKept = nanKept && std::isnan (y[k]);
+            }
+        }
+        REQUIRE (same);         // the caller's spare slots do not change the outputs
+        REQUIRE (untouched);    // a finite value there is not limited, cleared or overwritten
+        REQUIRE (nanKept);      // nor is a NaN
+    }
+}
+
+TEST_CASE ("T-027 the Active cross-fade and its meter start at the Active setting after prepare and reset, then follow a switch (D-017, D-018)", "[common][bypass][meters]") {
+    // D-017: after reset() the smoothers, the Active cross-fade among them, start at their targets; Active cross-fades
+    // over a 5 ms one-pole. Effects (D-020..D-026): meter `active` is the cross-fade position.
+    for (EffectId id : ts::kAllEffects) {
+        ts::Rig r (id, 48000.0);
+        INFO (r.info->slug);
+        const int m = r.meter ("active");
+        REQUIRE (r.fx->getMeter (m) == 1.0f);       // prepared with Active at its default (On), nothing processed yet
+        r.set ("active", 0.0f); r.fx->reset();
+        REQUIRE (r.fx->getMeter (m) == 0.0f);       // reset() starts the cross-fade at Bypass: no fade from On
+        r.run (1);
+        REQUIRE (r.fx->getMeter (m) == 0.0f);
+        r.set ("active", 1.0f);
+        r.run (r.samples (0.05));                   // ten 5 ms time constants: within e^-10 of the target
+        REQUIRE (r.fx->getMeter (m) > 0.999f);
+        r.set ("active", 0.0f);
+        r.run (r.samples (0.05));
+        REQUIRE (r.fx->getMeter (m) < 0.001f);
+    }
+}
+
+TEST_CASE ("T-028 a Drive change reaches the output while processing, through the 5 ms smoothing, without a reset (D-017, D-037)", "[common][bypass][smoothing]") {
+    // Lowpass and RingMod keep the drive stage in their bypass path (D-018): the bypassed output is softClip(g x) with
+    // g = 10^(drive/20) (D-037). Drive is changed after reset() and must be in effect once its smoothing has settled.
+    for (EffectId id : { EffectId::Lowpass, EffectId::RingMod }) {
+        ts::Rig r (id, 48000.0);
+        INFO (r.info->slug);
+        r.set ("active", 0.0f); r.fx->reset();
+        r.run (480);
+        r.set ("drive", 12.0f);                     // no reset after this
+        const long start = r.clock, n = 9600;
+        const auto y = r.run (n, { { 0, ts::sine (300.0, 48000.0, 0.2) } })[0];
+        double worst = 0.0;
+        for (long i = 2400; i < n; ++i) {           // after ten time constants
+            const double in = 0.2 * std::sin (2.0 * ts::kPi * 300.0 * (double) (start + i) / 48000.0);
+            const double want = 2.0 * std::tanh (0.5 * in * std::pow (10.0, 12.0 / 20.0));
+            worst = std::max (worst, std::fabs ((double) y[(size_t) i] - want));
+        }
+        REQUIRE (worst < 2.0e-3);                   // the tolerance of T-010
+    }
+}
+
+TEST_CASE ("T-029 every output is limited to +/-kOutputLimit: a bypassed unity path fed +/-10 gives +/-4 (D-012)", "[common][bypass]") {
+    // D-018: bypassed, Phaser, OscBox and Chorus pass the input at unity, the Delay to Mix Out, the FilterBank to Left.
+    // Inputs are limited to +/-16 (D-012), so +/-10 reaches the output stage, which must limit it to kOutputLimit (SC-7).
+    for (EffectId id : { EffectId::Phaser, EffectId::Delay, EffectId::FilterBank, EffectId::OscBox, EffectId::Chorus }) {
+        ts::Rig r (id, 48000.0);
+        INFO (r.info->slug);
+        r.set ("active", 0.0f); r.fx->reset();
+        const auto y = r.run (480, { { 0, [] (long n) { return n % 2 == 0 ? 10.0f : -10.0f; } } });
+        bool limited = true;
+        for (long i = 0; i < 480; ++i) limited = limited && y[0][(size_t) i] == (i % 2 == 0 ? kOutputLimit : -kOutputLimit);
+        REQUIRE (limited);
+        for (const ts::Signal& s : y) REQUIRE (ts::peak (s, 0, 480) <= (double) kOutputLimit);
+    }
+}
+
+TEST_CASE ("T-030 a patched auxiliary input is used: a connected, silent Feedback Return breaks the Delay's loop (D-012, D-023)", "[common][cv]") {
+    // D-023: line input = a x + (feedback / 8) softClip(f), f = fb_return if connected, else the wet signal.
+    // Feedback 8 is loop gain 1, so unpatched the echo comes round again; patched with silence it does not.
+    auto echoes = [] (bool patched) {
+        ts::Rig r (EffectId::Delay, 48000.0);
+        r.set ("time", 0.0f); r.set ("feedback", 8.0f); r.set ("lfo_amount", 0.0f); r.set ("mix", 1.0f);
+        if (patched) r.connect ("fb_return");
+        r.fx->reset();
+        const long d = r.samples (0.04), len = 960;
+        const auto y = r.run (3 * d, { { 0, ts::burst (500.0, 48000.0, 0.2, 0, len) } })[(size_t) r.out ("delay_out")];
+        return std::pair<double, double> (ts::rms (y, d, d + len), ts::rms (y, 2 * d + 200, 2 * d + len));
+    };
+    const auto open = echoes (false), patched = echoes (true);
+    REQUIRE (open.first > 0.05); REQUIRE (patched.first > 0.05);     // the first echo comes either way
+    REQUIRE (open.second > 0.05);                                     // unpatched: the wet signal recirculates
+    REQUIRE (patched.second < 1.0e-4);                                // patched with silence: nothing recirculates
+}
+
+TEST_CASE ("T-031 a meter set by an effect reaches getMeter: the Chorus Rate meter is lit for the first half of each LFO cycle (D-015, D-026)", "[common][meters]") {
+    // D-015: the LFO starts at phase 0 after reset(); D-026: meter `rate` = 1 while the LFO phase is below 0.5.
+    // Rate about 1 Hz (a logarithmic knob: the value comes back from the knob position to within rounding).
+    ts::Rig r (EffectId::Chorus, 48000.0);
+    r.set ("lfo_rate", 1.0f); r.fx->reset();
+    const int m = r.meter ("rate");
+    r.run (1);                REQUIRE (r.fx->getMeter (m) == 1.0f);     // phase 0
+    r.run (r.samples (0.25)); REQUIRE (r.fx->getMeter (m) == 1.0f);     // a quarter of a cycle in
+    r.run (r.samples (0.5));  REQUIRE (r.fx->getMeter (m) == 0.0f);     // three quarters in
+    r.run (r.samples (0.5));  REQUIRE (r.fx->getMeter (m) == 1.0f);     // a quarter into the second cycle
+}
+
 // ------------------------------------------------------------------ building blocks
 
 TEST_CASE ("T-020 softClip is 2*tanh(x/2)", "[blocks]") {
