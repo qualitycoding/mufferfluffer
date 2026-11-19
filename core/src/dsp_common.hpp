@@ -22,7 +22,6 @@ public:
     void configure (double sampleRate, double timeConstantMs) noexcept;
     void snap (float value) noexcept { y_ = value; }
     float next (float target) noexcept;
-    float value() const noexcept { return y_; }
 private:
     float coefficient_ = 1.0f;
     float y_ = 0.0f;
@@ -34,7 +33,6 @@ public:
     void configure (double sampleRate, double attackMs, double releaseMs) noexcept;
     void reset() noexcept { y_ = 0.0f; }
     float next (float x) noexcept;
-    float value() const noexcept { return y_; }
 private:
     float attack_ = 1.0f;
     float release_ = 1.0f;

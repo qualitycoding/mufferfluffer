@@ -32,7 +32,8 @@ modulate a knob, automate that parameter in your host. Several things exist only
 In, the trigger inputs (the FilterBank's Step and every Tap jack), the OscBox's volt-per-octave range beyond the knob,
 audio-rate modulation of any control, and every control-voltage output such as envelopes, LFOs and carriers. Auxiliary audio
 inputs (feedback returns and the RingMod carrier) are also not available in the plug-ins. The Tap control is available in
-the plug-ins as a momentary button.
+the plug-ins as a momentary button. A plug-in reads it once per audio block, so tap timing is only as precise as your host's buffer
+size, and at very large buffers a short click can be missed; tap with a small buffer, or automate the control.
 
 **Bypass and Active.** Your host's own bypass passes the stereo signal through untouched, and the plug-in stops doing anything.
 The Active control models the footswitch of a pedal instead: switching it off cross-fades to the pedal's bypassed state over
@@ -163,7 +164,8 @@ the pitch of the repeats glides, as it does with a clocked delay.
 - **Tap**: a momentary control. The third tap of a run sets the delay time to the average interval, and later taps refine it. A gap
   longer than five seconds starts a new run. Moving the Time knob by more than a hundredth of its travel hands control back to
   the knob. A tap sets the delay time only; it never sets the LFO rate.
-- **Active**: Bypass sends the input to Mix Out. Delay Out and the wet signal are silent unless Spillover is on.
+- **Active**: Bypass sends the input to Mix Out. Delay Out and the wet signal are silent unless Spillover is on. Echoes
+  already circulating in the feedback loop are not erased, and with Spillover off they are heard again if you switch the effect back on.
 
 ### Rack inputs and outputs
 
@@ -216,7 +218,8 @@ patterns. Every pattern opens and closes the filters one after another and so pr
 - **Audio In**: the audio input.
 - **Rate CV**, **Envelope CV**, **Mix CV**, **LFO/Sweep CV**: control voltages added to the matching knobs.
 - **Tap**: a trigger input with the same behaviour as the Tap control.
-- **Step**: when connected, each trigger advances the sequencer by one step and the Rate control is ignored.
+- **Step**: when connected, each trigger advances the sequencer by one step. The Rate control still sets the length of a step for the
+  Envelope times, so set it near the speed of the step clock.
 - **Left/Mono Out**: the odd-numbered filters (1, 3, 5, 7) with the dry signal.
 - **Right Out**: the even-numbered filters (2, 4, 6, 8) with the dry signal.
 

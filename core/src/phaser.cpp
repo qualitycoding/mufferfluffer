@@ -165,11 +165,12 @@ void Phaser::tick (const float* in, float* out) noexcept {
 // round and once more per trip of the feedback loop, which loses a factor g = 0.09 x Resonance on each.
 float Phaser::tailSeconds() const noexcept {
     const double g = static_cast<double> (kFeedbackPerStep) * static_cast<double> (getParam (resonanceParam_));
-    if (g <= static_cast<double> (kTailNegligibleGain)) return kTailBase;
     const double lowestCorner = std::max (kMinCornerHz, kCentreHz * std::exp2 (kSweepOctaves * (static_cast<double> (getParam (sweepParam_)) / 10.0 - 0.5)
                                                                               - kLfoOctaves * static_cast<double> (getParam (amountParam_))));
     const double stages = static_cast<double> (getParam (stagesParam_) >= static_cast<float> (kTwelveStageStep) ? kMaxStages : kStagesPerChain);
     const double delay = stages / (kPi * lowestCorner);
+    // Without feedback the signal only goes round the chain once; the bound still includes that group delay (S-REVIEW B1-02).
+    if (g <= static_cast<double> (kTailNegligibleGain)) return static_cast<float> (static_cast<double> (kTailBase) + 2.0 * delay);
     return static_cast<float> (static_cast<double> (kTailBase) + 2.0 * delay * (1.0 + kTailDecadesToNeper / -std::log (g)));
 }
 

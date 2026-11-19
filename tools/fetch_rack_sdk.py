@@ -84,6 +84,18 @@ def unpack(archive, dest):
                     shutil.copyfileobj(src, out)
                 if mode & 0o111:
                     target.chmod(target.stat().st_mode | 0o111)
+    check_links(dest)
+
+
+def check_links(dest):
+    # A link may point at a path that does not exist yet, or through a link made later, so the targets are only known once
+    # everything is unpacked: every link must then resolve inside the destination (S-REVIEW B2-02).
+    root = pathlib.Path(os.path.realpath(dest))
+    for path in sorted(dest.rglob("*")):
+        if path.is_symlink():
+            resolved = pathlib.Path(os.path.realpath(path))
+            if resolved != root and root not in resolved.parents:
+                fail(f"symbolic link {path} resolves outside the destination directory")
 
 
 def locate_sdk(dest):
