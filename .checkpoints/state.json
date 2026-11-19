@@ -797,7 +797,8 @@
     "L-20261118T230100Z-unlimited-parallel-build-exhausted-runner-memory",
     "L-20261118T230200Z-ctest-summary-wording-differs-by-version",
     "L-20261118T230300Z-size-floor-guessed-without-measurement",
-    "L-20261118T230400Z-all-of-suite-loop-masks-later-failures"
+    "L-20261118T230400Z-all-of-suite-loop-masks-later-failures",
+    "L-20261119T042700Z-changed-constant-not-searched-in-every-spelling"
   ],
   "knowledge_added": [
     "K-20261112T120000Z-c-dsp-001",

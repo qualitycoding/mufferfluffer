@@ -161,7 +161,7 @@ jobs:
         shell: sh
         run: |
           set -eu
-          ctest -N --test-dir build/core | grep -F "Total Tests: 87"
+          ctest -N --test-dir build/core | grep -F "Total Tests: 98"
           ctest --test-dir build/core --output-on-failure --no-tests=error
 
   core-oldest-toolchain:
@@ -199,7 +199,7 @@ jobs:
         shell: sh
         run: |
           set -eu
-          ctest -N --test-dir build/core | grep -F "Total Tests: 87"
+          ctest -N --test-dir build/core | grep -F "Total Tests: 98"
           ctest --test-dir build/core --output-on-failure --no-tests=error
 
   core-windows:
