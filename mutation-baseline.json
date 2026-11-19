@@ -1,1 +1,15 @@
-{"_comment": "Per-file scores of the last full run, written by tools/mull_score.py --write-baseline; empty until the first full run."}
+{
+  "adapters/src/adapters.cpp": 84.6,
+  "core/src/blocks.cpp": 91.2,
+  "core/src/chorus.cpp": 72.2,
+  "core/src/clocked_line.cpp": 60.7,
+  "core/src/delay.cpp": 89.7,
+  "core/src/dsp_common.cpp": 78.1,
+  "core/src/effect_base.cpp": 69.4,
+  "core/src/filterbank.cpp": 78.8,
+  "core/src/lowpass.cpp": 69.0,
+  "core/src/oscbox.cpp": 75.0,
+  "core/src/phaser.cpp": 90.7,
+  "core/src/ringmod.cpp": 90.5,
+  "core/src/tables.cpp": 61.7
+}

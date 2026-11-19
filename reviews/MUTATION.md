@@ -65,8 +65,17 @@ so nothing is merged into `shared`; `create.cpp` has no mutants of its own (its 
 Agreement: for every shard of run 44447284584 the log check printed `log check: agrees within 0.5 points`: the report's surviving count, mutant total and score
 equal those of Mull's own output (adapters: Mull `Survived mutants (6/39)`, `Mutation score: 84%`; script 6 survivors, 33/39 = 84.62 %).
 
-The `--floor 99` run and the not-covered report are produced by the step "Show that the scoring gate can fail" of `mutation.yml` on the real adapters report; the output is recorded
-below once the run that introduces that step has finished.
+Failing gate, shown on the real adapters report of run 44457040736 (step "Show that the scoring gate can fail", `mutation.yml`):
+
+```
+--- floor 99 on the real report
+Mutation score: 84.6% (33/39 killed); floor 99%
+FAIL: SCORE TOO LOW: 84.6% is below the floor 99%
+exit status 1
+--- the same report with one mutant's execution_status set to 8 (not covered)
+FAIL: not-covered.sqlite: mutants with a status that is neither killed [1, 3, 4, 5] nor survived 2: 1 with status 8 (not covered)
+exit status 1
+```
 
 ## Tests omitted from each shard (D-060)
 
@@ -203,6 +212,35 @@ None. Each such mutant was either killed by a test carrying the shard's tag or i
 - delay.cpp 129:40 `>=` and `<=` (the Delay's `rate` meter lit for the second half of the LFO cycle, or also at phase exactly 0.5). D-023 gives the Delay no meter law. The common rule under "Effects (D-020 to D-026)" fixes only `level` and `active`, and the law "meter `rate` = 1 while the LFO phase is below 0.5" is written in D-026 for the Chorus alone. The fixture gives the Delay a `rate` meter without a law. (The Chorus law itself is now tested in the shared shard by T-031.)
 - phaser.cpp 161:31 and 161:39 (the Phaser's `lfo` meter as `0.5 / (1 + lfo)` or `0.5 (1 - lfo)`). D-022 fixes `lfo_out` = 0.56 x LFO but no law for the `lfo` meter, and neither does the common rule. Both mutants stay within [0, 1] after `getMeter()`'s clamp, which is all that `core.hpp` requires of a meter.
 - phaser.cpp 51:68 (`|v| <= 1e-20` flushed instead of `< 1e-20`). D-012 requires only that the core does not slow down on decaying signals: it may set flush-to-zero or flush its states itself. The 1e-20 threshold, and which side of it a state of exactly 1e-20 falls on, is an implementation choice that no decision or claim fixes. The difference is one all-pass state of 1e-20 (-400 dB) left in place or set to zero.
+
+### Result of round 1 and the floor
+
+Run https://github.com/qualitycoding/mufferfluffer/actions/runs/44457040736 (head commit ab7e01c, a `REFREEZE:` commit, so `scope` chose `full`): `mutation-gate` green, project score
+**76.7 % (439 of 572 killed)**, 133 survivors (the agent's counts held exactly: effect_base.cpp 13 more kills, delay.cpp 13, phaser.cpp 14). Every file is now at or above 60 %:
+
+| File | Killed / total | Survived | Score |
+|---|---|---|---|
+| clocked_line.cpp | 17 / 28 | 11 | 60.7 % |
+| tables.cpp | 29 / 47 | 18 | 61.7 % |
+| lowpass.cpp | 29 / 42 | 13 | 69.0 % |
+| effect_base.cpp | 59 / 85 | 26 | 69.4 % |
+| chorus.cpp | 26 / 36 | 10 | 72.2 % |
+| oscbox.cpp | 45 / 60 | 15 | 75.0 % |
+| dsp_common.cpp | 25 / 32 | 7 | 78.1 % |
+| filterbank.cpp | 52 / 66 | 14 | 78.8 % |
+| adapters.cpp | 33 / 39 | 6 | 84.6 % |
+| delay.cpp | 35 / 39 | 4 | 89.7 % |
+| ringmod.cpp | 19 / 21 | 2 | 90.5 % |
+| phaser.cpp | 39 / 43 | 4 | 90.7 % |
+| blocks.cpp | 31 / 34 | 3 | 91.2 % |
+
+The stopping rule is met after one round of the three allowed: no file scores below 60 %, every survivor of the three files that did is killed or justified, and the project score is above 60 %.
+`mutation-floor.json` is set once to 71, the whole number five points below 76.7 (`mutation-baseline.json` holds the per-file scores above). The floor is not lowered without a D- entry.
+Survivors of the other ten files are listed by count only (section above); the two files closest to the line, clocked_line.cpp and tables.cpp, have 11 and 18 survivors.
+
+## Incremental and not-applicable runs
+
+TBD: filled in from the demonstration runs (a comment line in `core/src/phaser.cpp`, its revert, and a commit that changes only this file).
 
 ## Recommendation
 
