@@ -623,6 +623,16 @@
       "file": "GATE-G-002.md",
       "commit": "19c2aca",
       "note": "non-blocking; treated as decline for continuing until answered"
+    },
+    {
+      "gate": "G-LISTEN",
+      "round": 1,
+      "state": "asked",
+      "file": "GATE-G-LISTEN.md",
+      "marker_commit": "e38a9b0",
+      "gate_commit": "4ba53fb",
+      "evidence_run": "https://github.com/qualitycoding/mufferfluffer/actions/runs/44468626667",
+      "ci_run_of_marker": "https://github.com/qualitycoding/mufferfluffer/actions/runs/44468626466 (core jobs green at 98 cases; macOS and aggregate still queued at the time of writing)"
     }
   ],
   "lesson_store": {
