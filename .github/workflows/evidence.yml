@@ -1,0 +1,103 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# Listening-gate evidence (S-LISTEN, gate G-LISTEN). Runs only on a push whose head commit subject starts with the marker
+# below (HANDOFF.md section 9.6): renders the 23 demos with muff_render and force-pushes them, with SHA256SUMS, INDEX.md
+# and a README.md, to the orphan branch evidence/G-LISTEN. Every file it publishes is this project's own work (D-040, D-041).
+name: evidence
+on: push
+permissions:
+  contents: read
+concurrency:
+  group: evidence-G-LISTEN
+  cancel-in-progress: false
+jobs:
+  render-and-publish:
+    if: startsWith(github.event.head_commit.message, '[gate-evidence G-LISTEN]')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Tool versions
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake --version | head -1
+          g++ --version | head -1
+          python3 --version
+      - name: Build muff_render
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake -S . -B build/tools -DCMAKE_BUILD_TYPE=Release -DMUFF_BUILD_TESTS=OFF -DMUFF_BUILD_TOOLS=ON
+          cmake --build build/tools --config Release --parallel --target muff_render
+      - name: Check the unit conversions through the effects
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/render_demos.py --self-test --muff-render build/tools/muff_render
+      - name: Render the bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/make_demo_inputs.py "$RUNNER_TEMP/inputs"
+          python3 tools/render_demos.py --muff-render build/tools/muff_render --inputs "$RUNNER_TEMP/inputs" --out "$RUNNER_TEMP/bundle"
+      - name: Check the bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - "$RUNNER_TEMP/bundle" <<'EOF'
+          import math, pathlib, sys, wave
+          bundle = pathlib.Path(sys.argv[1])
+          wavs = sorted(bundle.glob("demo-*.wav"))
+          problems = [] if len(wavs) == 23 else [f"{len(wavs)} WAV files, expected 23"]
+          for path in wavs:
+              size = path.stat().st_size
+              if not 0.5e6 <= size <= 20e6:
+                  problems.append(f"{path.name}: {size} bytes, outside 0.5 MB to 20 MB")
+              with wave.open(str(path), "rb") as w:
+                  raw = w.readframes(w.getnframes())
+              total = 0.0
+              for k in range(0, len(raw), 3):
+                  v = int.from_bytes(raw[k:k + 3], "little", signed=True) / 8388608.0
+                  total += v * v
+              rms_db = 10.0 * math.log10(total / (len(raw) // 3)) if total > 0.0 else float("-inf")
+              print(f"{path.name}: {size} bytes, RMS {rms_db:.1f} dBFS")
+              if not rms_db > -50.0:
+                  problems.append(f"{path.name}: RMS {rms_db:.1f} dBFS is not above -50 dBFS")
+          listed = [line.split("  ")[1] for line in (bundle / "SHA256SUMS").read_text().splitlines()]
+          if listed != [p.name for p in wavs]:
+              problems.append("SHA256SUMS does not list exactly the 23 WAV files")
+          for message in problems:
+              print(f"error: {message}", file=sys.stderr)
+          sys.exit(1 if problems else 0)
+          EOF
+      - name: Publish to the orphan branch evidence/G-LISTEN
+        shell: bash
+        env:
+          PUSH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          bundle="$RUNNER_TEMP/bundle"
+          cp LICENSE "$bundle/LICENSE"
+          cat > "$bundle/README.md" <<EOF
+          # Listening demos for gate G-LISTEN
+
+          Rendered from commit ${GITHUB_SHA} of ${GITHUB_REPOSITORY} by the workflow \`evidence.yml\`
+          (run ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}).
+
+          Every file on this branch is this project's own work: the dry inputs are synthesised by
+          \`tools/make_demo_inputs.py\` and processed by this project's effects, with no third-party recording.
+          The files are licensed under the repository licence, AGPL-3.0-only (see \`LICENSE\`).
+
+          \`INDEX.md\` lists each demo's effect, settings, processed-section peak before normalisation and the gain
+          applied; \`SHA256SUMS\` holds the checksums of the 23 WAV files. Each demo starts with three seconds of
+          the unprocessed input.
+          EOF
+          git -C "$bundle" init --quiet
+          git -C "$bundle" checkout --quiet --orphan evidence/G-LISTEN
+          git -C "$bundle" add --all
+          git -C "$bundle" -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit --quiet -m "G-LISTEN evidence bundle rendered from ${GITHUB_SHA}"
+          git -C "$bundle" push --force "https://x-access-token:${PUSH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:refs/heads/evidence/G-LISTEN
+          git -C "$bundle" ls-files

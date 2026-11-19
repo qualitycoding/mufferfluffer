@@ -12,6 +12,7 @@ endif()
 
 option(MUFF_BUILD_TESTS "Build the frozen core and adaptor tests" ON)
 option(MUFF_BUILD_VST3 "Build the seven VST3 plug-ins (needs JUCE)" OFF)
+option(MUFF_BUILD_TOOLS "Build the offline demo renderer muff_render (S-LISTEN)" OFF)
 # Directory holding the implementation of muff/core.hpp, muff/blocks.hpp and muff/adapters.hpp.
 # Default: the project's own sources. The planning oracle is selected with -DMUFF_IMPL_DIR=research/spikes/oracle.
 set(MUFF_IMPL_DIR "" CACHE PATH "Alternative implementation directory (planning oracle); empty = core/src + adapters/src")
@@ -39,4 +40,14 @@ if(MUFF_BUILD_TESTS)
 endif()
 if(MUFF_BUILD_VST3)
   add_subdirectory(vst3)
+endif()
+if(MUFF_BUILD_TOOLS)
+  # Offline renderer for the listening demos (S-LISTEN): drives an effect through muff::BlockRunner like the VST3 shell.
+  add_executable(muff_render tools/render/muff_render.cpp)
+  target_link_libraries(muff_render PRIVATE muffcore)
+  if(MSVC)
+    target_compile_options(muff_render PRIVATE /W4)
+  else()
+    target_compile_options(muff_render PRIVATE -Wall -Wextra)
+  endif()
 endif()
