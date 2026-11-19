@@ -1,6 +1,5 @@
 // mufferfluffer DSP core: the Phaser, "Fluff Phase" (D-018, D-022, D-032).
 // SPDX-License-Identifier: AGPL-3.0-only
-// Incremental mutation run demonstration (S-MUTATE); reverted by the next commit.
 #include "dsp_common.hpp"
 #include "effect_base.hpp"
 #include "factories.hpp"
