@@ -1,0 +1,266 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# Mutation testing of the DSP core (plan step S-MUTATE, D-060), three tiers and one gate.
+#   push (every branch, never path-filtered): the shards of the changed in-scope files, a full run when tests,
+#       mutation set-up or any header changes, or "not-applicable".
+#   schedule (weekly, live after the merge) and workflow_dispatch: a full run. A push whose head commit subject
+#       starts with "[mutation full]" also runs everything.
+# `mutation-gate` is the only status meant to be required: it fails unless every planned shard produced a report
+# and the score, computed from the SQLite reports, meets the floor (full) or the per-file baseline (incremental).
+name: mutation
+on:
+  push:
+  schedule:
+    - cron: '17 3 * * 1'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'full or incremental'
+        default: 'full'
+permissions:
+  contents: read
+concurrency:
+  group: mutation-${{ github.sha }}
+  cancel-in-progress: false
+jobs:
+  scope:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    outputs:
+      mode: ${{ steps.plan.outputs.mode }}
+      matrix: ${{ steps.plan.outputs.matrix }}
+      shard_count: ${{ steps.plan.outputs.shard_count }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - name: Decide the scope and the shard matrix
+        id: plan
+        shell: bash
+        env:
+          EVENT: ${{ github.event_name }}
+          BEFORE: ${{ github.event.before }}
+          DISPATCH_MODE: ${{ inputs.mode }}
+          SUBJECT_RAW: ${{ github.event.head_commit.message }}
+        run: |
+          set -euo pipefail
+          subject=$(printf '%s' "$SUBJECT_RAW" | head -n 1)
+          base_missing=""
+          : > changed.txt
+          if [ "$EVENT" = "push" ] && [ -n "$BEFORE" ] && [ "$BEFORE" != "0000000000000000000000000000000000000000" ]; then
+            if git cat-file -e "${BEFORE}^{commit}" 2>/dev/null; then
+              git diff --name-only "$BEFORE" HEAD > changed.txt
+            else
+              base_missing="--base-missing"
+            fi
+          fi
+          python3 tools/mull_shards.py self-test | tee scope.log
+          python3 tools/mull_shards.py plan --event "$EVENT" --dispatch-mode "${DISPATCH_MODE:-full}" --subject "$subject" \
+            --before "$BEFORE" $base_missing --changed changed.txt --out plan.json | tee -a scope.log
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          plan = json.load(open("plan.json"))
+          print("mode=" + plan["mode"])
+          print("matrix=" + json.dumps(plan["matrix"], separators=(",", ":")))
+          print("shard_count=" + str(len(plan["matrix"]["include"])))
+          PY
+          echo "mode: $(python3 -c 'import json; print(json.load(open("plan.json"))["mode"])')" | tee -a scope.log
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: mutation-plan
+          path: |
+            plan.json
+            scope.log
+          if-no-files-found: error
+
+  mutate:
+    needs: scope
+    if: needs.scope.outputs.mode != 'not-applicable' && needs.scope.outputs.shard_count != '0'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.scope.outputs.matrix) }}
+    env:
+      SHARD: ${{ matrix.shard }}
+      TESTS: ${{ matrix.tests }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Install clang 19
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y clang-19 libclang-rt-19-dev cmake ninja-build
+          clang++-19 --version | head -1
+      - name: Choose, download and verify the two Mull packages
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api repos/mull-project/mull/releases > releases.json
+          python3 tools/mull_release.py resolve --listing releases.json --out selection.json | tee mull-install.log
+          mkdir -p mull-debs
+          python3 - <<'PY'
+          import json, subprocess
+          sel = json.load(open("selection.json"))
+          for a in sel["assets"]:
+              subprocess.run(["curl", "-fsSL", "--retry", "3", "-o", "mull-debs/" + a["name"], a["url"]], check=True)
+          PY
+          python3 tools/mull_release.py verify --selection selection.json --dir mull-debs --github-output "$GITHUB_OUTPUT" 2>&1 | tee -a mull-install.log
+          runner_deb=$(ls mull-debs/Mull-[0-9]*.deb | head -1)
+          plugin_deb=$(ls mull-debs/Mull-19-*.deb | head -1)
+          sudo apt-get install -y "./${runner_deb}" "./${plugin_deb}" 2>&1 | tee -a mull-install.log
+          ls /usr/bin/mull* 2>&1 | tee -a mull-install.log
+          dpkg -L "$(dpkg-deb -f "$runner_deb" Package)" | grep -E '/bin/' | tee -a mull-install.log
+          dpkg -L "$(dpkg-deb -f "$plugin_deb" Package)" | grep -E 'mull' | head -20 | tee -a mull-install.log
+          runner=$(dpkg -L "$(dpkg-deb -f "$runner_deb" Package)" | grep -E '/bin/mull-runner[^/]*$' | head -1)
+          plugin=$(dpkg -L "$(dpkg-deb -f "$plugin_deb" Package)" | grep -E 'mull-ir-frontend[^/]*$' | head -1)
+          test -x "$runner"
+          test -e "$plugin"
+          echo "MULL_RUNNER=$runner" >> "$GITHUB_ENV"
+          echo "MULL_PLUGIN=$plugin" >> "$GITHUB_ENV"
+          echo "runner $runner, plug-in $plugin" | tee -a mull-install.log
+      - name: Limit the mutation to this shard's files
+        shell: bash
+        env:
+          SHARD_FILES: ${{ join(matrix.files, ' ') }}
+        run: |
+          set -euo pipefail
+          printf '%s\n' $SHARD_FILES | python3 tools/mull_include_paths.py --scope core/src/ --scope adapters/src/ \
+            --base mull.yml --out mull.run.yml | tee mull-files.log
+          cp mull.run.yml mull.yml
+          cat mull.yml
+      - name: Build the test suite with Mull instrumentation (-O0)
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake -S . -B build-mull -G Ninja -DCMAKE_BUILD_TYPE=Debug \
+            -DCMAKE_C_COMPILER=clang-19 -DCMAKE_CXX_COMPILER=clang++-19 \
+            -DCMAKE_CXX_FLAGS="-O0 -g -grecord-command-line -fpass-plugin=${MULL_PLUGIN}"
+          cmake --build build-mull --target muff_core_tests --parallel 4 2>&1 | tee mull-build.log
+      - name: Baseline run of this shard's tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          start=$(date +%s%N)
+          ./build-mull/tests/muff_core_tests "$TESTS" 2>&1 | tee mull-baseline.log
+          end=$(date +%s%N)
+          baseline_ms=$(( (end - start) / 1000000 ))
+          timeout_ms=$(( baseline_ms * 10 ))
+          if [ "$timeout_ms" -lt 30000 ]; then timeout_ms=30000; fi
+          echo "baseline ${baseline_ms} ms, per-mutant timeout ${timeout_ms} ms" | tee -a mull-baseline.log
+          echo "MUTANT_TIMEOUT_MS=$timeout_ms" >> "$GITHUB_ENV"
+          ./build-mull/tests/muff_core_tests "$TESTS" --list-tests 2>&1 | tee mull-tests.log
+      - name: Run Mull
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$MULL_RUNNER" --report-name "mull-${SHARD}" --reporters SQLite --reporters IDE \
+            --workers 4 --timeout "$MUTANT_TIMEOUT_MS" --minimum-timeout 120000 --allow-surviving \
+            ./build-mull/tests/muff_core_tests "$TESTS" 2>&1 | tee "mull-${SHARD}.log"
+      - name: Score this shard and compare it with Mull's own figure
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/mull_score.py "mull-${SHARD}.sqlite" --strip mufferfluffer/mufferfluffer/ --min-mutants 5 --compare-log "mull-${SHARD}.log" 2>&1 | tee "score-${SHARD}.txt"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: mull-report-${{ matrix.shard }}
+          path: |
+            mull-${{ matrix.shard }}.sqlite
+            mull-${{ matrix.shard }}.log
+            score-${{ matrix.shard }}.txt
+            mull-install.log
+            mull-baseline.log
+            mull-tests.log
+            mull-build.log
+          if-no-files-found: warn
+
+  mutation-gate:
+    needs: [scope, mutate]
+    if: always()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Read the scope and the results
+        shell: bash
+        env:
+          SCOPE_RESULT: ${{ needs.scope.result }}
+          MUTATE_RESULT: ${{ needs.mutate.result }}
+          MODE: ${{ needs.scope.outputs.mode }}
+        run: |
+          set -euo pipefail
+          echo "scope: ${SCOPE_RESULT}, mutate: ${MUTATE_RESULT}, mode: ${MODE}" | tee gate.log
+          test "${SCOPE_RESULT}" = "success"
+          if [ "${MODE}" = "not-applicable" ]; then
+            echo "mode: not-applicable (nothing under core/, adapters/ or tests/ and no mutation file changed)" | tee -a gate.log
+          fi
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        if: always() && needs.scope.outputs.mode != 'not-applicable'
+        with:
+          pattern: mull-report-*
+          path: reports
+          merge-multiple: true
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        if: always() && needs.scope.outputs.mode != 'not-applicable'
+        with:
+          name: mutation-plan
+          path: plan
+      - name: Score from the reports
+        if: always() && needs.scope.outputs.mode != 'not-applicable'
+        shell: bash
+        env:
+          MODE: ${{ needs.scope.outputs.mode }}
+        run: |
+          set -euo pipefail
+          ls -l reports | tee -a gate.log
+          if [ "${MODE}" = "incremental" ]; then
+            python3 tools/mull_score.py reports/mull-*.sqlite --strip mufferfluffer/mufferfluffer/ --plan plan/plan.json --floor-file mutation-floor.json \
+              --baseline mutation-baseline.json --tolerance 2 --min-mutants 5 2>&1 | tee -a gate.log
+          else
+            python3 tools/mull_score.py reports/mull-*.sqlite --strip mufferfluffer/mufferfluffer/ --plan plan/plan.json --floor-file mutation-floor.json \
+              --min-mutants 5 2>&1 | tee -a gate.log
+          fi
+      - name: Fail when a shard did not succeed
+        if: always() && needs.scope.outputs.mode != 'not-applicable'
+        shell: bash
+        env:
+          MUTATE_RESULT: ${{ needs.mutate.result }}
+        run: |
+          set -euo pipefail
+          echo "mutate: ${MUTATE_RESULT}" | tee -a gate.log
+          test "${MUTATE_RESULT}" = "success"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: mutation-gate-log
+          path: gate.log
+          if-no-files-found: warn
+
+  report-scheduled-failure:
+    needs: mutation-gate
+    if: always() && github.event_name == 'schedule' && needs.mutation-gate.result != 'success'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      issues: write
+    steps:
+      - name: Open an issue, or comment on the open one
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          title="Scheduled mutation run failed"
+          number=$(gh issue list --repo "$REPO" --state open --search "\"$title\" in:title" --json number,title \
+            --jq "[.[] | select(.title == \"$title\")][0].number // empty")
+          if [ -n "$number" ]; then
+            gh issue comment "$number" --repo "$REPO" --body "Failed again: $RUN_URL"
+          else
+            gh issue create --repo "$REPO" --title "$title" --body "The weekly full mutation run failed: $RUN_URL"
+          fi

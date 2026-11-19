@@ -1,0 +1,14 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# Mull configuration (plan step S-MUTATE, D-060); part of the Mull pin.
+# - mutators: no `mutators` key, so Mull applies its default set.
+# - not-covered mutants are not reported: this file sets no option that reports them, and the runner is never given
+#   --include-not-covered. tools/mull_score.py fails on any not-covered row (status 8), so enabling it would show.
+# - Mull reads both path lists as regular expressions. Each `mutate` shard rewrites includePaths to its own files
+#   with tools/mull_include_paths.py (excludePaths and everything else are kept).
+includePaths:
+  - 'core/src/.*'
+  - 'adapters/src/.*'
+excludePaths:
+  - '.*generated_tables.*'
+  - '.*tests/.*'
+  - '.*_deps/.*'
