@@ -19,7 +19,7 @@
   },
   "phase": "impl",
   "subphase": "5.3",
-  "active_step_id": "S-ADVERSARIAL",
+  "active_step_id": "S-MUTATE",
   "research_round": 3,
   "exploration_round": 0,
   "proof_review_round": 0,
@@ -1196,7 +1196,8 @@
     "S-033",
     "S-034",
     "S-035",
-    "S-REVIEW"
+    "S-REVIEW",
+    "S-ADVERSARIAL"
   ],
   "implementer": {
     "os": "Ubuntu 24.04 (Linux x86_64)",
@@ -1301,6 +1302,10 @@
     "S-REVIEW": {
       "run": "https://github.com/qualitycoding/mufferfluffer/actions/runs/44433791515",
       "commit": "88b0366"
+    },
+    "S-ADVERSARIAL": {
+      "run": "https://github.com/qualitycoding/mufferfluffer/actions/runs/44433791515",
+      "commit": "5a5a2fd"
     }
   }
 }
