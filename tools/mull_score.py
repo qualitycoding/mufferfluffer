@@ -121,6 +121,11 @@ def parse_log(text):
         m = re.findall(r"[Rr]unning mutants[^\n]*?(\d+)\s*/\s*(\d+)", text)
         if m:
             total = int(m[-1][1])
+    if total is None:
+        # Mull 0.39 prints only a progress bar, "[####----] 39/39. 15.86s"; its last figure is the mutant count.
+        m = re.findall(r"\[[#\-]+\]\s*(\d+)\s*/\s*(\d+)\.", text)
+        if m:
+            total = int(m[-1][1])
     if score is None and survived is not None and total:
         score = 100.0 * (total - survived) / total
     return score, survived, total
@@ -203,9 +208,11 @@ def run(a):
         mull_score, mull_survived, mull_total = parse_log(pathlib.Path(a.compare_log).read_text(errors="replace"))
         print(f"Mull's log: score {mull_score}, surviving {mull_survived}, total {mull_total}; this script: "
               f"score {score:.2f}, surviving {survived}, total {total}")
-        if mull_score is None:
+        if mull_score is None and mull_survived is None:
             raise Fail(f"{a.compare_log}: no mutation score or surviving-mutant count found in Mull's output")
-        if abs(mull_score - score) > LOG_TOLERANCE:
+        if mull_total is not None and mull_total != total:
+            raise Fail(f"mutants: report {total}, Mull's log {mull_total}")
+        if mull_score is not None and abs(mull_score - score) > LOG_TOLERANCE:
             raise Fail(f"score from the report {score:.2f}% and Mull's printed score {mull_score:.2f}% differ by more than {LOG_TOLERANCE} points")
         if mull_survived is not None and mull_survived != survived:
             raise Fail(f"surviving mutants: report {survived}, Mull's log {mull_survived}")
