@@ -234,6 +234,8 @@ Run https://github.com/qualitycoding/mufferfluffer/actions/runs/44457040736 (hea
 | phaser.cpp | 39 / 43 | 4 | 90.7 % |
 | blocks.cpp | 31 / 34 | 3 | 91.2 % |
 
+Run https://github.com/qualitycoding/mufferfluffer/actions/runs/44461742195 (commit 81527e7, the baseline and floor commit, a full run) is green against the new floor: `Mutation score: 76.7% (439/572 killed); floor 71%`.
+
 The stopping rule is met after one round of the three allowed: no file scores below 60 %, every survivor of the three files that did is killed or justified, and the project score is above 60 %.
 `mutation-floor.json` is set once to 71, the whole number five points below 76.7 (`mutation-baseline.json` holds the per-file scores above). The floor is not lowered without a D- entry.
 Survivors of the other ten files are listed by count only (section above); the two files closest to the line, clocked_line.cpp and tables.cpp, have 11 and 18 survivors.
@@ -244,8 +246,7 @@ Incremental: commit 083f4d8 added one comment line to `core/src/phaser.cpp` (run
 matrix of one shard (`phaser`). The gate scored that shard against the per-file baseline: `Mutation score (incremental): 90.7% (39/43 killed); per-file baseline, tolerance 2 points`, green.
 The revert, commit f05c1b9 (run 44461921611), ran the same single shard again.
 
-Not applicable: the commit that records these results changes no file under `core/`, `adapters/` or `tests/` and none of the mutation files, only `reviews/MUTATION.md`; its run is
-recorded in the next paragraph when it has finished. (Commit 049456d, which changed only `ci.yml`, produced the same mode earlier: run 44458309166, `mutate` skipped, `mutation-gate` green.)
+Not applicable: the commit that records these results changes no file under `core/`, `adapters/` or `tests/` and none of the mutation files, only `reviews/MUTATION.md`; its run (commit 92bd581, run 44463535592) printed `"mode": "not-applicable"`, reason `no file under core/, adapters/ or tests/ and no mutation file changed`; `mutate` was skipped and `mutation-gate` passed. (Commit 049456d, which changed only `ci.yml`, produced the same mode earlier: run 44458309166, `mutate` skipped, `mutation-gate` green.)
 
 ## Recommendation
 
