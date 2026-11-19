@@ -1,0 +1,337 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# Binary packages for a hands-on trial (S-040). Every job runs only for the commit that carries the owner's approval of
+# gate G-002 in its subject; no other commit may start with that marker, so the commit that adds this file does not run it.
+name: packages
+on:
+  push:
+permissions:
+  contents: read
+jobs:
+  linux-x64:
+    if: startsWith(github.event.head_commit.message, '[build-packages G-002-approved]')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Install packages
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y libasound2-dev libxrandr-dev libxinerama-dev libxcursor-dev libglu1-mesa-dev libxcomposite-dev libxi-dev libfreetype-dev libfontconfig1-dev libx11-dev libxext-dev libxrender-dev ninja-build
+      - name: Configure and build
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake -S . -B build/vst3 -DCMAKE_BUILD_TYPE=Release -DMUFF_BUILD_VST3=ON
+          cmake --build build/vst3 --config Release --parallel "$(nproc)"
+      - name: Pack the seven bundles
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/package_vst3.py mufferfluffer-vst3-linux-x64.zip build/vst3 LICENSE | tee linux-x64.log
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: mufferfluffer-vst3-linux-x64
+          path: mufferfluffer-vst3-linux-x64.zip
+          retention-days: 14
+          if-no-files-found: error
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: linux-x64-log
+          path: linux-x64.log
+          if-no-files-found: error
+
+  windows-x64:
+    if: startsWith(github.event.head_commit.message, '[build-packages G-002-approved]')
+    runs-on: windows-2022
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Configure and build
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake -S . -B build/vst3 -G "Visual Studio 17 2022" -A x64 -DMUFF_BUILD_VST3=ON
+          cmake --build build/vst3 --config Release --parallel "$NUMBER_OF_PROCESSORS"
+      - name: Pack the seven bundles
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/package_vst3.py mufferfluffer-vst3-windows-x64.zip build/vst3 LICENSE | tee windows-x64.log
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: mufferfluffer-vst3-windows-x64
+          path: mufferfluffer-vst3-windows-x64.zip
+          retention-days: 14
+          if-no-files-found: error
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: windows-x64-log
+          path: windows-x64.log
+          if-no-files-found: error
+
+  macos-arm64:
+    if: startsWith(github.event.head_commit.message, '[build-packages G-002-approved]')
+    runs-on: macos-15
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Configure and build
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake -S . -B build/vst3 -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_DEPLOYMENT_TARGET=11.0 -DMUFF_BUILD_VST3=ON
+          cmake --build build/vst3 --config Release --parallel "$(sysctl -n hw.ncpu)"
+      - name: Check the minimum macOS version (D-071)
+        shell: bash
+        run: |
+          set -euo pipefail
+          count=0
+          while IFS= read -r -d '' lib; do
+            minos=$(otool -l "$lib" | awk '/LC_BUILD_VERSION/ { f = 1 } f && /minos/ { print $2; exit }')
+            echo "$lib: minos $minos"
+            test -n "$minos"
+            python3 -c 'import sys; sys.exit(0 if tuple(int(x) for x in sys.argv[1].split(".")) <= (11, 0) else 1)' "$minos"
+            count=$((count + 1))
+          done < <(find build/vst3 -path '*.vst3/Contents/MacOS/*' -type f -print0)
+          test "$count" -eq 7
+      - name: Pack the seven bundles
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/package_vst3.py mufferfluffer-vst3-macos-arm64.zip build/vst3 LICENSE | tee macos-arm64.log
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: mufferfluffer-vst3-macos-arm64
+          path: mufferfluffer-vst3-macos-arm64.zip
+          retention-days: 14
+          if-no-files-found: error
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: macos-arm64-log
+          path: macos-arm64.log
+          if-no-files-found: error
+
+  macos-x64:
+    if: startsWith(github.event.head_commit.message, '[build-packages G-002-approved]')
+    runs-on: macos-15-intel
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Configure and build
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake -S . -B build/vst3 -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_DEPLOYMENT_TARGET=11.0 -DMUFF_BUILD_VST3=ON
+          cmake --build build/vst3 --config Release --parallel "$(sysctl -n hw.ncpu)"
+      - name: Check the minimum macOS version (D-071)
+        shell: bash
+        run: |
+          set -euo pipefail
+          count=0
+          while IFS= read -r -d '' lib; do
+            minos=$(otool -l "$lib" | awk '/LC_BUILD_VERSION/ { f = 1 } f && /minos/ { print $2; exit }')
+            echo "$lib: minos $minos"
+            test -n "$minos"
+            python3 -c 'import sys; sys.exit(0 if tuple(int(x) for x in sys.argv[1].split(".")) <= (11, 0) else 1)' "$minos"
+            count=$((count + 1))
+          done < <(find build/vst3 -path '*.vst3/Contents/MacOS/*' -type f -print0)
+          test "$count" -eq 7
+      - name: Pack the seven bundles
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/package_vst3.py mufferfluffer-vst3-macos-x64.zip build/vst3 LICENSE | tee macos-x64.log
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: mufferfluffer-vst3-macos-x64
+          path: mufferfluffer-vst3-macos-x64.zip
+          retention-days: 14
+          if-no-files-found: error
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: macos-x64-log
+          path: macos-x64.log
+          if-no-files-found: error
+
+  rack-linux-x64:
+    if: startsWith(github.event.head_commit.message, '[build-packages G-002-approved]')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Fetch and verify the Rack SDK
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/fetch_rack_sdk.py lin-x64 . 2>&1 | tee rack-linux-x64.log
+      - name: Build the plug-in package
+        shell: bash
+        run: |
+          set -euo pipefail
+          make -C rack RACK_DIR="$PWD/Rack-SDK" dist 2>&1 | tee -a rack-linux-x64.log
+      - name: Check the package
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/check_rack_package.py rack/dist lin-x64 | tee -a rack-linux-x64.log
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: mufferfluffer-rack-lin-x64
+          path: rack/dist/Mufferfluffer-2.0.0-lin-x64.vcvplugin
+          retention-days: 14
+          if-no-files-found: error
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: rack-linux-x64-log
+          path: rack-linux-x64.log
+          if-no-files-found: error
+
+  rack-windows-x64:
+    if: startsWith(github.event.head_commit.message, '[build-packages G-002-approved]')
+    runs-on: windows-2022
+    timeout-minutes: 40
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: msys2/setup-msys2@ec48f7c5447b3140e2b088413ae3a55687bccb6e # v2.33.0
+        with:
+          msystem: MINGW64
+          update: true
+          install: make jq zstd mingw-w64-x86_64-toolchain mingw-w64-x86_64-python
+      - name: Fetch and verify the Rack SDK
+        run: |
+          set -euo pipefail
+          python tools/fetch_rack_sdk.py win-x64 . 2>&1 | tee rack-windows-x64.log
+      - name: Build the plug-in package
+        run: |
+          set -euo pipefail
+          make -C rack dist 2>&1 | tee -a rack-windows-x64.log
+      - name: Check the package
+        run: |
+          set -euo pipefail
+          python tools/check_rack_package.py rack/dist win-x64 | tee -a rack-windows-x64.log
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: mufferfluffer-rack-win-x64
+          path: rack/dist/Mufferfluffer-2.0.0-win-x64.vcvplugin
+          retention-days: 14
+          if-no-files-found: error
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: rack-windows-x64-log
+          path: rack-windows-x64.log
+          if-no-files-found: error
+
+  rack-macos-arm64:
+    if: startsWith(github.event.head_commit.message, '[build-packages G-002-approved]')
+    runs-on: macos-15
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Install tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          brew install jq zstd
+      - name: Fetch and verify the Rack SDK
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/fetch_rack_sdk.py mac-arm64 . 2>&1 | tee rack-macos-arm64.log
+      - name: Build the plug-in package
+        shell: bash
+        run: |
+          set -euo pipefail
+          make -C rack RACK_DIR="$PWD/Rack-SDK" dist 2>&1 | tee -a rack-macos-arm64.log
+      - name: Check the package
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/check_rack_package.py rack/dist mac-arm64 | tee -a rack-macos-arm64.log
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: mufferfluffer-rack-mac-arm64
+          path: rack/dist/Mufferfluffer-2.0.0-mac-arm64.vcvplugin
+          retention-days: 14
+          if-no-files-found: error
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: rack-macos-arm64-log
+          path: rack-macos-arm64.log
+          if-no-files-found: error
+
+  rack-macos-x64:
+    if: startsWith(github.event.head_commit.message, '[build-packages G-002-approved]')
+    runs-on: macos-15-intel
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Install tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          brew install jq zstd
+      - name: Fetch and verify the Rack SDK
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/fetch_rack_sdk.py mac-x64 . 2>&1 | tee rack-macos-x64.log
+      - name: Build the plug-in package
+        shell: bash
+        run: |
+          set -euo pipefail
+          make -C rack RACK_DIR="$PWD/Rack-SDK" dist 2>&1 | tee -a rack-macos-x64.log
+      - name: Check the package
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/check_rack_package.py rack/dist mac-x64 | tee -a rack-macos-x64.log
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: mufferfluffer-rack-mac-x64
+          path: rack/dist/Mufferfluffer-2.0.0-mac-x64.vcvplugin
+          retention-days: 14
+          if-no-files-found: error
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: rack-macos-x64-log
+          path: rack-macos-x64.log
+          if-no-files-found: error
+
+  checksums:
+    if: startsWith(github.event.head_commit.message, '[build-packages G-002-approved]')
+    needs: [linux-x64, windows-x64, macos-arm64, macos-x64, rack-linux-x64, rack-windows-x64, rack-macos-arm64, rack-macos-x64]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          path: packages
+      - name: Write SHA256SUMS
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir out
+          find packages -type f \( -name '*.zip' -o -name '*.vcvplugin' \) -exec cp {} out/ \;
+          test "$(ls out | wc -l)" -eq 8
+          for f in out/*; do test "$(stat -c %s "$f")" -gt 100000; done
+          (cd out && sha256sum * | tee ../SHA256SUMS)
+          test "$(wc -l < SHA256SUMS)" -eq 8
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: SHA256SUMS
+          path: SHA256SUMS
+          retention-days: 14
+          if-no-files-found: error
