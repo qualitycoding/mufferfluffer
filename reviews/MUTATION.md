@@ -240,7 +240,12 @@ Survivors of the other ten files are listed by count only (section above); the t
 
 ## Incremental and not-applicable runs
 
-TBD: filled in from the demonstration runs (a comment line in `core/src/phaser.cpp`, its revert, and a commit that changes only this file).
+Incremental: commit 083f4d8 added one comment line to `core/src/phaser.cpp` (run 44461794898). `scope` printed `"mode": "incremental"`, reason `changed in-scope files: ['core/src/phaser.cpp']`, and a
+matrix of one shard (`phaser`). The gate scored that shard against the per-file baseline: `Mutation score (incremental): 90.7% (39/43 killed); per-file baseline, tolerance 2 points`, green.
+The revert, commit f05c1b9 (run 44461921611), ran the same single shard again.
+
+Not applicable: the commit that records these results changes no file under `core/`, `adapters/` or `tests/` and none of the mutation files, only `reviews/MUTATION.md`; its run is
+recorded in the next paragraph when it has finished. (Commit 049456d, which changed only `ci.yml`, produced the same mode earlier: run 44458309166, `mutate` skipped, `mutation-gate` green.)
 
 ## Recommendation
 
