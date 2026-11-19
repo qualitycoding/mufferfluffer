@@ -442,7 +442,7 @@ jobs:
           ctest --test-dir build/vst3 -C Release -V -R muff_vst3_tests --no-tests=error 2>&1 | tee vst3-macos.log
           grep -F "All tests passed" vst3-macos.log
           grep -F "in 7 test cases" vst3-macos.log
-          grep -F "100% tests passed, 0 tests failed out of 1" vst3-macos.log
+          grep -E "100% tests passed(, 0 tests failed)? out of 1$" vst3-macos.log
           ccache -s | tee -a vst3-macos.log
       - name: Check the bundles and the minimum macOS version (D-071)
         shell: bash
@@ -513,7 +513,7 @@ jobs:
           ctest --test-dir build/vst3 -C Release -V -R muff_vst3_tests --no-tests=error 2>&1 | tee vst3-macos-intel.log
           grep -F "All tests passed" vst3-macos-intel.log
           grep -F "in 7 test cases" vst3-macos-intel.log
-          grep -F "100% tests passed, 0 tests failed out of 1" vst3-macos-intel.log
+          grep -E "100% tests passed(, 0 tests failed)? out of 1$" vst3-macos-intel.log
           ccache -s | tee -a vst3-macos-intel.log
       - name: Check the bundles and the minimum macOS version (D-071)
         shell: bash
