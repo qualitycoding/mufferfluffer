@@ -19,7 +19,7 @@
   },
   "phase": "impl",
   "subphase": "5.3",
-  "active_step_id": "S-040",
+  "active_step_id": "S-LISTEN",
   "research_round": 3,
   "exploration_round": 0,
   "proof_review_round": 0,
@@ -616,7 +616,15 @@
     "variable_store": {}
   },
   "tier_substitutions": [],
-  "open_items": [],
+  "open_items": [
+    {
+      "gate": "G-002",
+      "state": "asked",
+      "file": "GATE-G-002.md",
+      "commit": "19c2aca",
+      "note": "non-blocking; treated as decline for continuing until answered"
+    }
+  ],
   "lesson_store": {
     "location": "https://github.com/qualitycoding/Lessons",
     "commit_read": "9934bb560768cc56b25513e53cae2f743c7b9ef5",
